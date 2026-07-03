@@ -1,6 +1,8 @@
 ---
 brand: "Axminster"
 model: "AW106PT2"
+image: "./img/axminster-aw106pt2.png"
+image_alt: "Illustration of a benchtop planer thicknesser/jointer with its fence, tables, and dust extraction port"
 category: "Motor & Drive"
 symptom: "Planer/jointer hums loudly at switch-on but won't start, trips the breaker after a few seconds"
 likely_cause: "Failed start capacitor or motor winding preventing the induction motor from developing starting torque"
