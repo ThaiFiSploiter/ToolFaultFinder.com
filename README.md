@@ -79,6 +79,30 @@ Field notes:
 That's the whole workflow: add the file, commit, push. Netlify rebuilds and the
 new entry appears everywhere automatically (homepage grid, fault index, search).
 
+### Adding images (photos or AI illustrations)
+
+Put image files in `src/content/faults/img/` and reference them from the
+entry's frontmatter:
+
+```yaml
+image: "./img/triton-tpt125-commutator.png"
+image_alt: "Illustration of a burnt commutator on a universal motor armature"
+```
+
+The image renders as a hero on the entry page and as a 16:9-cropped thumbnail
+on the entry's card (homepage and fault index). Entries without an `image`
+just render without one — it's fully optional per entry.
+
+Astro optimizes images at build time (resizing + WebP), so drop in full-size
+files; PNG, JPG, and WebP all work. You can also embed extra images inside the
+markdown body with standard syntax: `![alt text](./img/detail-shot.jpg)` —
+those get optimized too.
+
+AI-generated illustrations work like any other image file. For a consistent
+look, prompt for a consistent style across the set (e.g. "technical line-art
+illustration, amber and charcoal, diagnostic manual style") and always write
+meaningful `image_alt` text.
+
 ## Deploying to Netlify
 
 1. Push this repo to GitHub (or GitLab/Bitbucket):

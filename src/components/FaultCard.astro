@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 import { faultUrl } from '../lib/slug';
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 }
 
 const { entry, categorySlug } = Astro.props;
-const { brand, model, category, symptom, likely_cause, date_published } = entry.data;
+const { brand, model, category, symptom, likely_cause, date_published, image, image_alt } = entry.data;
 
 const dateLabel = date_published.toISOString().slice(0, 10);
 ---
@@ -18,6 +19,11 @@ const dateLabel = date_published.toISOString().slice(0, 10);
   <div class="card-top">
     <span class="card-model">{brand} {model}</span>
   </div>
+  {image && (
+    <div class="card-image">
+      <Image src={image} alt={image_alt ?? `${brand} ${model}`} width={640} />
+    </div>
+  )}
   <div class="card-body">
     <h3><a href={faultUrl(entry)}>{symptom}</a></h3>
     <p class="card-cause">{likely_cause}</p>

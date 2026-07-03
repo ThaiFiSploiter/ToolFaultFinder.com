@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
 import Base from '../../../layouts/Base.astro';
 import { slugify } from '../../../lib/slug';
 
@@ -26,6 +27,8 @@ const {
   fix_or_verdict,
   sources,
   date_published,
+  image,
+  image_alt,
 } = entry.data;
 
 const dateLabel = date_published.toLocaleDateString('en-GB', {
@@ -47,6 +50,12 @@ const dateLabel = date_published.toLocaleDateString('en-GB', {
       <p class="kicker" data-pagefind-meta="title">{brand} {model}</p>
       <h1>{symptom}</h1>
     </header>
+
+    {image && (
+      <figure class="entry-hero" data-pagefind-ignore>
+        <Image src={image} alt={image_alt ?? `${brand} ${model} — ${symptom}`} width={1200} />
+      </figure>
+    )}
 
     <div class="plate">
       <div class="plate-head">

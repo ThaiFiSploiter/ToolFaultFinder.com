@@ -9,7 +9,11 @@ import { glob } from 'astro/loaders';
 // table later (Phase 2), but nothing here depends on one.
 const faults = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/faults' }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
+    // Optional illustration/photo, path relative to the markdown file,
+    // e.g. "./img/triton-tpt125.png". Optimized by Astro at build time.
+    image: image().optional(),
+    image_alt: z.string().optional(),
     brand: z.string(),
     model: z.string(),
     category: z.string(),
