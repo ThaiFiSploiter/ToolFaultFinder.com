@@ -1,6 +1,8 @@
 ---
 brand: "Bambu Lab"
 model: "A1"
+image: "./img/bambu-lab-a1.png"
+image_alt: "Technical line-art illustration of the Bambu Lab A1 3D printer with its touchscreen and toolhead visible"
 category: "Electronics & Firmware"
 symptom: "Printer shows 'printing' state in the app and on the display with no job running; won't accept new jobs until power-cycled"
 likely_cause: "Stale print-job state left behind after an interrupted job or dropped cloud connection — the previous job's status is never cleared"
