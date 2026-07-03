@@ -21,11 +21,12 @@ date_published: 2026-06-28
 
 ## How the fault showed up
 
-[PLACEHOLDER - replace with real content] The TPT125 came in with a complaint of
-"showering sparks" visible through the motor vents during cuts, with the motor
-audibly bogging down on passes that it previously handled without effort. On the
-bench, the sparking was visible at both brush positions even under no load, and
-there was a strong ozone/burnt-varnish smell after a minute of running.
+[PLACEHOLDER - replace with real content] Our TPT125 started showering sparks
+visibly through the motor vents during cuts, with the motor audibly bogging down
+on passes it previously handled without effort. With the machine out of the
+workflow and somewhere it could be looked at properly, the sparking was visible
+at both brush positions even under no load, and there was a strong
+ozone/burnt-varnish smell after a minute of running.
 
 ## What we found
 
