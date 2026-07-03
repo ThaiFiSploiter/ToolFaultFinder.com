@@ -3,7 +3,7 @@ brand: "Ryobi"
 model: "ONE+ 18V"
 category: "Batteries & Charging"
 symptom: "Battery refuses to charge after storage — charger flashes its 'defective' pattern the moment the pack is inserted"
-likely_cause: "Deep discharge during storage has dropped the cells below the cutoff voltage the charger accepts, so it flags a healthy-but-empty pack as faulty"
+likely_cause: "The battery, not the charger: deep discharge during storage has dropped the cells below the cutoff voltage the charger accepts, so it flags a healthy-but-empty pack as faulty"
 diagnostic_steps:
   - "Rule out the charger: try a known-good battery in it, and the suspect battery in a second charger if one is available"
   - "Clean the battery and charger terminals — oxidised or dusty contacts produce the same rejection"
@@ -29,11 +29,20 @@ cordless platform, and Ryobi's ONE+ range is no exception.
 
 ## What's actually happening
 
-Lithium-ion packs self-discharge slowly in storage, and the pack's electronics
-draw a small current on top. Store a partly flat pack for long enough and the
-cells sink below the minimum voltage the charger is designed to accept. The
-charger can't tell the difference between "healthy but over-discharged" and
-"genuinely failed", so it errs on the side of caution and rejects the pack.
+First, the question everyone asks: **is it the battery or the charger?** It's
+the battery — and usually the battery isn't broken either. The charger is
+doing exactly what it's designed to do; the "defective" light describes the
+battery's state, not the charger's opinion of itself. (Step one of the
+diagnosis still swaps packs and chargers around, because a genuinely dead
+charger or dirty contacts produce the same picture — but they're the rare
+case.)
+
+Here's the mechanism. Lithium-ion packs self-discharge slowly in storage, and
+the pack's electronics draw a small current on top. Store a partly flat pack
+for long enough and the cells sink below the minimum voltage the charger is
+designed to accept. The charger can't tell the difference between "healthy
+but over-discharged" and "genuinely failed", so it errs on the side of
+caution and rejects the pack.
 
 That caution exists for a reason. Cells held below their minimum voltage for
 long periods can develop internal damage that makes recharging them genuinely
