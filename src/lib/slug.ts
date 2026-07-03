@@ -1,6 +1,8 @@
-/** URL-safe slug from a brand or model string, e.g. "Bambu Lab" -> "bambu-lab". */
+/** URL-safe slug from a brand or model string, e.g. "Kärcher" -> "karcher". */
 export function slugify(value: string): string {
   return value
+    .normalize('NFKD')
+    .replace(/[̀-ͯ]/g, '')
     .toLowerCase()
     .trim()
     .replace(/[^a-z0-9]+/g, '-')
