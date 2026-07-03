@@ -3,54 +3,65 @@ brand: "Triton"
 model: "TPT125"
 category: "Motor & Drive"
 symptom: "Thicknesser motor sparks heavily at the brushes, loses power under load, and smells of ozone"
-likely_cause: "Burnt/scored commutator segments causing arcing at the brush contact faces"
+likely_cause: "Burnt or scored commutator segments causing arcing at the brush contact faces"
 diagnostic_steps:
   - "Unplug the machine and remove both brush caps; inspect brush length and contact face condition"
   - "Rotate the armature by hand and inspect the commutator surface through the brush holder — look for blackened, pitted, or ridged segments"
-  - "Check for a single discoloured segment pair (suggests a shorted armature winding rather than general wear)"
+  - "Check for a single discoloured segment pair, which suggests a shorted armature winding rather than general wear"
   - "Measure resistance between adjacent commutator segments — readings should be low and consistent all the way around"
   - "Inspect brush springs for heat discolouration and loss of tension"
-fix_or_verdict: "[PLACEHOLDER] Skim the commutator and fit new brushes if wear is even; replace the armature if segments are shorted. Economical repair either way."
-source_type: "firsthand"
+fix_or_verdict: "Even segment damage: clean or skim the commutator and fit new brushes — an economical repair. Anomalous segment readings: the armature is faulty, so price a replacement before committing."
+source_type: "researched"
+sources:
+  - "Triton TPT125 operating manual (motor and brush service sections)"
+  - "General universal-motor commutator and brush service references"
+  - "Owner reports of TPT125 brush arcing on woodworking forums"
 date_published: 2026-06-28
 ---
 
-> **[PLACEHOLDER - replace with real content]** This entire writeup is placeholder
-> text demonstrating the intended structure and tone. Replace it with your real
-> diagnosis notes for the TPT125.
+## The symptom pattern
 
-## How the fault showed up
+The TPT125 uses a universal (brushed) motor, and the reported failure pattern is
+consistent: visible sparking through the motor vents during cuts, the motor
+bogging down on passes it previously handled comfortably, and a sharp ozone or
+burnt-varnish smell after running. Heavy, continuous sparking at both brush
+positions — even with no cutting load — points at the commutator/brush interface
+rather than at the switch, lead, or drive train.
 
-[PLACEHOLDER - replace with real content] Our TPT125 started showering sparks
-visibly through the motor vents during cuts, with the motor audibly bogging down
-on passes it previously handled without effort. With the machine out of the
-workflow and somewhere it could be looked at properly, the sparking was visible
-at both brush positions even under no load, and there was a strong
-ozone/burnt-varnish smell after a minute of running.
+## Working through the diagnosis
 
-## What we found
+Some brush sparking is normal for a universal motor; showering sparks are not.
+With the machine unplugged and the brushes removed, the commutator surface tells
+most of the story:
 
-[PLACEHOLDER - replace with real content] With the brushes out, the commutator
-showed heavy blackening across most segments and visible ridging where the brush
-faces run. Both brushes were within length spec but had badly glazed, pitted
-contact faces — consistent with prolonged arcing rather than simple wear.
+- **Even blackening or ridging across all segments** indicates a surface and
+  brush problem — glazed or pitted brush faces arcing against a dirty or worn
+  commutator. This is the recoverable case.
+- **One or two burnt segments with the rest clean** suggests a shorted armature
+  winding dumping current through that segment pair. Confirm with a
+  segment-to-segment resistance check: readings should be low and consistent all
+  the way around the commutator. An anomalous pair means the armature itself has
+  failed.
 
-Segment-to-segment resistance was consistent around the commutator, which ruled
-out a shorted armature winding. That's the important fork in this diagnosis: even
-segment damage points to a surface/brush problem (recoverable cheaply), while one
-or two burnt segments with anomalous resistance readings points to a winding
-failure and an armature replacement.
+Brushes that are within length spec can still be the problem if their contact
+faces are glazed or pitted — prolonged arcing damages the face long before the
+brush wears short. Weak or heat-discoloured brush springs produce the same
+arcing by failing to hold the brush firmly against the commutator.
 
 ## The fix
 
-[PLACEHOLDER - replace with real content] Describe the actual repair here: how the
-commutator was cleaned/skimmed, what grade of abrasive or machining approach was
-used, undercutting the mica if done, the replacement brush part number, and the
-bedding-in procedure. Include what it cost and how long it took.
+For even surface damage, the standard repair is to clean up the commutator
+(fine abrasive for light glazing; a skim in a lathe for ridging), fit a new pair
+of brushes, and bed them in by running the machine unloaded before returning it
+to full cuts. Brush sets for the TPT125 are inexpensive and widely available.
+
+For a shorted armature, the repair is a replacement armature — check current
+pricing against the machine's value before committing, as availability and cost
+vary.
 
 ## Verdict
 
-[PLACEHOLDER - replace with real content] Worth repairing. A commutator skim plus
-brushes is a fraction of the cost of a new machine. If diagnosis had shown a
-shorted winding instead, the armature price would make the call closer — check
-current armature pricing before committing.
+Worth diagnosing properly before condemning anything. The common case — dirty
+commutator plus tired brushes — is one of the cheapest repairs in the workshop.
+The uncommon case, a failed armature, is the point where replacement machine
+pricing enters the conversation.

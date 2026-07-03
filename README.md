@@ -129,9 +129,9 @@ pages are indexed (they carry `data-pagefind-body`); nav/static pages stay out
 of the results. The homepage search bar loads Pagefind's default UI, themed via
 CSS variables in `global.css`.
 
-## Placeholder content
+## Seed content
 
-The three seed entries (Triton TPT125, Axminster AW106PT2, Bambu Lab A1) and
-the About/Privacy pages contain text marked `[PLACEHOLDER - replace with real
-content]`. Search the repo for `PLACEHOLDER` to find everything that needs
-real writing before launch.
+The three seed entries (Triton TPT125, Axminster AW106PT2, Bambu Lab A1) are
+published as finished `researched` entries. When you experience one of these
+faults on your own tool, rewrite the entry with your actual account and flip
+`source_type` to `firsthand` (and remove the `sources` list).
