@@ -1,6 +1,8 @@
 ---
 brand: "DeWalt"
 model: "DWS774"
+image: "./img/dewalt-dws774.png"
+image_alt: "Line-art illustration of the DeWalt DWS774 sliding mitre saw with its fence, mitre scale, and slide rails"
 category: "Blades & Alignment"
 symptom: "Mitre saw cuts are out of square — 90° cuts show a visible gap against a square, and mitred frames won't close up"
 likely_cause: "Fence or bevel calibration drift — the saw's reference surfaces no longer match the scale detents, usually after transport, a knock, or dust packed behind the fence"

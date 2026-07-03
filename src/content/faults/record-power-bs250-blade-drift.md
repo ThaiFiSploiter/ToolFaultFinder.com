@@ -1,6 +1,8 @@
 ---
 brand: "Record Power"
 model: "BS250"
+image: "./img/record-power-bs250.png"
+image_alt: "Line-art illustration of the Record Power BS250 benchtop bandsaw with its table, fence, and blade guides"
 category: "Blades & Alignment"
 symptom: "Bandsaw cuts wander away from the fence — the blade drifts sideways through the cut no matter how carefully the wood is fed"
 likely_cause: "A dull or unevenly-set blade, insufficient tension, or misadjusted guides — drift is almost always setup, not a machine fault"

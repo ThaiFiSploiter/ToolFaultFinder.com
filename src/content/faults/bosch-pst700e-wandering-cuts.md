@@ -1,6 +1,8 @@
 ---
 brand: "Bosch"
 model: "PST 700 E"
+image: "./img/bosch-pst700e.png"
+image_alt: "Line-art illustration of the Bosch PST 700 E jigsaw with its blade and base plate visible"
 category: "Blades & Alignment"
 symptom: "Jigsaw cuts wander off line and come out bevelled — the cut edge leans noticeably in thicker material despite the base being set square"
 likely_cause: "Blade deflection: a dull, bent, or wrong-type blade flexing sideways in the cut, often aggravated by feeding too fast or a worn blade support roller"
