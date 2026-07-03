@@ -336,8 +336,6 @@ h3 { font-size: 1.15rem; }
 }
 .tag-category { color: var(--clr-amber-bright); }
 .card-body .tag-category, .plate .tag-category, .filter-note .tag-category { color: var(--clr-amber-dim); }
-.tag-firsthand { color: var(--clr-green); background: #eef3ec; }
-.tag-researched { color: var(--clr-rust); background: #f6ece7; }
 
 /* --- Quick facts spec plate ------------------------------------------------- */
 

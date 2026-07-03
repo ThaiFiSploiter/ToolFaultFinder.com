@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { entry, categorySlug } = Astro.props;
-const { brand, model, category, symptom, likely_cause, source_type, date_published } = entry.data;
+const { brand, model, category, symptom, likely_cause, date_published } = entry.data;
 
 const dateLabel = date_published.toISOString().slice(0, 10);
 ---
@@ -17,7 +17,6 @@ const dateLabel = date_published.toISOString().slice(0, 10);
 <li class="fault-card" data-category={categorySlug}>
   <div class="card-top">
     <span class="card-model">{brand} {model}</span>
-    <span class={`tag tag-${source_type}`}>{source_type}</span>
   </div>
   <div class="card-body">
     <h3><a href={faultUrl(entry)}>{symptom}</a></h3>

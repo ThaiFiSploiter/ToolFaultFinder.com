@@ -24,7 +24,6 @@ const {
   likely_cause,
   diagnostic_steps,
   fix_or_verdict,
-  source_type,
   sources,
   date_published,
 } = entry.data;
@@ -52,9 +51,6 @@ const dateLabel = date_published.toLocaleDateString('en-GB', {
     <div class="plate">
       <div class="plate-head">
         <span class="plate-title">Quick Facts</span>
-        <span class={`tag tag-${source_type}`}>
-          {source_type === 'firsthand' ? 'Firsthand — happened to our own tool' : 'Researched — compiled from sources'}
-        </span>
       </div>
       <dl>
         <dt>Brand</dt>
@@ -75,7 +71,7 @@ const dateLabel = date_published.toLocaleDateString('en-GB', {
         </dd>
         <dt>Fix / verdict</dt>
         <dd><strong>{fix_or_verdict}</strong></dd>
-        {source_type === 'researched' && sources && sources.length > 0 && (
+        {sources && sources.length > 0 && (
           <>
             <dt>Sources</dt>
             <dd>

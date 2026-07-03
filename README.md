@@ -65,8 +65,9 @@ Field notes:
 
 - **`source_type`** must be exactly `firsthand` or `researched` — the build
   fails on anything else (the schema is enforced in `src/content.config.ts`).
-- **`sources`** is only meaningful for `researched` entries; it renders as a
-  source list on the quick-facts plate. Omit it for firsthand entries.
+  It's kept as data only and is not displayed anywhere on the site.
+- **`sources`** renders as a source list on the quick-facts plate whenever
+  present. Omit it for firsthand entries.
 - **`category`** is free text, but reuse existing category names where possible
   — the `/faults/` page builds its filter buttons from the distinct set of
   categories.
@@ -132,6 +133,7 @@ CSS variables in `global.css`.
 ## Seed content
 
 The three seed entries (Triton TPT125, Axminster AW106PT2, Bambu Lab A1) are
-published as finished `researched` entries. When you experience one of these
-faults on your own tool, rewrite the entry with your actual account and flip
-`source_type` to `firsthand` (and remove the `sources` list).
+published as finished research-compiled entries. When you experience one of
+these faults on your own tool, rewrite the entry with your actual account and
+flip `source_type` to `firsthand` (and remove the `sources` list) — the field
+isn't shown on the site, but keeping it accurate preserves the data for later.
