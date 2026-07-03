@@ -1,6 +1,8 @@
 ---
 brand: "Kärcher"
 model: "K4"
+image: "./img/karcher-k4.png"
+image_alt: "Line-art illustration of the Kärcher K4 pressure washer with its trigger gun docked and hose coiled"
 category: "Pumps & Pressure"
 symptom: "Pressure washer switches itself on and off repeatedly (pulsing) with the trigger released"
 likely_cause: "A small pressure leak downstream of the pump — the auto-stop system sees pressure decay and restarts the motor to top it back up"

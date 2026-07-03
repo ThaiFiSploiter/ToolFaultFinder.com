@@ -1,6 +1,8 @@
 ---
 brand: "Creality"
 model: "Ender 3"
+image: "./img/creality-ender-3.png"
+image_alt: "Line-art illustration of the Creality Ender 3 3D printer showing the gantry, print bed, and control box"
 category: "Mechanical & Motion"
 symptom: "Prints develop sudden sideways layer shifts partway through — the print is perfect below a line and offset above it"
 likely_cause: "Loose pulley grub screws or incorrect belt tension letting the X or Y axis lose position mid-print"

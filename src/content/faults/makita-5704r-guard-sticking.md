@@ -1,6 +1,8 @@
 ---
 brand: "Makita"
 model: "5704R"
+image: "./img/makita-5704r.png"
+image_alt: "Line-art illustration of the Makita 5704R circular saw showing the blade, lower guard, and base plate"
 category: "Guards & Safety"
 symptom: "Circular saw's lower blade guard returns slowly after a cut, hangs partway, or has to be flicked shut by hand"
 likely_cause: "Resin and compacted sawdust in the guard's pivot ring binding its rotation — occasionally a stretched or detached return spring"
