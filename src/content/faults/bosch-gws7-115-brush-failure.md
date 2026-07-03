@@ -1,6 +1,8 @@
 ---
 brand: "Bosch"
 model: "GWS 7-115"
+image: "./img/bosch-gws7-115.png"
+image_alt: "Line-art illustration of the Bosch GWS 7-115 angle grinder with its wheel guard, side handle, and grinding disc"
 category: "Motor & Drive"
 symptom: "Angle grinder won't start, starts only after a jiggle or tap, or cuts out intermittently during use"
 likely_cause: "Carbon brushes worn to their limit — the motor loses contact with the commutator, first intermittently, then completely"
