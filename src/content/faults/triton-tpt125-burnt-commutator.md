@@ -1,6 +1,8 @@
 ---
 brand: "Triton"
 model: "TPT125"
+image: "./img/triton-tpt125.png"
+image_alt: "Technical line-art illustration of the Triton TPT125 thicknesser with its infeed table folded down"
 category: "Motor & Drive"
 symptom: "Thicknesser motor sparks heavily at the brushes, loses power under load, and smells of ozone"
 likely_cause: "Burnt or scored commutator segments causing arcing at the brush contact faces"
