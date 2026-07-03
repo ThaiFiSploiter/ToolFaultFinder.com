@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { faultUrl } from '../lib/slug';
+
+interface Props {
+  entry: CollectionEntry<'faults'>;
+  /** Optional slug used by the fault index page for client-side filtering. */
+  categorySlug?: string;
+}
+
+const { entry, categorySlug } = Astro.props;
+const { brand, model, category, symptom, likely_cause, source_type, date_published } = entry.data;
+
+const dateLabel = date_published.toISOString().slice(0, 10);
+---
+
+<li class="fault-card" data-category={categorySlug}>
+  <div class="card-top">
+    <span class="card-model">{brand} {model}</span>
+    <span class={`tag tag-${source_type}`}>{source_type}</span>
+  </div>
+  <div class="card-body">
+    <h3><a href={faultUrl(entry)}>{symptom}</a></h3>
+    <p class="card-cause">{likely_cause}</p>
+  </div>
+  <div class="card-foot">
+    <span class="tag tag-category">{category}</span>
+    <span>{dateLabel}</span>
+  </div>
+</li>

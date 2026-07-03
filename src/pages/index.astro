@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import FaultCard from '../components/FaultCard.astro';
+
+const entries = (await getCollection('faults')).sort(
+  (a, b) => b.data.date_published.valueOf() - a.data.date_published.valueOf()
+);
+const recent = entries.slice(0, 9);
+---
+
+<Base
+  title="Power Tool Fault Diagnosis"
+  description="Search real fault diagnoses for power tools and workshop machines — symptom, likely cause, diagnostic steps, and the verdict."
+>
+  <section class="hero">
+    <div class="wrap">
+      <h1>Find the fault.<br /><span class="accent">Fix the tool.</span></h1>
+      <p class="lede">
+        A plain-spoken reference of real power tool faults: the symptom, the likely cause,
+        how to confirm it, and whether the tool is worth fixing. No fluff, no "have you tried
+        turning it off and on" — just bench diagnostics.
+      </p>
+
+      <div class="search-panel">
+        <label class="search-label" for="search">Search by model, symptom, or part — e.g. "TPT125" or "won't spin up"</label>
+        <div id="search"></div>
+        <noscript>
+          <p class="search-dev-note">Search requires JavaScript. Browse the <a href="/faults/">fault index</a> instead.</p>
+        </noscript>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="section-head">
+      <h2>Latest Fault Entries</h2>
+    </div>
+    <ul class="card-grid">
+      {recent.map((entry) => <FaultCard entry={entry} />)}
+    </ul>
+    <p style="margin-top: 1.5rem;">
+      <a class="btn" href="/faults/">Browse the full fault index →</a>
+    </p>
+  </section>
+</Base>
+
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+<script is:inline src="/pagefind/pagefind-ui.js"></script>
+<script is:inline>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (typeof PagefindUI !== 'undefined') {
+      new PagefindUI({
+        element: '#search',
+        showSubResults: true,
+        showImages: false,
+        translations: {
+          placeholder: 'Search faults…',
+          zero_results: 'No faults found for "[SEARCH_TERM]" — try a model number or symptom',
+        },
+      });
+    } else {
+      // Pagefind index only exists after a production build
+      // (`npm run build && npm run preview`). Show a hint in dev.
+      const el = document.getElementById('search');
+      if (el) {
+        el.innerHTML =
+          '<p class="search-dev-note">Search index not built yet. Run <code>npm run build && npm run preview</code> to test search locally — it works automatically on Netlify.</p>';
+      }
+    }
+  });
+</script>

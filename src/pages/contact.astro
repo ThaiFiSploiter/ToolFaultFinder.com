@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Contact" description="Get in touch with ToolFaultFinder — corrections, suggestions, or fault reports.">
+  <div class="wrap page-body">
+    <p class="kicker" style="margin-top: 2rem;">Get in touch</p>
+    <h1>Contact</h1>
+
+    <p>
+      Spotted an error in a diagnosis? Got a fault you'd like documented? Send it over.
+      Corrections are especially welcome — the whole point of this site is being right.
+    </p>
+
+    <!--
+      Netlify Forms: the data-netlify attribute makes Netlify detect this form at
+      deploy time and handle submissions with no backend. Submissions appear under
+      Site → Forms in the Netlify dashboard; enable email notifications there.
+      The hidden "form-name" input is required for Netlify to route the submission.
+      The "bot-field" is a honeypot for spam bots.
+    -->
+    <form
+      class="form-panel"
+      name="contact"
+      method="POST"
+      action="/contact/?submitted=true"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <p style="display: none;">
+        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+      </p>
+
+      <div class="form-field">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required autocomplete="name" />
+      </div>
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required autocomplete="email" />
+      </div>
+      <div class="form-field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+      </div>
+      <button class="btn" type="submit">Send it</button>
+    </form>
+
+    <p id="thanks" class="placeholder-note" hidden style="border-color: var(--clr-green); color: var(--clr-green); background: #eef3ec;">
+      Thanks — message received. We'll get back to you.
+    </p>
+
+    <p style="font-size: 0.9rem; color: var(--clr-steel);">
+      Note: the form works once the site is deployed on Netlify (Netlify Forms handles
+      submissions — no backend needed). It won't submit in local development.
+    </p>
+  </div>
+</Base>
+
+<script>
+  // Show a thank-you note when redirected back after submission.
+  if (new URLSearchParams(window.location.search).get('submitted') === 'true') {
+    document.getElementById('thanks')?.removeAttribute('hidden');
+    document.querySelector('form[name="contact"]')?.setAttribute('hidden', '');
+  }
+</script>

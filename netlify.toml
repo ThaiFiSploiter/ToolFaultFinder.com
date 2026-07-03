@@ -1,0 +1,25 @@
+# Netlify configuration for ToolFaultFinder (Astro static build)
+#
+# `npm run build` runs `astro build`, then the `postbuild` script runs
+# Pagefind over the dist/ folder to generate the search index.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Pagefind index files are regenerated on every build; a modest cache keeps search
+# fast without serving a stale index for long after a deploy.
+[[headers]]
+  for = "/pagefind/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

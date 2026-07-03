@@ -1,0 +1,97 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import { slugify } from '../../../lib/slug';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('faults');
+  return entries.map((entry) => ({
+    params: {
+      brand: slugify(entry.data.brand),
+      model: slugify(entry.data.model),
+    },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const {
+  brand,
+  model,
+  category,
+  symptom,
+  likely_cause,
+  diagnostic_steps,
+  fix_or_verdict,
+  source_type,
+  sources,
+  date_published,
+} = entry.data;
+
+const dateLabel = date_published.toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<Base title={`${brand} ${model} — ${symptom}`} description={`${brand} ${model}: ${symptom}. Likely cause: ${likely_cause}`}>
+  <article class="wrap" data-pagefind-body>
+    <nav class="crumbs" aria-label="Breadcrumb" data-pagefind-ignore>
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/faults/">Faults</a><span class="sep">/</span>
+      <span>{brand} {model}</span>
+    </nav>
+
+    <header class="article-head">
+      <p class="kicker" data-pagefind-meta="title">{brand} {model}</p>
+      <h1>{symptom}</h1>
+    </header>
+
+    <div class="plate">
+      <div class="plate-head">
+        <span class="plate-title">Quick Facts</span>
+        <span class={`tag tag-${source_type}`}>
+          {source_type === 'firsthand' ? 'Firsthand — we had this on the bench' : 'Researched — compiled from sources'}
+        </span>
+      </div>
+      <dl>
+        <dt>Brand</dt>
+        <dd>{brand}</dd>
+        <dt>Model</dt>
+        <dd><code>{model}</code></dd>
+        <dt>Category</dt>
+        <dd><span class="tag tag-category" data-pagefind-filter="category">{category}</span></dd>
+        <dt>Symptom</dt>
+        <dd>{symptom}</dd>
+        <dt>Likely cause</dt>
+        <dd>{likely_cause}</dd>
+        <dt>Diagnostic steps</dt>
+        <dd>
+          <ol>
+            {diagnostic_steps.map((step) => <li>{step}</li>)}
+          </ol>
+        </dd>
+        <dt>Fix / verdict</dt>
+        <dd><strong>{fix_or_verdict}</strong></dd>
+        {source_type === 'researched' && sources && sources.length > 0 && (
+          <>
+            <dt>Sources</dt>
+            <dd>
+              <ul class="sources">
+                {sources.map((src) => <li>{src}</li>)}
+              </ul>
+            </dd>
+          </>
+        )}
+        <dt>Published</dt>
+        <dd>{dateLabel}</dd>
+      </dl>
+    </div>
+
+    <div class="article-body">
+      <Content />
+    </div>
+  </article>
+</Base>

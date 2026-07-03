@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import FaultCard from '../../components/FaultCard.astro';
+import { slugify } from '../../lib/slug';
+
+const entries = (await getCollection('faults')).sort(
+  (a, b) => b.data.date_published.valueOf() - a.data.date_published.valueOf()
+);
+
+const categories = [...new Set(entries.map((e) => e.data.category))].sort();
+---
+
+<Base
+  title="Fault Index"
+  description="Browse every documented tool fault by symptom category — motors, electronics, switches, mechanical wear."
+>
+  <section class="wrap">
+    <header class="article-head">
+      <p class="kicker">Full catalogue</p>
+      <h1>Fault Index</h1>
+      <p style="max-width: var(--measure);">
+        Every documented fault, newest first. Filter by symptom category, or use the
+        <a href="/">search on the homepage</a> if you know the model number.
+      </p>
+    </header>
+
+    <div class="filter-bar" role="group" aria-label="Filter by category">
+      <button class="filter-btn" data-category="all" aria-pressed="true">All</button>
+      {categories.map((cat) => (
+        <button class="filter-btn" data-category={slugify(cat)} aria-pressed="false">{cat}</button>
+      ))}
+    </div>
+    <p class="filter-count" aria-live="polite">
+      Showing <span id="shown-count">{entries.length}</span> of {entries.length} entries
+    </p>
+
+    <ul class="card-grid" id="fault-list">
+      {entries.map((entry) => (
+        <FaultCard entry={entry} categorySlug={slugify(entry.data.category)} />
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const items = document.querySelectorAll<HTMLLIElement>('#fault-list > .fault-card[data-category]');
+  const countEl = document.getElementById('shown-count');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const selected = btn.dataset.category;
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+
+      let shown = 0;
+      items.forEach((item) => {
+        const match = selected === 'all' || item.dataset.category === selected;
+        item.style.display = match ? '' : 'none';
+        if (match) shown++;
+      });
+      if (countEl) countEl.textContent = String(shown);
+    });
+  });
+</script>

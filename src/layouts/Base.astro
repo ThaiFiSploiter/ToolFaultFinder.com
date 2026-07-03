@@ -1,0 +1,63 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'ToolFaultFinder — a practical fault-finding reference for power tools and workshop machines.' } = Astro.props;
+
+const navLinks = [
+  { href: '/faults/', label: 'Fault Index' },
+  { href: '/how-we-research/', label: 'How We Research' },
+  { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+const isCurrent = (href: string) =>
+  currentPath === href || currentPath === href.replace(/\/$/, '');
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title} · ToolFaultFinder</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="/">
+          <span class="tff-mark">TFF</span>
+          <span>ToolFaultFinder</span>
+        </a>
+        <nav class="site-nav" aria-label="Main">
+          {navLinks.map((link) => (
+            <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </header>
+    <div class="hazard" aria-hidden="true"></div>
+
+    <main>
+      <slot />
+    </main>
+
+    <div class="hazard" aria-hidden="true"></div>
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© {new Date().getFullYear()} ToolFaultFinder. Diagnose carefully, unplug first.</span>
+        <span>
+          <a href="/privacy-policy/">Privacy Policy</a>
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>
