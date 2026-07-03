@@ -27,4 +27,18 @@ const faults = defineCollection({
   }),
 });
 
-export const collections = { faults };
+// Approved reader comments, one markdown file per comment.
+// Submissions arrive via Netlify Forms (see the entry page form); publishing
+// a comment = adding a file here. Nothing appears on the site otherwise.
+// `entry` must match the fault entry's file id, e.g.
+// "triton-tpt125-burnt-commutator" for that .md file.
+const comments = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/comments' }),
+  schema: z.object({
+    entry: z.string(),
+    author: z.string(),
+    date: z.coerce.date(),
+  }),
+});
+
+export const collections = { faults, comments };

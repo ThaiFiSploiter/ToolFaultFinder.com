@@ -2,7 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import { Image } from 'astro:assets';
 import Base from '../../../layouts/Base.astro';
-import { slugify } from '../../../lib/slug';
+import { slugify, faultUrl } from '../../../lib/slug';
 
 export async function getStaticPaths() {
   const entries = await getCollection('faults');
@@ -36,6 +36,15 @@ const dateLabel = date_published.toLocaleDateString('en-GB', {
   month: 'long',
   year: 'numeric',
 });
+
+const pageUrl = faultUrl(entry);
+
+const comments = (await getCollection('comments'))
+  .filter((c) => c.data.entry === entry.id)
+  .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
+const renderedComments = await Promise.all(
+  comments.map(async (c) => ({ data: c.data, Content: (await render(c)).Content }))
+);
 ---
 
 <Base title={`${brand} ${model} — ${symptom}`} description={`${brand} ${model}: ${symptom}. Likely cause: ${likely_cause}`}>
@@ -105,5 +114,76 @@ const dateLabel = date_published.toLocaleDateString('en-GB', {
     <div class="article-body">
       <Content />
     </div>
+
+    <section class="comments" id="comments" data-pagefind-ignore>
+      <div class="section-head">
+        <h2>Comments &amp; Corrections</h2>
+      </div>
+
+      {renderedComments.length === 0 ? (
+        <p class="no-comments">
+          No comments yet. Had this fault yourself, or found something different? Tell us below.
+        </p>
+      ) : (
+        <ol class="comment-list">
+          {renderedComments.map(({ data, Content: CommentBody }) => (
+            <li class="comment">
+              <div class="comment-meta">
+                <span class="comment-author">{data.author}</span>
+                <span>{data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+              </div>
+              <div class="comment-body">
+                <CommentBody />
+              </div>
+            </li>
+          ))}
+        </ol>
+      )}
+
+      <p id="comment-thanks" class="comment-thanks" hidden>
+        Thanks — your comment has been sent for review. Comments are checked by a human
+        before they appear, so expect a delay.
+      </p>
+
+      <form
+        class="form-panel comment-form"
+        name="entry-comments"
+        method="POST"
+        action={`${pageUrl}?comment=received#comments`}
+        data-netlify="true"
+        netlify-honeypot="website"
+      >
+        <input type="hidden" name="form-name" value="entry-comments" />
+        <input type="hidden" name="entry" value={entry.id} />
+        <p style="display: none;">
+          <label>Leave this field empty: <input name="website" /></label>
+        </p>
+
+        <div class="form-field">
+          <label for="comment-name">Name</label>
+          <input type="text" id="comment-name" name="name" required maxlength="80" />
+        </div>
+        <div class="form-field">
+          <label for="comment-email">Email (never published — only if we need to reply)</label>
+          <input type="email" id="comment-email" name="email" />
+        </div>
+        <div class="form-field">
+          <label for="comment-text">Comment</label>
+          <textarea id="comment-text" name="comment" rows="5" required maxlength="4000"></textarea>
+        </div>
+        <button class="btn" type="submit">Submit comment</button>
+        <p class="comment-note">
+          Comments are reviewed before publishing — nothing appears automatically, and spam
+          never appears at all.
+        </p>
+      </form>
+    </section>
   </article>
 </Base>
+
+<script>
+  if (new URLSearchParams(window.location.search).get('comment') === 'received') {
+    document.getElementById('comment-thanks')?.removeAttribute('hidden');
+    document.querySelector('.comment-form')?.setAttribute('hidden', '');
+  }
+</script>

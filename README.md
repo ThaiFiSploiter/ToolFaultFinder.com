@@ -121,6 +121,30 @@ meaningful `image_alt` text.
 
 3. Every subsequent `git push` triggers a rebuild and deploy.
 
+### Comments (moderated, spam-proof)
+
+Every fault entry page has a comment form. Submissions go to **Netlify Forms**
+(Site → Forms → `entry-comments` in the dashboard — enable email notifications
+there), where Netlify's built-in Akismet filtering plus a honeypot field weed
+out bot spam. **Nothing is published automatically.**
+
+To publish a comment you approve, create a file in `src/content/comments/`
+(any filename, e.g. `triton-tpt125-burnt-commutator-001.md`):
+
+```markdown
+---
+entry: "triton-tpt125-burnt-commutator"   # the fault entry's filename, without .md
+author: "Dave"
+date: 2026-07-04
+---
+
+The comment text, exactly as submitted (fix typos if you like). Markdown works.
+```
+
+Commit and push — the comment appears under that entry after the rebuild.
+To remove a comment later, delete its file. The submitter's email address is
+never published; it stays in the Netlify dashboard.
+
 ### Contact form
 
 The contact page uses **Netlify Forms** (the `data-netlify="true"` attribute on
