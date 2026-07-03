@@ -52,10 +52,20 @@ arcing by failing to hold the brush firmly against the commutator.
 
 ## The fix
 
-For even surface damage, the standard repair is to clean up the commutator
-(fine abrasive for light glazing; a skim in a lathe for ridging), fit a new pair
-of brushes, and bed them in by running the machine unloaded before returning it
-to full cuts. Brush sets for the TPT125 are inexpensive and widely available.
+For light glazing and blackening, the commutator can be cleaned in place
+without tearing the motor down. With the machine unplugged and the brushes
+removed, wrap a thin strip of 400-grit sandpaper over the tip of a lollipop
+stick, press it gently against the commutator through the brush holder opening,
+and spin the wheel by hand to rotate the armature against the abrasive. Work in
+complete revolutions until the copper brightens evenly, then vacuum the dust
+out of the housing before refitting the brushes. Use plain sandpaper or glass
+paper — not emery cloth, whose conductive grit can embed in the copper and
+cause the arcing you're trying to cure.
+
+For heavier ridging the commutator needs a proper skim in a lathe. Either way,
+fit a new pair of brushes and bed them in by running the machine unloaded
+before returning it to full cuts. Brush sets for the TPT125 are inexpensive and
+widely available.
 
 For a shorted armature, the repair is a replacement armature — check current
 pricing against the machine's value before committing, as availability and cost
