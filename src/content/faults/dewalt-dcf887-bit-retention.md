@@ -1,6 +1,8 @@
 ---
 brand: "DeWalt"
 model: "DCF887"
+image: "./img/dewalt-dcf887.png"
+image_alt: "Line-art illustration of the DeWalt DCF887 impact driver showing its quarter-inch hex chuck and belt clip"
 category: "Chucks & Fittings"
 symptom: "Impact driver no longer holds bits securely — bits wobble, slip, or drop out of the chuck mid-job"
 likely_cause: "Worn bit-retention parts in the quarter-inch hex chuck — the retaining ball, spring, or sleeve no longer grip the bit's groove"

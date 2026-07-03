@@ -1,6 +1,8 @@
 ---
 brand: "Makita"
 model: "HR2470"
+image: "./img/makita-hr2470.png"
+image_alt: "Labelled diagram of the Makita HR2470 SDS-plus drill: chuck, depth gauge rod, mode selector dial, trigger switch, side handle, and cord strain relief"
 category: "Mechanical & Motion"
 symptom: "SDS drill still spins normally but has stopped hammering, or hammers weakly with a change in sound"
 likely_cause: "Worn or hardened O-rings in the pneumatic hammer mechanism (or dried-out grease) letting the air cushion leak away"

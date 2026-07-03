@@ -1,6 +1,8 @@
 ---
 brand: "Ryobi"
 model: "ONE+ 18V"
+image: "./img/ryobi-one-plus-18v.png"
+image_alt: "Line-art illustration of a Ryobi ONE+ 18V lithium battery pack with its charge indicator and release latch"
 category: "Batteries & Charging"
 symptom: "Battery refuses to charge after storage — charger flashes its 'defective' pattern the moment the pack is inserted"
 likely_cause: "The battery, not the charger: deep discharge during storage has dropped the cells below the cutoff voltage the charger accepts, so it flags a healthy-but-empty pack as faulty"
