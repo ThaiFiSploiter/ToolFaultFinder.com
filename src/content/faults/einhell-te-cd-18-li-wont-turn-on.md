@@ -1,6 +1,8 @@
 ---
 brand: "Einhell"
 model: "TE-CD 18 Li"
+image: "./img/einhell-te-cd-18-li.png"
+image_alt: "Line-art illustration of an Einhell TE-CD 18 Li cordless drill"
 category: "Batteries & Charging"
 symptom: "Drill is completely unresponsive even though the battery's own charge-level LEDs show it's fully charged"
 likely_cause: "The battery isn't fully seated in the tool, or the contact points on the battery and/or tool have picked up dirt or light corrosion — the battery's charge LEDs work independently of the tool-side contacts, so a battery can genuinely show 'full' while still failing to make a working connection with the tool"

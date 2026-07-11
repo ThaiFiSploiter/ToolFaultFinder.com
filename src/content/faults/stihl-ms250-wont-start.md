@@ -1,6 +1,8 @@
 ---
 brand: "Stihl"
 model: "MS 250"
+image: "./img/stihl-ms250.png"
+image_alt: "Line-art illustration of a Stihl MS 250 chainsaw"
 category: "Motor & Drive"
 symptom: "Chainsaw won't start or is extremely hard to start, even though fuel is reaching the carburettor, the air filter is clean, and the spark plug is confirmed sparking"
 likely_cause: "A carbon-clogged spark arrester screen in the muffler restricting exhaust flow enough to stop the engine drawing a fresh charge — an exhaust-side blockage that mimics an ignition or carburettor fault even though fuel, air, and spark all individually check out"

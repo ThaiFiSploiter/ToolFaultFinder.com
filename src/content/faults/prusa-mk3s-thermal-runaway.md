@@ -1,6 +1,8 @@
 ---
 brand: "Prusa"
 model: "MK3S"
+image: "./img/prusa-mk3s.png"
+image_alt: "Line-art illustration of a Prusa i3 MK3S 3D printer"
 category: "Electronics & Firmware"
 symptom: "Print aborts partway through with a THERMAL RUNAWAY error, usually right as the part-cooling fan spins up, even though the hotend was heating perfectly moments before"
 likely_cause: "The part-cooling fan is cooling the hotend heater block faster than it can compensate — usually because the silicone sock insulating the heater block is missing, worn out, or the printer's sock/no-sock setting doesn't match reality — which trips the firmware's thermal safety cutoff and looks exactly like a failed thermistor or heater cartridge"
