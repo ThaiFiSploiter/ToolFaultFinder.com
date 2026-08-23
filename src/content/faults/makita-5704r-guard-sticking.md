@@ -1,6 +1,8 @@
 ---
 brand: "Makita"
 model: "5704R"
+seo_title: "Makita 5704R Blade Guard Sticking or Slow to Return"
+meta_description: "Makita 5704R lower guard hangs open or returns slowly after a cut. How to clean the pivot, which lubricant to use, and why not to use the saw until then."
 image: "./img/makita-5704r.png"
 image_alt: "Line-art illustration of the Makita 5704R circular saw showing the blade, lower guard, and base plate"
 category: "Guards & Safety"

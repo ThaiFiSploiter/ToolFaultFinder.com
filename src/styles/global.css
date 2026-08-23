@@ -560,6 +560,50 @@ h3 { font-size: 1.15rem; }
   box-shadow: 2px 2px 0 var(--clr-charcoal);
 }
 
+/* --- Related faults ------------------------------------------------------------ */
+
+.related {
+  max-width: var(--measure);
+  margin-top: 3rem;
+}
+.related-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+.related-list a {
+  display: block;
+  background: var(--clr-card);
+  border: 1px solid var(--clr-line);
+  border-left: 4px solid var(--clr-steel-light);
+  border-radius: var(--radius);
+  padding: 0.7rem 0.9rem;
+  text-decoration: none;
+  color: inherit;
+}
+.related-list a:hover,
+.related-list a:focus-visible {
+  border-left-color: var(--clr-amber);
+  background: var(--clr-paper-2);
+}
+.related-model {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--clr-steel);
+  margin-bottom: 0.2rem;
+}
+.related-symptom {
+  display: block;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
 /* --- Comments ---------------------------------------------------------------- */
 
 .comments {

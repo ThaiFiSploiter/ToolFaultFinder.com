@@ -1,6 +1,8 @@
 ---
 brand: "Axminster"
 model: "AW106PT2"
+seo_title: "Axminster AW106PT2 Hums, Won't Start, Trips the Breaker"
+meta_description: "Axminster AW106PT2 planer/jointer hums at switch-on but won't spin up and trips the breaker. How to test the start capacitor before condemning the motor."
 image: "./img/axminster-aw106pt2.png"
 image_alt: "Illustration of a benchtop planer thicknesser/jointer with its fence, tables, and dust extraction port"
 category: "Motor & Drive"

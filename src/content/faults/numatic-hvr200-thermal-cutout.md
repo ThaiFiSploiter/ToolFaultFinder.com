@@ -1,6 +1,8 @@
 ---
 brand: "Numatic"
 model: "HVR200"
+seo_title: "Henry Hoover HVR200 Cuts Out and Won't Restart — Fix"
+meta_description: "Numatic HVR200 Henry cuts out mid-clean and won't switch back on. It is usually the thermal cutout tripping on restricted airflow — how to clear it and reset."
 image: "./img/numatic-hvr200.png"
 image_alt: "Line-art illustration of a Numatic Henry HVR200 vacuum cleaner"
 category: "Motor & Drive"

@@ -1,6 +1,8 @@
 ---
 brand: "Bambu Lab"
 model: "A1"
+seo_title: "Bambu Lab A1: \"Printer Is Busy With Another Job\" Fix"
+meta_description: "Bambu Lab A1 stuck showing \"the printer is busy with another job\" with nothing actually printing. Why the stale job state sticks, and how to clear it."
 image: "./img/bambu-lab-a1.png"
 image_alt: "Technical line-art illustration of the Bambu Lab A1 3D printer with its touchscreen and toolhead visible"
 category: "Electronics & Firmware"

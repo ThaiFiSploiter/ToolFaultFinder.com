@@ -1,6 +1,8 @@
 ---
 brand: "Triton"
 model: "TPT125"
+seo_title: "Triton TPT125 Sparking and Losing Power — Brush Fix"
+meta_description: "Triton TPT125 thicknesser sparks at the brushes, bogs down under load and smells of ozone. How to read the commutator, and whether it is economic to repair."
 image: "./img/triton-tpt125.png"
 image_alt: "Technical line-art illustration of the Triton TPT125 thicknesser with its infeed table folded down"
 category: "Motor & Drive"

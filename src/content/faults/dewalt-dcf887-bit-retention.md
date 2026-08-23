@@ -1,6 +1,8 @@
 ---
 brand: "DeWalt"
 model: "DCF887"
+seo_title: "DeWalt DCF887 Impact Driver Not Holding Bits — Fix"
+meta_description: "DeWalt DCF887 bits wobble, slip or drop out mid-job. How to tell a debris-packed chuck from worn retention parts, and whether the repair is worth doing."
 image: "./img/dewalt-dcf887.png"
 image_alt: "Line-art illustration of the DeWalt DCF887 impact driver showing its quarter-inch hex chuck and belt clip"
 category: "Chucks & Fittings"

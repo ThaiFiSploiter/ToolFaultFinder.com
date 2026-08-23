@@ -1,6 +1,8 @@
 ---
 brand: "Ryobi"
 model: "ONE+ 18V"
+seo_title: "Ryobi ONE+ 18V Charger Flashing Defective — Fix"
+meta_description: "Ryobi ONE+ 18V charger flags a stored pack as defective the moment it goes in. Why deep discharge causes it, how to revive the pack, and when to recycle it."
 image: "./img/ryobi-one-plus-18v.png"
 image_alt: "Line-art illustration of a Ryobi ONE+ 18V lithium battery pack with its charge indicator and release latch"
 category: "Batteries & Charging"

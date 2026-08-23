@@ -1,6 +1,8 @@
 ---
 brand: "Milwaukee"
 model: "2606-20"
+seo_title: "Milwaukee 2606-20 Dead? Check One-Key Lockout First"
+meta_description: "Milwaukee 2606-20 seems completely dead with a charged battery. A One-Key remote lock looks identical to hardware failure — rule it out before stripping it."
 image: "./img/milwaukee-2606-20.png"
 image_alt: "Line-art illustration of the Milwaukee M18 2606-20 drill driver"
 category: "Electronics & Firmware"

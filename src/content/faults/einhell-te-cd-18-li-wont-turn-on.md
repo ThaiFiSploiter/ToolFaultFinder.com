@@ -1,6 +1,8 @@
 ---
 brand: "Einhell"
 model: "TE-CD 18 Li"
+seo_title: "Einhell TE-CD 18 Li Won't Turn On, Battery Charged"
+meta_description: "Einhell TE-CD 18 Li drill is dead although the battery LEDs read full. Why a pack can show charged yet not connect, and how to reseat and clean the contacts."
 image: "./img/einhell-te-cd-18-li.png"
 image_alt: "Line-art illustration of an Einhell TE-CD 18 Li cordless drill"
 category: "Batteries & Charging"

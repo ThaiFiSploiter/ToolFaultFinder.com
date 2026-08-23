@@ -1,6 +1,8 @@
 ---
 brand: "Makita"
 model: "HR2470"
+seo_title: "Makita HR2470 Not Hammering — SDS Drill Diagnosis"
+meta_description: "Makita HR2470 still rotates but has stopped hammering. Why the pneumatic mechanism loses its air cushion, and whether an O-ring and grease service is worth it."
 image: "./img/makita-hr2470.png"
 image_alt: "Labelled diagram of the Makita HR2470 SDS-plus drill: chuck, depth gauge rod, mode selector dial, trigger switch, side handle, and cord strain relief"
 category: "Mechanical & Motion"

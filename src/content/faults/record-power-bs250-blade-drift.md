@@ -1,6 +1,8 @@
 ---
 brand: "Record Power"
 model: "BS250"
+seo_title: "Record Power BS250 Blade Drift — Bandsaw Cut Fix"
+meta_description: "Record Power BS250 bandsaw cuts wander away from the fence. Blade, tension and guide setup cures most drift — and how to set the fence to whatever remains."
 image: "./img/record-power-bs250.png"
 image_alt: "Line-art illustration of the Record Power BS250 benchtop bandsaw with its table, fence, and blade guides"
 category: "Blades & Alignment"

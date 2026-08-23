@@ -4,9 +4,21 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  /**
+   * Append " · ToolFaultFinder" to the <title>. Pages that supply their own
+   * fully-formed, length-budgeted search title (fault entries) pass false —
+   * the suffix costs 18 of the ~60 characters Google actually renders.
+   */
+  suffix?: boolean;
 }
 
-const { title, description = 'ToolFaultFinder — a practical fault-finding reference for power tools and workshop machines.' } = Astro.props;
+const {
+  title,
+  description = 'ToolFaultFinder — a practical fault-finding reference for power tools and workshop machines.',
+  suffix = true,
+} = Astro.props;
+
+const pageTitle = suffix ? `${title} · ToolFaultFinder` : title;
 
 const navLinks = [
   { href: '/faults/', label: 'Fault Index' },
@@ -30,11 +42,12 @@ const isCurrent = (href: string) =>
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ToolFaultFinder" />
-    <meta property="og:title" content={`${title} · ToolFaultFinder`} />
+    <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
     <meta name="twitter:card" content="summary" />
-    <title>{title} · ToolFaultFinder</title>
+    <title>{pageTitle}</title>
+    <slot name="head" />
   </head>
   <body>
     <header class="site-header">

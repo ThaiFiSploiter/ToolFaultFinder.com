@@ -1,6 +1,8 @@
 ---
 brand: "Creality"
 model: "Ender 3"
+seo_title: "Ender 3 Layer Shift Mid-Print: Causes and Fixes"
+meta_description: "Creality Ender 3 prints shift sideways partway through. How to find the loose pulley grub screw, belt tension or binding axis behind it — all free fixes."
 image: "./img/creality-ender-3.png"
 image_alt: "Line-art illustration of the Creality Ender 3 3D printer showing the gantry, print bed, and control box"
 category: "Mechanical & Motion"

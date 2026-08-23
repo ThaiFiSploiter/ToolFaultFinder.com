@@ -1,6 +1,8 @@
 ---
 brand: "Kärcher"
 model: "K4"
+seo_title: "Kärcher K4 Turning On and Off (Pulsing) — Causes & Fix"
+meta_description: "Kärcher K4 keeps switching itself on and off with the trigger released. How to trace the small pressure leak behind it, and which seals are worth replacing."
 image: "./img/karcher-k4.png"
 image_alt: "Line-art illustration of the Kärcher K4 pressure washer with its trigger gun docked and hose coiled"
 category: "Pumps & Pressure"

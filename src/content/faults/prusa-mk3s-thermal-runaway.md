@@ -1,6 +1,8 @@
 ---
 brand: "Prusa"
 model: "MK3S"
+seo_title: "Prusa MK3S Thermal Runaway Error — Causes and Fix"
+meta_description: "Prusa MK3S aborts with THERMAL RUNAWAY as the part-cooling fan spins up. Why a missing or misconfigured silicone sock causes it before any thermistor fault."
 image: "./img/prusa-mk3s.png"
 image_alt: "Line-art illustration of a Prusa i3 MK3S 3D printer"
 category: "Electronics & Firmware"

@@ -1,6 +1,8 @@
 ---
 brand: "Bosch"
 model: "GWS 7-115"
+seo_title: "Bosch GWS 7-115 Won't Start or Cuts Out — Brush Fix"
+meta_description: "Bosch GWS 7-115 angle grinder won't start, runs only after a tap, or cuts out mid-use. How to check the carbon brushes and what the repair actually costs."
 image: "./img/bosch-gws7-115.png"
 image_alt: "Line-art illustration of the Bosch GWS 7-115 angle grinder with its wheel guard, side handle, and grinding disc"
 category: "Motor & Drive"

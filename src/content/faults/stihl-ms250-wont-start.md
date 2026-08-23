@@ -1,6 +1,8 @@
 ---
 brand: "Stihl"
 model: "MS 250"
+seo_title: "Stihl MS 250 Won't Start With Spark and Fuel — Fix"
+meta_description: "Stihl MS 250 won't start despite good spark, a clean filter and fuel at the carburettor. Check the spark arrester screen — a five-minute clean fixes many."
 image: "./img/stihl-ms250.png"
 image_alt: "Line-art illustration of a Stihl MS 250 chainsaw"
 category: "Motor & Drive"

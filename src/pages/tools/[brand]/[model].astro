@@ -6,18 +6,48 @@ import { slugify, faultUrl } from '../../../lib/slug';
 
 export async function getStaticPaths() {
   const entries = await getCollection('faults');
+
+  // Related entries, in preference order: same brand, then same category, then a
+  // rotating fill from the rest of the library. The rotation matters — it is what
+  // guarantees every entry has at least one inbound link from another entry.
+  // Several pages have sat "Discovered - currently not indexed" for weeks with no
+  // link from anything Google had already crawled; /faults/ alone was not enough.
+  const relatedFor = (entry: (typeof entries)[number]) => {
+    const others = entries.filter((e) => e.id !== entry.id);
+    const index = entries.indexOf(entry);
+    const rotated = entries
+      .slice(index + 1)
+      .concat(entries.slice(0, index))
+      .filter((e) => e.id !== entry.id);
+
+    const picked: typeof entries = [];
+    const push = (candidates: typeof entries) => {
+      for (const c of candidates) {
+        if (picked.length >= 4) return;
+        if (!picked.some((p) => p.id === c.id)) picked.push(c);
+      }
+    };
+
+    push(others.filter((e) => e.data.brand === entry.data.brand));
+    push(others.filter((e) => e.data.category === entry.data.category));
+    push(rotated);
+    return picked;
+  };
+
   return entries.map((entry) => ({
     params: {
       brand: slugify(entry.data.brand),
       model: slugify(entry.data.model),
     },
-    props: { entry },
+    props: { entry, related: relatedFor(entry) },
   }));
 }
 
-const { entry } = Astro.props;
+const { entry, related } = Astro.props;
 const { Content } = await render(entry);
 const {
+  seo_title,
+  meta_description,
   brand,
   model,
   category,
@@ -45,9 +75,58 @@ const comments = (await getCollection('comments'))
 const renderedComments = await Promise.all(
   comments.map(async (c) => ({ data: c.data, Content: (await render(c)).Content }))
 );
+
+// Search-facing title. `symptom` reads well on the page but runs to 100-180
+// characters as a <title>; Google renders about 60. `seo_title` is the short,
+// front-loaded version and is used verbatim, with no site-name suffix.
+const searchTitle = seo_title ?? `${brand} ${model} — ${symptom} · ToolFaultFinder`;
+const searchDescription =
+  meta_description ?? `${brand} ${model}: ${symptom}. Likely cause: ${likely_cause}`;
+
+const absolute = (path: string) => new URL(path, Astro.site).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'TechArticle',
+      '@id': absolute(pageUrl) + '#article',
+      // Google asks for headline under ~110 chars; `symptom` regularly exceeds that.
+      headline: seo_title ?? `${brand} ${model} — ${symptom}`,
+      alternativeHeadline: `${brand} ${model} — ${symptom}`,
+      description: searchDescription,
+      about: `${brand} ${model}`,
+      articleSection: category,
+      datePublished: date_published.toISOString().slice(0, 10),
+      inLanguage: 'en-GB',
+      mainEntityOfPage: absolute(pageUrl),
+      publisher: {
+        '@type': 'Organization',
+        name: 'ToolFaultFinder',
+        url: absolute('/'),
+      },
+      ...(sources && sources.length > 0 ? { citation: sources } : {}),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: absolute('/') },
+        { '@type': 'ListItem', position: 2, name: 'Faults', item: absolute('/faults/') },
+        { '@type': 'ListItem', position: 3, name: `${brand} ${model}`, item: absolute(pageUrl) },
+      ],
+    },
+  ],
+};
 ---
 
-<Base title={`${brand} ${model} — ${symptom}`} description={`${brand} ${model}: ${symptom}. Likely cause: ${likely_cause}`}>
+<Base title={searchTitle} description={searchDescription} suffix={false}>
+  <script
+    slot="head"
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(jsonLd)}
+  />
+
   <article class="wrap" data-pagefind-body>
     <nav class="crumbs" aria-label="Breadcrumb" data-pagefind-ignore>
       <a href="/">Home</a><span class="sep">/</span>
@@ -114,6 +193,24 @@ const renderedComments = await Promise.all(
     <div class="article-body">
       <Content />
     </div>
+
+    {related.length > 0 && (
+      <section class="related" data-pagefind-ignore>
+        <div class="section-head">
+          <h2>Related Faults</h2>
+        </div>
+        <ul class="related-list">
+          {related.map((r) => (
+            <li>
+              <a href={faultUrl(r)}>
+                <span class="related-model">{r.data.brand} {r.data.model}</span>
+                <span class="related-symptom">{r.data.symptom}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
 
     <section class="comments" id="comments" data-pagefind-ignore>
       <div class="section-head">

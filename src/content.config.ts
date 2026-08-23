@@ -14,6 +14,11 @@ const faults = defineCollection({
     // e.g. "./img/triton-tpt125.png". Optimized by Astro at build time.
     image: image().optional(),
     image_alt: z.string().optional(),
+    // SEO overrides. `symptom` is written for the reader (a full sentence, often
+    // 100+ chars); Google truncates the <title> at roughly 60. `seo_title` is the
+    // short, front-loaded search-facing title, used verbatim with no site suffix.
+    seo_title: z.string().optional(),
+    meta_description: z.string().optional(),
     brand: z.string(),
     model: z.string(),
     category: z.string(),

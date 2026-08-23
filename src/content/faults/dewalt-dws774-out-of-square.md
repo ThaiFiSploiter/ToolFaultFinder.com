@@ -1,6 +1,8 @@
 ---
 brand: "DeWalt"
 model: "DWS774"
+seo_title: "DeWalt DWS774 Not Cutting Square — Calibration Fix"
+meta_description: "DeWalt DWS774 mitre saw leaves a gap on 90° cuts and frames that won't close. How to square the fence, set the bevel stops and re-zero the pointers."
 image: "./img/dewalt-dws774.png"
 image_alt: "Line-art illustration of the DeWalt DWS774 sliding mitre saw with its fence, mitre scale, and slide rails"
 category: "Blades & Alignment"

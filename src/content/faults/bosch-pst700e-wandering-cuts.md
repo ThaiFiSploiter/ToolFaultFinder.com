@@ -1,6 +1,8 @@
 ---
 brand: "Bosch"
 model: "PST 700 E"
+seo_title: "Bosch PST 700 E Jigsaw Cutting at an Angle — Fix"
+meta_description: "Bosch PST 700 E jigsaw cuts wander off line and come out bevelled. Why the blade deflects in thicker stock, and the blade, feed and roller checks that fix it."
 image: "./img/bosch-pst700e.png"
 image_alt: "Line-art illustration of the Bosch PST 700 E jigsaw with its blade and base plate visible"
 category: "Blades & Alignment"
