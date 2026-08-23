@@ -4,3 +4,13 @@ dist/
 .netlify/
 .DS_Store
 npm-debug.log*
+
+# SEO agent: keep JOURNAL.md tracked, ignore per-run transcripts and state.
+seo-agent-logs/run-*.log
+seo-agent-logs/summary-*.txt
+seo-agent-logs/.dispatch.lock
+seo-agent-logs/.last-*
+
+# Transient GSC report output.
+gsc-coverage.csv
+gsc-not-indexed.txt
