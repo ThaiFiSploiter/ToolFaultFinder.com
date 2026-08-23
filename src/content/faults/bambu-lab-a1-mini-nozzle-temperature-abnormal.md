@@ -12,7 +12,7 @@ diagnostic_steps:
   - "Open the toolhead and confirm the NTC and heater connectors are fully home in the toolhead (TH) board — a partly unseated connector is the first cause Bambu Lab's own wiki lists. On the V8 toolhead board the silicone sock has to be lifted clear with tweezers before the connector can be reached and reseated"
   - "Pull the quick-change nozzle assembly out and refit it firmly, checking that the silicone sock is present and unsplit — a missing or torn sock lets the block lose heat fast enough to upset temperature control on its own"
   - "Power the printer back on but start no job and command no heating. With the hotend cold, flex the toolhead wiring loom gently by hand while watching the reported nozzle temperature: a figure that flicks to zero or jumps as you move it means a broken conductor inside the loom, not a bad connector"
-  - "If you have a multimeter, unplug the printer and measure across the sensor and heater pins. Bambu Lab gives roughly 100 kΩ for the NTC thermistor and roughly 7 Ω for the heater cartridge at room temperature; an open-circuit reading on the NTC confirms a failed sensor or a broken lead"
+  - "If you have a multimeter, unplug the printer and measure across the sensor and heater pins. The A1 Mini uses a 100 kΩ NTC, so a healthy sensor reads somewhere near 100 kΩ at room temperature — an open-circuit reading confirms a failed sensor or a broken lead, and that is the reading that settles this fault. The heater cartridge should read a low resistance rather than a specific figure; open circuit or a dead short is the failure to look for"
 fix_or_verdict: "Most reports are a connector rather than a component, and reseating the NTC plug on the toolhead board costs nothing. If the resistance check comes back open circuit, the hotend is a user-replaceable assembly on the A1 Mini and an economical repair — the printer itself is not in question."
 source_type: "researched"
 sources:
@@ -70,10 +70,15 @@ Flex the loom by hand with the hotend cold and watch the number. A steady
 reading through the full range of movement points away from the wiring; a
 reading that drops out points straight at it.
 
-The multimeter check is the one that settles it. Unplugged, at room
-temperature, Bambu Lab's figures are roughly 100 kΩ across the NTC and
-roughly 7 Ω across the heater. An NTC reading open circuit has genuinely
-failed, or its lead has parted somewhere you cannot see.
+The multimeter check is the one that settles it, and the sensor is the half
+that matters. The A1 Mini's nozzle sensor is a 100 kΩ NTC, so unplugged and
+at room temperature a healthy one reads somewhere near 100 kΩ. An NTC reading
+open circuit has genuinely failed, or its lead has parted somewhere you
+cannot see — and that is the reading this error is describing.
+
+Don't chase an exact figure on the heater cartridge. A working one reads a
+low resistance; what you are looking for is open circuit or a dead short,
+not a target number.
 
 ## Verdict
 
