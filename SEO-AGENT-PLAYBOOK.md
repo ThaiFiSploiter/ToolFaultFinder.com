@@ -70,6 +70,14 @@ If you are ever unsure which bucket a change falls into, it is bucket B.
    messages. No broad refactors in an unattended run.
 9. **No link schemes.** No comment-spam, no paid links, no directory blasts, no fake
    reviews. Growth comes from content and on-page work only.
+10. **Stage files by name — never `git add -A`, `git add .`, or `git commit -a`.**
+    The working tree routinely holds Nick's unprocessed raw image drops in
+    `src/images/` (rough Gemini filenames, not yet cropped or wired into entries) and
+    other work-in-progress. Blanket-staging would push his private working files live.
+    Name every path you stage, and **never commit anything under `src/images/`** — that
+    is his inbox, and only he moves images out of it into `src/content/faults/img/`.
+    Before committing, run `git status --short` and confirm every staged path is one
+    you deliberately changed this run.
 
 ---
 
