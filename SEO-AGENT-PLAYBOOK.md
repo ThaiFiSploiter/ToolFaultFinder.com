@@ -105,6 +105,8 @@ Schema (`src/content.config.ts`, enforced at build):
 ```
 image?          relative path e.g. "./img/triton-tpt125.png"  (agent leaves this OUT — Nick adds it)
 image_alt?      string
+seo_title?      string        the <title>, used verbatim, no site suffix — keep under ~60 chars
+meta_description? string      ~150-158 chars, written to the searcher, not the schema
 brand           string        e.g. "Kärcher"       (real display form, accents kept)
 model           string        e.g. "K4"
 category        string        e.g. "Pumps & Pressure"
@@ -129,19 +131,34 @@ model collides on the same route and breaks the build. Check before writing.
 12.8 (6–24 Jul) → 22.5 (25 Jul–21 Aug). Almost everything sits at **position 9–12**.
 Rankings are fine; **CTR and page count are the constraints.**
 
+Weekly detail at 23 Aug: 9–15 Aug = 5 clicks / 171 impressions; 16–20 Aug = **0 clicks** /
+103 impressions. Positions held (A1 pos 8.8, DWS774 7.9, TPT125 10.2) — which is what
+made the title-length diagnosis unambiguous rather than speculative.
+
 Coverage at 23 Aug: 18 of 25 URLs "Submitted and indexed", 6 "Discovered – not indexed"
 (uncrawled), 1 "URL is unknown to Google" (`/tools/bosch/gws-7-115/` — in the sitemap yet
 undiscovered; an internal-linking gap worth fixing).
 
-Known open items at handover:
-- **All 18 entry titles are 102–179 chars** + " · ToolFaultFinder". Google shows ~60.
-  The template is in `src/pages/tools/[brand]/[model].astro`. Highest-value fix on the site.
-- **`/tools/bambu-lab/a1/` — 424 impressions (half the site), 3 clicks, 0.7% CTR, pos 9.0.**
-  It ranks for the error string "printer is busy with another job" and its ~12 variants,
-  but that exact phrase appears **nowhere** on the page. Fix the phrase match.
-- **No JSON-LD anywhere.** No structured data on any template.
-- Homepage pos 49, `/faults/` pos 41 — hub pages rank for nothing. Normal for the age;
+Known open items at handover — **all four closed on 23 Aug 2026** (weekly run,
+commit `2b43111`); left here as the record of what was done and what to measure:
+- ~~All 18 entry titles are 102–179 chars~~ → `seo_title` and `meta_description` are now
+  optional schema fields, populated for all 18 entries at 47–55 and 148–158 chars. Entry
+  pages pass `suffix={false}` to `Base.astro` to drop " · ToolFaultFinder".
+  **New entries must set both.** Write the title to the searcher's phrase, not the schema.
+- ~~`/tools/bambu-lab/a1/` has no phrase match~~ → the exact string "Printer Is Busy With
+  Another Job" is now in its title and description. **Measure the CTR effect from
+  24 Aug 2026**; it was 0.3% over the 30 days to 21 Aug on 333 impressions.
+- ~~No JSON-LD anywhere~~ → entry pages now emit TechArticle + BreadcrumbList.
+  Hub pages (`/`, `/faults/`) still have none — a candidate monthly structural job.
+- Homepage pos 53, `/faults/` pos 58 — hub pages rank for nothing. Normal for the age;
   don't chase head terms like "power tool malfunction" (pos 63).
+- **Internal linking is fixed but unproven.** A Related Faults block now gives every entry
+  2–8 inbound links from other entries (was 1, from `/faults/`). Whether it actually gets
+  the six stalled URLs crawled is the open question for the next coverage sweep.
+
+**Push access:** this repo's local git config sets `core.sshCommand` to use
+`~/.ssh/id_ed25519_hetzner`. There is no ssh-agent under cron and the default identity is
+rejected by GitHub, so without that setting a run can commit but not push. Don't remove it.
 
 ### What works here (validated)
 **Exact-error-string pages.** The Bambu entry pulls 424 impressions because it targets a
