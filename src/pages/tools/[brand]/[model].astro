@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import { Image } from 'astro:assets';
 import Base from '../../../layouts/Base.astro';
 import { slugify, faultUrl } from '../../../lib/slug';
+import { groupByBrand, hasHub, brandUrl } from '../../../lib/brands';
 
 export async function getStaticPaths() {
   const entries = await getCollection('faults');
@@ -34,16 +35,26 @@ export async function getStaticPaths() {
     return picked;
   };
 
+  // A brand only has a hub once it has enough entries to be worth one, so the
+  // breadcrumb has to know whether /tools/<brand>/ actually exists before linking it.
+  const brandHubs = new Set(groupByBrand(entries).filter(hasHub).map((g) => g.slug));
+
   return entries.map((entry) => ({
     params: {
       brand: slugify(entry.data.brand),
       model: slugify(entry.data.model),
     },
-    props: { entry, related: relatedFor(entry) },
+    props: {
+      entry,
+      related: relatedFor(entry),
+      brandHub: brandHubs.has(slugify(entry.data.brand))
+        ? brandUrl(slugify(entry.data.brand))
+        : null,
+    },
   }));
 }
 
-const { entry, related } = Astro.props;
+const { entry, related, brandHub } = Astro.props;
 const { Content } = await render(entry);
 const {
   seo_title,
@@ -109,10 +120,20 @@ const jsonLd = {
     },
     {
       '@type': 'BreadcrumbList',
+      // Mirrors the URL path (/tools/<brand>/<model>/) rather than the old
+      // Home > Faults > entry, which skipped the brand segment that is actually there.
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: absolute('/') },
-        { '@type': 'ListItem', position: 2, name: 'Faults', item: absolute('/faults/') },
-        { '@type': 'ListItem', position: 3, name: `${brand} ${model}`, item: absolute(pageUrl) },
+        { '@type': 'ListItem', position: 2, name: 'Brands', item: absolute('/tools/') },
+        ...(brandHub
+          ? [{ '@type': 'ListItem', position: 3, name: brand, item: absolute(brandHub) }]
+          : []),
+        {
+          '@type': 'ListItem',
+          position: brandHub ? 4 : 3,
+          name: `${brand} ${model}`,
+          item: absolute(pageUrl),
+        },
       ],
     },
   ],
@@ -130,7 +151,12 @@ const jsonLd = {
   <article class="wrap" data-pagefind-body>
     <nav class="crumbs" aria-label="Breadcrumb" data-pagefind-ignore>
       <a href="/">Home</a><span class="sep">/</span>
-      <a href="/faults/">Faults</a><span class="sep">/</span>
+      <a href="/tools/">Brands</a><span class="sep">/</span>
+      {brandHub ? (
+        <>
+          <a href={brandHub}>{brand}</a><span class="sep">/</span>
+        </>
+      ) : null}
       <span>{brand} {model}</span>
     </nav>
 

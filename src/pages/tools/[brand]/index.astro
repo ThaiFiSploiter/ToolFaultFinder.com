@@ -1,0 +1,120 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import FaultCard from '../../../components/FaultCard.astro';
+import { slugify } from '../../../lib/slug';
+import { groupByBrand, hasHub, brandUrl, listModels, type BrandGroup } from '../../../lib/brands';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('faults');
+  const brands = groupByBrand(entries);
+
+  // Only brands past HUB_MIN_ENTRIES get a hub — see the note in lib/brands.ts.
+  // Single-entry brands would produce a page that just restates the entry.
+  return brands.filter(hasHub).map((group) => ({
+    params: { brand: group.slug },
+    props: { group, siblings: brands.filter((b) => b.slug !== group.slug && hasHub(b)) },
+  }));
+}
+
+interface Props {
+  group: BrandGroup;
+  siblings: BrandGroup[];
+}
+
+const { group, siblings } = Astro.props as Props;
+const { brand, entries, categories } = group;
+
+const seoTitle = `${brand} Tool Faults — Diagnosis by Model`;
+const description =
+  `Documented ${brand} faults: ${listModels(group)}. Symptom, likely cause, the ` +
+  `checks that confirm it, and whether the tool is worth repairing.`;
+
+const absolute = (path: string) => new URL(path, Astro.site).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: seoTitle,
+      description,
+      url: absolute(brandUrl(group.slug)),
+      about: { '@type': 'Brand', name: brand },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: entries.length,
+        itemListElement: entries.map((entry, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: `${entry.data.brand} ${entry.data.model} — ${entry.data.symptom}`,
+          url: absolute(`/tools/${slugify(entry.data.brand)}/${slugify(entry.data.model)}/`),
+        })),
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: absolute('/') },
+        { '@type': 'ListItem', position: 2, name: 'Brands', item: absolute('/tools/') },
+        { '@type': 'ListItem', position: 3, name: brand, item: absolute(brandUrl(group.slug)) },
+      ],
+    },
+  ],
+};
+---
+
+<Base title={seoTitle} description={description} suffix={false}>
+  <script
+    slot="head"
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(jsonLd)}
+  />
+
+  <section class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/tools/">Brands</a><span class="sep">/</span>
+      <span>{brand}</span>
+    </nav>
+
+    <header class="article-head">
+      <p class="kicker">Brand index</p>
+      <h1>{brand} Faults</h1>
+      <p style="max-width: var(--measure);">
+        {entries.length} documented {brand} faults, covering {listModels(group)}. Each entry
+        sets out the symptom as owners report it, the most likely cause, the checks that
+        confirm or rule it out, and whether the repair is worth doing. Everything here is
+        compiled and cross-checked from manufacturer documentation and owner reports — the
+        sources are listed on every page.
+      </p>
+    </header>
+
+    <div class="section-head">
+      <h2>Documented faults</h2>
+    </div>
+    <ul class="card-grid">
+      {entries.map((entry) => <FaultCard entry={entry} />)}
+    </ul>
+
+    <div class="section-head" style="margin-top: 2.5rem;">
+      <h2>Categories covered</h2>
+    </div>
+    <p class="brand-categories">
+      {categories.map((cat) => <span class="tag tag-category">{cat}</span>)}
+    </p>
+
+    {siblings.length > 0 && (
+      <>
+        <div class="section-head" style="margin-top: 2.5rem;">
+          <h2>Other brands</h2>
+        </div>
+        <p class="brand-siblings">
+          {siblings.map((s) => <a href={brandUrl(s.slug)}>{s.brand}</a>)}
+          <a href="/tools/">All brands →</a>
+        </p>
+      </>
+    )}
+  </section>
+</Base>

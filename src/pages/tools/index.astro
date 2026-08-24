@@ -1,0 +1,90 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { faultUrl } from '../../lib/slug';
+import { groupByBrand, hasHub, brandUrl } from '../../lib/brands';
+
+// The brand layer of the URL structure. /tools/<brand>/<model>/ has always been
+// the entry URL, but /tools/ and /tools/<brand>/ both returned 404 — a crawler or
+// a reader truncating the path hit a dead end. This page also exists to shorten
+// the click path to older entries: the homepage lists only the nine newest, and
+// the two entries Google has never discovered are both outside that list.
+const entries = await getCollection('faults');
+const brands = groupByBrand(entries);
+
+const description =
+  'Every tool brand documented on ToolFaultFinder — Bosch, DeWalt, Makita, ' +
+  'Kärcher, Bambu Lab and more. Pick a brand to see its faults, causes and fixes.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: 'Tool Brands',
+      description,
+      url: new URL('/tools/', Astro.site).href,
+      isPartOf: { '@type': 'WebSite', name: 'ToolFaultFinder', url: new URL('/', Astro.site).href },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+        { '@type': 'ListItem', position: 2, name: 'Brands', item: new URL('/tools/', Astro.site).href },
+      ],
+    },
+  ],
+};
+---
+
+<Base title="Tool Faults by Brand" description={description}>
+  <script
+    slot="head"
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(jsonLd)}
+  />
+
+  <section class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <span>Brands</span>
+    </nav>
+
+    <header class="article-head">
+      <p class="kicker">Browse by maker</p>
+      <h1>Tool Faults by Brand</h1>
+      <p style="max-width: var(--measure);">
+        {entries.length} documented faults across {brands.length} brands. Every entry gives
+        the symptom, the likely cause, the checks that confirm it, and an honest answer on
+        whether the tool is worth repairing. Prefer to browse by symptom? Use the
+        <a href="/faults/">fault index</a>.
+      </p>
+    </header>
+
+    <ul class="brand-list">
+      {brands.map((group) => (
+        <li class="brand-group">
+          <div class="brand-head">
+            <h2>
+              {hasHub(group) ? <a href={brandUrl(group.slug)}>{group.brand}</a> : group.brand}
+            </h2>
+            <span class="brand-count">
+              {group.entries.length} {group.entries.length === 1 ? 'entry' : 'entries'}
+            </span>
+          </div>
+          <ul class="brand-models">
+            {group.entries.map((entry) => (
+              <li>
+                <a href={faultUrl(entry)}>
+                  <span class="related-model">{entry.data.model}</span>
+                  <span class="related-symptom">{entry.data.symptom}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
