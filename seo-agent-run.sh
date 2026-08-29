@@ -56,3 +56,9 @@ fi
 # Keep only the last 40 of each artifact.
 ls -1t "$LOGDIR"/run-*.log 2>/dev/null | tail -n +41 | xargs -r rm -f
 ls -1t "$LOGDIR"/summary-*.txt 2>/dev/null | tail -n +41 | xargs -r rm -f
+
+# Propagate the claude invocation's exit code so the dispatcher's catch-up
+# logic doesn't stamp a failed run (e.g. hit a session limit) as done for the
+# week/month — without this a failure was silently marked complete and the
+# dispatcher wouldn't retry until the next period.
+exit $RC
