@@ -151,3 +151,179 @@ unchanged (suffix still applied there).
 already rank (Bambu A1 is the one to watch — 333 impressions is enough volume
 to read a result within two weeks), and whether the new internal links get
 `gws-7-115`, `hvr200`, `ms-250`, `2606-20`, `mk3s` and `dcf887` crawled.
+
+---
+
+## 2026-08-31 — Weekly run
+
+**Clicks vs prior week: DOWN, 1 → 0. This is the second bad week running and the
+headline finding of this run.**
+
+```
+wk 2–8 Aug        5 clicks   164 impr   3.05%
+wk 9–15 Aug       5 clicks   171 impr   2.92%
+wk 16–22 Aug      1 click    151 impr   0.66%
+wk 23–28 Aug*     0 clicks   175 impr   0.00%     (*6 days, GSC lag)
+```
+
+Impressions are going the other way — ~25/day to ~29/day, the highest the site
+has run. Positions held or improved across the board over the same period:
+A1 8.7 → 8.4, K4 10.1 → 7.6, Triton 9.1 → 8.3, DWS774 7.9 → 6.0.
+
+So: more impressions, better positions, no clicks. That is a CTR collapse at
+constant rank, not a ranking problem.
+
+**What it is not.** I checked for a technical regression first, because the drop
+began ~16 Aug and the obvious suspect was something shipped recently. It isn't:
+
+- The drop starts a full week *before* the 23 Aug title/JSON-LD commit, and the
+  site had no deploys at all between 11 July and 23 August. Nothing changed on
+  16 Aug for us to have broken.
+- Live audit of `/`, `/faults/`, `/tools/`, and four entry pages: all HTTP 200,
+  correct self-referencing canonicals, no stray `noindex`, short titles and
+  descriptions rendering as written. Sitemap carries all 29 URLs including the
+  new brand hubs; robots.txt is open.
+
+**What it probably is, and the honest caveat.** At 150–175 impressions a week,
+5 clicks is the good number and 0 is a four-click swing — but 326 impressions
+across 16–28 Aug producing a single click is too far below the site's own
+3%-ish baseline to wave off as noise. Rank stable + CTR gone is the classic
+signature of a SERP-feature change (an AI Overview appearing above the results)
+on the query cluster that dominates this site. I cannot confirm that from the
+GSC API, so I am recording it as the leading hypothesis, not a finding.
+
+**The structural problem underneath it, which I can act on.** Site-wide CTR is
+badly misleading here. Split it:
+
+```
+28 days to 28 Aug          clicks  impr    CTR    pos
+/tools/triton/tpt125/           5    56   8.9%    8.7
+/tools/karcher/k4/              3   106   2.8%    9.3
+/tools/dewalt/dws774/           1    33   3.0%    8.8
+/tools/bambu-lab/a1/            1   353   0.3%    8.7
+```
+
+The pages that are indexed and ranking convert at 2.8–8.9%. One page, the Bambu
+A1, is 55% of all impressions at 0.3%. The site-wide "0.33% CTR" figure is
+almost entirely that one page diluting the average. Excluding it, the 14 days
+before the title change ran 5 clicks on 152 impressions — 3.29%.
+
+That reframes the strategy. The A1 page ranks 8th–9th for a query where Bambu's
+own forum owns the top slots; a title tweak cannot beat position 9 there. The
+growth lever is **more pages in the index**, because the indexed pages convert
+fine. Which leads to the coverage sweep.
+
+**Coverage sweep (`gsc-coverage.mjs`, 29 URLs):** 22 indexed, 6 "Discovered –
+currently not indexed", 1 "URL is unknown to Google". Up from 18/25 last run.
+
+- **The brand hubs shipped 24 Aug worked fast.** `/tools/`, `/tools/bosch/`,
+  `/tools/dewalt/`, `/tools/makita/` are all indexed, all crawled within five
+  days of going live. New URLs on this site do get picked up.
+- **The six stalled entries are still stalled** — `gws-7-115`, `hr2470`,
+  `2606-20`, `hvr200`, `mk3s`, `ms-250`. One piece of movement: `gws-7-115` has
+  gone from "unknown to Google" to "Discovered", so the Related Faults links did
+  reach it. None have been crawled yet.
+- **I checked the obvious explanation and it's wrong.** I assumed the stalled
+  pages were the ones missing a homepage link (the homepage shows only the 9
+  newest). Four of the six *are* in that nine. Homepage linkage does not
+  separate the indexed from the stalled. The split is by age: the 11 July batch
+  and the three oldest entries are stuck, while entries either side of them are
+  fine. That looks like Google rationing index allowance on a young domain, not
+  a crawl-path defect on our side.
+- Per rail 6, "Discovered" means uncrawled, not rejected. `/tools/` was itself
+  only crawled on 29 Aug, so the links it passes to those six have had two days.
+  **Deliberately not pulling the internal-linking lever again this run** — it
+  was pulled on 23 and 24 Aug and is still unmeasured. Re-measure next sweep.
+
+**Shipped to `main`** (commit `7b434b0`, verified live):
+
+- `src/pages/tools/[brand]/[model].astro` — **the entry H1 is now the search
+  title, not the raw `symptom` field.** This is the real find of the run. The
+  title fix on 23 Aug put the exact error string into `<title>`, but every
+  entry's H1 was still the 100–180 character `symptom` sentence. On the A1 page
+  that meant "the printer is busy with another job" — the string drawing 353
+  impressions — appeared in the title and nowhere in the page's most heavily
+  weighted heading. Title and H1 now match, which also gives Google less reason
+  to rewrite the title in the SERP. The full symptom sentence stays directly
+  below as a standfirst and again in Quick Facts; nothing is lost, and **no
+  entry body or diagnostic field was touched**, so this stays in bucket A.
+- `src/pages/index.astro`, `src/pages/faults/index.astro` — JSON-LD on the last
+  two pages that had none: WebSite + CollectionPage on the homepage,
+  CollectionPage + BreadcrumbList on the fault index, each with an ItemList of
+  the entries it links. This was the outstanding structural item from 23 Aug.
+  No `SearchAction`: site search is client-side Pagefind with no query-string
+  endpoint, and pointing Google at a URL that ignores its parameter would be
+  declaring a capability the site doesn't have.
+- `src/styles/global.css` — `.entry-standfirst`.
+
+Verified after deploy: standfirst and matching H1 live on `/tools/bambu-lab/a1/`,
+`/tools/karcher/k4/`, `/tools/triton/tpt125/`, `/tools/bosch/gws-7-115/`;
+`WebSite,CollectionPage` on `/`; `CollectionPage,BreadcrumbList` with 18 items on
+`/faults/`. All HTTP 200.
+
+**Staged for Nick, NOT merged:** branch `content/2026-08-31-dws780-k2-mk4-mini`,
+four entries, all `source_type: researched`, no `image` field set.
+
+1. **DeWalt DWS780** — blade keeps coasting instead of being stopped by the
+   automatic electric brake; traced to brush wear past DeWalt's 12.7 mm limit.
+   Sibling of DWS774 (33 impressions, pos 8.8) and takes DeWalt to three entries.
+2. **Kärcher K2** — leaks from the base with the machine switched off; the
+   solvent-welded cylinder head. Sibling of K4, now the site's #2 page.
+3. **Prusa MK4** — "Failed to home the extruder in Z-axis, make sure the loadcell
+   is working" #13301. Exact error string.
+4. **Prusa MINI** — "Preheat error print head" #12202. Exact error string.
+
+Entries 2–4 were drafts left in the working tree by the interrupted 24 Aug run.
+I fact-checked them against primary sources before staging rather than passing
+them through, and **three claims did not survive**:
+
+- **Prusa MINI** quoted "12.3 Ω to 15.1 Ω" as Prusa's hotend heater figure and
+  attributed it, with the thermistor range, to the #12202 article. That article
+  contains neither figure. Both are real and come from Prusa's "Multimeter
+  usage" page — but the heater window there is listed for the MK3/MK4 family and
+  **the MINI is not among the models given**. Now cites the correct article,
+  keeps the thermistor range (which Prusa states generically for all its
+  thermistors), and treats the heater reading as pass/fail rather than quoting a
+  number published for a different machine.
+- **Kärcher K2** claimed an independent specialist had quoted a fitted price "a
+  fraction" of the official part. The cited BuildHub thread contains no such
+  quote. Removed from the verdict field and the body.
+- **Prusa MK4** advised a cotton-swab clean of the loadcell's white pad. Prusa's
+  instruction is to inspect it *without touching it*. Corrected, and the
+  bolt-tension guidance is now quoted from the source rather than paraphrased.
+
+Everything else checked out: the BuildHub K2 thread, the #13301 article and its
+diagnostic order, the loadcell menu path, the #12202 trigger condition, and the
+DWS780 manual's brake and brush figures were all opened and read this run.
+
+**NEEDS HUMAN**
+
+- **`/tools/dewalt/dcf887/` is "URL is unknown to Google"** despite being in the
+  sitemap, returning 200, and carrying five internal links including one from
+  the DeWalt hub. `gws-7-115` was in this state last sweep and has since moved to
+  "Discovered", so the state isn't permanent — but there is nothing further I can
+  do about it on-page, and it's worth a manual "Request indexing" in Search
+  Console, which I have no write access for.
+- **One DWS780 detail is extract-only.** DeWalt's manual, per a search extract of
+  the DWS780-XE maintenance section, also says the electric brake "may be erratic
+  in operation until the brushes are properly seated". I could confirm the
+  10-minute run-in requirement from a full manual page but not that sentence
+  (ManualsLib returns 403). The entry states the run-in requirement, which is
+  confirmed, and does not assert the erratic-until-seated claim. Worth adding if
+  Nick can see it in a copy of the manual.
+- **A stale local branch, `content/2026-08-24-prusa-mini-mk4-k2-dws780`, must not
+  be merged.** The interrupted 24 Aug run left it carrying a commit that reverts
+  `seo-agent-run.sh` back to its pre-fix state; merging it would undo the fix now
+  on `main`. That is why this week's entries went onto a fresh branch cut from
+  current `main` instead. The old branch was never pushed and is safe to delete.
+- **No email was sent.** The Gmail connector in this environment is unauthorised
+  and cannot be authorised from a non-interactive run, so this journal entry is
+  the handover. Nick needs to authorise it in claude.ai connector settings if the
+  runs are meant to email him.
+
+**Next run should check:** (1) whether matching H1 to title moves CTR on the
+pages that already rank — A1 and K4 are the two with enough volume to read;
+(2) whether the six "Discovered" entries have finally been crawled, now that the
+brand hubs and `/tools/` are themselves indexed and passing links; (3) whether
+the click collapse recovers on its own, which would support the SERP-feature
+hypothesis over anything structural.
