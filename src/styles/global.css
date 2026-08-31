@@ -407,6 +407,13 @@ h3 { font-size: 1.15rem; }
   color: var(--clr-amber-dim);
   margin: 0 0 0.5rem;
 }
+.entry-standfirst {
+  max-width: var(--measure);
+  margin: 0.75rem 0 0;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--clr-steel);
+}
 .article-body {
   max-width: var(--measure);
 }

@@ -91,6 +91,8 @@ const renderedComments = await Promise.all(
 // characters as a <title>; Google renders about 60. `seo_title` is the short,
 // front-loaded version and is used verbatim, with no site-name suffix.
 const searchTitle = seo_title ?? `${brand} ${model} — ${symptom} · ToolFaultFinder`;
+// On-page H1. Entries without a hand-written `seo_title` keep the old behaviour.
+const headline = seo_title ?? symptom;
 const searchDescription =
   meta_description ?? `${brand} ${model}: ${symptom}. Likely cause: ${likely_cause}`;
 
@@ -162,7 +164,17 @@ const jsonLd = {
 
     <header class="article-head">
       <p class="kicker" data-pagefind-meta="title">{brand} {model}</p>
-      <h1>{symptom}</h1>
+      <!--
+        The H1 is the search title, not `symptom`. `symptom` is a 100-180 character
+        reader-facing sentence, and using it here left the phrase people actually
+        search for out of the page's most weighted heading entirely: /tools/bambu-lab/a1/
+        drew 353 impressions in 28 days on "the printer is busy with another job", a
+        string that appeared in the <title> (since 23 Aug) but nowhere in the H1.
+        Aligning the two also gives Google less reason to rewrite the title in the SERP.
+        The full sentence stays directly below, and again in Quick Facts.
+      -->
+      <h1>{headline}</h1>
+      <p class="entry-standfirst">{symptom}</p>
     </header>
 
     {image && (

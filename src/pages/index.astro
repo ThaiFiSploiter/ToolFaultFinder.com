@@ -2,17 +2,67 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import FaultCard from '../components/FaultCard.astro';
+import { faultUrl } from '../lib/slug';
 
 const entries = (await getCollection('faults')).sort(
   (a, b) => b.data.date_published.valueOf() - a.data.date_published.valueOf()
 );
 const recent = entries.slice(0, 9);
+
+// The homepage and /faults/ were the last two pages on the site with no structured
+// data at all. WebSite carries the site name, which Google uses for the SERP source
+// label. Deliberately no SearchAction: site search is client-side Pagefind with no
+// query-string endpoint, so declaring one would point Google at a URL that ignores it.
+const absolute = (path: string) => new URL(path, Astro.site).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': absolute('/') + '#website',
+      name: 'ToolFaultFinder',
+      alternateName: 'Tool Fault Finder',
+      url: absolute('/'),
+      inLanguage: 'en-GB',
+      description:
+        'A power tool repair and fault-finding reference: search real diagnoses by ' +
+        "symptom or model — likely cause, diagnostic steps, and whether it's worth fixing.",
+      publisher: { '@type': 'Organization', name: 'ToolFaultFinder', url: absolute('/') },
+    },
+    {
+      '@type': 'CollectionPage',
+      '@id': absolute('/') + '#collection',
+      name: 'Power Tool Repair & Fault Diagnosis',
+      url: absolute('/'),
+      isPartOf: { '@id': absolute('/') + '#website' },
+      mainEntity: {
+        '@type': 'ItemList',
+        name: 'Latest fault entries',
+        numberOfItems: recent.length,
+        itemListElement: recent.map((entry, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: `${entry.data.brand} ${entry.data.model} — ${entry.data.symptom}`,
+          url: absolute(faultUrl(entry)),
+        })),
+      },
+    },
+  ],
+};
 ---
 
 <Base
   title="Power Tool Repair & Fault Diagnosis"
   description="A power tool repair and fault-finding reference: search real diagnoses by symptom or model — likely cause, diagnostic steps, and whether it's worth fixing."
 >
+  <script
+    slot="head"
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(jsonLd)}
+  />
+
   <section class="hero">
     <div class="wrap">
       <h1>Find the fault.<br /><span class="accent">Fix the tool.</span></h1>

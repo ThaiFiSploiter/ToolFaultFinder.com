@@ -2,19 +2,61 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import FaultCard from '../../components/FaultCard.astro';
-import { slugify } from '../../lib/slug';
+import { slugify, faultUrl } from '../../lib/slug';
 
 const entries = (await getCollection('faults')).sort(
   (a, b) => b.data.date_published.valueOf() - a.data.date_published.valueOf()
 );
 
 const categories = [...new Set(entries.map((e) => e.data.category))].sort();
+
+const absolute = (path: string) => new URL(path, Astro.site).href;
+
+// ItemList over the whole catalogue, plus the breadcrumb the other hubs already carry.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: 'Fault Index',
+      description:
+        'Browse every documented tool fault by symptom category — motors, electronics, switches, mechanical wear.',
+      url: absolute('/faults/'),
+      inLanguage: 'en-GB',
+      isPartOf: { '@id': absolute('/') + '#website' },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: entries.length,
+        itemListElement: entries.map((entry, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: `${entry.data.brand} ${entry.data.model} — ${entry.data.symptom}`,
+          url: absolute(faultUrl(entry)),
+        })),
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: absolute('/') },
+        { '@type': 'ListItem', position: 2, name: 'Fault Index', item: absolute('/faults/') },
+      ],
+    },
+  ],
+};
 ---
 
 <Base
   title="Fault Index"
   description="Browse every documented tool fault by symptom category — motors, electronics, switches, mechanical wear."
 >
+  <script
+    slot="head"
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(jsonLd)}
+  />
+
   <section class="wrap">
     <header class="article-head">
       <p class="kicker">Full catalogue</p>
