@@ -327,3 +327,233 @@ pages that already rank — A1 and K4 are the two with enough volume to read;
 brand hubs and `/tools/` are themselves indexed and passing links; (3) whether
 the click collapse recovers on its own, which would support the SERP-feature
 hypothesis over anything structural.
+
+---
+
+## 2026-09-01 — Monthly run
+
+**Month over month: clicks 10 → 12 (+20%), impressions 376 → 743 (+98%),
+CTR 2.66% → 1.62%.** (July 1–31 vs August 1–29; GSC data ends 29 Aug. On a
+like-for-like 1–29 window July was 10 clicks / 332 impressions / 3.01%.)
+
+Growth in clicks, but the monthly total hides the shape of it. Weekly clicks
+across the same span: 4 (26 Jul–1 Aug), 5 (2–8 Aug), 5 (9–15), **1 (16–22),
+1 (23–29)**. Impressions over those last two weeks were 151 and 220 — the
+220 is the site's best week ever. So the collapse first logged on 31 August
+did not recover; it is now fourteen days old and running against rising
+impressions. Everything below is an attempt to say something more precise
+about it than last run could.
+
+### The collapse is localised, and half of it is now explained
+
+Splitting page performance either side of 16 August (14 days each way):
+
+| Page | clicks | impressions | position |
+|---|---|---|---|
+| `/tools/karcher/k4/` | 4 → 1 | 51 → 72 | 10.6 → **8.5** |
+| `/tools/triton/tpt125/` | 4 → 1 | 31 → 30 | 7.9 → **11.6** |
+| `/tools/bambu-lab/a1/` | 1 → 0 | 203 → 184 | 8.8 → 8.7 |
+| `/tools/dewalt/dws774/` | 1 → 0 | 20 → 17 | 10.9 → 6.7 |
+
+Two things fall out of this that the site-wide number could not show.
+
+**Triton's loss is a ranking loss, not a CTR loss.** It fell from 7.9 to 11.6
+— across the page-one boundary. Losing three of four clicks on that move is
+ordinary, not mysterious. That is half the missing clicks accounted for by
+something with a conventional explanation.
+
+**Kärcher K4's loss is not.** More impressions, a better position, fewer
+clicks. That one is a genuine CTR collapse at improving rank and it remains
+unexplained.
+
+**The A1 page was never the story.** It contributed 1 click in the fortnight
+before and 0 after. Over 60 days it is 3 clicks on 564 impressions.
+
+Aggregated over the three pages that actually convert (K4, Triton, DWS774):
+9 clicks / 102 impressions before, 2 clicks / 119 impressions after. That is
+a real drop, not noise at these numbers — but it is now clear that a chunk of
+it is Triton simply ranking worse, which the site-wide CTR figure disguised as
+a presentation problem.
+
+One more denominator effect worth recording: the **homepage went from 1 to 30
+impressions** (position 53 → 61) and `/faults/`, `/about/` and `/contact/`
+picked up impressions at positions 58–70. That is the "power tool malfunction"
+head term (28 impressions, position 61.3) and it converts at zero by
+construction. Roughly 230 of the last fortnight's 341 impressions came from
+the A1 page plus these junk-position hub impressions.
+
+### New finding: this site converts on power tools, not printers
+
+Sixty-day CTR by page, which is the first time there has been enough data to
+read it this way:
+
+- Triton TPT125 — 11 clicks / 107 impressions — **10.3%**
+- Einhell TE-CD 18 Li — 1 / 14 — **7.1%**
+- Kärcher K4 — 6 / 215 — **2.8%**
+- DeWalt DWS774 — 1 / 59 — 1.7%
+- Bambu Lab A1 — 3 / 564 — **0.53%**
+
+The standing strategy note says "exact error strings work, that is the
+repeatable formula". On this month's data that needs qualifying, and the
+qualification matters because it points the content pipeline in a different
+direction.
+
+Exact error strings work **where the manufacturer does not already own the
+result page.** Bambu publish their own wiki and forum for every string their
+printers display, and they hold the top slots for them; the A1 page sits at
+8.8 and collects 0.53%. UK power-tool manufacturers publish almost nothing
+about faults, which is precisely why a Triton thicknesser page converts at
+10.3% from the same kind of position.
+
+That reframes the pipeline. Of the eight entries currently staged and waiting
+across two branches, four are 3D printers — the segment with the weakest
+demonstrated conversion. Recommend weighting future batches towards mains and
+cordless power tools, workshop machinery and garden kit.
+
+**Caveat, stated plainly:** Einhell is one click and DWS774 is one click.
+Triton (11 clicks) and A1 (564 impressions) are the only two rows here with
+enough volume to lean on. The direction is well supported; the exact
+percentages are not.
+
+### Coverage sweep — no net movement in a month
+
+29 URLs: **22 indexed, 6 "Discovered – currently not indexed", 1 "unknown to
+Google"**. Identical totals to 31 August. The two problem URLs swapped states:
+`/tools/dewalt/dcf887/` went unknown → Discovered, and `/tools/makita/hr2470/`
+went Discovered → unknown. Nothing was gained.
+
+This closes the internal-linking question that has been open since 23 August.
+`/tools/` links to every entry on the site, and `/tools/` is itself indexed and
+was crawled on 29 August. The stalled pages have a crawl path from an indexed,
+recently-crawled hub and are still not being crawled. **Internal linking is not
+the lever here and should not be pulled again.** Per rail 6 all six are
+"Discovered" — uncrawled, not rejected — so nothing gets pruned; the correct
+action is to leave them to time and spend effort on new surface instead.
+
+Saved this sweep to `seo-agent-logs/coverage/2026-09-01.csv`. The bare
+`gsc-coverage.csv` is untracked and overwritten every run, so the monthly
+checklist's "compare with last month's CSV" step had nothing to compare
+against. Dated snapshots fix that from now on.
+
+**Also worth knowing: query-level GSC data is nearly useless at this volume.**
+The API returned 17 query rows totalling ~77 impressions for a 28-day window
+that had 743. About 90% is withheld as anonymised. Topic selection has to come
+from page-level data and from research, not from query mining, until volume is
+several times higher.
+
+### Shipped to `main` (commit `1ac060c`, verified live)
+
+`astro.config.mjs` — **the sitemap now emits `<lastmod>`.** Astro's sitemap
+integration was writing bare `<loc>` elements, so all 29 URLs carried no
+freshness signal at all. Google uses `lastmod` as a recrawl hint, and crawling
+is this site's measured bottleneck rather than ranking.
+
+Every date is real: entry URLs take their own `date_published`, read from the
+markdown at build time; pages that list entries (`/`, `/faults/`, `/tools/`,
+brand hubs) take the newest entry date, because that is genuinely when their
+content last changed; the five static pages get no `lastmod` rather than an
+invented one.
+
+Verified on the live sitemap after deploy: 24 of 29 URLs carry `lastmod`, the
+five without are exactly the static pages, HTTP 200.
+
+Deliberately **not** shipped: category hub pages under `/faults/<category>/`.
+They were the obvious next structural layer, but three of the eight categories
+hold a single entry, `src/lib/brands.ts` already documents a reasoned decision
+against minting thin hubs while crawl budget is the scarce resource, and this
+month's sweep showed index allowance is exactly what the site is short of.
+Adding thin URLs would have worked against the constraint.
+
+### Staged for Nick, NOT merged
+
+Branch **`content/2026-09-01-dc18rc-p1s-cl3`** — three entries, all
+`source_type: researched`, no `image` field set.
+
+1. **Makita DC18RC** — charger flashes red and green alternately and refuses
+   to charge. Makita's own manual assigns that exact pattern one meaning
+   ("charging is not possible") and gives two causes: contaminated terminals,
+   or a worn-out/damaged cartridge. The entry also separates it from the
+   flashing-red delay (battery too hot or cold) and the yellow cooling
+   warning, which are routinely confused with it.
+   *Sources: Makita DC18RC Fast Charger instruction manual — the charging-light
+   NOTE section, the symbol key, CAUTION item 13 on charging temperatures, and
+   the cooling-system section. Manual PDF read in full this run.*
+2. **Bambu Lab P1S** — heatbed does not heat up. Branches on one reading (does
+   the bed report 0, or a plausible temperature?) to split a sensor fault from
+   a mains-side power fault, then uses Bambu's stated 40–60 ohm heatbed
+   resistance window to decide between heatbed, power cable and AC power board.
+   Leads with Bambu's own high-voltage warning.
+   *Source: Bambu Lab Wiki, "Troubleshooting for P1 series heatbed is not
+   heating up". Read in full this run, both scenarios.*
+3. **Record Power CL3** — play in the headstock spindle with vibration.
+   Record Power's answer is that the CL3's bearings are designed to have play
+   adjusted out as they wear, with the procedure in the product manual. The
+   entry does not invent that procedure — it points at the manual and spends
+   its length on ruling out the things that feel identical (banjo, toolrest,
+   tailstock, unbalanced blank, flexing stand) before anyone opens a headstock.
+   *Sources: Record Power knowledge base, "CL3 Spindle Movement" and
+   "Spiralling on Spindles". Both read in full this run.*
+
+Chosen to serve the power-tool finding above and to build on brands that
+already convert: Makita (5704R draws 32 impressions at position 12.4 and has
+an indexed hub) and Record Power (BS250, 25 impressions at 10.8). The P1S is
+the one printer in the batch and is included because it is a *hardware* fault
+rather than an error string, which is a different competitive picture from the
+A1 page.
+
+**Three entries, not the usual four or five.** Two reasons, both deliberate.
+Eight entries are already staged and unmerged across two earlier branches, so
+the constraint is Nick's review time, not draft supply. And on several
+candidate topics — Kärcher K7, a third Makita cordless fault, a Numatic
+sibling — the only material available was content-farm pages, so under rail 3
+they were dropped rather than written thinly. Sources were the binding
+constraint this run, not ideas.
+
+### NEEDS HUMAN
+
+- **The content pipeline is blocked, and it is now the main thing limiting
+  growth.** Eleven researched entries are staged and unmerged:
+  `content/2026-08-23-a1mini-k5-ender3v2-tra001` (4),
+  `content/2026-08-31-dws780-k2-mk4-mini` (4), and this run's 3. The measured
+  lever on this site is more indexed pages that convert; every week those sit
+  unmerged is a week that lever is not being pulled. If fact-checking all of
+  them is too much in one go, merging even one branch would help.
+- **Merging any branch that takes a brand to two entries also creates a new
+  brand hub URL automatically** (`HUB_MIN_ENTRIES = 2`). This run's branch
+  would mint `/tools/bambu-lab/` and `/tools/record-power/`. That is intended
+  behaviour, not a surprise, but worth knowing before merging.
+- **`/tools/makita/hr2470/` is now "URL is unknown to Google"** despite the
+  sitemap, a 200, and links from the indexed Makita hub. `dcf887` was in this
+  state last month and has since moved to "Discovered", so it is not permanent
+  — but a manual "Request indexing" in Search Console is the only remaining
+  action and the agent has read-only GSC access. Same request stands for the
+  six "Discovered" URLs if you have quota to spare.
+- **The new entries are longer than house style.** Bodies run ~710 words
+  against ~390–440 for the existing entries. Nothing is padded — the extra
+  length is sourced detail and the rule-out steps — but if the shorter format
+  is the intended house length, these want trimming before merge.
+- **Older entries' `sources:` lists are weaker than rail 3 asks for.** The K4
+  entry cites "User repair reports of K4 pulsing traced to seals and non-return
+  valves" and the Triton entry "General universal-motor commutator and brush
+  service references". These name a category of document rather than a
+  checkable one. Not touched — rail 7, they are not the agent's to rewrite —
+  but on a young site trading on sourcing rigour they are the weakest link, and
+  they sit on the site's two best-converting pages.
+- **No email was sent.** The Gmail connector is still unauthorised and cannot
+  be authorised from a non-interactive run. This journal entry is the handover.
+- **`content/2026-08-24-prusa-mini-mk4-k2-dws780` (local only) must still not
+  be merged** — it carries a commit reverting the `seo-agent-run.sh` fix. Safe
+  to delete.
+
+### Next run should check
+
+1. Whether the six "Discovered" URLs get crawled now that the sitemap carries
+   `lastmod` — that is the specific thing this month's change is meant to move,
+   and the dated CSV snapshot makes the comparison clean.
+2. Whether Triton TPT125 recovers from 11.6 back towards 8. If it does, the
+   click collapse was substantially a ranking wobble; if it does not, that page
+   needs work in its own right.
+3. Whether Kärcher K4's CTR recovers at its improved position of 8.5. This is
+   the part of the collapse with no explanation, and it is the site's #2 page.
+4. Whether the H1-equals-title change of 31 August moved anything. It shipped
+   two days before this window closed and could not be read this run.
