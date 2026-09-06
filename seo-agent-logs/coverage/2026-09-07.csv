@@ -1,0 +1,30 @@
+url,type,state,verdict,lastCrawl
+https://toolfaultfinder.com/,homepage,"Submitted and indexed",PASS,2026-09-03T18:56:31Z
+https://toolfaultfinder.com/about/,static-page,"Submitted and indexed",PASS,2026-08-18T09:11:02Z
+https://toolfaultfinder.com/contact/,static-page,"Submitted and indexed",PASS,2026-08-03T01:22:45Z
+https://toolfaultfinder.com/faults/,fault-index,"Submitted and indexed",PASS,2026-08-19T14:33:01Z
+https://toolfaultfinder.com/how-we-research/,static-page,"Submitted and indexed",PASS,2026-08-29T08:04:15Z
+https://toolfaultfinder.com/privacy-policy/,static-page,"Submitted and indexed",PASS,2026-08-29T17:19:20Z
+https://toolfaultfinder.com/terms/,static-page,"Submitted and indexed",PASS,2026-08-22T20:57:30Z
+https://toolfaultfinder.com/tools/,fault-entry,"Submitted and indexed",PASS,2026-08-29T02:00:39Z
+https://toolfaultfinder.com/tools/axminster/aw106pt2/,fault-entry,"Submitted and indexed",PASS,2026-07-16T22:28:25Z
+https://toolfaultfinder.com/tools/bambu-lab/a1/,fault-entry,"Submitted and indexed",PASS,2026-08-29T05:38:38Z
+https://toolfaultfinder.com/tools/bosch/,fault-entry,"Submitted and indexed",PASS,2026-08-29T01:31:37Z
+https://toolfaultfinder.com/tools/bosch/gws-7-115/,fault-entry,"Discovered - currently not indexed",NEUTRAL,
+https://toolfaultfinder.com/tools/bosch/pst-700-e/,fault-entry,"Submitted and indexed",PASS,2026-07-06T08:00:53Z
+https://toolfaultfinder.com/tools/creality/ender-3/,fault-entry,"Submitted and indexed",PASS,2026-07-06T02:47:20Z
+https://toolfaultfinder.com/tools/dewalt/,fault-entry,"Submitted and indexed",PASS,2026-08-29T07:57:01Z
+https://toolfaultfinder.com/tools/dewalt/dcf887/,fault-entry,"Discovered - currently not indexed",NEUTRAL,
+https://toolfaultfinder.com/tools/dewalt/dws774/,fault-entry,"Submitted and indexed",PASS,2026-09-03T14:40:58Z
+https://toolfaultfinder.com/tools/einhell/te-cd-18-li/,fault-entry,"Submitted and indexed",PASS,2026-07-12T19:51:47Z
+https://toolfaultfinder.com/tools/karcher/k4/,fault-entry,"Submitted and indexed",PASS,2026-09-03T14:29:37Z
+https://toolfaultfinder.com/tools/makita/,fault-entry,"Submitted and indexed",PASS,2026-08-29T20:12:48Z
+https://toolfaultfinder.com/tools/makita/5704r/,fault-entry,"Submitted and indexed",PASS,2026-07-06T02:47:54Z
+https://toolfaultfinder.com/tools/makita/hr2470/,fault-entry,"URL is unknown to Google",NEUTRAL,
+https://toolfaultfinder.com/tools/milwaukee/2606-20/,fault-entry,"URL is unknown to Google",NEUTRAL,
+https://toolfaultfinder.com/tools/numatic/hvr200/,fault-entry,"Discovered - currently not indexed",NEUTRAL,
+https://toolfaultfinder.com/tools/prusa/mk3s/,fault-entry,"Discovered - currently not indexed",NEUTRAL,
+https://toolfaultfinder.com/tools/record-power/bs250/,fault-entry,"Submitted and indexed",PASS,2026-08-29T23:49:07Z
+https://toolfaultfinder.com/tools/ryobi/one-18v/,fault-entry,"Submitted and indexed",PASS,2026-08-18T17:58:33Z
+https://toolfaultfinder.com/tools/stihl/ms-250/,fault-entry,"Discovered - currently not indexed",NEUTRAL,
+https://toolfaultfinder.com/tools/triton/tpt125/,fault-entry,"Submitted and indexed",PASS,2026-08-03T03:45:05Z

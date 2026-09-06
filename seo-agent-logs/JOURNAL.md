@@ -557,3 +557,121 @@ constraint this run, not ideas.
    the part of the collapse with no explanation, and it is the site's #2 page.
 4. Whether the H1-equals-title change of 31 August moved anything. It shipped
    two days before this window closed and could not be read this run.
+
+---
+
+## 2026-09-07 — Weekly run
+
+**Clicks vs prior week: UP, 1 → 5. Impressions 204 → 309 (+51%), CTR
+0.49% → 1.62%. First clean weekly improvement since the mid-August collapse.**
+
+```
+wk 22–28 Aug   1 click    204 impr   0.49%
+wk 29 Aug–4 Sep 5 clicks  309 impr   1.62%
+```
+
+(GSC lags ~2 days, so 5–7 Sep isn't in yet; both weeks above are complete
+7-day windows.) By page, all 5 of the recent week's clicks land on: A1 (2),
+Kärcher K4 (1), Triton TPT125 (1), the DeWalt brand hub (1). Read this as
+encouraging, not confirmed — 5 clicks is still a small number to hang a trend
+on, and last week's "down" reading and this week's "up" reading could both be
+the same noisy baseline. Two more weeks like this would make it a real signal.
+
+**Positions, for the three items flagged last run to watch:**
+- Kärcher K4: pos improved further to **7.0** (was 8.5 at the 1 Sep monthly
+  check), and it did get a click this window (86 impr, 1.16% CTR). Still low
+  CTR for a top-of-page-one position, but no longer zero — partial answer to
+  the "unexplained collapse" question, not a full one.
+- Triton TPT125: pos **12.1**, essentially unchanged from the 11.6 recorded at
+  the monthly check. It has not recovered back towards its earlier ~8. Treat
+  the fall as durable rather than a wobble until it moves.
+- A1: pos 8.5, 2/301 impr (0.66% CTR) — roughly where it's been for weeks.
+
+**CTR investigation, K4 specifically.** Position 7.0 with 1.16% CTR is the
+kind of gap that would normally justify a title rewrite, so before touching
+anything I checked what actually occupies that SERP (`web search: "karcher k4
+pulsing turning on and off"`). It's dominated by karcheroutlet.co.uk's own
+troubleshooting page, several long-running owner forum threads (DetailingWorld,
+YBW, HomeOwnersHub), and two JustAnswer paid-expert pages — the same
+authority pattern already documented for the Bambu A1 SERP, now confirmed on
+a second page. **This extends the existing finding rather than adding a new
+one:** where a manufacturer or an established Q&A site owns the result set,
+title/meta tuning has limited room to move CTR regardless of position. No
+title change made — the existing title/meta were already checked live and are
+rendering correctly (title, description, JSON-LD all intact, no snippet
+override). Chasing this further without new evidence would be guessing.
+
+**Coverage sweep:** 22 indexed, 5 "Discovered", 2 "unknown to Google" — 7
+not-indexed, identical total to the 1 Sep sweep for the second check running.
+`tools/milwaukee/2606-20/` moved Discovered → unknown (a mild regression);
+`tools/makita/hr2470/` stayed unknown. Verified both pages live: 200, correct
+canonical, no stray `noindex`, JSON-LD intact — nothing broken on our side.
+Per rail 6, "unknown"/"Discovered" aren't rejections, so nothing is pruned.
+Six days is too soon to judge whether the 1 Sep `lastmod` change moved
+anything; snapshot saved to `seo-agent-logs/coverage/2026-09-07.csv` for the
+next comparison. Audited `/tools/`, brand hub pages, and the CL2/UC4041A
+entries below for basic technical hygiene (canonical, JSON-LD, 200s) — all
+clean. **No bucket-A code change shipped this run** — the technical audit
+found nothing broken to fix, and I'd rather report that honestly than tweak
+something without a diagnosis behind it.
+
+**Housekeeping:** deleted the local-only branch
+`content/2026-08-24-prusa-mini-mk4-k2-dws780`, flagged safe to delete since 31
+Aug. Confirmed first: its only unique content vs `main` was an early draft of
+`prusa-mini-preheat-error-print-head.md`, fully superseded by the corrected
+version already pushed on `content/2026-08-31-dws780-k2-mk4-mini`. Never
+pushed to origin, so this is local-only cleanup.
+
+**Staged for Nick, NOT merged:** branch `content/2026-09-07-cl2-uc4041a`, two
+entries, both `source_type: researched`, no `image` field set.
+
+1. **Record Power CL2** — main spindle bearing seizes solid mid-turn. Sourced
+   directly from Record Power's own KB article "Locked Main Bearing on CL2,
+   CL3 & CL4" (release/inspect/reinstall procedure, including the
+   belt-4-revolutions setting check). New brand+model; CL2 isn't yet in the
+   library (CL3 and BS250 are).
+2. **Makita UC4041A** — chain keeps moving with the chain brake engaged.
+   Sourced from the UC3041A/3541A/4041A instruction manual's troubleshooting
+   table verbatim: "Chain does not stop even the chain brake is engaged" →
+   "Brake band worn down" → Makita's own remedy is to stop use immediately and
+   go to a service centre. New model; a genuine safety-fault entry, which this
+   library has few of.
+
+Both read the primary source directly this run (KB page fetched and
+cross-checked against raw HTML; manual PDF downloaded and read with
+`pdftotext`) rather than trusting a search snippet — the lesson from 31
+August's fact-check failures. **Two entries, not three to five.** The queue
+this adds to is already backed up (see NEEDS HUMAN), so I kept this batch
+small and spent the saved time on the CTR/coverage investigation above rather
+than adding volume to an already-stalled pipeline. Both are power tools/
+workshop machinery, per the standing instruction to weight away from 3D
+printers.
+
+### NEEDS HUMAN
+
+- **The review queue is now three unmerged branches deep and growing:**
+  `content/2026-08-23-a1mini-k5-ender3v2-tra001` (4),
+  `content/2026-08-31-dws780-k2-mk4-mini` (4), `content/2026-09-01-dc18rc-p1s-cl3`
+  (3), and now `content/2026-09-07-cl2-uc4041a` (2) — 13 entries staged and
+  unmerged. This is the third consecutive run flagging it. The measured growth
+  lever on this site is more indexed pages that convert; every week this sits
+  unreviewed is a week that lever isn't pulled. Merging even the oldest branch
+  first would help, and it's also the one least likely to still need
+  fact-checking eyes since it's had three weeks to be wrong and nothing has
+  surfaced.
+- **Older entries' `sources:` are weaker than rail 3 asks for** (K4, Triton) —
+  unchanged from prior runs, still not the agent's to touch under rail 7.
+- **No email was sent.** Gmail connector still unauthorised; this journal
+  entry is the handover.
+
+### Next run should check
+
+1. Whether this week's uptick (1 → 5 clicks) holds or reverts — two data
+   points isn't a trend yet.
+2. Whether Kärcher K4's CTR keeps improving now it's had a click at pos 7.0,
+   or whether this run's SERP-authority explanation is the ceiling.
+3. Whether Triton TPT125 shows any sign of recovering from pos ~12 — it's now
+   been flat there for two full check cycles.
+4. Coverage: whether the six-week-plus-old "Discovered" pages finally get
+   crawled, or whether `lastmod` genuinely isn't moving the needle and a
+   different lever is needed.
