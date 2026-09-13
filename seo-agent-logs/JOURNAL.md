@@ -675,3 +675,105 @@ printers.
 4. Coverage: whether the six-week-plus-old "Discovered" pages finally get
    crawled, or whether `lastmod` genuinely isn't moving the needle and a
    different lever is needed.
+
+## 2026-09-14 — Weekly run
+
+### Headline: clicks down WoW, but the more reliable number moved the right way
+
+Two clean 7-day windows from `gsc-report.mjs --days 21`: 29 Aug–4 Sep = 5
+clicks / 309 impr (1.62% CTR) → 5 Sep–11 Sep = **2 clicks / 426 impr (0.47%
+CTR)**. Down, not up. At this volume (2-6 clicks/week site-wide) a swing like
+this doesn't need a cause beyond noise — I checked for a technical
+regression before writing it off as noise, not instead of checking.
+
+**Coverage jumped from 22/29 to 28/29 "Submitted and indexed"** (`gsc-coverage.mjs`).
+Six pages that had been stuck for weeks — some since the 1 Sep `lastmod` change,
+some longer — got crawled. This is the number that actually predicts future
+clicks, and it moved hard in the right direction. Only
+`/tools/makita/hr2470/` is still "URL is unknown to Google" — checked it's in
+the sitemap, returns 200, isn't robots-blocked, and already gets automatic
+inbound links from the related-entries rotation in
+`[brand]/[model].astro` (every entry gets 2-4 links from other entries by
+design — this isn't a page anyone forgot to link). Rail 6 says don't treat an
+uncrawled-not-yet page as failed; leaving it to time.
+
+### Diagnosis of the WoW drop — no technical fault found
+
+Checked the pages that lost clicks for anything a title/meta/template change
+could explain:
+- **Bambu Lab A1** — 0 clicks this week on 239 impressions at pos 8.3 (was
+  2 clicks/580 impr over the trailing 21 days). Title, meta description and
+  JSON-LD on the live page are all correct, unchanged from last run. This
+  matches the already-documented pattern: Bambu's own wiki and forum own the
+  SERP for this exact-error-string query, capping CTR regardless of position.
+  A zero-click week at ~0.3-0.5% baseline CTR isn't a surprise.
+- **Kärcher K4** — 0 clicks, pos moved from a 21-day average of 8.0 to 11.1 in
+  the most recent 7 days, on only 35 impressions (small sample, noisy). Live
+  title/meta/JSON-LD checked and correct. Per 7 Sep's finding (karcheroutlet.co.uk
+  and long-running owner-forum threads own this SERP), **not re-tuning the
+  title** — no new evidence has appeared, just a smaller, noisier sample.
+  Flagging the position move as a watch item for next run, not acting on it.
+- **Triton TPT125** — actually recovered this week: pos 5.6 on 14 impressions
+  (7-day), vs 9.7 on 35 impressions (21-day) and the ~12 that 7 Sep's run
+  called "durable rather than a wobble." That call looks premature — correcting
+  it in memory. Volume is too low (14 impressions) to call this settled either
+  way; watch it.
+- **DeWalt DWS774** — the one real bright spot: 2 clicks on 18 impressions at
+  pos 6.3 this week (11% CTR), including a rank-3 hit on the bare string "774".
+  Nothing to change here; it's working.
+
+Also spot-checked: all 18 main-branch entries still have both `seo_title` and
+`meta_description` set (no regression there), sitemap and robots.txt both
+clean, no broken build.
+
+**No technical SEO shipped to main this run.** I looked for a legitimate
+title/meta tuning candidate (per the weekly-run checklist's CTR-quick-wins
+step) and didn't find one backed by real evidence — Numatic HVR200 (pos 7.5,
+0 clicks over 3 weeks) looks like the same manufacturer/forum-owns-the-SERP
+pattern as A1 and K4, so tuning it without evidence would just be motion, not
+progress. Shipping a change for its own sake would violate rail 8 as much as
+skipping a needed one would.
+
+### Content: zero new entries this run — deliberate
+
+Third straight run flagging the review-queue backlog, so this time I acted on
+it instead of just re-flagging it: wrote no new drafts (the queue doesn't need
+more supply) and used the freed time to finally close the "no email channel"
+gap. The Gmail connector, unauthorised as of the 7 Sep run, is now
+authorised — tested read-only first (`search_threads`), then sent Nick a full
+summary of all 13 staged entries across the 4 open branches (topic, symptom,
+sources, oldest branch first) plus this week's GSC findings above, to
+`nikkdobson@gmail.com`. This is the playbook's bucket-B handover step,
+functioning for the first time.
+
+No branch was merged, rebased, or pushed to by this run. No files under
+`src/content/faults/` were added or changed. The seven untracked images in
+`src/images/` and the modified `seo-agent-run.sh` seen in `git status` at the
+start of this run are Nick's own working files (an unrelated Opus→Sonnet
+model-switch edit, and his usual image inbox drops) — left untouched, per
+rail 10.
+
+### NEEDS HUMAN
+
+- **Same ask as the last three runs, now sent directly by email rather than
+  just logged:** 13 entries across 4 branches (oldest 3 weeks old) need
+  fact-checking, illustration, and merging. See the email sent today for the
+  full per-entry list with sources. This is the actual bottleneck on clicks
+  growth now, not draft supply — the review queue, not the agent, is
+  rate-limiting the site.
+- Older entries' `sources:` (K4, Triton) are still weaker than rail 3 asks
+  for — unchanged from prior runs, not the agent's to touch under rail 7.
+
+### Next run should check
+
+1. Whether clicks recover from this week's 2, and whether the 28/29 coverage
+   jump shows up as more impressions/clicks in the next fortnight.
+2. Kärcher K4's position — did 11.1 hold, revert to ~8, or keep drifting?
+3. Whether Triton TPT125's pos-5.6 week was real recovery or a blip — needs a
+   second data point before calling it either way.
+4. Whether `/tools/makita/hr2470/` gets crawled now that everything else has —
+   if it's still "unknown" after another 1-2 weeks despite being sitemap-listed,
+   internal-linked and 200-OK, that would be a genuinely new anomaly worth a
+   closer look (not a fix — just worth understanding).
+5. Whether any of the 13 staged entries got merged — if the email worked as a
+   handover mechanism, this should start shrinking.
