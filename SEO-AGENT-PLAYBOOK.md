@@ -185,6 +185,14 @@ parts:
 **`kind: "repair"` (the default) — a part that fixes THIS fault.** Governed strictly by
 the verdict, per the rules below.
 
+**`kind: "replacement"` — a replacement machine.** Only where the entry's own verdict
+concludes the tool is uneconomic or unsafe to repair, or explicitly weighs repair against
+buying new. On those pages this is the *honest* link, not a cynical one: the page has just
+told the reader their machine is finished, and leaving them without the thing it concluded
+they need helps nobody. Three entries have it as of 14 Sep 2026 — `karcher-k2`,
+`makita-uc4041a`, `karcher-k5` — and in each case the verdict says so in its own words.
+Never add this to a page whose verdict is that the fault is fixable.
+
 **`kind: "consumable"` — what the tool gets through in normal use.** Bar oil, saw chains,
 blades, discs, vacuum bags, nozzles, filament. These render under "Consumables &
 Accessories" with a standfirst stating they are *not* fixes for the fault. Looser than
@@ -204,10 +212,11 @@ these rules are what stop it bending the content, so apply them harder, not less
   are naming what you already concluded, not introducing a new recommendation. If
   `fix_or_verdict` says the fix is free or an adjustment, there is no repair part to list.
 - **If the verdict is "not worth fixing" or "take it to a service centre", the entry gets
-  NO parts at all — consumables included.** Two entries show this: `makita-uc4041a` (Makita
-  says stop using the saw) and `karcher-k2` (uneconomic to repair). A page telling someone
-  to stop using a tool must not also sell them oil for it, and a page calling a machine
-  scrap must not sell consumables for it. Don't "fix" those two.
+  NO repair parts and NO consumables** — but it may get a `replacement`, see above. A page
+  telling someone to stop using a tool must not sell them oil for it, and a page calling a
+  machine scrap must not sell consumables for it; both would be selling for a machine that
+  is out of service. `karcher-k2` and `makita-uc4041a` are the worked examples: each has a
+  replacement machine and nothing else. Don't add consumables to either.
 - **Never invent a `part_number`.** Rail 3 applies in full: a real manufacturer code from a
   real document, or leave the field out. A wrong part number costs the reader money and
   now costs it via a link we are paid for, which makes it worse, not better. As of
