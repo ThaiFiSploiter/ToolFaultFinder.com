@@ -777,3 +777,54 @@ rail 10.
    closer look (not a fix — just worth understanding).
 5. Whether any of the 13 staged entries got merged — if the email worked as a
    handover mechanism, this should start shrinking.
+
+## 2026-09-15 — Content run, entry 1 of N: Makita DLM380 won't start
+
+Published and live: `/tools/makita/dlm380/` — commit `d87fe45`.
+
+**Symptom:** cordless mower won't start even with a battery fitted.
+**Source:** Makita DLM380 Cordless Lawn Mower instruction manual (fetched
+this run via `curl` + `pdftotext -layout`, not recalled or snippet-sourced).
+
+Verification-gate quotes, pasted from the fetched manual text:
+
+- Trouble Shooting table, "Mower does not start.": causes "Two battery
+  cartridges are not installed." → "Install the charged battery cartridges.";
+  "Battery problem (under voltage)" → "Recharge the battery cartridge. If
+  recharging is not effective, replace battery cartridge."; "The lock key is
+  not inserted." → "Insert the lock key."
+- Battery protection system section: "The mower does not start without
+  pressing the switch button even if the switch lever is pulled." — this is
+  the likely biggest single cause of real-world reports and isn't in the
+  fault table itself, so it's worth having fetched the full manual rather
+  than just the troubleshooting page.
+- Safety warning, same section: "Before installing the battery cartridge in
+  the tool, always check to see that the switch lever actuates properly and
+  returns to the original position when released. Operating a tool with a
+  switch that does not actuate properly can lead to loss of control and
+  serious personal injury," and "This mower is equipped with the interlock
+  switch and handle switch. If you notice anything unusual with either of
+  these switches, stop operation immediately and have them checked by your
+  nearest Makita Authorized Service Center." No user-level switch procedure
+  is given, so the entry doesn't invent one — routed to a service centre per
+  rail-3/gate rule 5.
+- Spec table confirms DC 36V from two 18V packs (BL1815N / BL1830 / BL1840)
+  and 380mm mowing width, backing the battery-count claim and the blade
+  consumable's size.
+
+New brand+model, route was free (checked `src/content/faults/` first).
+Category: Batteries & Charging (reused, no new category needed). Parts:
+one `repair` battery pack (verdict itself says "replace" after a failed
+recharge) and one `consumable` mower blade. Illustrated with `openai-image`
+(1536x1024, cordless mower with battery bay and handle switch in frame,
+checked before wiring in — right class of tool, right details visible).
+Build passed, pushed, verified live (200, content confirmed) within ~1
+minute of push.
+
+This is the first entry to weight the library towards garden kit, per the
+standing "power tools, workshop machinery, garden kit over 3D printers"
+guidance — chosen from evidence-order preference 4 (adjacent territory,
+official manual with a genuine troubleshooting table, same rigour bar as
+the UC4041A entry that set the pattern for this kind of source).
+
+Continuing to the next candidate now.
