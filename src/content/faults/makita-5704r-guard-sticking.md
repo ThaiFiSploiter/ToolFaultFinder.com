@@ -15,6 +15,16 @@ diagnostic_steps:
   - "Sight along the guard rim for dents or bends from drops — a deformed guard scrapes the blade housing at the same spot every rotation"
   - "If the guard moves freely but doesn't snap back, the return spring has stretched, slipped its seat, or broken"
 fix_or_verdict: "Clean the pivot with resin solvent and a dry PTFE-type lubricant (never oil or grease, which collect dust) and the snap-back returns. A tired return spring is a cheap listed part. Do not use the saw until the guard snaps shut on its own — and never wedge it open."
+parts:
+  - name: "Dry PTFE lubricant"
+    note: "Dry PTFE, not oil or grease — oil collects sawdust and the guard sticks again within weeks."
+    search: "dry PTFE lubricant spray"
+  - name: "Resin / pitch remover"
+    note: "For cleaning the pivot before lubricating it."
+    search: "saw blade resin pitch remover"
+  - name: "Guard return spring"
+    note: "Only if the guard still won't snap back after cleaning. Don't use the saw until it does."
+    search: "Makita 5704R guard return spring"
 source_type: "researched"
 sources:
   - "Makita 5704R instruction manual (guard checks) and parts diagram (guard and spring)"

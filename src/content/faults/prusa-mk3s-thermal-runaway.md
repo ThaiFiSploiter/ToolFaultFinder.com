@@ -15,6 +15,10 @@ diagnostic_steps:
   - "Temporarily lower the part-cooling fan speed in slicer settings and re-run the same print before replacing anything"
   - "Only after ruling out the sock and fan speed, test the thermistor's resistance and check the heater cartridge for continuity"
 fix_or_verdict: "A missing, worn, or wrongly-configured silicone sock causes a large share of these — refitting it or correcting the sock setting resolves the fault for free, well before assuming a failed thermistor or heater."
+parts:
+  - name: "Silicone sock for the heater block"
+    note: "A missing or worn sock causes a large share of these. Check the sock setting in firmware too — refitting it is free if you already have one."
+    search: "Prusa MK3S silicone sock heater block"
 source_type: "researched"
 sources:
   - "Prusa3D official community forum — multiple threads specifically on thermal runaway triggered during the cooling-fan phase"

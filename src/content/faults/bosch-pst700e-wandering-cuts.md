@@ -15,6 +15,13 @@ diagnostic_steps:
   - "Inspect the blade support roller behind the blade: it should touch the blade back, spin freely, and show no groove worn into its face"
   - "Test-cut thick scrap at a slow feed with a fresh stiff blade — if the edge comes out square, the saw was never the problem"
 fix_or_verdict: "A fresh, correctly chosen blade and a slower feed cure the vast majority of bevelled cuts. A grooved or seized support roller is a cheap replaceable part. The saw itself is rarely at fault — this is physics, not failure."
+parts:
+  - name: "Jigsaw blades for thick or hard stock"
+    note: "The actual fix in most cases. Thick stock needs a wider, stiffer blade than the general-purpose one the saw came with."
+    search: "jigsaw blades thick wood T144D T344D"
+  - name: "Blade support roller"
+    note: "Only if yours is grooved or won't spin freely — check before ordering."
+    search: "Bosch PST 700 E blade support roller"
 source_type: "researched"
 sources:
   - "Bosch PST 700 E operating manual (blade selection and roller guide)"

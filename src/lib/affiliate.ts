@@ -2,37 +2,26 @@
  * Amazon Associates configuration and link building.
  *
  * ---------------------------------------------------------------------------
- * CURRENTLY OFF. Nothing on the live site links to Amazon.
+ * LIVE since 14 Sep 2026. Tagged links render wherever an entry sets `parts:`.
  * ---------------------------------------------------------------------------
  *
- * Why it is built but dark (Nick's decision, 14 Sep 2026):
+ * The thing to keep an eye on: Amazon Associates closes accounts that do not
+ * make 3 qualifying sales within 180 days of approval, and reapplying means
+ * starting over. The site ran 2-5 organic clicks a week when this went live, so
+ * the account is on a clock that traffic has to beat. If approval was 14 Sep
+ * 2026, the deadline is roughly 13 Mar 2027. Worth checking the Associates
+ * dashboard against that date rather than being surprised by it.
  *
- * Amazon Associates closes accounts that do not make 3 qualifying sales within
- * 180 days of approval, and reapplying means starting over. The site runs 2-5
- * organic clicks a week, so applying now would very likely burn the application
- * before there is traffic to convert. The plan is to apply once weekly clicks
- * are consistently in the dozens, then flip `AFFILIATE_ENABLED` and fill in
- * `AMAZON_TAG` — at which point every `parts:` entry already written across the
- * library becomes a link at once, with the 180-day clock starting against real
- * traffic.
- *
- * To go live:
- *   1. Get approved at https://affiliate-program.amazon.co.uk/
- *   2. Put the tracking ID (looks like "toolfaultfinder-21") in AMAZON_TAG
- *   3. Set AFFILIATE_ENABLED = true
- *   4. Build and check /affiliate-disclosure/ now reads as "we use them"
- *
- * Until then the `parts:` data still renders — as plain text, no links. That is
- * deliberate: "here is the part you need" is useful to a reader with a broken
- * tool whether or not there is anything in it for us, and it means the research
- * is not wasted work sitting in a branch waiting on an Amazon application.
+ * To switch everything off again, set AFFILIATE_ENABLED = false: every link
+ * across the site disappears and `parts:` falls back to plain text, which still
+ * reads fine on its own. Nothing else needs touching.
  */
 
 /** Master switch. While false, no outbound Amazon link is rendered anywhere. */
-export const AFFILIATE_ENABLED = false;
+export const AFFILIATE_ENABLED = true;
 
-/** Associates tracking ID, e.g. "toolfaultfinder-21". Empty until approved. */
-export const AMAZON_TAG = '';
+/** Associates tracking ID (Amazon UK). Confirmed with Nick 14 Sep 2026. */
+export const AMAZON_TAG = 'toolfaultfind-21';
 
 /** UK storefront — the audience and all prices on this site are UK. */
 const AMAZON_HOST = 'www.amazon.co.uk';

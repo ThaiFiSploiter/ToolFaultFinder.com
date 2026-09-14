@@ -15,6 +15,10 @@ diagnostic_steps:
   - "Check the pack for swelling, dents, leakage, or any smell — physical damage means stop, the pack is scrap regardless of voltage"
   - "Try short charge bursts: insert the pack for a few seconds, remove, reinsert, and repeat — many chargers will accept the pack once the voltage creeps above the cutoff"
 fix_or_verdict: "Often recoverable at no cost via short charge-burst cycling if the pack was simply stored flat. A pack that is swollen, damaged, or reads near zero volts is done — recycle it, don't push it."
+parts:
+  - name: "Replacement 18V ONE+ battery pack"
+    note: "Only once the pack is genuinely done — swollen, damaged, or reading near zero volts. Try the charge-burst cycling first; a pack simply stored flat often comes back for free."
+    search: "Ryobi ONE+ 18V battery pack"
 source_type: "researched"
 sources:
   - "Ryobi ONE+ charger manual (LED status indicator table)"

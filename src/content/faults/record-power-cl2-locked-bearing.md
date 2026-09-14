@@ -17,6 +17,10 @@ diagnostic_steps:
   - "If it's fit for reuse, refit with the inner locking ring tightened first, then the outer ring"
   - "Test on middle speed: start the lathe, press stop, and confirm the belt (not the spindle) turns exactly 4 revolutions before stopping — Record Power's stated check for correct bearing setting"
 fix_or_verdict: "A genuinely economical fix. Freeing and inspecting the bearing costs nothing but time, and even a replacement bearing is a low-cost part next to the machine itself. Only the labour of getting the headstock apart correctly is the real cost here, and Record Power's own procedure removes the guesswork from that."
+parts:
+  - name: "Headstock spindle bearing"
+    note: "Free and inspect the bearing first — that costs nothing and often ends it. Getting the headstock apart correctly is the real cost here, not the part."
+    search: "Record Power CL2 lathe headstock bearing"
 source_type: "researched"
 sources:
   - "Record Power support knowledge base, 'Locked Main Bearing on CL2, CL3 & CL4' — the manufacturer's release, inspection and reinstallation procedure, including the belt-revolution setting check"

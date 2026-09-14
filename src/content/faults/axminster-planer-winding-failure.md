@@ -15,6 +15,10 @@ diagnostic_steps:
   - "Check for continuity between any winding and the motor frame — any reading here means an earth fault and the motor is unsafe to run"
   - "A burnt-varnish smell from the motor housing strongly suggests cooked windings rather than a capacitor"
 fix_or_verdict: "Test the capacitor before condemning the motor — it's the common, cheap fix. Open, shorted, or earthed windings mean a rewind or replacement motor; price both before deciding."
+parts:
+  - name: "Motor run capacitor"
+    note: "Only after the test says it has failed. It's the common cheap fix, but test before buying — the alternative diagnosis is a motor rewind and you don't want to buy the wrong answer."
+    search: "motor run capacitor planer thicknesser"
 source_type: "researched"
 sources:
   - "Axminster AW106PT2 user manual (motor specification section)"

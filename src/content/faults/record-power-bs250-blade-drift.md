@@ -15,6 +15,10 @@ diagnostic_steps:
   - "Set the guides: side guides just off the blade (a paper thickness), thrust bearing just behind it, both above and below the table"
   - "Freehand-cut along a marked straight line on scrap and measure the drift angle — if a consistent angle remains, skew the fence to match it"
 fix_or_verdict: "A fresh quality blade, proper tension, and a patient guide setup cures most drift outright; any small remaining drift angle is normal for bandsaws — set the fence to it. Nothing needs replacing but possibly the blade."
+parts:
+  - name: "Bandsaw blade"
+    note: "The only thing that may need replacing. Tension and guide setup come first and are free."
+    search: "bandsaw blade 1712mm Record Power BS250"
 source_type: "researched"
 sources:
   - "Record Power BS250 instruction manual (blade tracking, tension, and guide setup)"

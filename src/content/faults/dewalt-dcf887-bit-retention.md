@@ -15,6 +15,10 @@ diagnostic_steps:
   - "Insert a bit without pulling the collar and tug it: a healthy chuck needs the collar pulled to release; a worn one lets the bit pull straight out"
   - "Compare bit wobble in the suspect driver against another driver using the same bit, to separate chuck wear from bit wear"
 fix_or_verdict: "Clean and lightly lubricate the chuck first — packed debris causes a share of these. If the retention parts are genuinely worn, the chuck/nose assembly is replaceable and cheap relative to the tool; an easy repair."
+parts:
+  - name: "Chuck / anvil assembly"
+    note: "Clean and lightly lubricate the chuck first — packed debris causes a share of these and costs nothing to rule out."
+    search: "DeWalt DCF887 chuck anvil assembly"
 source_type: "researched"
 sources:
   - "DeWalt DCF887 parts diagram (chuck and nose cone assembly)"
