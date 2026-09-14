@@ -170,12 +170,29 @@ Optional. A list of the replaceable parts or consumables a fault actually needs,
 under "Parts You May Need" after the article body. Each item takes `name`, and optionally
 `part_number`, `note` and `search`.
 
+Two kinds, set by `kind:` and rendered under separate headings.
+
 ```yaml
 parts:
-  - name: "Carbon brush set (pair)"
+  - name: "Carbon brush set (pair)"        # kind defaults to "repair"
     note: "Fit both, never one."
     search: "carbon brushes Bosch GWS 7-115 angle grinder"
+  - name: "115mm cutting discs"
+    kind: "consumable"
+    search: "115mm metal cutting discs angle grinder"
 ```
+
+**`kind: "repair"` (the default) — a part that fixes THIS fault.** Governed strictly by
+the verdict, per the rules below.
+
+**`kind: "consumable"` — what the tool gets through in normal use.** Bar oil, saw chains,
+blades, discs, vacuum bags, nozzles, filament. These render under "Consumables &
+Accessories" with a standfirst stating they are *not* fixes for the fault. Looser than
+repair parts, with one hard requirement: **it must be something that specific machine
+actually gets through.** A 115mm grinder gets 115mm discs; a Henry gets HepaFlo bags. Do
+not bolt a generic workshop shop onto a page. Commercially these are the ones that matter
+— a reader who has just fixed their saw may well restock the chain oil, and nobody buys a
+replacement armature on impulse.
 
 **Amazon affiliate links are LIVE on this field as of 14 Sep 2026** (tag
 `toolfaultfind-21`, `src/lib/affiliate.ts`) — every part you list becomes a tagged link,
@@ -183,12 +200,14 @@ and the site earns if a reader buys. **That does not make it a sales feature, an
 must not treat it as one.** The money is now a live incentive pointing the wrong way;
 these rules are what stop it bending the content, so apply them harder, not less.
 
-- **Only list a part the entry's own verdict already says needs replacing.** You are naming
-  what you already concluded, not introducing a new recommendation. If `fix_or_verdict` says
-  the fix is free, an adjustment, or a service-centre job, the entry gets **no parts list**.
-  Two existing entries show this working: `makita-uc4041a` (Makita's manual says stop using
-  the saw and take it in) and `karcher-k2` (not worth fixing) both have parts omitted on
-  purpose. Don't "fix" them.
+- **Only list a `repair` part the entry's own verdict already says needs replacing.** You
+  are naming what you already concluded, not introducing a new recommendation. If
+  `fix_or_verdict` says the fix is free or an adjustment, there is no repair part to list.
+- **If the verdict is "not worth fixing" or "take it to a service centre", the entry gets
+  NO parts at all — consumables included.** Two entries show this: `makita-uc4041a` (Makita
+  says stop using the saw) and `karcher-k2` (uneconomic to repair). A page telling someone
+  to stop using a tool must not also sell them oil for it, and a page calling a machine
+  scrap must not sell consumables for it. Don't "fix" those two.
 - **Never invent a `part_number`.** Rail 3 applies in full: a real manufacturer code from a
   real document, or leave the field out. A wrong part number costs the reader money and
   now costs it via a link we are paid for, which makes it worse, not better. As of
