@@ -177,9 +177,11 @@ parts:
     search: "carbon brushes Bosch GWS 7-115 angle grinder"
 ```
 
-This is the hook Amazon affiliate links will hang off when Nick opens an Associates
-account (`src/lib/affiliate.ts`; links are off site-wide until then and the list renders
-as plain text). **That does not make it a sales feature, and you must not treat it as one.**
+**Amazon affiliate links are LIVE on this field as of 14 Sep 2026** (tag
+`toolfaultfind-21`, `src/lib/affiliate.ts`) — every part you list becomes a tagged link,
+and the site earns if a reader buys. **That does not make it a sales feature, and you
+must not treat it as one.** The money is now a live incentive pointing the wrong way;
+these rules are what stop it bending the content, so apply them harder, not less.
 
 - **Only list a part the entry's own verdict already says needs replacing.** You are naming
   what you already concluded, not introducing a new recommendation. If `fix_or_verdict` says
@@ -188,9 +190,14 @@ as plain text). **That does not make it a sales feature, and you must not treat 
   the saw and take it in) and `karcher-k2` (not worth fixing) both have parts omitted on
   purpose. Don't "fix" them.
 - **Never invent a `part_number`.** Rail 3 applies in full: a real manufacturer code from a
-  real document, or leave the field out. A wrong part number costs the reader money. As of
+  real document, or leave the field out. A wrong part number costs the reader money and
+  now costs it via a link we are paid for, which makes it worse, not better. As of
   14 Sep 2026 no entry sets one, because no verified codes were on hand — that is the
   correct state, not a gap to fill with plausible-looking codes.
+- **Write notes that steer readers away from unnecessary purchases** where the entry
+  supports it — "test the capacitor first", "try the free reset first", "check the roller
+  spins before ordering". The existing 15 entries all do this. It is the difference between
+  a repair site that takes a commission and a shop pretending to diagnose.
 - **Never let the parts list pull on the verdict.** The verdict is written from the sources
   before anything is said about buying. If you ever notice yourself softening "not worth
   fixing" because a parts list would fit better, stop: that is the exact failure mode the
