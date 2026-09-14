@@ -15,6 +15,10 @@ diagnostic_steps:
   - "Measure resistance between adjacent commutator segments — readings should be low and consistent all the way around"
   - "Inspect brush springs for heat discolouration and loss of tension"
 fix_or_verdict: "Even segment damage: clean or skim the commutator and fit new brushes — an economical repair. Anomalous segment readings: the armature is faulty, so price a replacement before committing."
+parts:
+  - name: "Carbon brush set (pair)"
+    note: "For even segment damage only. If the meter gave anomalous readings across segments, the armature is the fault and brushes will not fix it — price a replacement armature first."
+    search: "carbon brushes Triton TPT125 thicknesser"
 source_type: "researched"
 sources:
   - "Triton TPT125 operating manual (motor and brush service sections)"

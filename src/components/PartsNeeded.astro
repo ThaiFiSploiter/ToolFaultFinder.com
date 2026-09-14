@@ -1,0 +1,64 @@
+---
+/**
+ * "Parts you may need" — the replaceable parts and consumables a fault calls for.
+ *
+ * Renders whether or not affiliate links are switched on. With links off (the
+ * current state) each part is plain text: name, manufacturer part number, and a
+ * note. With links on, the name becomes a tagged Amazon UK search link and the
+ * disclosure line appears above the list, next to the links themselves — Amazon
+ * requires the disclosure to be near the links, not only in the footer.
+ */
+import { amazonSearchUrl, affiliateLive, type Part } from '../lib/affiliate';
+
+interface Props {
+  parts: Part[];
+  /** "Bosch GWS 7-115" — prefixed to generated search terms. */
+  context: string;
+}
+
+const { parts, context } = Astro.props;
+const live = affiliateLive();
+---
+
+{parts.length > 0 && (
+  <section class="parts" data-pagefind-ignore>
+    <div class="section-head">
+      <h2>Parts You May Need</h2>
+    </div>
+
+    {live && (
+      <p class="parts-disclosure">
+        Some links below are Amazon affiliate links: if you buy through one, we earn a
+        small commission at no extra cost to you. It makes no difference to what this
+        page says — the verdict above is written before anyone checks whether a part is
+        purchasable. <a href="/affiliate-disclosure/">Full disclosure</a>.
+      </p>
+    )}
+
+    <ul class="parts-list">
+      {parts.map((part) => {
+        const href = amazonSearchUrl(part, context);
+        return (
+          <li>
+            <span class="part-name">
+              {href ? (
+                <a href={href} rel="sponsored nofollow noopener" target="_blank">
+                  {part.name}
+                </a>
+              ) : (
+                part.name
+              )}
+            </span>
+            {part.part_number && <code class="part-number">{part.part_number}</code>}
+            {part.note && <span class="part-note">{part.note}</span>}
+          </li>
+        );
+      })}
+    </ul>
+
+    <p class="parts-caveat">
+      Check the part against your own tool's model and serial before ordering — ranges get
+      revised and the same model name can cover more than one part.
+    </p>
+  </section>
+)}

@@ -15,6 +15,10 @@ diagnostic_steps:
   - "Inspect the O-rings on every quick-connect coupling; nicked or flattened rings leak only under full pressure"
   - "If no external leak is found, the leak is internal — typically the non-return/unloader valve seals inside the pump head"
 fix_or_verdict: "Find the leak and replace that seal — O-ring kits for gun, lance, and couplings cost little. Internal valve seals are also replaceable, but the pump head is where repair economics start to bite; price parts before opening it."
+parts:
+  - name: "O-ring kit (gun, lance and couplings)"
+    note: "Find the leak first. These kits cost little and cover the usual external suspects."
+    search: "Karcher K4 O-ring seal kit gun lance"
 source_type: "researched"
 sources:
   - "Kärcher K-series operating manual (auto-stop system description)"

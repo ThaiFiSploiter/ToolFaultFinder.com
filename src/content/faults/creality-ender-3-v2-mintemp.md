@@ -17,6 +17,10 @@ diagnostic_steps:
   - "If the hotend thermistor reads correctly at the board but the error persists, move the suspicion to the mainboard's thermistor input — but only after the wiring has genuinely been cleared, because the wiring is the common case by a wide margin"
   - "Do not raise the MINTEMP threshold in firmware or comment the check out to silence the message. It is the protection that stops the printer driving a heater with no working temperature feedback, and it is the reason a broken thermistor is an inconvenience rather than a fire"
 fix_or_verdict: "Nearly always a broken thermistor lead where the loom flexes, and a replacement cartridge thermistor is a few pounds and about twenty minutes — among the cheapest repairs on any 3D printer. Rule out a cold room and a loose connector first, because both cost nothing at all."
+parts:
+  - name: "Cartridge thermistor"
+    note: "A few pounds and about twenty minutes. Rule out a cold room and a loose connector first — both cost nothing."
+    search: "Creality Ender 3 V2 thermistor cartridge"
 source_type: "researched"
 sources:
   - "Marlin Firmware configuration documentation — HEATER_0_MINTEMP (default 5 °C) and the MINTEMP safety cut-out"

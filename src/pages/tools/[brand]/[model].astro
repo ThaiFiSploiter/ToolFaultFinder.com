@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import Base from '../../../layouts/Base.astro';
 import { slugify, faultUrl } from '../../../lib/slug';
 import { groupByBrand, hasHub, brandUrl } from '../../../lib/brands';
+import PartsNeeded from '../../../components/PartsNeeded.astro';
 
 export async function getStaticPaths() {
   const entries = await getCollection('faults');
@@ -66,6 +67,7 @@ const {
   likely_cause,
   diagnostic_steps,
   fix_or_verdict,
+  parts,
   sources,
   date_published,
   image,
@@ -231,6 +233,10 @@ const jsonLd = {
     <div class="article-body">
       <Content />
     </div>
+
+    {parts && parts.length > 0 && (
+      <PartsNeeded parts={parts} context={`${brand} ${model}`} />
+    )}
 
     {related.length > 0 && (
       <section class="related" data-pagefind-ignore>

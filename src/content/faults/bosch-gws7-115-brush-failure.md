@@ -15,6 +15,13 @@ diagnostic_steps:
   - "Inspect the brush springs for heat damage and the commutator for heavy blackening or scoring while the brushes are out"
   - "If brushes are healthy and long, suspect the switch: listen for a crisp click and check for melted or discoloured switch housing"
 fix_or_verdict: "A new pair of carbon brushes is one of the cheapest repairs in power tools and restores the grinder completely. Replace brushes in pairs, and let them bed in unloaded. If the brushes were fine, a replacement switch is the likely second suspect — also cheap."
+parts:
+  - name: "Carbon brush set (pair)"
+    note: "Fit both, never one — the entry's verdict is explicit about this. Let them bed in unloaded before working the tool."
+    search: "carbon brushes Bosch GWS 7-115 angle grinder"
+  - name: "Replacement on/off switch"
+    note: "Only if the brushes turned out long and healthy. That's the second suspect, not the first — check the brushes before buying this."
+    search: "Bosch GWS 7-115 replacement switch"
 source_type: "researched"
 sources:
   - "Bosch GWS series exploded parts diagrams (brush and switch assemblies)"

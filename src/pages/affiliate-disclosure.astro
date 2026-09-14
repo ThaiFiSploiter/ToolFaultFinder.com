@@ -1,0 +1,90 @@
+---
+/**
+ * Affiliate disclosure. Truthful in both states: while `AFFILIATE_ENABLED` is
+ * false the page says plainly that the site carries no affiliate links, and
+ * describes the policy that applies if that changes. Flipping the flag in
+ * src/lib/affiliate.ts switches it to the present tense.
+ */
+import Base from '../layouts/Base.astro';
+import { affiliateLive } from '../lib/affiliate';
+
+const live = affiliateLive();
+
+const description = live
+  ? 'How ToolFaultFinder uses Amazon affiliate links, and the rules we hold ourselves to.'
+  : 'ToolFaultFinder currently carries no affiliate links. What would change if that ever does.';
+---
+
+<Base title="Affiliate Disclosure" description={description}>
+  <div class="wrap page-body">
+    <p class="kicker" style="margin-top: 2rem;">The money bit</p>
+    <h1>Affiliate Disclosure</h1>
+
+    {live ? (
+      <>
+        <p>
+          <strong>ToolFaultFinder uses Amazon affiliate links.</strong> Some links to parts
+          and consumables on this site are tagged with our Amazon Associates tracking ID. If
+          you buy something after following one, Amazon pays us a small commission. It costs
+          you nothing extra — the price is the same as it would be without the link.
+        </p>
+        <p>
+          As an Amazon Associate we earn from qualifying purchases.
+        </p>
+      </>
+    ) : (
+      <>
+        <p>
+          <strong>ToolFaultFinder currently carries no affiliate links, adverts, or
+          sponsorships.</strong> Nothing on this site earns money if you click it, and no
+          page has been written with a commission in mind. Where we name a part you might
+          need, it is named because you need it.
+        </p>
+        <p>
+          That may change — affiliate links on the parts we already name are the most likely
+          way this site would eventually pay for itself. If it does, this page will say so
+          plainly, every affiliate link will be marked where it appears, and the rules below
+          are what we would hold ourselves to.
+        </p>
+      </>
+    )}
+
+    <h2>What {live ? 'does not' : 'would not'} change</h2>
+    <p>
+      The verdict comes first and the parts list comes after it. Every entry on this site
+      answers <em>“is it worth fixing?”</em> honestly, including the many cases where the
+      answer is that the fix is free, or that the tool is not worth the parts. Those verdicts
+      are written from the sources, before anyone looks at whether a part is purchasable, and
+      they {live ? 'are not' : 'would not be'} rewritten to sell anything.
+    </p>
+    <p>
+      In practice that means a lot of pages here {live ? 'have' : 'would have'} no parts list
+      at all. A grinder that needs a £6 pair of brushes gets a parts list; a jigsaw cutting
+      at an angle because it is being pushed too hard does not, because nothing needs buying.
+      A site that always finds something for you to buy is a shopping site wearing a repair
+      site's clothes, and it would be obvious.
+    </p>
+
+    <h2>Part numbers</h2>
+    <p>
+      Where we give a manufacturer's part number it comes from a real document — a manual, a
+      parts diagram, or an official support page — not from a shopping listing. We leave the
+      number out rather than guess it, because a wrong part number costs you money. Check any
+      part against your own tool's model and serial before ordering; ranges get revised, and
+      the same model name can cover more than one part.
+    </p>
+
+    <h2>Questions</h2>
+    <p>
+      If anything here looks like it is pointing you at a purchase you do not need, we would
+      genuinely rather know. <a href="/contact/">Tell us</a>, or leave a comment on the entry
+      itself — corrections are published.
+    </p>
+
+    <p style="margin-top: 2rem;">
+      <a href="/how-we-research/">How we research these entries</a>
+      &ensp;·&ensp;
+      <a href="/terms/">Terms &amp; Disclaimer</a>
+    </p>
+  </div>
+</Base>

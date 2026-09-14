@@ -15,6 +15,13 @@ diagnostic_steps:
   - "With the tool unplugged, open the gearbox and inspect the striker and piston O-rings for wear, flattening, or hardening"
   - "Check the grease condition: dried, blackened, or absent grease around the hammer mechanism is both a cause and a symptom of wear"
 fix_or_verdict: "An O-ring set and fresh SDS-rated grease restore the hammer action cheaply. The mechanism is serviceable with basic tools — an economical repair on a drill worth keeping."
+parts:
+  - name: "O-ring / seal set"
+    note: "The hammer mechanism is serviceable with basic tools; the O-rings are what usually fail."
+    search: "Makita HR2470 O-ring seal kit"
+  - name: "SDS hammer grease"
+    note: "Hammer-specific grease, not general-purpose — the wrong grease is why some rebuilds lose the hammer action again within weeks."
+    search: "SDS hammer drill grease Makita"
 source_type: "researched"
 sources:
   - "Makita HR2470 parts diagram (hammer mechanism assembly)"

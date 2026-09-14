@@ -26,6 +26,24 @@ const faults = defineCollection({
     likely_cause: z.string(),
     diagnostic_steps: z.array(z.string()),
     fix_or_verdict: z.string(),
+    // Replaceable parts and consumables this fault needs, if any. Rendered as a
+    // "Parts you may need" list, and the hook Amazon affiliate links hang off
+    // once the Associates account exists (see src/lib/affiliate.ts — links are
+    // off site-wide until then; the list renders as plain text meanwhile).
+    //
+    // `part_number` must be a real manufacturer code taken from a real document.
+    // Rail 3 covers this: a wrong part number costs the reader money, so omit it
+    // rather than guess. `search` overrides the generated Amazon search terms.
+    parts: z
+      .array(
+        z.object({
+          name: z.string(),
+          part_number: z.string().optional(),
+          note: z.string().optional(),
+          search: z.string().optional(),
+        })
+      )
+      .optional(),
     source_type: z.enum(['firsthand', 'researched']),
     sources: z.array(z.string()).optional(),
     date_published: z.coerce.date(),

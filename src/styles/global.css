@@ -738,3 +738,57 @@ h3 { font-size: 1.15rem; }
   align-items: center;
   margin-top: 1rem;
 }
+
+/* --- Parts you may need -------------------------------------------------------- */
+
+.parts {
+  max-width: var(--measure);
+  margin-top: 3rem;
+}
+.parts-disclosure {
+  border-left: 4px solid var(--clr-steel-light);
+  background: var(--clr-paper-2);
+  padding: 0.6rem 0.9rem;
+  margin: 0 0 1rem;
+  font-size: 0.83rem;
+  color: var(--clr-steel);
+}
+.parts-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+.parts-list li {
+  background: var(--clr-card);
+  border: 1px solid var(--clr-line);
+  border-left: 4px solid var(--clr-steel-light);
+  border-radius: var(--radius);
+  padding: 0.7rem 0.9rem;
+}
+.part-name {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--clr-charcoal);
+}
+.part-name a { color: inherit; }
+.parts-list li:hover { border-left-color: var(--clr-amber); }
+.part-number {
+  display: inline-block;
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--clr-amber-dim);
+}
+.part-note {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  color: var(--clr-steel);
+}
+.parts-caveat {
+  margin: 0.8rem 0 0;
+  font-size: 0.83rem;
+  color: var(--clr-steel);
+}

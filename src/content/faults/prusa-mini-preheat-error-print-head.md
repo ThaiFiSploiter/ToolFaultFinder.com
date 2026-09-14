@@ -17,6 +17,13 @@ diagnostic_steps:
   - "Measure the hotend heater the same way on the 200 Ω range. Prusa's published figure for the MINI's hot-end heater is 12.3 Ω to 15.1 Ω; an open circuit or a reading well outside that band means the heater cartridge or its wiring has failed"
   - "Repeat both measurements while flexing the cable at the head. A reading that jumps or drops out confirms a micro-fracture in the loom rather than a failed component"
 fix_or_verdict: "Worth repairing. Both the thermistor and the heater cartridge are inexpensive, individually replaceable service parts with published Prusa service guides, so this is a cheap fix once the multimeter has told you which one it is — and if the reading only misbehaves when you move the cable, the part is fine and it is the loom that needs attention."
+parts:
+  - name: "Thermistor"
+    note: "Buy only after the multimeter has told you which of the two is at fault. If the reading misbehaves only when you move the cable, both parts are fine and it's the loom."
+    search: "Prusa MINI thermistor"
+  - name: "Heater cartridge"
+    note: "As above — the meter decides which one, not the symptom."
+    search: "Prusa MINI heater cartridge"
 source_type: "researched"
 sources:
   - "Prusa Knowledge Base — \"Preheat error print head #12202 (MINI)\" (trigger condition, likely causes, wiring and connector checks)"

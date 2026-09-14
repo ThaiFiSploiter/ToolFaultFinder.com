@@ -15,6 +15,10 @@ diagnostic_steps:
   - "If the saw sat unused over a season, inspect the carburettor diaphragm for varnish-like residue from old fuel"
   - "Only after the above, move on to a full carburettor rebuild or ignition coil testing"
 fix_or_verdict: "A blocked spark arrester screen is a five-minute clean-or-replace job that resolves a surprising share of 'everything checks out but it won't start' cases — check it before any carburettor or ignition work."
+parts:
+  - name: "Spark arrester screen"
+    note: "Clean it first; it's a five-minute job and often the whole fix. Only replace if it won't come clean."
+    search: "Stihl MS 250 spark arrester screen"
 source_type: "researched"
 sources:
   - "Outdoor Power Equipment Forum (OPEforum) threads on Stihl no-start diagnostics"
