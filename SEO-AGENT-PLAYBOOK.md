@@ -14,28 +14,63 @@ as accumulated knowledge; update it at the end of every run.
 
 ---
 
-## THE SPLIT-AUTHORITY RULE (the single most important rail)
+## THE AUTHORITY RULE
 
-Nick's explicit decision (23 Aug 2026). You have **two different levels of authority**
-depending on what you're changing:
+**Superseded 14 Sep 2026.** From 23 Aug to 14 Sep 2026 this was a split rule: technical SEO
+shipped straight to `main`, but new or rewritten fault entries had to be staged on a
+`content/` branch for Nick to fact-check and illustrate before merge. **That human review
+step no longer exists.** Nick's decision, 14 Sep 2026: you write, illustrate, merge, push
+and deploy everything yourself, including fault-entry content.
 
-**A. Technical SEO — ship it yourself, straight to `main`.**
-Title tags, meta descriptions, JSON-LD, internal links, heading structure, alt text,
-sitemap/robots, canonical fixes, redirects. These are reversible, low-risk, and waiting
-on a human just stalls easy wins. Commit and push to `main`; Netlify deploys it.
+You have one level of authority now, and it is full. Nothing you publish is read by a human
+before it goes live.
 
-**B. New or rewritten fault-entry content — stage it, never publish it.**
-Any new `src/content/faults/*.md`, or a substantive rewrite of an existing entry's body.
-These make **diagnostic claims about power tools that people act on physically**, and the
-site's credibility rests on sourced accuracy. They also need an illustration only Nick can
-generate. So:
+**Understand precisely what that changes.** It does not lower the bar — it removes the net
+that was catching things below the bar. The review it replaced was not a formality: on
+14 Sep 2026 Nick fact-checked 13 staged entries and 4 needed correction, one of them a
+**completely fabricated repair procedure** — a brush-cap removal sequence with an invented
+12.7mm wear limit, confidently attributed to a named DeWalt manual section that says no
+such thing. That entry read perfectly. It was written by an agent following this playbook,
+it would have gone live unaltered under the current rule, and a reader would have opened a
+mitre saw on the strength of it.
 
-- Work on a branch: `git checkout -b content/YYYY-MM-DD-<slug>`
-- Commit the entries there and **push the branch** (never merge to `main`, never push to `main` from it)
-- Email Nick the branch name + a one-line summary of each entry + the sources you used
-- Leave it. He fact-checks, adds the Gemini illustration, and merges.
+So the sourcing rails below are no longer one safeguard among several. They are the only
+one. Treat the PRE-PUBLISH VERIFICATION GATE as the step that the human used to perform,
+because that is exactly what it is.
 
-If you are ever unsure which bucket a change falls into, it is bucket B.
+**The one thing you still never do:** publish an entry whose claims you have not verified
+against a primary document you actually fetched this run. Publishing fewer entries is
+always available to you and is never a failure. Publishing an unverifiable one is.
+
+---
+
+## PRE-PUBLISH VERIFICATION GATE (run for every entry, every time)
+
+Do this **after** drafting and **before** `git merge`/push. Drafting and checking are
+different jobs — a claim that felt sourced while you were writing is exactly the kind that
+turns out to trace to a search snippet, a content farm, or nothing at all. The 31 Aug and
+14 Sep failures were all of this shape.
+
+For each entry, walk its `diagnostic_steps`, `likely_cause`, `fix_or_verdict` and every
+figure in the body, and for each specific claim:
+
+1. **Open the primary document again** — fetch it, don't recall it. Manufacturer manual PDF
+   (`pdftotext -layout`), official support page, or the named forum thread itself.
+2. **Find the sentence that supports the claim** and paste it verbatim into your run report,
+   with the URL or the manual's section heading.
+3. **Check it says what you wrote.** Same model, not a sibling. Same figure, same units,
+   same tolerance. A spec published for a different model in the same family does not
+   transfer — that was the 31 Aug Prusa resistance error.
+4. **Check the source covers the fault you are writing about**, not a different error code
+   that happens to appear on the same page — that was the 14 Sep Bambu A1 Mini error.
+5. **If the manufacturer routes a job to a service centre, say that.** Do not reconstruct a
+   user procedure the manual deliberately does not give. If no source publishes a step-by-step
+   for the repair, the honest entry says how to diagnose it and that the fix is a service job.
+
+Claims that fail any check: cut the claim, or cut the entry. Then say in the journal which
+ones you cut and why — a run that publishes one verified entry and reports one dropped is a
+**good** run, and the journal should show that happening sometimes. A run that never drops
+anything, week after week, means the gate is not being applied honestly.
 
 ---
 
@@ -52,7 +87,8 @@ If you are ever unsure which bucket a change falls into, it is bucket B.
    must trace to a real, checkable source you actually consulted — manufacturer manuals,
    official support docs, service bulletins, named community threads. If you can't source
    it, don't write it. A `sources:` entry naming a document that does not exist is the
-   worst thing you can do on this site.
+   worst thing you can do on this site. This rail is enforced by the PRE-PUBLISH
+   VERIFICATION GATE above, which is not optional and not satisfiable from memory.
 4. **Never write repair-shop framing.** Nick is not a workshop engineer and the site must
    never imply he is. No "we had it on the bench", no customers, no implied credentials.
    Content is *compiled and cross-checked from sources*. `source_type: "firsthand"` is
@@ -77,7 +113,9 @@ If you are ever unsure which bucket a change falls into, it is bucket B.
     Name every path you stage, and **never commit anything under `src/images/`** — that
     is his inbox, and only he moves images out of it into `src/content/faults/img/`.
     Before committing, run `git status --short` and confirm every staged path is one
-    you deliberately changed this run.
+    you deliberately changed this run. Illustrations you generate go straight to
+    `src/content/faults/img/` and are staged by name like any other file — that is not
+    his inbox and is yours to write to.
 
 ---
 
@@ -103,8 +141,8 @@ One markdown file per fault: `src/content/faults/<brand>-<model>-<symptom>.md`.
 Schema (`src/content.config.ts`, enforced at build):
 
 ```
-image?          relative path e.g. "./img/triton-tpt125.png"  (agent leaves this OUT — Nick adds it)
-image_alt?      string
+image?          relative path e.g. "./img/triton-tpt125.png"  (you generate this — see ILLUSTRATION)
+image_alt?      string        describe the tool and the parts the fault turns on
 seo_title?      string        the <title>, used verbatim, no site suffix — keep under ~60 chars
 meta_description? string      ~150-158 chars, written to the searcher, not the schema
 brand           string        e.g. "Kärcher"       (real display form, accents kept)
@@ -122,6 +160,57 @@ date_published  date
 URLs are derived, not stored: `/tools/{slugify(brand)}/{slugify(model)}/` via
 `src/lib/slug.ts`. **One entry per brand+model** — a second file with the same brand and
 model collides on the same route and breaks the build. Check before writing.
+
+---
+
+## ILLUSTRATION (you generate these — added 14 Sep 2026)
+
+Every entry carries one line-art illustration of the tool. You make it yourself with the
+`generate_image` tool from the **`openai-image`** MCP server (gpt-image-1). It is registered
+at user scope with its own API key, so it works under cron. There is also a `gemini-image`
+server registered — it is blocked on Google Cloud billing, so don't reach for it.
+
+The site's existing images were made in the Gemini app by hand and set the house style:
+**black pen outlines on white, sparse hatching, no tone, no shadow, one isolated tool,
+three-quarter view.** Match it. This prompt template produces it — two things in it are
+load-bearing and were arrived at by failing without them:
+
+```
+A black-and-white line-art illustration of <specific tool, named parts>, drawn as fine
+black pen outlines on a plain white background, in the style of a patent drawing or a
+coloring-book page. Design: <the parts the fault turns on, described concretely>.
+Three-quarter view from slightly above, object isolated and centred with generous white
+margin. IMPORTANT STYLE RULES: line work only — every surface is white, shaded only with
+sparse thin hatching lines, never with grey fill or smudged tone. The object floats on
+white with absolutely no cast shadow, no ground shadow, no floor line, no background of
+any kind. No colour. No readable lettering, numbers or logos anywhere — draw any
+nameplate as an empty blank panel.
+```
+
+- **The "no cast shadow / line work only" block.** Without it the model returns a grey
+  drop shadow and tonal shading that reads as obviously different from the rest of the site.
+- **The "no readable lettering" block.** The model garbles small text into nonsense glyphs.
+  The older Gemini images do carry legible brand names; yours should carry blank panels
+  instead. At the 640px the cards render, the difference doesn't show — garbled text does.
+
+Mechanics:
+
+- **Name the file after the tool, not the fault:** `src/content/faults/img/<brand>-<model>.png`,
+  lowercase and hyphenated, matching the existing files. One image per tool.
+- **Reuse an existing image if the tool already has one** — a second fault on the Kärcher K4
+  points at `./img/karcher-k4.png`. Don't generate a duplicate.
+- **Size:** `1024x1024` for upright tools, `1536x1024` for wide ones (mitre saws, chainsaws,
+  lathes, chargers). Cards render at 640px wide, so 1024 is plenty.
+- **Put the fault's parts in frame.** The chain-brake hand guard on a chainsaw entry, the
+  indicator lamps on a charger entry. The illustration should show what the reader is about
+  to go and look at.
+- **Look at the image before you wire it in.** Read the generated PNG back. You are checking
+  that it is the right class of tool and the relevant parts are visible and plausible — not
+  that it is photographically accurate. If it came out wrong, regenerate once with a more
+  concrete description; if the second attempt is also wrong, publish the entry without an
+  image (the field is optional) and note it in the journal rather than shipping a picture of
+  the wrong machine.
+- Then set `image:` and `image_alt:` in the frontmatter and stage both the PNG and the entry.
 
 ---
 
@@ -169,13 +258,30 @@ also convert well — Triton runs 11.5% CTR.
 
 ---
 
-## CONTENT CADENCE (Nick's decision, 23 Aug 2026)
+## CONTENT CADENCE (Nick's decision, 14 Sep 2026)
 
-**3–5 new entries per week, ~15–20 per month.** Do not batch-publish dozens at once.
-The reason is measured, not theoretical: at just 25 URLs, 7 are already uncrawled or
-undiscovered — two of them 7 weeks old. Discovery is the bottleneck, so more URLs per week
-would queue up unindexed, and a sudden multiple-fold expansion of templated content from a
-young domain risks the site-wide quality assessment that the *working* pages depend on.
+**2 new entries per day, published live, seven days a week.** This replaces the 3–5 per week
+set on 23 Aug 2026.
+
+Two ceilings sit above that number and you should expect to hit them. Neither is a reason to
+pad; both are reasons to report honestly.
+
+- **Sourcing.** Content farms dominate UK power-tool fault results and are unusable under
+  rail 3. The sources that actually work are a short list (see memory: Bambu wiki,
+  help.prusa3d.com, Record Power's KB, official manual PDFs). Some days there will not be two
+  faults you can source properly. On those days **publish what you can source and say so** —
+  one verified entry beats two padded ones, and a day with zero publishable entries is a
+  legitimate outcome to report, not a target to hit by lowering the bar.
+- **Index allowance.** This was the measured constraint all through Aug–Sep 2026: pages sat
+  "Discovered – not indexed" for weeks because Google rations crawl on a young domain. It
+  cleared to 28/29 indexed on 14 Sep, but that was at ~29 URLs total. At 2/day the library
+  roughly triples inside two months.
+
+**So the thing to actually watch is not entries published — it's entries indexed and
+clicks.** Every monthly run must report: URLs published this month, how many reached
+"Submitted and indexed", and the click trend. If publication keeps climbing while indexed
+pages and clicks flatten, the cadence is producing URLs rather than traffic, and that finding
+goes to Nick in the monthly report with the numbers behind it. Don't quietly keep running.
 
 Pick each batch's topics from evidence, in this order of preference:
 1. **GSC queries the site already gets impressions for but has no dedicated entry** — the
@@ -191,6 +297,29 @@ fault you cannot source properly.
 
 ---
 
+## DAILY RUN (the content run — added 14 Sep 2026)
+
+Fires once per calendar day. This run writes and publishes; it does **not** do the weekly
+CTR/indexing sweep.
+
+1. Read memory and the last few `JOURNAL.md` entries. Check what the recent daily runs
+   published so you don't repeat a brand+model route (a duplicate breaks the build).
+2. **Pick 2 topics** by the evidence order in the cadence section. Check
+   `src/content/faults/` for an existing entry on the same brand+model first.
+3. **Research from primary documents.** Fetch the manual, the official support page, the
+   named thread. If you cannot reach a usable primary source for a fault, drop it and pick
+   another — do not write around a missing source.
+4. **Draft both entries** to the house voice, with `seo_title` and `meta_description` set.
+5. **Run the PRE-PUBLISH VERIFICATION GATE on both.** Quote the supporting line for every
+   claim into the run report. Cut what doesn't survive.
+6. **Illustrate** each surviving entry per the ILLUSTRATION section; look at each image
+   before wiring it in.
+7. `npm run build`. Fix or revert on failure — never push a broken build (rail 1).
+8. Stage by name (rail 10), commit with a message that says what each entry claims and which
+   document backs it, push to `main`.
+9. **Verify live** (rail 2): poll the new URLs until they return 200 with the content on them.
+10. Journal the run: what published, what you cut and why, the sources, the live URLs.
+
 ## WEEKLY RUN (~20–40 min)
 
 1. Read memory. `node gsc-report.mjs --days 14`. **Headline question: are clicks up vs the
@@ -203,8 +332,14 @@ fault you cannot source properly.
 3. **Indexing movement.** Any page that started or stopped getting impressions since last
    run? Investigate stops. For "Discovered – not indexed" pages, add internal links from
    already-indexed on-topic entries — that is the lever that gets them crawled. **(Bucket A.)**
-4. **Write 3–5 new fault entries** per the cadence section. Research properly, source
-   everything, match the house voice. Stage on a branch. **(Bucket B: never merge.)**
+4. **Audit the week's daily output.** The daily runs publish without review, so this is the
+   site's only after-the-fact check. Pick 2–3 entries published since the last weekly run and
+   re-run the PRE-PUBLISH VERIFICATION GATE on them cold: open the cited documents and
+   confirm they say what the entry says. Correct anything wrong **immediately** — a wrong
+   diagnostic step is live and someone may act on it — and record what you found. If an
+   entry's sourcing can't be salvaged, revert it and say so.
+   Report the audit result every week even when everything passes: "3 audited, 3 clean" is
+   the record that makes a later "1 of 3 wrong" mean something.
 5. Log the run + update memory.
 
 ## MONTHLY RUN (deep-dive)
@@ -217,9 +352,12 @@ fault you cannot source properly.
 4. Ship one **structural improvement** — JSON-LD on a template, a brand hub page, better
    related-entry linking, breadcrumb markup. **(Bucket A.)**
 5. Review the entry library for genuine gaps and thin spots. Entries run ~550–715 words;
-   if a top-ranking entry is at the thin end and stuck, deepening it is a good monthly job
-   — but a body rewrite is **bucket B**, so stage it.
-6. Write the full monthly report + update memory.
+   if a top-ranking entry is at the thin end and stuck, deepening it is a good monthly job.
+   A body rewrite goes through the verification gate like a new entry.
+6. **Report the cadence's actual return** per the cadence section: URLs published this month,
+   how many reached "Submitted and indexed", and the click trend. Say plainly whether the
+   daily cadence is producing traffic or only URLs.
+7. Write the full monthly report + update memory.
 
 ---
 

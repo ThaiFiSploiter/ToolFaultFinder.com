@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 # Autonomous Senior-SEO-Expert runner for toolfaultfinder.com. Invoked by cron.
-# Usage: seo-agent-run.sh [weekly|monthly]
+# Usage: seo-agent-run.sh [daily|weekly|monthly]
 set -uo pipefail
 
 export HOME=/home/nick
 export PATH="/home/nick/.local/bin:/usr/local/bin:/usr/bin:/bin"
 
 MODE="${1:-weekly}"
+case "$MODE" in
+  daily|weekly|monthly) ;;
+  *) echo "usage: $0 [daily|weekly|monthly]" >&2; exit 2 ;;
+esac
 PROJ=/home/nick/toolfaultfinder.com
 LOGDIR="$PROJ/seo-agent-logs"
 mkdir -p "$LOGDIR"
@@ -14,16 +18,36 @@ STAMP="$(date +%Y%m%d-%H%M%S)"
 RUNLOG="$LOGDIR/run-$MODE-$STAMP.log"
 SUMMARY="$LOGDIR/summary-$MODE-$STAMP.txt"
 
-# Opus for both runs — the agent pushes to a live site and writes public-facing
-# technical content, so capability/safety outweigh speed. Cost is plan usage
-# (local login), not metered API billing.
-MODEL="claude-opus-5"
+# Switched Opus -> Sonnet 2026-09-01 to cut plan-usage cost across the non-flagship
+# sites (wegotthemove stays on Opus). Safety rails in the playbook are the actual
+# backstop for autonomous prod deploys, not the model choice.
+MODEL="claude-sonnet-5"
+
+case "$MODE" in
+  daily)
+    MODE_TASK="Your job this run is the day's content: **write exactly 2 new fault entries, illustrate them, and publish them live**. \
+Generate each entry's illustration yourself with the \`generate_image\` tool from the \`openai-image\` MCP server, following the ILLUSTRATION section of the playbook for the prompt template, file naming and frontmatter. \
+Do NOT do the weekly CTR/indexing sweep — that is the weekly run's job. \
+Before you merge anything, you MUST complete the PRE-PUBLISH VERIFICATION GATE in the playbook for every claim in both entries, and paste the supporting quote from the primary document into your run report. \
+An entry whose claims you cannot verify against a document you actually fetched does not get published — drop it, say so in the report, and publish one entry instead of two. Publishing one sourced entry is a good day; publishing two unsourced ones is the worst outcome available to you."
+    ;;
+  weekly)
+    MODE_TASK="Your job this run is measurement and technical SEO, not bulk content: pull live GSC data, diagnose the week-on-week click delta, and ship the CTR and indexing fixes in the weekly checklist. \
+The daily runs handle new entries — do not write a batch of entries here. \
+Audit the week's daily output instead: re-check a sample of the entries the daily runs published against their cited sources, and correct or unpublish anything that does not hold up."
+    ;;
+  monthly)
+    MODE_TASK="Your job this run is the deep-dive in the monthly checklist: month-over-month trend, a full coverage sweep, per-cluster promote-or-leave decisions, and one structural improvement. \
+Also review the month's daily output as a body of work — indexing rate, thin spots, and whether the daily cadence is actually converting to clicks or just to URLs."
+    ;;
+esac
 
 PROMPT="You are running as the autonomous Senior SEO Expert for toolfaultfinder.com. This is your scheduled **$MODE** run. \
-First read /home/nick/toolfaultfinder.com/SEO-AGENT-PLAYBOOK.md in full and follow it exactly, including the SPLIT-AUTHORITY RULE, the HARD SAFETY RAILS, and the $MODE-run checklist. \
+First read /home/nick/toolfaultfinder.com/SEO-AGENT-PLAYBOOK.md in full and follow it exactly, including the AUTHORITY RULE, the HARD SAFETY RAILS, and the $MODE-run checklist. \
 Also read MEMORY.md and the relevant memory files for accumulated context before acting. \
 Your goal is to grow organic search clicks week on week and build out the fault-entry library. \
-Pull live GSC data, diagnose, and act: technical SEO improvements you commit and push to main yourself (build first, verify the live site after); new fault-entry content you write and push to a content/ branch for Nick to fact-check and illustrate, NEVER merged to main. \
+$MODE_TASK \
+You publish to production yourself: build before every push, push to main, and verify the change on the live site afterwards. There is no human review step — nothing you publish is checked by anyone before readers act on it physically, so the sourcing rails are the only safeguard and they are absolute. \
 Then log a report to seo-agent-logs/JOURNAL.md and update project memory. \
 Work autonomously; do not wait for approval, but never violate the safety rails."
 
@@ -53,9 +77,10 @@ else
     | ssh -o ConnectTimeout=20 "$HOST" "node /root/seo-agent-mail.mjs \"$SUBJ\"" >> "$RUNLOG" 2>&1
 fi
 
-# Keep only the last 40 of each artifact.
-ls -1t "$LOGDIR"/run-*.log 2>/dev/null | tail -n +41 | xargs -r rm -f
-ls -1t "$LOGDIR"/summary-*.txt 2>/dev/null | tail -n +41 | xargs -r rm -f
+# Keep only the last 90 of each artifact — raised from 40 when the daily run was added,
+# so the window still covers roughly a quarter rather than six weeks.
+ls -1t "$LOGDIR"/run-*.log 2>/dev/null | tail -n +91 | xargs -r rm -f
+ls -1t "$LOGDIR"/summary-*.txt 2>/dev/null | tail -n +91 | xargs -r rm -f
 
 # Propagate the claude invocation's exit code so the dispatcher's catch-up
 # logic doesn't stamp a failed run (e.g. hit a session limit) as done for the
