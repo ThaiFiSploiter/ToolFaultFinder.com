@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Autonomous Senior-SEO-Expert runner for toolfaultfinder.com. Invoked by cron.
-# Usage: seo-agent-run.sh [daily|weekly|monthly]
+# Usage: seo-agent-run.sh [content|weekly|monthly]
 set -uo pipefail
 
 export HOME=/home/nick
@@ -8,8 +8,8 @@ export PATH="/home/nick/.local/bin:/usr/local/bin:/usr/bin:/bin"
 
 MODE="${1:-weekly}"
 case "$MODE" in
-  daily|weekly|monthly) ;;
-  *) echo "usage: $0 [daily|weekly|monthly]" >&2; exit 2 ;;
+  content|weekly|monthly) ;;
+  *) echo "usage: $0 [content|weekly|monthly]" >&2; exit 2 ;;
 esac
 PROJ=/home/nick/toolfaultfinder.com
 LOGDIR="$PROJ/seo-agent-logs"
@@ -24,21 +24,23 @@ SUMMARY="$LOGDIR/summary-$MODE-$STAMP.txt"
 MODEL="claude-sonnet-5"
 
 case "$MODE" in
-  daily)
-    MODE_TASK="Your job this run is the day's content: **write exactly 2 new fault entries, illustrate them, and publish them live**. \
+  content)
+    MODE_TASK="Your job this run is content: **write up to 7 new fault entries, illustrate them, and publish them live**. \
+Seven is a CEILING, not a quota. The binding limit is sourcing, not effort: publish every entry you can verify against a primary document and stop there. A run that publishes 3 well-sourced entries and reports why it stopped is a good run; padding to 7 with thin sourcing is the worst outcome available to you. \
+**Work one entry at a time, start to finish: research -> draft -> verification gate -> illustrate -> build -> commit -> push -> verify live -> journal, THEN start the next one.** Do not batch all seven and push at the end. This run is long and may be interrupted by a session limit or a crash; entry-at-a-time means an interruption leaves finished work live and recorded rather than losing the lot. \
+Before writing each entry, re-check \`src/content/faults/\` and the journal for an existing entry on that brand+model — a duplicate route breaks the build, and a re-run after an interruption is exactly when that happens. \
 Generate each entry's illustration yourself with the \`generate_image\` tool from the \`openai-image\` MCP server, following the ILLUSTRATION section of the playbook for the prompt template, file naming and frontmatter. \
 Do NOT do the weekly CTR/indexing sweep — that is the weekly run's job. \
-Before you merge anything, you MUST complete the PRE-PUBLISH VERIFICATION GATE in the playbook for every claim in both entries, and paste the supporting quote from the primary document into your run report. \
-An entry whose claims you cannot verify against a document you actually fetched does not get published — drop it, say so in the report, and publish one entry instead of two. Publishing one sourced entry is a good day; publishing two unsourced ones is the worst outcome available to you."
+For every entry you MUST complete the PRE-PUBLISH VERIFICATION GATE in the playbook before its push, and paste the supporting quote from the primary document into your run report."
     ;;
   weekly)
     MODE_TASK="Your job this run is measurement and technical SEO, not bulk content: pull live GSC data, diagnose the week-on-week click delta, and ship the CTR and indexing fixes in the weekly checklist. \
-The daily runs handle new entries — do not write a batch of entries here. \
-Audit the week's daily output instead: re-check a sample of the entries the daily runs published against their cited sources, and correct or unpublish anything that does not hold up."
+The content runs handle new entries — do not write a batch of entries here. \
+Audit the week's published entries instead: re-check a sample of what the content runs published against their cited sources, and correct or unpublish anything that does not hold up."
     ;;
   monthly)
     MODE_TASK="Your job this run is the deep-dive in the monthly checklist: month-over-month trend, a full coverage sweep, per-cluster promote-or-leave decisions, and one structural improvement. \
-Also review the month's daily output as a body of work — indexing rate, thin spots, and whether the daily cadence is actually converting to clicks or just to URLs."
+Also review the month's published entries as a body of work — indexing rate, thin spots, and whether the content cadence is actually converting to clicks or just to URLs."
     ;;
 esac
 
@@ -77,7 +79,7 @@ else
     | ssh -o ConnectTimeout=20 "$HOST" "node /root/seo-agent-mail.mjs \"$SUBJ\"" >> "$RUNLOG" 2>&1
 fi
 
-# Keep only the last 90 of each artifact — raised from 40 when the daily run was added,
+# Keep only the last 90 of each artifact — raised from 40 when the content run was added,
 # so the window still covers roughly a quarter rather than six weeks.
 ls -1t "$LOGDIR"/run-*.log 2>/dev/null | tail -n +91 | xargs -r rm -f
 ls -1t "$LOGDIR"/summary-*.txt 2>/dev/null | tail -n +91 | xargs -r rm -f

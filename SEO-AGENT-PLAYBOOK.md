@@ -260,8 +260,26 @@ also convert well — Triton runs 11.5% CTR.
 
 ## CONTENT CADENCE (Nick's decision, 14 Sep 2026)
 
-**2 new entries per day, published live, seven days a week.** This replaces the 3–5 per week
-set on 23 Aug 2026.
+**Up to 7 entries per content run, 2 content runs per week — a ceiling of 14 a week.**
+This replaces the 3–5 per week set on 23 Aug 2026.
+
+**Seven is a ceiling, not a quota, and you are expected to come in under it.** The binding
+limit is sourcing (below), not effort. Publish what you can verify and stop; report why you
+stopped. Padding a run to 7 with thin sourcing is worse than publishing 3 and saying so.
+
+The shape — few big runs rather than many small ones — is deliberate and cost-driven.
+**Plan-usage cost is a real constraint on this project.** Nick moved the agent from Opus to
+Sonnet on 1 Sep to slow credit burn; a 7-day cadence trialled on 14 Sep would have more than
+undone that saving (the per-token saving was ~2.5x, the run-count increase 7x). Every run
+pays a fixed startup — this playbook, the memory files, the journal, GSC — before it writes
+anything, so **run count is the expensive dimension and entries-per-run is the cheap one.**
+If the cadence needs to change again, change entries-per-run first. Runs are capped per ISO
+week rather than pinned to fixed weekdays so a day with the PC off doesn't silently lose one.
+
+**The cost lever is run count, not entry count.** Every run pays a fixed startup — reading
+this playbook, the memory files, the journal, pulling GSC — before it writes anything. If
+the cadence ever needs to change again, changing entries-per-run is much cheaper than
+changing runs-per-week.
 
 Two ceilings sit above that number and you should expect to hit them. Neither is a reason to
 pad; both are reasons to report honestly.
@@ -274,8 +292,8 @@ pad; both are reasons to report honestly.
   legitimate outcome to report, not a target to hit by lowering the bar.
 - **Index allowance.** This was the measured constraint all through Aug–Sep 2026: pages sat
   "Discovered – not indexed" for weeks because Google rations crawl on a young domain. It
-  cleared to 28/29 indexed on 14 Sep, but that was at ~29 URLs total. At 2/day the library
-  roughly triples inside two months.
+  cleared to 28/29 indexed on 14 Sep, but that was at ~29 URLs total. At up to 14/week the
+  library could triple inside two months — watch the indexed count, not the published count.
 
 **So the thing to actually watch is not entries published — it's entries indexed and
 clicks.** Every monthly run must report: URLs published this month, how many reached
@@ -297,28 +315,44 @@ fault you cannot source properly.
 
 ---
 
-## DAILY RUN (the content run — added 14 Sep 2026)
+## CONTENT RUN (added 14 Sep 2026)
 
-Fires once per calendar day. This run writes and publishes; it does **not** do the weekly
-CTR/indexing sweep.
+Fires up to 2 times per ISO week, at most once per calendar day. This run writes and
+publishes; it does **not** do the weekly CTR/indexing sweep.
 
-1. Read memory and the last few `JOURNAL.md` entries. Check what the recent daily runs
-   published so you don't repeat a brand+model route (a duplicate breaks the build).
-2. **Pick 2 topics** by the evidence order in the cadence section. Check
-   `src/content/faults/` for an existing entry on the same brand+model first.
-3. **Research from primary documents.** Fetch the manual, the official support page, the
-   named thread. If you cannot reach a usable primary source for a fault, drop it and pick
-   another — do not write around a missing source.
-4. **Draft both entries** to the house voice, with `seo_title` and `meta_description` set.
-5. **Run the PRE-PUBLISH VERIFICATION GATE on both.** Quote the supporting line for every
-   claim into the run report. Cut what doesn't survive.
-6. **Illustrate** each surviving entry per the ILLUSTRATION section; look at each image
-   before wiring it in.
-7. `npm run build`. Fix or revert on failure — never push a broken build (rail 1).
-8. Stage by name (rail 10), commit with a message that says what each entry claims and which
-   document backs it, push to `main`.
-9. **Verify live** (rail 2): poll the new URLs until they return 200 with the content on them.
-10. Journal the run: what published, what you cut and why, the sources, the live URLs.
+**Work one entry at a time, all the way to live, before starting the next.** This run is
+long — up to seven entries — and long unattended runs get interrupted: a session limit, a
+crash, a machine going to sleep. Entry-at-a-time means an interruption leaves finished work
+published and journalled instead of losing the batch. Batching all seven and pushing at the
+end is the one shape that loses everything.
+
+Once, at the start:
+
+1. Read memory and the last few `JOURNAL.md` entries, including any entry from an
+   interrupted earlier run today.
+2. **Draw up a candidate list** by the evidence order in the cadence section — more
+   candidates than you expect to publish, since some will fail sourcing.
+
+Then, for each entry in turn:
+
+3. **Check the route is free.** Look in `src/content/faults/` for an existing entry with the
+   same brand+model — a duplicate route breaks the build. Re-check this every time, not once
+   at the start: after an interrupted run, a route you "planned" may already be live.
+4. **Research from primary documents.** Fetch the manual, the official support page, the
+   named thread. If you cannot reach a usable primary source, drop the topic and take the
+   next candidate — never write around a missing source.
+5. **Draft** to the house voice, with `seo_title` and `meta_description` set.
+6. **Run the PRE-PUBLISH VERIFICATION GATE.** Quote the supporting line for every claim into
+   the run report. Cut what doesn't survive; if the entry can't survive, drop it and move on.
+7. **Illustrate** per the ILLUSTRATION section; look at the image before wiring it in.
+8. `npm run build`. Fix or revert on failure — never push a broken build (rail 1).
+9. Stage by name (rail 10), commit with a message saying what the entry claims and which
+   document backs it, and push to `main`.
+10. **Verify live** (rail 2): poll the new URL until it returns 200 with the content on it.
+11. **Append to the journal now** — before starting the next entry, not at the end of the run.
+
+Finally: journal the run as a whole — how many published, how many dropped and why, and
+whether sourcing or the ceiling was what stopped you.
 
 ## WEEKLY RUN (~20–40 min)
 
@@ -332,8 +366,8 @@ CTR/indexing sweep.
 3. **Indexing movement.** Any page that started or stopped getting impressions since last
    run? Investigate stops. For "Discovered – not indexed" pages, add internal links from
    already-indexed on-topic entries — that is the lever that gets them crawled. **(Bucket A.)**
-4. **Audit the week's daily output.** The daily runs publish without review, so this is the
-   site's only after-the-fact check. Pick 2–3 entries published since the last weekly run and
+4. **Audit the week's published entries.** The content runs publish without review, so this
+   is the site's only after-the-fact check. Pick 2–3 entries published since the last weekly run and
    re-run the PRE-PUBLISH VERIFICATION GATE on them cold: open the cited documents and
    confirm they say what the entry says. Correct anything wrong **immediately** — a wrong
    diagnostic step is live and someone may act on it — and record what you found. If an
@@ -356,7 +390,8 @@ CTR/indexing sweep.
    A body rewrite goes through the verification gate like a new entry.
 6. **Report the cadence's actual return** per the cadence section: URLs published this month,
    how many reached "Submitted and indexed", and the click trend. Say plainly whether the
-   daily cadence is producing traffic or only URLs.
+   content cadence is producing traffic or only URLs. Runs cost plan credit, so a cadence
+   that is producing URLs and not clicks is costing Nick money for nothing — say so.
 7. Write the full monthly report + update memory.
 
 ---
