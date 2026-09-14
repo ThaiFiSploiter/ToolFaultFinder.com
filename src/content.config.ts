@@ -40,10 +40,13 @@ const faults = defineCollection({
           name: z.string(),
           // 'repair'     — a part that fixes THIS fault. Only listed when the
           //                entry's own verdict says something needs replacing.
-          // 'consumable' — bar oil, chains, blades, discs, bags, nozzles: what
-          //                the tool gets through in normal use. Not a fix, and
-          //                rendered under its own heading so it can't read as one.
-          kind: z.enum(['repair', 'consumable']).default('repair'),
+          // 'consumable'  — bar oil, chains, blades, discs, bags, nozzles: what
+          //                 the tool gets through in normal use. Not a fix, and
+          //                 rendered under its own heading so it can't read as one.
+          // 'replacement' — a replacement MACHINE. Only where the verdict itself
+          //                 says the tool is uneconomic or unsafe to repair, in
+          //                 which case a new machine is what the reader needs.
+          kind: z.enum(['repair', 'consumable', 'replacement']).default('repair'),
           part_number: z.string().optional(),
           note: z.string().optional(),
           search: z.string().optional(),

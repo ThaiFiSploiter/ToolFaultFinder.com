@@ -40,9 +40,12 @@ export interface Part {
   /**
    * 'repair' (default) — fixes this fault; only listed when the verdict says so.
    * 'consumable' — bar oil, chains, blades, discs, bags: normal running stock.
-   * Rendered under separate headings so a consumable never reads as the fix.
+   * 'replacement' — a replacement machine, only where the verdict says the tool
+   *   is uneconomic or unsafe to repair. On those pages it is the honest link:
+   *   the page's own conclusion is "buy a new one".
+   * Rendered under separate headings so one never reads as another.
    */
-  kind?: 'repair' | 'consumable';
+  kind?: 'repair' | 'consumable' | 'replacement';
   /** Manufacturer part code, only when verified against a real document. */
   part_number?: string;
   /** One line on choosing or fitting it. Optional. */

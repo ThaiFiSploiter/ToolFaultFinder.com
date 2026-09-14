@@ -5,6 +5,9 @@
  * "Parts You May Need" is repair parts — only ever the ones this entry's own
  * verdict says may need replacing. "Consumables & Accessories" is what the tool
  * gets through in normal use: bar oil, chains, blades, discs, bags, nozzles.
+ * "If You're Replacing It" is a replacement machine, and appears only where the
+ * verdict concludes the tool is uneconomic or unsafe to repair — on those pages
+ * a new machine is precisely what the reader has just been told they need.
  *
  * They are split rather than merged on purpose. Consumables are the things a
  * reader is actually likely to buy, but they do not fix the fault the page is
@@ -27,6 +30,7 @@ const live = affiliateLive();
 
 const repair = parts.filter((p) => (p.kind ?? 'repair') === 'repair');
 const consumable = parts.filter((p) => p.kind === 'consumable');
+const replacement = parts.filter((p) => p.kind === 'replacement');
 ---
 
 {parts.length > 0 && (
@@ -67,6 +71,34 @@ const consumable = parts.filter((p) => p.kind === 'consumable');
           Check the part against your own tool's model and serial before ordering — ranges
           get revised and the same model name can cover more than one part.
         </p>
+      </>
+    )}
+
+    {replacement.length > 0 && (
+      <>
+        <div class="section-head">
+          <h2>If You're Replacing It</h2>
+        </div>
+        <p class="parts-standfirst">
+          The verdict above weighs repairing this one against replacing it. If you've read
+          that and the sums point at replacement, this is the class of machine that does the
+          same job. If they don't, ignore this — the repair advice above stands.
+        </p>
+        <ul class="parts-list">
+          {replacement.map((part) => {
+            const href = amazonSearchUrl(part, context);
+            return (
+              <li>
+                <span class="part-name">
+                  {href ? (
+                    <a href={href} rel="sponsored nofollow noopener" target="_blank">{part.name}</a>
+                  ) : part.name}
+                </span>
+                {part.note && <span class="part-note">{part.note}</span>}
+              </li>
+            );
+          })}
+        </ul>
       </>
     )}
 

@@ -15,6 +15,11 @@ diagnostic_steps:
   - "Rule out a loose or over-tensioned chain and guide bar, which Makita list separately as a cause of abnormal vibration, not of brake failure — don't confuse the two symptoms"
   - "If the lever engages correctly and the chain still doesn't stop, Makita's own troubleshooting table names a worn brake band as the cause — this is not user-serviceable on this saw"
 fix_or_verdict: "Makita's manual is explicit: if the chain doesn't stop with the brake engaged, stop using the tool immediately and take it to an authorised service centre. This is a safety mechanism, not a convenience feature, and a worn brake band is not a job to inspect or replace yourself. Weigh a service centre's brake repair cost against a replacement saw of the same class before committing, but don't run the saw in the meantime regardless of which way that comparison goes."
+parts:
+  - name: "Replacement electric chainsaw"
+    kind: "replacement"
+    note: "Only after reading the verdict above: get a service centre's quote for the brake repair and weigh it against this. Whichever way it goes, don't run the saw in the meantime."
+    search: "electric chainsaw 40cm mains corded"
 source_type: "researched"
 sources:
   - "Makita UC3041A/UC3541A/UC4041A Electric Chain Saw instruction manual — the Trouble Shooting table entry for 'Chain does not stop even the chain brake is engaged', cause 'Brake band worn down'"

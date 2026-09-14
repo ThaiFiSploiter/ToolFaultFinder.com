@@ -28,6 +28,10 @@ parts:
   - name: "Replacement high-pressure hose"
     kind: "consumable"
     search: "Karcher K5 replacement high pressure hose"
+  - name: "Replacement domestic pressure washer"
+    kind: "replacement"
+    note: "Only if it turns out to need a complete pump head — the verdict above puts that against the price of a new machine. Try the nozzle and sieve first; most of these cost nothing."
+    search: "Karcher K5 pressure washer"
 source_type: "researched"
 sources:
   - "Kärcher K5 operating instructions — troubleshooting section (pressure fluctuations, cleaning the sieve in the water connection, venting the device)"

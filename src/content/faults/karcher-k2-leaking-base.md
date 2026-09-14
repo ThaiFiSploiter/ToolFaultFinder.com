@@ -15,6 +15,11 @@ diagnostic_steps:
   - "If you strip the pump body down, look specifically for a small weep hole in the black plastic pressure-switch/cylinder-head component near the top of the pump — a documented failure point"
   - "Try to press or turn that component apart before ordering parts: on the units where this has been reported, it doesn't dismantle — it's solvent-welded shut, which is itself confirmation of what's failed"
 fix_or_verdict: "Not usually worth fixing. The pressure-switch/cylinder-head assembly is sold as a complete sealed unit, and on the machine where this was documented in detail the replacement part cost around half the price of a new K2. A DIY strip-and-reseal isn't possible either: the component is solvent-welded shut. Worth pricing a replacement head against a new machine before deciding, but for most owners the sums point at replacement."
+parts:
+  - name: "Replacement domestic pressure washer"
+    kind: "replacement"
+    note: "The verdict above is that the sealed cylinder-head assembly costs about half a new machine. Price the part first if you want to — but for most owners this is the honest end of it."
+    search: "Karcher K2 pressure washer"
 source_type: "researched"
 sources:
   - "\"Repairing a leaking Karcher K2 pressure washer\" — BuildHub.org.uk forum thread (full disassembly, part identification, and the sealed-unit finding)"
