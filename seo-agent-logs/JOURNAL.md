@@ -828,3 +828,109 @@ official manual with a genuine troubleshooting table, same rigour bar as
 the UC4041A entry that set the pattern for this kind of source).
 
 Continuing to the next candidate now.
+
+## 2026-09-15 — Content run, entry 2 of N: Record Power PT260 won't start
+
+Published and live: `/tools/record-power/pt260/` — commit `1d7833f`.
+
+**Symptom:** PT260 planer thicknesser won't start at all, in either planing
+or thicknessing mode. **Source:** Record Power's own Knowledge Base article
+"PT260 Safety Microswitches" (recordpower.co.uk/support) — fetched twice
+this run, the second time asking for the full article verbatim to check
+the first fetch's quotes against the exact wording before publishing.
+
+Verification-gate quotes, pasted from the fetched article:
+
+- "When using the PT260 in order for microswitches to register, completing
+  the electrical circuit and therefore allowing the machine to start the
+  dust extraction hoods must be in place."
+- Planing mode: "Ensure the table is locked in position with both handles
+  activating the 1st safety micro-switch. The dust extraction hood must be
+  correctly fitted underneath the table to activate the 2nd switch."
+- Thicknessing mode: "make sure that the swing over dust extraction outlet
+  is fully covering the cutter block thus activating the 3rd micro-switch."
+- Conclusion: "If these guidelines are followed the safety microswitches
+  should present no problems when using the machine."
+
+New brand+model — Record Power already has CL2, CL3 and BS250 in the
+library, so this both fills the brand hub (sibling-model preference) and is
+a genuine new fault topic, not a rehash of the BS250 blade-drift entry.
+Category: Guards & Safety (reused). The entry doesn't give a switch-repair
+procedure because the source doesn't give one — routed to an electrician/
+Record Power service for a genuine switch fault, per gate rule 5, and
+explicitly told the reader not to bypass an interlock switch to test it
+live, since it guards an exposed cutter block.
+
+Parts: one `consumable` (PT260 disposable planer blades, 260 x 18.6 x
+1.1mm) — confirmed as a real listed product for this model via a retailer
+search, not invented; no repair part, since the verdict's fault (a bad
+microswitch/wiring) isn't something to self-diagnose a part for. Illustrated
+with `openai-image` (1536x1024, planer-thicknesser with locking handles,
+cutter roller and both dust hoods in frame — checked before wiring in).
+Build passed, pushed, verified live within ~40s of push.
+
+Two entries published so far this run, both power tools/workshop-and-garden
+kit, both from official manufacturer documents fetched directly. Continuing
+to look for a third candidate; will report honestly if sourcing runs out
+before finding one, per the playbook's stated preference for stopping over
+padding.
+
+## 2026-09-15 — Content run summary
+
+**Published: 2 of a possible 7.** Makita DLM380 (won't start) and Record
+Power PT260 (won't start / safety microswitches) — both live, both power
+tools/workshop-and-garden kit, both sourced from official manufacturer
+documents fetched directly this run (manual PDF via `curl`+`pdftotext`, KB
+article via WebFetch, quotes re-verified against a second fetch before
+publishing). Per-entry detail and verification quotes are in the two entries
+above.
+
+**Stopped at 2, deliberately — sourcing was the binding constraint, not
+effort.** Candidates tried and dropped before drafting (so nothing here was
+cut after the verification gate — these failed the earlier "can I even reach
+a usable primary source" check):
+
+- **DeWalt, several UK models** (DCM571 strimmer, DCM563 hedge trimmer,
+  DCF921 impact driver, D25133 SDS hammer) — found `service.dewalt.co.uk` as
+  a genuine official UK manual source (new to memory, worth keeping), but
+  none of the four manuals actually opened contained a troubleshooting
+  table, unlike the DWS780/DWS774/DCF887 entries already in the library.
+  DCS359 (US "20V Max" oscillating tool) does have one, but it's a US-only
+  model number — publishing it under a UK model number it doesn't share
+  would be exactly the "spec published for a different model" failure the
+  gate exists to catch, so it was dropped rather than fudged.
+- **Numatic Henry XL / Hetty XL Plus / Henry Home XL / Henry Pet XL
+  (HVR370-11)** — found Numatic's own CDN (`cdn.numatic.com`, genuine
+  official manual, worth keeping as a source). But its fault content is the
+  same thermal-protection-device/blockage boilerplate already written up in
+  the HVR200 entry, near word-for-word. A second entry on the same fault
+  under a sibling model would be padding, not new coverage, so it wasn't
+  drafted.
+- **Record Power DML24X/DML36-CAM bearings** — real KB article, but it's a
+  maintenance FAQ ("do the bearings need oiling") with no actual fault or
+  symptom, not a fit for this site's format.
+- **Record Power bandsaw blade-pull KB article** — doesn't name a model, and
+  its content is already covered (near-identically) by the existing BS250
+  entry.
+- **Triton TWX7RT001 router table module** — found what should be an
+  official `tritontools.com` manual URL via search, but the URL served an
+  HTML error page rather than a PDF when fetched. Not pursued further this
+  run; worth another look with a browser-like fetch another time given
+  Triton is the site's best-converting brand.
+- **Kärcher K7, Bosch GBH 2-26** — Kärcher's own UK manuals-download page
+  and a direct Bosch Professional product page both returned errors
+  (consistent with the standing note that Kärcher's own site is mostly
+  unreachable); didn't chase third-party mirrors for either.
+
+**New sources worth keeping for future runs** (adding to memory):
+`service.dewalt.co.uk` for genuine UK-market DeWalt manuals (even though
+this run's specific picks lacked troubleshooting tables, other DeWalt models
+on this domain may not — worth checking model-by-model rather than writing
+off the whole line), and `cdn.numatic.com` for Numatic's own manual PDFs.
+
+No entries were drafted and then cut at the verification gate this run —
+everything above was ruled out before drafting, at the sourcing-check stage.
+Both published entries passed the gate cleanly with no corrections needed.
+
+Not done this run, by design: the weekly CTR/indexing sweep (that's the
+weekly run's job, not this one's).
