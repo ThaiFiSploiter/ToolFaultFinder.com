@@ -16,6 +16,10 @@ diagnostic_steps:
   - "With the printer unplugged from the wall, measure the resistance across the two heatbed terminals under the cover — Bambu's stated normal range is 40 to 60 ohms, and a reading outside it condemns the heatbed"
   - "If the heatbed itself measures in range, check the heatbed power cable the same way and re-seat the cable between the MC board and the AC power board before suspecting the board itself"
 fix_or_verdict: "A re-seated NTC or MC-board connector is the best outcome and costs nothing. An out-of-range resistance reading means the heatbed or its power cable is the failed part. If the bed and cable both measure correctly and the connections are sound, Bambu's own procedure concludes that the AC power board has failed and must be replaced. Price the heatbed and the AC board before ordering — they are the two dearest parts in this failure, and the resistance test is what tells you which one you actually need."
+parts:
+  - name: "PLA filament, 1.75mm"
+    kind: "consumable"
+    search: "PLA filament 1.75mm 1kg"
 source_type: "researched"
 sources:
   - "Bambu Lab Wiki, 'Troubleshooting for P1 series heatbed is not heating up' — causes and solutions, safety warning, and the two-scenario diagnostic split"

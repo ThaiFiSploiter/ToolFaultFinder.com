@@ -22,6 +22,10 @@ parts:
   - name: "Blade support roller"
     note: "Only if yours is grooved or won't spin freely — check before ordering."
     search: "Bosch PST 700 E blade support roller"
+  - name: "Mixed jigsaw blade set"
+    kind: "consumable"
+    note: "Having the right blade for the material is most of the battle with a jigsaw."
+    search: "jigsaw blade set T-shank wood metal"
 source_type: "researched"
 sources:
   - "Bosch PST 700 E operating manual (blade selection and roller guide)"

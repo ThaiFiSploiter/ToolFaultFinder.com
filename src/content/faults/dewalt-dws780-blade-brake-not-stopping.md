@@ -17,6 +17,11 @@ diagnostic_steps:
   - "If the delay or non-engagement persists after cycling the switch, stop using the saw for cuts where blade coast-down matters and book it in — DeWalt's own instruction is to have the tool serviced by an authorized DeWalt service centre at that point"
   - "Don't treat a slow brake as a reason to skip the normal safety check: always confirm the blade has fully stopped before lifting it out of the kerf, whether or not the brake is working as specified — the brake is not a substitute for that"
 fix_or_verdict: "Try the on/off cycle first — DeWalt documents it as the fix for exactly this symptom, and it costs nothing. If the brake still doesn't engage promptly afterwards, this is not a repair DeWalt designs for the owner: the manual routes both worn brushes and any other brake fault to an authorized service centre rather than publishing a brush-measurement or replacement procedure for this saw, so get it looked at rather than opening the motor housing yourself."
+parts:
+  - name: "305mm mitre saw blade"
+    kind: "consumable"
+    note: "Check bore size as well as diameter before ordering."
+    search: "305mm mitre saw blade 30mm bore"
 source_type: "researched"
 sources:
   - "DeWalt DWS780 instruction manual — Trigger Switch and Automatic Electric Brake section (5-second brake spec, not adjustable, delay/skip behaviour, and the on/off reset)"

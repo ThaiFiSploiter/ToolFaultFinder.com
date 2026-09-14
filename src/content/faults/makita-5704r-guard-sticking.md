@@ -25,6 +25,10 @@ parts:
   - name: "Guard return spring"
     note: "Only if the guard still won't snap back after cleaning. Don't use the saw until it does."
     search: "Makita 5704R guard return spring"
+  - name: "190mm circular saw blade"
+    kind: "consumable"
+    note: "Check the bore size (this saw takes 30mm) as well as the diameter."
+    search: "190mm circular saw blade 30mm bore"
 source_type: "researched"
 sources:
   - "Makita 5704R instruction manual (guard checks) and parts diagram (guard and spring)"

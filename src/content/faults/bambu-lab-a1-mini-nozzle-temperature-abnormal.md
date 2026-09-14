@@ -16,6 +16,10 @@ diagnostic_steps:
   - "Power the printer back on but start no job and command no heating. With the hotend cold, flex the toolhead wiring loom gently by hand while watching the reported nozzle temperature: a figure that flicks to zero or jumps as you move it means a broken conductor inside the loom, not a bad connector"
   - "If you have a multimeter, unplug the printer and measure across the sensor and heater pins. The A1 Mini uses a 100 kΩ NTC, so a healthy sensor reads somewhere near 100 kΩ at room temperature — an open-circuit reading confirms a failed sensor or a broken lead, and that is the reading that settles this fault. The heater cartridge should read a low resistance rather than a specific figure; open circuit or a dead short is the failure to look for"
 fix_or_verdict: "Most reports are a connector rather than a component, and reseating the NTC plug on the toolhead board costs nothing. If the resistance check comes back open circuit, the hotend is a user-replaceable assembly on the A1 Mini and an economical repair — the printer itself is not in question."
+parts:
+  - name: "PLA filament, 1.75mm"
+    kind: "consumable"
+    search: "PLA filament 1.75mm 1kg"
 source_type: "researched"
 sources:
   - "Bambu Lab Wiki — HMS_0300-0200-0001-0007, \"The nozzle temperature is abnormal, the sensor may be open circuit\""

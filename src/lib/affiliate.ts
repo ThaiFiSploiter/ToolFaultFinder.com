@@ -37,6 +37,12 @@ const AMAZON_HOST = 'www.amazon.co.uk';
 export interface Part {
   /** What it is, in the reader's words: "Carbon brush set (pair)". */
   name: string;
+  /**
+   * 'repair' (default) — fixes this fault; only listed when the verdict says so.
+   * 'consumable' — bar oil, chains, blades, discs, bags: normal running stock.
+   * Rendered under separate headings so a consumable never reads as the fix.
+   */
+  kind?: 'repair' | 'consumable';
   /** Manufacturer part code, only when verified against a real document. */
   part_number?: string;
   /** One line on choosing or fitting it. Optional. */

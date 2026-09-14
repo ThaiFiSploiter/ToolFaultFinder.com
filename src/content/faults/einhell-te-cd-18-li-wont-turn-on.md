@@ -15,6 +15,10 @@ diagnostic_steps:
   - "If the tool was used hard just before this happened, leave it a few minutes and try again — some cases resolve after a short rest"
   - "Only after the above, treat it as a genuine battery cell or tool electronics fault"
 fix_or_verdict: "A high share of 'won't turn on despite full charge' reports on this platform resolve with a proper reseat and a contact clean — cheap, quick, and worth doing before assuming the battery or tool has actually failed."
+parts:
+  - name: "Drill and driver bit set"
+    kind: "consumable"
+    search: "drill bit and screwdriver bit set combination"
 source_type: "researched"
 sources:
   - "Einhell Power X-Change community troubleshooting guidance"

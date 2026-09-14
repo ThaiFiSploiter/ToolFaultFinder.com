@@ -16,6 +16,13 @@ diagnostic_steps:
   - "Fit the suspect battery to a different Makita charger — if it is refused there too, the cartridge itself is worn out or damaged, which is Makita's second listed cause"
   - "Check the ambient conditions before condemning anything: Makita specifies that the battery should not be charged when room temperature is below 10°C or above 40°C, and states that charging may not start at all when the battery is under 0°C"
 fix_or_verdict: "If cleaning the terminals restores charging, the repair costs nothing. If the swap test points at the battery, the cell pack is the failed part and no charger repair will help — replace the battery. If a known-good battery is also refused, the charger is at fault and replacing it is the cheaper of the two; price a replacement charger against a replacement battery before you buy, because on 18V LXT kit the battery is usually the dearer item."
+parts:
+  - name: "Replacement 18V LXT battery"
+    note: "Only if the swap test pointed at the battery. On LXT kit the battery is usually the dearer item — price both before buying either."
+    search: "Makita 18V LXT battery BL1850B"
+  - name: "Replacement DC18RC charger"
+    note: "Only if a known-good battery is also refused. Usually the cheaper of the two failures."
+    search: "Makita DC18RC charger"
 source_type: "researched"
 sources:
   - "Makita DC18RC Fast Charger instruction manual, 'NOTE' section on charging-light behaviour and the symbol key for Delay charge, Defective battery and Cooling abnormality"

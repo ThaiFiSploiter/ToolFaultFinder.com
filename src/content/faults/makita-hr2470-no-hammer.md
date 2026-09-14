@@ -22,6 +22,13 @@ parts:
   - name: "SDS hammer grease"
     note: "Hammer-specific grease, not general-purpose — the wrong grease is why some rebuilds lose the hammer action again within weeks."
     search: "SDS hammer drill grease Makita"
+  - name: "SDS-Plus drill bit set"
+    kind: "consumable"
+    search: "SDS Plus drill bit set masonry"
+  - name: "SDS-Plus chisel set"
+    kind: "consumable"
+    note: "Point and flat chisels for the hammer-only mode."
+    search: "SDS Plus chisel set point flat"
 source_type: "researched"
 sources:
   - "Makita HR2470 parts diagram (hammer mechanism assembly)"

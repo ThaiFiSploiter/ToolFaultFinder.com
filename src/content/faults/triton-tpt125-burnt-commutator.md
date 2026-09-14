@@ -19,6 +19,10 @@ parts:
   - name: "Carbon brush set (pair)"
     note: "For even segment damage only. If the meter gave anomalous readings across segments, the armature is the fault and brushes will not fix it — price a replacement armature first."
     search: "carbon brushes Triton TPT125 thicknesser"
+  - name: "Replacement thicknesser blades"
+    kind: "consumable"
+    note: "The genuine consumable on this machine — dull blades load the motor, which is not unrelated to why you're on this page."
+    search: "Triton TPT125 thicknesser blades 317mm"
 source_type: "researched"
 sources:
   - "Triton TPT125 operating manual (motor and brush service sections)"

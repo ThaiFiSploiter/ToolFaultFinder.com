@@ -15,6 +15,17 @@ diagnostic_steps:
   - "Power off and slide the axes by hand through their full travel, feeling for binding, tight spots, or debris on the rails and in the belt path"
   - "Check the eccentric nuts on the roller wheels — wheels clamped too tight bind the axis and make the stepper skip under load"
 fix_or_verdict: "Tighten the pulley grub screws (one should sit on the shaft flat), set belt tension properly, and free any binding — all no-cost adjustments. Layer shifts on an Ender 3 are almost never a failed part."
+parts:
+  - name: "Brass nozzles (MK8, 0.4mm)"
+    kind: "consumable"
+    note: "The consumable on any FDM printer — they wear, especially with filled filaments."
+    search: "MK8 brass nozzle 0.4mm Ender 3"
+  - name: "PTFE bowden tube (Capricorn-type)"
+    kind: "consumable"
+    search: "Capricorn PTFE bowden tube 1.75mm"
+  - name: "PLA filament, 1.75mm"
+    kind: "consumable"
+    search: "PLA filament 1.75mm 1kg"
 source_type: "researched"
 sources:
   - "Creality Ender 3 assembly and maintenance documentation"

@@ -21,6 +21,9 @@ parts:
   - name: "Headstock spindle bearing"
     note: "Free and inspect the bearing first — that costs nothing and often ends it. Getting the headstock apart correctly is the real cost here, not the part."
     search: "Record Power CL2 lathe headstock bearing"
+  - name: "Woodturning chisel set"
+    kind: "consumable"
+    search: "woodturning chisel set HSS"
 source_type: "researched"
 sources:
   - "Record Power support knowledge base, 'Locked Main Bearing on CL2, CL3 & CL4' — the manufacturer's release, inspection and reinstallation procedure, including the belt-revolution setting check"

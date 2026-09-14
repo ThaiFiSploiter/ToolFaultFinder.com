@@ -21,6 +21,12 @@ parts:
   - name: "Cartridge thermistor"
     note: "A few pounds and about twenty minutes. Rule out a cold room and a loose connector first — both cost nothing."
     search: "Creality Ender 3 V2 thermistor cartridge"
+  - name: "Brass nozzles (MK8, 0.4mm)"
+    kind: "consumable"
+    search: "MK8 brass nozzle 0.4mm Ender 3 V2"
+  - name: "PLA filament, 1.75mm"
+    kind: "consumable"
+    search: "PLA filament 1.75mm 1kg"
 source_type: "researched"
 sources:
   - "Marlin Firmware configuration documentation — HEATER_0_MINTEMP (default 5 °C) and the MINTEMP safety cut-out"

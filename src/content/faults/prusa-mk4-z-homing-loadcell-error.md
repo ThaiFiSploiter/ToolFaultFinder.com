@@ -17,6 +17,14 @@ diagnostic_steps:
   - "Before condemning the loadcell, check the two hotend-fan bolts and three heatsink/loadcell bolts for overtightening — Prusa's own troubleshooting notes these can strain the sensor and produce false readings — and slightly loosen them rather than the reverse"
   - "Look at the white adhesive pad on top of the loadcell assembly for visible damage — Prusa's instruction is to check it visually without touching it. A damaged pad on an otherwise working loadcell can be left alone; a damaged pad on a loadcell that fails its test means the heatsink unit is replaced as a whole, because the pad is part of that assembly"
 fix_or_verdict: "Work through the mechanical causes first — they cost nothing and fix most cases. If the loadcell test itself fails cleanly (no response to the tap, not just an irregular one), that's a genuine sensor fault Prusa treats as a support case rather than a DIY teardown, since the loadcell sits inside the sealed heatsink/hotend assembly."
+parts:
+  - name: "Spare PEI-coated spring steel sheet"
+    kind: "consumable"
+    note: "A second sheet means the printer keeps running while one is being cleaned."
+    search: "PEI spring steel sheet 250x210 Prusa MK4"
+  - name: "PLA filament, 1.75mm"
+    kind: "consumable"
+    search: "PLA filament 1.75mm 1kg"
 source_type: "researched"
 sources:
   - "Prusa Knowledge Base — \"Homing error Z #13301 (MK4)\" (error text, trigger conditions and official diagnostic order)"

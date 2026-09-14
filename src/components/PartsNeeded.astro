@@ -1,31 +1,36 @@
 ---
 /**
- * "Parts you may need" — the replaceable parts and consumables a fault calls for.
+ * Parts and consumables for a tool, in two clearly separated groups.
  *
- * Renders whether or not affiliate links are switched on. With links off (the
- * current state) each part is plain text: name, manufacturer part number, and a
- * note. With links on, the name becomes a tagged Amazon UK search link and the
- * disclosure line appears above the list, next to the links themselves — Amazon
- * requires the disclosure to be near the links, not only in the footer.
+ * "Parts You May Need" is repair parts — only ever the ones this entry's own
+ * verdict says may need replacing. "Consumables & Accessories" is what the tool
+ * gets through in normal use: bar oil, chains, blades, discs, bags, nozzles.
+ *
+ * They are split rather than merged on purpose. Consumables are the things a
+ * reader is actually likely to buy, but they do not fix the fault the page is
+ * about, and a single blended list would quietly imply that they might. The
+ * separate heading and its standfirst say so outright.
+ *
+ * Renders whether or not affiliate links are on. With links off each item is
+ * plain text, which still reads as useful reference.
  */
 import { amazonSearchUrl, affiliateLive, type Part } from '../lib/affiliate';
 
 interface Props {
   parts: Part[];
-  /** "Bosch GWS 7-115" — prefixed to generated search terms. */
+  /** "Stihl MS 250" — prefixed to generated search terms. */
   context: string;
 }
 
 const { parts, context } = Astro.props;
 const live = affiliateLive();
+
+const repair = parts.filter((p) => (p.kind ?? 'repair') === 'repair');
+const consumable = parts.filter((p) => p.kind === 'consumable');
 ---
 
 {parts.length > 0 && (
   <section class="parts" data-pagefind-ignore>
-    <div class="section-head">
-      <h2>Parts You May Need</h2>
-    </div>
-
     {live && (
       <p class="parts-disclosure">
         <strong>As an Amazon Associate we earn from qualifying purchases.</strong> The
@@ -37,30 +42,63 @@ const live = affiliateLive();
       </p>
     )}
 
-    <ul class="parts-list">
-      {parts.map((part) => {
-        const href = amazonSearchUrl(part, context);
-        return (
-          <li>
-            <span class="part-name">
-              {href ? (
-                <a href={href} rel="sponsored nofollow noopener" target="_blank">
-                  {part.name}
-                </a>
-              ) : (
-                part.name
-              )}
-            </span>
-            {part.part_number && <code class="part-number">{part.part_number}</code>}
-            {part.note && <span class="part-note">{part.note}</span>}
-          </li>
-        );
-      })}
-    </ul>
+    {repair.length > 0 && (
+      <>
+        <div class="section-head">
+          <h2>Parts You May Need</h2>
+        </div>
+        <ul class="parts-list">
+          {repair.map((part) => {
+            const href = amazonSearchUrl(part, context);
+            return (
+              <li>
+                <span class="part-name">
+                  {href ? (
+                    <a href={href} rel="sponsored nofollow noopener" target="_blank">{part.name}</a>
+                  ) : part.name}
+                </span>
+                {part.part_number && <code class="part-number">{part.part_number}</code>}
+                {part.note && <span class="part-note">{part.note}</span>}
+              </li>
+            );
+          })}
+        </ul>
+        <p class="parts-caveat">
+          Check the part against your own tool's model and serial before ordering — ranges
+          get revised and the same model name can cover more than one part.
+        </p>
+      </>
+    )}
 
-    <p class="parts-caveat">
-      Check the part against your own tool's model and serial before ordering — ranges get
-      revised and the same model name can cover more than one part.
-    </p>
+    {consumable.length > 0 && (
+      <>
+        <div class="section-head">
+          <h2>Consumables &amp; Accessories</h2>
+        </div>
+        <p class="parts-standfirst">
+          Not fixes for this fault — just what a {context} gets through in normal use, in
+          case you're restocking while you're in here.
+        </p>
+        <ul class="parts-list">
+          {consumable.map((part) => {
+            const href = amazonSearchUrl(part, context);
+            return (
+              <li>
+                <span class="part-name">
+                  {href ? (
+                    <a href={href} rel="sponsored nofollow noopener" target="_blank">{part.name}</a>
+                  ) : part.name}
+                </span>
+                {part.part_number && <code class="part-number">{part.part_number}</code>}
+                {part.note && <span class="part-note">{part.note}</span>}
+              </li>
+            );
+          })}
+        </ul>
+        <p class="parts-caveat">
+          Sizes and fitments vary within a model range — check yours before ordering.
+        </p>
+      </>
+    )}
   </section>
 )}

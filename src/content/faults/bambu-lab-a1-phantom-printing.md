@@ -15,6 +15,10 @@ diagnostic_steps:
   - "Power-cycle the printer fully from the physical switch (off, wait ten seconds, on) and confirm the state clears"
   - "If it recurs, compare the installed firmware version against Bambu Lab's release notes for fixes mentioning job state or cloud sync"
 fix_or_verdict: "A power cycle clears it, and keeping firmware current is the lasting fix. This is a software state issue, not a hardware fault — don't start replacing parts for this symptom."
+parts:
+  - name: "PLA filament, 1.75mm"
+    kind: "consumable"
+    search: "PLA filament 1.75mm 1kg"
 source_type: "researched"
 sources:
   - "Bambu Lab Wiki (A1 troubleshooting section)"

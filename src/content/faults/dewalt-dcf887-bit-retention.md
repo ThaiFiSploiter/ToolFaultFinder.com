@@ -19,6 +19,13 @@ parts:
   - name: "Chuck / anvil assembly"
     note: "Clean and lightly lubricate the chuck first — packed debris causes a share of these and costs nothing to rule out."
     search: "DeWalt DCF887 chuck anvil assembly"
+  - name: "Impact-rated driver bit set"
+    kind: "consumable"
+    note: "Ordinary screwdriver bits shatter in an impact driver — impact-rated ones are the consumable here."
+    search: "impact driver bit set impact rated"
+  - name: "Impact sockets (1/4in hex)"
+    kind: "consumable"
+    search: "1/4 hex impact socket set"
 source_type: "researched"
 sources:
   - "DeWalt DCF887 parts diagram (chuck and nose cone assembly)"

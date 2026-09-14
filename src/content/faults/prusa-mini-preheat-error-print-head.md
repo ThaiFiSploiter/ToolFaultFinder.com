@@ -24,6 +24,12 @@ parts:
   - name: "Heater cartridge"
     note: "As above — the meter decides which one, not the symptom."
     search: "Prusa MINI heater cartridge"
+  - name: "Spare PEI-coated spring steel sheet"
+    kind: "consumable"
+    search: "PEI spring steel sheet 180x180 Prusa MINI"
+  - name: "PLA filament, 1.75mm"
+    kind: "consumable"
+    search: "PLA filament 1.75mm 1kg"
 source_type: "researched"
 sources:
   - "Prusa Knowledge Base — \"Preheat error print head #12202 (MINI)\" (trigger condition, likely causes, wiring and connector checks)"

@@ -15,6 +15,10 @@ diagnostic_steps:
   - "If One-Key capable, download the free Milwaukee One-Key app and try to connect to the tool over Bluetooth to check its lock status"
   - "Stay close to the tool while checking — it needs to be within Bluetooth range of the phone to unlock"
 fix_or_verdict: "If genuinely locked, unlocking via the One-Key app resolves it instantly and costs nothing — check this before assuming a dead circuit board or motor. Only pursue hardware diagnosis once a One-Key lockout is ruled out."
+parts:
+  - name: "Drill and driver bit set"
+    kind: "consumable"
+    search: "drill bit and driver bit set"
 source_type: "researched"
 sources:
   - "Milwaukee One-Key tool security / lockout feature documentation"

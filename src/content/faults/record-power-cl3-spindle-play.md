@@ -16,6 +16,13 @@ diagnostic_steps:
   - "If the fault shows as a spiral pattern on the finished work rather than felt movement, check headstock-to-tailstock centre alignment, tool sharpness and lathe speed first; Record Power name centre misalignment, not bearings, as the most likely cause of spiralling"
   - "Only once everything above is ruled out, follow the bearing adjustment procedure set out in the CL3 product manual — that adjustment is the manufacturer's stated remedy for spindle play"
 fix_or_verdict: "In most cases this is an adjustment, not a repair. Record Power's own answer for spindle play on the CL3 is that the bearings are designed to have play adjusted out as they wear, with the detailed procedure given in the product manual — so the fix costs nothing but time, and the machine is not a write-off. Bearings only need replacing if adjustment no longer takes the play up, or if they are rough or noisy when turned by hand with the drive belt off."
+parts:
+  - name: "Woodturning chisel set"
+    kind: "consumable"
+    search: "woodturning chisel set HSS"
+  - name: "Sanding abrasives for turning"
+    kind: "consumable"
+    search: "woodturning sanding abrasive rolls"
 source_type: "researched"
 sources:
   - "Record Power support knowledge base, 'CL3 Spindle Movement' — the manufacturer's answer that the bearings are designed to adjust out play as they wear, with the procedure in the product manual"

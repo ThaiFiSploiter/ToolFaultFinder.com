@@ -19,6 +19,10 @@ parts:
   - name: "Replacement 18V ONE+ battery pack"
     note: "Only once the pack is genuinely done — swollen, damaged, or reading near zero volts. Try the charge-burst cycling first; a pack simply stored flat often comes back for free."
     search: "Ryobi ONE+ 18V battery pack"
+  - name: "ONE+ battery charger"
+    kind: "consumable"
+    note: "If the charger is the half that's failed, this is the cheaper end of the problem."
+    search: "Ryobi ONE+ 18V battery charger"
 source_type: "researched"
 sources:
   - "Ryobi ONE+ charger manual (LED status indicator table)"

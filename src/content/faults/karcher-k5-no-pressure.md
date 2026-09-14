@@ -16,6 +16,18 @@ diagnostic_steps:
   - "Swap the lance, or trigger the gun with no lance fitted. If full pressure returns, the restriction is in the lance or its nozzle and the pump is fine — this takes the pump out of the argument in about thirty seconds"
   - "Only when supply, sieve, nozzle and air have all been cleared, suspect the bypass valve in the pump head. Owner teardowns describe the plastic insert swelling against oxidised aluminium and holding the valve open, so water recirculates inside the pump instead of being pressurised"
 fix_or_verdict: "The great majority are a flow restriction and cost nothing but ten minutes with a needle and a pair of pliers. A sticking bypass valve can often be freed by cleaning and lubricating the piston and its sleeve. A complete pump head is where the economics start to bite against the price of a new K5 — price the part before you open anything."
+parts:
+  - name: "Nozzle cleaning needles"
+    kind: "consumable"
+    note: "Directly relevant here — a blocked nozzle is the most common cause of exactly this symptom."
+    search: "pressure washer nozzle cleaning needle set"
+  - name: "Water inlet filter"
+    kind: "consumable"
+    note: "The sieve in the inlet is a cheap part that causes a lot of pressure complaints."
+    search: "Karcher water inlet filter sieve"
+  - name: "Replacement high-pressure hose"
+    kind: "consumable"
+    search: "Karcher K5 replacement high pressure hose"
 source_type: "researched"
 sources:
   - "Kärcher K5 operating instructions — troubleshooting section (pressure fluctuations, cleaning the sieve in the water connection, venting the device)"

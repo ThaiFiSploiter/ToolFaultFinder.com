@@ -19,6 +19,10 @@ parts:
   - name: "Motor run capacitor"
     note: "Only after the test says it has failed. It's the common cheap fix, but test before buying — the alternative diagnosis is a motor rewind and you don't want to buy the wrong answer."
     search: "motor run capacitor planer thicknesser"
+  - name: "Replacement planer blades"
+    kind: "consumable"
+    note: "Dull blades are the most common reason a thicknesser seems to be struggling before anyone suspects the motor."
+    search: "Axminster AW106PT2 planer thicknesser blades"
 source_type: "researched"
 sources:
   - "Axminster AW106PT2 user manual (motor specification section)"

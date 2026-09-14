@@ -19,6 +19,13 @@ parts:
   - name: "Bandsaw blade"
     note: "The only thing that may need replacing. Tension and guide setup come first and are free."
     search: "bandsaw blade 1712mm Record Power BS250"
+  - name: "Bandsaw tyres"
+    kind: "consumable"
+    note: "Perished or grooved tyres cause tracking problems that look exactly like drift."
+    search: "bandsaw tyres 250mm urethane"
+  - name: "Blade guide blocks"
+    kind: "consumable"
+    search: "bandsaw guide blocks cool blocks"
 source_type: "researched"
 sources:
   - "Record Power BS250 instruction manual (blade tracking, tension, and guide setup)"

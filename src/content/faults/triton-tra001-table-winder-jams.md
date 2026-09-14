@@ -17,6 +17,14 @@ diagnostic_steps:
   - "Check the switch and safety cover are fully seated. Several owners report the plunge releasing properly only with the cover home and the switch off — worth eliminating before anything is dismantled"
   - "Set your final cutter height by winding upwards to it every time, never down onto it. That takes the rack-and-pinion backlash out in one direction and keeps the three-to-four millimetre drop out of the cut"
 fix_or_verdict: "Mostly not a fault. A heavy winder and a few millimetres of settle are documented characteristics of a large router hanging in a table with its spring removed, and clean columns plus always approaching height from below deals with the practical effect for nothing. Genuine failures sit in the plastic height-adjustment gear train, which is serviceable and replaceable — worth doing on a router this capable rather than writing the machine off."
+parts:
+  - name: "Router cutter set (1/2in shank)"
+    kind: "consumable"
+    search: "router cutter set 1/2 inch shank"
+  - name: "Collet and collet nut"
+    kind: "consumable"
+    note: "Collets wear and are a genuine consumable — a worn one lets a cutter creep."
+    search: "Triton TRA001 collet 1/2 inch"
 source_type: "researched"
 sources:
   - "Triton TRA001 instruction manual — plunge spring removal for table use and above-table height adjustment"

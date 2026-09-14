@@ -15,6 +15,14 @@ diagnostic_steps:
   - "Check the 0° bevel the same way, square held vertically between blade body and table"
   - "After adjusting, make a test cut in wide scrap, flip one half over, and butt the cut ends together — any error shows doubled, which catches deviations a square misses"
 fix_or_verdict: "Calibration, not repair: square the fence to the blade using its adjustment bolts, set the bevel stops, and re-zero the pointers per the manual. Free, and worth re-checking whenever the saw travels in a van."
+parts:
+  - name: "216mm mitre saw blade"
+    kind: "consumable"
+    note: "A fine-tooth blade is what actually gets clean mitres once the saw is square."
+    search: "216mm mitre saw blade 30mm bore 60 tooth"
+  - name: "Dust extraction bag"
+    kind: "consumable"
+    search: "DeWalt mitre saw dust bag"
 source_type: "researched"
 sources:
   - "DeWalt DWS774 instruction manual (fence and bevel adjustment procedure)"

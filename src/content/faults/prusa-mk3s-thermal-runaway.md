@@ -19,6 +19,13 @@ parts:
   - name: "Silicone sock for the heater block"
     note: "A missing or worn sock causes a large share of these. Check the sock setting in firmware too — refitting it is free if you already have one."
     search: "Prusa MK3S silicone sock heater block"
+  - name: "Nozzles for the E3D V6 hot end"
+    kind: "consumable"
+    note: "Check whether yours is a V6 or a Revo before ordering."
+    search: "E3D V6 nozzle 0.4mm brass"
+  - name: "PLA filament, 1.75mm"
+    kind: "consumable"
+    search: "PLA filament 1.75mm 1kg"
 source_type: "researched"
 sources:
   - "Prusa3D official community forum — multiple threads specifically on thermal runaway triggered during the cooling-fan phase"
