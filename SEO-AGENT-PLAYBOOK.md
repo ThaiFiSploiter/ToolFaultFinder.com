@@ -152,6 +152,7 @@ symptom         string        one sentence, the searcher's words
 likely_cause    string
 diagnostic_steps string[]     ordered, each a complete actionable check
 fix_or_verdict  string        includes whether it's economic to repair
+parts?          array         replaceable parts this fault needs — see PARTS below
 source_type     'firsthand'|'researched'   — you always write 'researched'
 sources?        string[]      real, named, checkable
 date_published  date
@@ -160,6 +161,42 @@ date_published  date
 URLs are derived, not stored: `/tools/{slugify(brand)}/{slugify(model)}/` via
 `src/lib/slug.ts`. **One entry per brand+model** — a second file with the same brand and
 model collides on the same route and breaks the build. Check before writing.
+
+---
+
+## PARTS (`parts:` — added 14 Sep 2026)
+
+Optional. A list of the replaceable parts or consumables a fault actually needs, rendered
+under "Parts You May Need" after the article body. Each item takes `name`, and optionally
+`part_number`, `note` and `search`.
+
+```yaml
+parts:
+  - name: "Carbon brush set (pair)"
+    note: "Fit both, never one."
+    search: "carbon brushes Bosch GWS 7-115 angle grinder"
+```
+
+This is the hook Amazon affiliate links will hang off when Nick opens an Associates
+account (`src/lib/affiliate.ts`; links are off site-wide until then and the list renders
+as plain text). **That does not make it a sales feature, and you must not treat it as one.**
+
+- **Only list a part the entry's own verdict already says needs replacing.** You are naming
+  what you already concluded, not introducing a new recommendation. If `fix_or_verdict` says
+  the fix is free, an adjustment, or a service-centre job, the entry gets **no parts list**.
+  Two existing entries show this working: `makita-uc4041a` (Makita's manual says stop using
+  the saw and take it in) and `karcher-k2` (not worth fixing) both have parts omitted on
+  purpose. Don't "fix" them.
+- **Never invent a `part_number`.** Rail 3 applies in full: a real manufacturer code from a
+  real document, or leave the field out. A wrong part number costs the reader money. As of
+  14 Sep 2026 no entry sets one, because no verified codes were on hand — that is the
+  correct state, not a gap to fill with plausible-looking codes.
+- **Never let the parts list pull on the verdict.** The verdict is written from the sources
+  before anything is said about buying. If you ever notice yourself softening "not worth
+  fixing" because a parts list would fit better, stop: that is the exact failure mode the
+  site's credibility depends on avoiding, and `/affiliate-disclosure/` promises readers it
+  doesn't happen.
+- `search` overrides the generated Amazon search terms. Prefer terms a human would type.
 
 ---
 
@@ -344,7 +381,8 @@ Then, for each entry in turn:
 5. **Draft** to the house voice, with `seo_title` and `meta_description` set.
 6. **Run the PRE-PUBLISH VERIFICATION GATE.** Quote the supporting line for every claim into
    the run report. Cut what doesn't survive; if the entry can't survive, drop it and move on.
-7. **Illustrate** per the ILLUSTRATION section; look at the image before wiring it in.
+7. **Add `parts:` if — and only if — the verdict calls for a part** (see PARTS), then
+   **illustrate** per the ILLUSTRATION section; look at the image before wiring it in.
 8. `npm run build`. Fix or revert on failure — never push a broken build (rail 1).
 9. Stage by name (rail 10), commit with a message saying what the entry claims and which
    document backs it, and push to `main`.
