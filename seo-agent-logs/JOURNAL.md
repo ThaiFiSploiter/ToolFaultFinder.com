@@ -982,3 +982,65 @@ passed, pushed, verified live (200, correct title) within ~40s of push.
 No candidates were dropped before this entry — it was the first one
 researched this run. Continuing to the next candidate now (DeWalt
 DCN660/661 nailer, sourced from `service.dewalt.co.uk`).
+
+## 2026-09-16 — Content run, entry 2 of N: DeWalt DCN660 nailer won't fire
+
+Published and live: `/tools/dewalt/dcn660/` — commit `b4db8cc`.
+
+**Symptom:** 18V XR 16GA finish nailer (DCN660/DCN661) won't drive
+fasteners — either the trigger does nothing or the motor runs with no
+nail firing. **Source:** the official DeWalt instruction manual for
+this exact tool, fetched via `curl` + `pdftotext -layout` from
+`service.dewalt.co.uk` (found as a new usable source on 15 Sep;
+confirmed genuine UK/EU market model this time — the manual's own
+multi-language technical data table lists it as "18V XR 16 GA Finish
+Nailer" with 18V/Li-Ion spec, not a US-only "20V MAX" model, so no
+cross-model risk of the kind that killed the DCS359 candidate on 15 Sep).
+
+Verification-gate quotes, pasted from the fetched manual text:
+
+- Troubleshooting, "Tool does not work. Worklights do not switch on.":
+  "Check trigger lock off is not engaged."
+- "Worklights are on but motor does not run.": "Ensure both the contact
+  trip and trigger are released and then actuate only contact trip...
+  Check the mode selector switch (DCN660 Only)."
+- "Worklights are on, motor runs, tool does not drive fasteners at
+  all.": "Check the mode selector switch... Check that correct type of
+  fasteners are loaded in to the magazine and that the pusher is
+  pushing the fastener... Check that the contact trip and nail pusher
+  movement is free."
+- "Worklights are on, motor runs, tool does not drive fasteners fully.":
+  "Adjust the driving depth... Change tool to seq mode if not already
+  in seq mode... Choose the appropriate fastener length \ material."
+- "Fasteners jam in tool.": "Driver blade assembly may be
+  damaged\worn. Please contact your repair agent if above steps do not
+  resolve the issue," plus the note that "the stall release lever
+  should be used to reset the mechanism. The Trigger Lock Off may also
+  need to be cycled to reset the electronic control."
+- Technical Data table confirms 18V, 16 gauge, 32–63mm/1.6mm/20°
+  fasteners for both DCN660 and DCN661, backing the consumable spec.
+
+New brand+model, route was free. Category: Mechanical & Motion (matches
+the existing HR2470/CL2/CL3 pattern for jam/mechanism faults). Parts:
+one `consumable` (16 gauge 20° finish nails, 32–63mm — spec taken
+directly from the manual's own table); no repair part, since the
+verdict's one named part fault (driver blade assembly) is explicitly
+routed to a repair agent rather than a user-replaceable item.
+
+**Illustration needed a retry.** First `openai-image` attempt (1024x1024)
+came back with dense dot/halftone-style stippled shading on the grip
+and body — visibly unlike the site's sparse-line-hatching house style,
+so it wasn't wired in. Regenerated with an explicit prohibition on
+stippling/dot patterns/halftone/cross-hatching in the prompt (only "a
+few sparse thin single hatching LINES") and the second attempt matched
+the house style correctly — right class of tool, magazine, battery,
+worklight window and trigger all in frame. Worth keeping the stronger
+anti-stippling wording in mind for future nail-gun-shaped or
+grip-heavy tools, since this is the first time a stippling failure mode
+(distinct from the grey-drop-shadow failure mode already in the
+playbook) has shown up.
+
+Build passed, pushed, verified live (200, correct title) within ~40s
+of push. No candidates dropped before drafting this entry. Continuing
+to the next candidate now (Record Power DML305 lathe, "spiralling on
+spindles" — sourced from recordpower.co.uk's own support page).
