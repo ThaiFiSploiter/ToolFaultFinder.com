@@ -934,3 +934,51 @@ Both published entries passed the gate cleanly with no corrections needed.
 
 Not done this run, by design: the weekly CTR/indexing sweep (that's the
 weekly run's job, not this one's).
+
+## 2026-09-16 — Content run, entry 1 of N: Makita DUC302 chainsaw won't start
+
+Published and live: `/tools/makita/duc302/` — commit `473366d`. Second
+content run of ISO week 2026-W38 (first was 15 Sep, DLM380 + PT260).
+
+**Symptom:** cordless chainsaw won't start at all when the trigger is
+pulled. **Source:** official Makita DUC252/DUC302 instruction manual,
+fetched this run via `curl` + `pdftotext -layout` from
+`media.makita.co.nz` (title page confirms it covers both DUC252 and
+DUC302 — no cross-model risk).
+
+Verification-gate quotes, pasted from the fetched manual text:
+
+- Trouble Shooting table, "Chain saw does not start.": causes "Two
+  battery cartridges are not installed." → "Install the charged battery
+  cartridges."; "Battery problem (under voltage)" → "Recharge the
+  battery cartridge. If recharging is not effective, replace battery
+  cartridge."
+- "Checking the chain brake" section, NOTE: "If the chain saw fails to
+  start, the chain brake must be released. Pull the front hand guard
+  backwards firmly until you feel it engage." — not in the fault table
+  itself, found by reading the full manual rather than just the table,
+  same pattern as the DLM380 entry's button-then-lever finding on 15 Sep.
+- Switch action section: "To prevent the switch trigger from being
+  accidentally pulled, a lock-off button is provided. To start the tool,
+  depress the lock-off button and pull the switch trigger."
+- Tool/battery protection system section: "When the battery / tool is
+  overheated, the tool stops automatically without any indication...
+  The tool does not start even if pulling the switch trigger."
+- Spec table confirms DC 36V from two 18V packs and the 90PX 3/8in
+  1.1mm 46-drive-link chain for the 300mm bar, backing the battery-count
+  claim and the chain consumable's spec.
+
+New brand+model, route was free (checked `src/content/faults/` first —
+no existing `duc302`/`duc` entry). Category: Batteries & Charging
+(reused, matches the DLM380 pattern since the dominant sourced causes
+are battery-related). Parts: one `repair` battery pack (verdict says
+"replace" after a failed recharge) and one `consumable` chain, spec
+taken directly from the manual's own table rather than guessed.
+Illustrated with `openai-image` (1536x1024, twin battery bay, lock-off
+button/trigger and front hand guard all in frame — checked before wiring
+in, right class of tool and all three relevant parts visible). Build
+passed, pushed, verified live (200, correct title) within ~40s of push.
+
+No candidates were dropped before this entry — it was the first one
+researched this run. Continuing to the next candidate now (DeWalt
+DCN660/661 nailer, sourced from `service.dewalt.co.uk`).
