@@ -1044,3 +1044,112 @@ Build passed, pushed, verified live (200, correct title) within ~40s
 of push. No candidates dropped before drafting this entry. Continuing
 to the next candidate now (Record Power DML305 lathe, "spiralling on
 spindles" — sourced from recordpower.co.uk's own support page).
+
+## 2026-09-16 — Content run, entry 3 of N: Record Power DML305 spiralling on spindles
+
+Published and live: `/tools/record-power/dml305/` — commit `7d0c3d6`.
+
+**Symptom:** turned spindles on the DML305 midi lathe come out with a
+visible spiral/thread-like ridge instead of a clean surface. **Source:**
+Record Power's own support page for the Cast Iron 6 Speed Midi Lathe
+(recordpower.co.uk/support/page/product/prod/cast-iron-6-speed-midi-lathe),
+fetched twice this run — once via WebFetch to locate the content, once
+via direct `curl` to capture the exact wording before writing the entry.
+
+Verification-gate quotes, pasted from the fetched page:
+
+- Knowledge Base article "Spiralling on Spindles" — the owner's question
+  as posted: "I am having trouble with spiralling on spindles, and I
+  was wondering if the problem bay be wear on the lathe headstock
+  bearings?" Record Power's answer: "The most likely cause of spiraling
+  is that your centres are out of alignment. You should also check that
+  your turning tools are sharp and your lathe speed is correct." —
+  notably, the answer does not confirm the bearing-wear theory the
+  question itself proposes, which the entry says explicitly rather than
+  quietly dropping.
+- Troubleshooting Guide table, "Machine bogs down during cutting" row:
+  causes "Excessive depth of cut" → "Decrease depth of cut" and
+  "Turning tools are blunt" → "Sharpen turning tools."
+- Specifications table: spindle speeds "350, 670, 1025, 1500, 2225 &
+  3250 rpm", used to describe the speed check honestly (six fixed
+  speeds exist; the source doesn't give a diameter-to-speed formula, so
+  the entry doesn't invent one).
+
+New brand+model, route was free. This is a genuinely distinct fault
+from the other four Record Power entries already live (CL2 locked
+bearing, CL3 spindle play, BS250 blade drift, PT260 won't start) — a
+finish-quality symptom, not a mechanical failure, and specifically not
+padding per the "sibling models don't automatically mean new content"
+finding from 15 Sep, since this isn't a rehash of any existing entry's
+fault. Category: Blades & Alignment. No `parts:` field — the fix is
+alignment/sharpening/speed selection, not a purchase, and the verdict
+doesn't call for a repair part or a consumable, so none was added per
+the PARTS rule against padding a parts list on unrelated grounds.
+Illustrated with `openai-image` (1536x1024, headstock/tailstock centres,
+tool rest and turned workpiece all in frame) — clean on the first
+attempt, no stippling issue this time. Build passed, pushed, verified
+live (200, correct title) within ~40s of push.
+
+No candidates dropped before drafting this entry.
+
+## 2026-09-16 — Content run summary
+
+**Published: 3 of a possible 7** (second content run this ISO week,
+2026-W38, after 2 published on 15 Sep — 5 entries total this week
+against the 14/week ceiling). Makita DUC302 (won't start), DeWalt
+DCN660 (won't fire nails) and Record Power DML305 (spiralling on
+spindles) — all live, all power tools/workshop machinery, all sourced
+from official manufacturer documents fetched directly this run
+(two manual PDFs via `curl`+`pdftotext`, one KB/support page via
+WebFetch then re-confirmed via direct `curl`). Per-entry detail and
+verification quotes are in the three entries above.
+
+**Stopped at 3, deliberately.** Candidates researched and ruled out
+before drafting (nothing here was cut after the verification gate —
+all failed the earlier "is there a genuine, on-topic, official source"
+check):
+
+- **Bosch GBH 2-26 Professional** — found and fetched a genuine official
+  Bosch manual PDF (`media.bosch-pt.co.in`, confirmed by its own title
+  page: "GBH 2-26 Professional E | RE | DRE | DFR"), but this variant of
+  the manual is only 10 pages and has no troubleshooting table — likely
+  a short-form regional printing rather than the full manual. Not
+  pursued further to find a fuller version this run; worth another look
+  given Bosch is a major UK brand with no coverage yet.
+- **Numatic George (GVE370)** — a real official fault-finding section
+  exists per search snippets, but both `numaticsupport.com` and the
+  earlier-noted `cdn.numatic.com/media/manuals/` directory returned 403
+  this run. Consistent with the standing note that Numatic's own sites
+  beyond specific known-good manual URLs are unreliable; didn't chase a
+  third-party mirror.
+- **DeWalt DCF787 impact driver** — official `service.dewalt.co.uk`
+  manual fetched, no "trouble" match anywhere in the text; no
+  troubleshooting content to source from.
+- **Triton TWX7RT001 router table module** — retried the URL flagged as
+  worth another look on 15 Sep; still 404 with a browser user-agent.
+  Not pursued further; the working theory (JS-rendered page or a
+  different URL param needed) is unconfirmed either way.
+- **Kärcher K7** — no official kaercher.com source found reachable,
+  consistent with the standing note on that domain; didn't chase
+  third-party mirrors.
+
+**New source finding worth keeping:** `service.dewalt.co.uk` manuals
+can be told apart for UK/EU-market relevance by checking the manual's
+own multi-language technical data tables (the DCN660/661 manual's
+Danish section literally reads "18V XR 16 GA SØMPISTOL", confirming an
+18V EU-market tool) rather than relying on the URL's `/GB/` path alone
+— a more reliable check than assumed on 15 Sep, since a `/GB/` path
+doesn't by itself guarantee the model is sold as such (see the DCS359
+US-model trap from that run).
+
+**New failure mode caught in illustration, not sourcing:** the first
+`openai-image` attempt for the DCN660 nailer came back with dense
+dot/halftone stippled shading — a different way of missing the house
+style than the previously-documented grey-drop-shadow problem. Fixed by
+explicitly forbidding stippling/dot patterns/halftone/cross-hatching in
+the prompt. Worth carrying this wording forward for grip-heavy or
+pistol-shaped tools specifically, since the chainsaw and lathe images
+generated cleanly on the first attempt this run.
+
+Not done this run, by design: the weekly CTR/indexing sweep (that's the
+weekly run's job, not this one's).
