@@ -1153,3 +1153,102 @@ generated cleanly on the first attempt this run.
 
 Not done this run, by design: the weekly CTR/indexing sweep (that's the
 weekly run's job, not this one's).
+
+## 2026-09-21 — Weekly run
+
+**Clicks vs prior week: up.** Two clean trailing 7-day windows from
+`gsc-report.mjs --days 21` (GSC data lags ~2-3 days, so "this week" = 12-18 Sep,
+"prior week" = 5-11 Sep): **2 → 6 clicks** (426 → 520 impressions, CTR 0.47% →
+1.15%). Consistent with the 14 Sep entry's own 5→2 figure for the week before
+that (same script, same windowing). Contributors this week: DWS774 (2 clk),
+P1S (2 clk, new — first clicks recorded for that page), K4 (1 clk), Triton
+TPT125 (1 clk), and Numatic HVR200's **first click in 3+ weeks** (1 clk/67
+impr) — see CTR note below on why that one click doesn't change the standing
+diagnosis.
+
+**Coverage: 53 of 54 URLs "Submitted and indexed."** Snapshotted to
+`seo-agent-logs/coverage/2026-09-21.csv`. Diffed against `2026-09-14.csv`:
+every one of the 25 URLs added by last week's two content runs is already
+indexed — same-week crawl-to-index turnaround, a big change from the
+multi-week stalls documented through Aug. The one holdout, `makita/hr2470/`,
+finally moved from **"URL is unknown to Google" → "Discovered - currently not
+indexed"** — real forward movement after being stuck in the worse state since
+at least 1 Sep. Per rail 6 this needs time and inbound links (already has
+both, via the related-entries rotation), not intervention — leaving it.
+**No indexing action taken or needed this week; the library is basically
+fully indexed.**
+
+**CTR: no Bucket A change shipped, deliberately — evidence says it wouldn't
+help.** Checked three zero-CTR-but-good-position pages that had 30 days of
+stable data and no indexing problem: Stihl MS-250 (pos 9.6, 57 impr/30d, 0
+clicks), Einhell TE-CD 18 Li (pos 4.1, 30 impr/30d, 0 clicks), Record Power
+BS250 (pos 7.0, 24 impr/30d, 0 clicks). Confirmed live titles/meta render
+correctly (`curl` against the live pages) and are already well-formed —
+front-loaded brand+model+searcher phrase, correct length — so this isn't a
+title problem. Ran live web searches for the underlying queries on all
+three:
+- Stihl MS250 won't start → SERP is arborist/chainsaw forums (arboristsite.com,
+  Firewood Hoarders Club, Green Tractor Talk, TractorByNet), a YouTube repair
+  video, and an established commercial troubleshooting site (chainsaw.parts).
+- Einhell TE-CD 18 Li → manual aggregators (manua.ls, manualscat, manuals.plus)
+  and existing troubleshooting content farms (toolcroze, askingyard).
+- Record Power BS250 → ukworkshop.co.uk (a long-established UK woodworking
+  forum thread) plus Record Power's own product/support pages.
+
+Same authority-cap pattern already documented for Bambu A1, Kärcher K4 and
+suspected for Numatic HVR200 — established forums or the manufacturer's own
+support content occupy the SERP ahead of us regardless of position. **This
+is now confirmed on 6 pages, not 3**, and generalises further than the
+memory file currently states. Retuning any of these titles would be motion
+without evidence per rail 8; not done. HVR200's single click this week is
+one data point on 67 impressions and doesn't overturn the pattern — noted,
+not acted on.
+
+**Entry audit (playbook's weekly-only safeguard): 3 audited, 3 clean.**
+Picked three entries published since the 14 Sep weekly run — one from each
+content run this week plus a spread of source types — and re-ran the
+PRE-PUBLISH VERIFICATION GATE cold, fetching each primary source fresh
+rather than trusting the drafting-time quotes:
+
+- **Makita DLM380** (`makita-dlm380-wont-start.md`) — fetched
+  `media.makita.co.nz/_media/user-manuals/D/DLM380-UG.pdf` fresh,
+  `pdftotext -layout`. Troubleshooting table confirmed verbatim: "Two
+  battery cartridges are not installed." and "Battery problem (under
+  voltage)" both listed as causes under "Mower does not start."; the
+  switch-sequence quote "The mower does not start without pressing the
+  switch button even if the switch lever is pulled." confirmed verbatim
+  in the operating-instructions section. Battery cartridge numbers
+  BL1815N/BL1830/BL1840 confirmed present in the manual's own
+  applicable-battery table (line 29) — not invented. Clean.
+- **DeWalt DCN660** (`dewalt-dcn660-wont-fire.md`) — fetched
+  `service.dewalt.co.uk/i/DEWALT/GLOBALBOM/GB/DCN660/2/Instruction_Manual/EN/DCN660_T2_DCN661_T2_EURO.pdf`
+  fresh (19MB multi-language manual). Every troubleshooting quote in the
+  entry's `sources:` matched the fetched text verbatim, including "Check
+  trigger lock off is not engaged," "Ensure both the contact trip and
+  trigger are released and then actuate only contact trip," the mode
+  selector/magazine checks, and the "Driver blade assembly may be
+  damaged\worn... contact your repair agent" + stall-release-lever/Trigger
+  Lock Off reset note. Technical Data table (English section) confirmed
+  18V, 16 GA, 32-63mm length, 1.6mm shank, 20° angle for both DCN660 and
+  DCN661 — matches the consumable spec exactly. Clean.
+- **Record Power DML305** (`record-power-dml305-spiralling.md`) — fetched
+  `recordpower.co.uk/support/page/product/prod/cast-iron-6-speed-midi-lathe`
+  fresh. Knowledge Base answer matched verbatim: "The most likely cause of
+  spiraling is that your centres are out of alignment. You should also
+  check that your turning tools are sharp and your lathe speed is
+  correct." Troubleshooting table's "Machine bogs down during cutting" row
+  confirmed with both listed causes/fixes exactly as cited. Spindle speeds
+  (350, 670, 1025, 1500, 2225, 3250 rpm) confirmed in the page's own
+  Specifications table, alongside DML305/A and DML305/E variant codes
+  confirming this is the right model's page. Clean.
+
+No corrections needed and nothing reverted this week — a legitimate "3 of 3
+clean" result, reported per the playbook even though (maybe especially
+because) there was nothing to fix.
+
+**Memory updated:** the authority-cap CTR-ceiling finding now spans 6 pages
+(A1, K4, HVR200-suspected, plus MS-250/TE-CD/BS250 confirmed this run) —
+worth treating as a general property of this niche's SERPs, not a
+per-page curiosity, when picking future CTR-tuning candidates.
+
+**Nothing flagged NEEDS HUMAN this run.**
