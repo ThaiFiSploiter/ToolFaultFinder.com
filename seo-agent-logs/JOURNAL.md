@@ -1400,3 +1400,39 @@ Three published, well-sourced with fresh-fetched quotes checked
 verbatim; several genuine candidates researched and dropped rather than
 padded. Consistent with the playbook: "a run that publishes 3 well-sourced
 entries and reports why it stopped is a good run."
+
+## 2026-09-21 — Content run dispatched again (declined, duplicate)
+
+**No new entries published this invocation, deliberately.** The dispatcher
+fired content mode a second and third time today (`run-content-20260921-094501.log`,
+`run-content-20260921-104501.log`, this one) because the first dispatch at
+08:45 — the run that produced the three entries above (CL4, DGA408,
+DCD776, commits `b713323`..`5bcf68a`, 08:53-08:59) — hit the session usage
+limit right as it finished ("You've hit your session limit · resets
+12:20pm (Asia/Bangkok)") and `claude -p` exited 1. Because
+`seo-agent-dispatch.sh` only stamps `.last-content-day` /
+`.content-week` on a zero exit, that real, complete, fully-journaled run
+was never recorded as done, so the dispatcher kept re-firing content mode
+every hour on the hour.
+
+Checked `git log` and this journal before writing anything and found the
+run above already published, built, pushed and verified live, and closed
+out with "stopping at 3 for this run, deliberately." Publishing again
+today would break the playbook's "content run fires at most once per
+calendar day" rule for no reason — the day's entries already happened.
+
+**Fixed the stale stamps**, not the underlying script: `.last-content-day`
+set to `2026-09-21`, `.content-week` set to `2026-39 1` (one run used this
+ISO week, correcting the leftover `2026-38 2` from last week that the
+failed exit never let the dispatcher advance). Did not touch
+`seo-agent-run.sh` or `seo-agent-dispatch.sh` themselves — that's an
+infrastructure fix, not a content-run job, and outside what this run
+should change unattended.
+
+**NEEDS HUMAN:** the wrapper script treats "hit the session limit while
+wrapping up" the same as "did nothing" — a run that does real, verified,
+journaled work but exits non-zero at the very end currently loses its
+stamp and causes repeat re-dispatch. Worth having `seo-agent-run.sh` (or
+the dispatcher) check whether the journal/commits actually advanced this
+calendar day before treating a non-zero exit as a no-op, rather than
+relying solely on `claude -p`'s exit code.
