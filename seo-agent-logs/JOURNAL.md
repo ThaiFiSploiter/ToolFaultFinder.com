@@ -1296,3 +1296,33 @@ brands with proven reliable sources.
   confirmed) within one poll cycle.
 
 Continuing to the next candidate now.
+
+## 2026-09-21 — Content run, entry 2
+
+**Published: Makita DGA408 (covers DGA408/DGA458/DGA508) — grinder stops
+mid-job / won't restart** (`makita-dga408-stops-wont-restart.md`,
+`/tools/makita/dga408/`).
+
+- **Source:** Makita DGA408/DGA458/DGA508 Cordless Angle Grinder instruction
+  manual, `media.makita.co.nz/_media/user-manuals/D/DGA408-UG.pdf`, fetched
+  fresh this run (re-fetched and diffed byte-identical against the copy
+  pulled during candidate research, then re-read line-by-line for the
+  gate). Tool/battery protection system section, all four sub-causes quoted
+  verbatim and checked against the draft: Overload protection — "the tool
+  automatically stops without any indication... Then turn the tool on to
+  restart"; Overheat protection — "let the tool cool before turning the
+  tool on again" / "let the battery cool before starting the tool again";
+  Overdischarge protection — "remove the battery from the tool and charge
+  the battery"; Releasing protection lock — "the tool does not start even
+  if turning the tool off and on... remove the battery, set it to the
+  battery charger and wait until the charging finishes." Model coverage
+  (DGA408/458/508 sharing one manual, 18V, BL1815N/1820/1830/1840/1850
+  battery family) confirmed from the same PDF's title page and
+  specifications table.
+- Route was free (checked before drafting — no existing `makita-dga408*`
+  file).
+- Build passed, pushed as `5c188f0`, verified live at
+  `https://toolfaultfinder.com/tools/makita/dga408/` (200, protection-system
+  content confirmed).
+
+Continuing to the next candidate now.
