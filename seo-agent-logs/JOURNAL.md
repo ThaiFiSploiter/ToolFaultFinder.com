@@ -1326,3 +1326,77 @@ mid-job / won't restart** (`makita-dga408-stops-wont-restart.md`,
   content confirmed).
 
 Continuing to the next candidate now.
+
+## 2026-09-21 — Content run, entry 3
+
+**Published: DeWalt DCD776 (family DCD731/DCD734/DCD771/DCD776) — combi
+drill cuts out mid-job / won't restart** (`dewalt-dcd776-cuts-out.md`,
+`/tools/dewalt/dcd776/`).
+
+- **Source:** DeWalt DCD731/DCD734/DCD771/DCD776 instruction manual, GB
+  edition (`service.dewalt.co.uk/i/DEWALT/GLOBALBOM/GB/DCD776/10/...
+  DCD731-DCD734-DCD771-DCD776-TYP1-10-20_GB_XE.pdf`), re-fetched fresh this
+  run and diffed byte-identical to the copy pulled during candidate
+  research. Electronic Protection System paragraph quoted verbatim and
+  checked against the draft: "XR Li-Ion tools are designed with an
+  Electronic Protection System that will protect the battery pack against
+  overloading, overheating or deep discharge. The tool will automatically
+  turn off if the Electronic Protection System engages. If this occurs,
+  place the lithium-ion battery pack on the charger until it is fully
+  charged." UK/EU relevance confirmed two ways: the manual filename itself
+  is the GB edition, and the charger section states "230V household
+  electrical power." DCD776 picked as the model (of the four in the
+  shared manual) because its own Technical Data table is the only one
+  with an impact rate and masonry drilling capacity, confirming it as the
+  18V hammer-capable combi drill UK buyers know as "DCD776" — the other
+  three (DCD731/734 at 14.4V, DCD771 without hammer action) were not
+  written up as this is one document naming one fault shared by all four,
+  and only one route can be published against it (one entry per
+  brand+model).
+- **Weaker source than the other two entries today** — worth flagging
+  honestly: DeWalt's own text is three lines with one cause paragraph and
+  one fix sentence, versus Makita's four distinct sub-sections for DGA408.
+  Nothing in the entry goes beyond what's in that paragraph; no diagnostic
+  step was invented to pad it out. Judged as still genuinely useful (a
+  real, common "drill just stopped" search with a real documented cause
+  and fix) rather than padding, but noted here in case a future audit
+  wants to weigh it against the richer entries.
+- Route was free (checked before drafting — no existing `dewalt-dcd776*`
+  or other DCD file).
+- Build passed, pushed as `6e224ba`, verified live at
+  `https://toolfaultfinder.com/tools/dewalt/dcd776/` (200, Electronic
+  Protection System content confirmed).
+
+**Stopping at 3 for this run, deliberately.** Sourcing is what stopped
+this run, not effort or the 7-entry ceiling: GSC's top queries mostly
+already have dedicated pages (including the one genuinely new-looking
+query, the HMS Bambu error code, which turned out to already be covered
+by the A1 Mini entry). Candidates explored and not pursued today:
+
+- **Bosch** — checked GSB 501 (India-market, 6-page short-form, no fault
+  content beyond generic safety/service boilerplate) and GSB 600
+  (13 pages, same). Consistent with the 16 Sep finding that Bosch's short
+  regional manuals lack troubleshooting tables; still a gap in the
+  library, still worth another look with a different model or the
+  European-market manual specifically, not pursued further this run.
+- **Record Power generic bandsaw KB articles** ("Bandsaw Blade Tracking",
+  "Clunking Bandsaw Blade") — real fault content, but neither names a
+  specific model, so sourcing them to BS250 (the only bandsaw route this
+  site has) would be exactly the kind of generic-to-specific transfer the
+  verification gate exists to catch. Not used.
+- **Record Power DML24X/DML36-CAM bearing lubrication** and **DML36SH-CAM
+  tailstock centre** KB articles — both are compatibility/maintenance FAQs
+  ("is this sealed for life", "is the centre fixed or revolving"), not
+  fault-diagnosis content. Not used.
+- **Makita DTD152 impact driver** — has the same battery-protection-system
+  boilerplate as DGA408 (overload, low-voltage) but thinner and largely
+  redundant with the DGA408 entry published today; held back rather than
+  publishing two very similar protection-system stories in one run.
+- **Triton TWX7RT001** — still not retried; deprioritised per the 16 Sep
+  note (repeated 404s, no new fetch method found). Not attempted again
+  this run.
+
+Three published, well-sourced with fresh-fetched quotes checked
+verbatim; several genuine candidates researched and dropped rather than
+padded. Consistent with the playbook: "a run that publishes 3 well-sourced
+entries and reports why it stopped is a good run."
