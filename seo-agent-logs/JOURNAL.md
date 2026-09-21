@@ -1252,3 +1252,47 @@ worth treating as a general property of this niche's SERPs, not a
 per-page curiosity, when picking future CTR-tuning candidates.
 
 **Nothing flagged NEEDS HUMAN this run.**
+
+## 2026-09-21 — Content run (ISO week 2026-W39, entry 1)
+
+**Candidate list drawn from GSC top queries (`gsc-report.mjs --days 30`) plus
+sibling-model checks on already-reliable sources.** GSC queries mostly map to
+pages that already exist (including the "hms 0300-0200-0001-0007" query,
+already covered by the A1 Mini entry — checked, no action needed). No new
+query-level gap found, so fell to cadence order #2/#4: sibling models of
+brands with proven reliable sources.
+
+**Published: Record Power CL4 — locked main spindle bearing**
+(`record-power-cl4-locked-bearing.md`, `/tools/record-power/cl4/`).
+
+- **Source:** Record Power KB article "Locked Main Bearing on CL2, CL3 & CL4"
+  (recordpower.co.uk/support) — the same article already cited for the CL2
+  entry (7 Sep), but re-fetched fresh this run and confirmed it explicitly
+  names CL4, not just CL2/CL3. Verbatim quote checked against the draft:
+  "To free the bearing, first release the outer locking ring, then release
+  the inner locking ring. Tap the end of the spindle with a rubber mallet...
+  Look for heavy ridges on the inside of the bearing or uneven wear... When
+  replacing the bearing first tighten the inner locking ring then tighten
+  the outer locking ring. To test for correct setting put the belt on the
+  middle speed, start the lathe as soon as you press the stop button the
+  belt needs to turn 4 revolutions - The belt not the spindle." Every
+  diagnostic step in the entry matches this text exactly.
+- **Second source:** the CL4 product support page (recordpower.co.uk/support)
+  fetched fresh this run, confirming "Status: Discontinued", "Spares
+  Available: Yes", "Thread: M33", "Spindle speeds: 13-4600 rpm" — used only
+  for the verdict's discontinued/spares note and the sourced spec, not for
+  the fault procedure itself.
+- **Illustration:** first `openai-image` attempt came back with an inverted
+  black background and a glow/halo around the object — a new failure mode,
+  distinct from the previously-documented grey-drop-shadow and stippling
+  problems. Fixed on the second attempt by explicitly stating the background
+  must be "pure white (#FFFFFF)... NOT a black background... NO glow or halo
+  effect" and "no vignette, no gradient background" — the existing playbook
+  wording ("no cast shadow, no ground shadow") didn't cover a background
+  that wasn't shadow-shaped. Worth adding this clause to the playbook's
+  template if it recurs.
+- Build passed, pushed as `b713323`, verified live at
+  `https://toolfaultfinder.com/tools/record-power/cl4/` (200, content
+  confirmed) within one poll cycle.
+
+Continuing to the next candidate now.
