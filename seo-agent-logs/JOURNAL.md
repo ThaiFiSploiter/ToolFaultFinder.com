@@ -1436,3 +1436,62 @@ stamp and causes repeat re-dispatch. Worth having `seo-agent-run.sh` (or
 the dispatcher) check whether the journal/commits actually advanced this
 calendar day before treating a non-zero exit as a no-op, rather than
 relying solely on `claude -p`'s exit code.
+
+## 2026-09-22 — Content run, ISO week 2026-W39, entry 1
+
+This is the second content run this ISO week (first was 21 Sep, three
+entries: CL4/DGA408/DCD776), and a new calendar day — both cadence limits
+clear. Confirmed via `git log`/journal that no work had already landed
+today before starting (the standing check since the 21 Sep dispatcher-bug
+finding).
+
+**Published: Record Power DML250 mini lathe — excessive vibration**
+(`record-power-dml250-vibration.md`, `/tools/record-power/dml250/`).
+
+- GSC top-query check first: `gsc-report.mjs --days 30` shows no
+  new-looking gap query — everything maps to an existing entry (Bambu
+  "printer busy", Henry Hoover cut-out, Kärcher K4/K5 pulsing/pressure,
+  Stihl MS 250 starting — all already have pages). Fell back to cadence
+  order #2 (sibling faults on tools already ranking): Record Power is the
+  site's most reliably-sourced brand (CL2/CL3/CL4/DML305/PT260/BS250 all
+  cite genuine model-specific KB articles or troubleshooting guides).
+- Checked Record Power's KB index (`recordpower.co.uk/support/page/kb/`)
+  first for a new angle — every promising-looking article ("Parallel Cuts
+  Wedge Shaped", "Feed Problem When Thicknessing", "Timber Jamming on the
+  Outfeed Table", "Spindle Moulder Ruining the Last Few Inches", "Problems
+  with Long Hole Boring") turned out to be generic Q&A not naming a
+  specific model — the same generic-KB-article trap flagged 21 Sep.
+  Correctly left unused rather than sourced to an existing model's route.
+- Found the DML250 (a mini lathe not yet covered — CL2/CL3/CL4/DML305 are
+  the other Record Power lathes on site) has its own Original Instructions
+  manual with a genuine model-specific Section 15 "Troubleshooting" table,
+  fetched fresh this run from a mirror at
+  `utensilimanzanese.it/wp-content/uploads/2023/11/dml250-manual.pdf`
+  (recordpower.co.uk's own download link is JS-gated and didn't resolve to
+  a direct URL via curl; the mirror's title page confirms it verbatim —
+  "DML250 10” 5 Speed Cast Iron Mini Lathe, 15001 (UK version), 15002 (EP
+  version), Version 3.3, October 2016" — so treated as a faithful copy of
+  the genuine manufacturer document, not a content-farm rewrite).
+- Route was free (checked before drafting — no existing `record-power-dml250*`
+  file).
+- **Verification gate, quote pasted from the fresh-fetched PDF text**
+  (`pdftotext -layout`), Section 15, "Excessive vibration" row: "1. Work
+  piece is excessively out of balance. ... 2. Worn spindle bearings. ...
+  3. Worn drive belt. ... 4. Motor mount bolts or handles are loose. ...
+  5. Lathe is on an uneven surface," each with the manual's own stated
+  fix (balance/remount workpiece; replace bearings; replace belt; tighten
+  bolts and handles; ensure stable and level). All five diagnostic steps
+  and the fix_or_verdict trace directly to this one row, in the manual's
+  own order — nothing added beyond it. Confirms the same model (DML250,
+  both UK and EP variants named on the title page) and the same fault
+  (vibration, not a different symptom on the same page).
+- Illustrated with `openai-image` (gpt-image-1), 1536x1024 to match the
+  site's other lathe images (CL2/CL3/CL4/DML305 are all this size).
+  Clean first attempt — no shadow, stippling or background problems this
+  time; headstock, tailstock, bed bars, tool rest/banjo and integral
+  legstand all correctly in frame.
+- Build passed, pushed as `269d4e0`, verified live at
+  `https://toolfaultfinder.com/tools/record-power/dml250/` (200, the
+  "Vibrating" copy confirmed present).
+
+Continuing to the next candidate now.
