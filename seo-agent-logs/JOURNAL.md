@@ -1495,3 +1495,81 @@ finding).
   "Vibrating" copy confirmed present).
 
 Continuing to the next candidate now.
+
+## 2026-09-22 — Content run, ISO week 2026-W39, entry 2
+
+**Published: Axminster AP340PD bench pillar drill — drill bit run-out /
+wobble** (`axminster-ap340pd-drill-runout.md`, `/tools/axminster/ap340pd/`).
+
+- Candidates checked and dropped before this one: Record Power's own
+  "Envoy"/"Regent"/"Pathfinder"/"Herald" lathes (found via their
+  woodturning category page) were not pursued — the site already has four
+  Record Power lathes (CL2/CL3/CL4/DML250), and a quick look suggested
+  these would very likely share the same generic AC-motor troubleshooting
+  boilerplate DML250 just used, which would be exactly the "sibling model,
+  same content" padding trap flagged 15 Sep (Henry XL vs HVR200) — not
+  fetched and checked line-by-line, so noted as deprioritised rather than
+  definitively ruled out. DeWalt's service.dewalt.co.uk product-detail
+  pages didn't yield an easy new troubleshooting-table candidate this run
+  (checked one grinder/sander product page, no PDF; didn't chase further).
+  Makita cordless jigsaw/impact-wrench searches surfaced only the same
+  generic battery-protection-system boilerplate already used for DGA408 —
+  thinner and redundant, same reasoning as the DTD152 drop on 21 Sep.
+  Numatic Henry Xtra (HVX200) — only a 1-page data sheet is on
+  cdn.numatic.com; the full manual is only on third-party mirrors, and the
+  fault content it would offer (blockage/thermal-cutout) is the same
+  ground already covered by the HVR200 entry — not pursued, consistent
+  with the 15 Sep "sibling models don't automatically mean new content"
+  finding. Triton's manual site still doesn't resolve via curl (repeat of
+  the 15/16 Sep finding) — not retried further.
+- **New usable source found: `cdn.axminstertools.com` hosts genuine
+  official Axminster manuals with real per-model troubleshooting tables**
+  (found via web search, not linked from the product pages themselves).
+  Worth adding to the reachable-sources list alongside the Bambu wiki,
+  help.prusa3d.com, Record Power's KB, media.makita.co.nz/makita.in,
+  service.dewalt.co.uk and cdn.numatic.com.
+- The manual (`cdn.axminstertools.com/media/downloads/107704_107707_manual.pdf`,
+  Book Version 8, 09/06/2023) covers four pillar drill codes in one
+  document — AP340PD, AP325PD, AP700PD, AP540PD — same shared-manual
+  pattern as the 21 Sep DeWalt DCD776 family entry. Picked AP340PD (the
+  compact bench model) and confirmed it specifically via its own
+  specification table in the same document (12-speed 210-2,580rpm,
+  260x260mm table), the same "confirm via the model's own spec row"
+  method used for DCD776.
+- Route was free (checked before drafting — no existing
+  `axminster-ap340pd*` file; the one existing Axminster entry is
+  AW106PT2, a different model).
+- **Verification gate, quote pasted from the fresh-fetched PDF text**
+  (`pdftotext -layout`), Troubleshooting section: "Excessive drill bit run
+  out or wobble: 1. Bent drill bit ... 1. Use a straight drill bit. 2.
+  Worn spindle bearings ... 2. Replace bearings. 3. Drill bit not properly
+  installed in chuck ... 3. Install drill bit properly. 4. Chuck not
+  properly installed ... 4. Install chuck properly." All four diagnostic
+  steps and the fix_or_verdict trace to this one row and no further —
+  nothing invented beyond it. Note: the entry presents the bearings check
+  last (for reader logic — cheapest fixes first) rather than in the
+  manual's own numeric order (bearings are actually #2 in the source);
+  the draft is worded to avoid claiming the manual itself orders them
+  that way, since that would misattribute the source.
+- Illustrated with `openai-image` (gpt-image-1), 1024x1024 (an upright
+  benchtop machine, per the playbook's sizing rule). Clean first attempt —
+  column, head, quill/feed handle, chuck with bit, and tilting table all
+  correctly in frame, no shadow/stippling/background problems.
+- Build passed, pushed as `5b0aa99`, verified live at
+  `https://toolfaultfinder.com/tools/axminster/ap340pd/` (200, "wobble"
+  copy confirmed present).
+
+**Stopping at 2 for this run, deliberately.** Sourcing is what stopped it,
+not the 7-entry ceiling: after this entry, the remaining candidates
+checked (Record Power sibling lathes, a further Makita cordless tool, a
+further Numatic model, Triton, one DeWalt product page) all either risked
+duplicate-content padding or didn't yield a fresh, properly-sourced fault
+this run. Two well-sourced entries published with fresh-fetched verbatim
+quotes, several genuine candidates researched and dropped rather than
+padded — consistent with the playbook: "a run that publishes 3 well-sourced
+entries and reports why it stopped is a good run," and 2 is the honest
+number for today.
+
+**Content-run stamps updated:** `.last-content-day` → `2026-09-22`,
+`.content-week` → `2026-39 2` (second and final content run allowed this
+ISO week under the 2-runs/week ceiling).
