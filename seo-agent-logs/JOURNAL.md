@@ -1700,3 +1700,81 @@ approves pruning it in the next monthly pass.
 Numatic HVR200 Gemini file, an unlabelled Gemini file, Milwaukee M18,
 Prusa MK3S, Stihl MS 250) are still Nick's inbox, untouched — every entry
 they'd match already has an image, per the standing note.
+
+## 2026-09-28 — Content run (ISO week 2026-W40, first of up to 2)
+
+**Entry 1 of this run: Kärcher K7 won't start / motor-overload trip.**
+Route checked free first (`src/content/faults/` had K2, K4, K5 but no K7).
+Sourced from Kärcher's own official manual, fetched fresh this run:
+`https://s1.kaercher-media.com/documents/manuals/raw/000/BTA-5508935-000-00.pdf`
+("K 7 Premium Full Control Plus Operating Instructions", doc. 59673970,
+01/17) — confirmed as the genuine UK-market model via
+`kaercher.com/uk/home-garden/pressure-washers/k-7-premium-full-control-plus-home-13171360...`
+and the manual's own technical-data page (240V/50Hz, matching UK/EU
+supply). `pdftotext -layout` on the fetched PDF, Troubleshooting section,
+page 12-13 English:
+
+> "Appliance is not running
+> - Push the lever of the trigger gun, the device will switch on.
+> - Check whether the voltage indicated on the type plate corresponds to
+>   the voltage of the mains supply.
+> - Check the mains connection cable for damages.
+> - Motor overloaded, the motor circuit breaker has tripped.
+> – Turn off the appliance "0/OFF".
+> – Allow the device to cool down for one hour.
+> – Switch on the device and put it into operation again.
+> If the malfunction occurs repeatedly, have the device checked by the
+> customer service.
+> Appliance does not start, motor hums
+> Voltage reduction due to weak mains supply or when using an extension
+> cable.
+> - Upon switch-on, push the lever of the trigger gun first and then
+>   switch the power switch to "I/ON"."
+
+Every diagnostic step and the verdict trace directly to this quote — the
+1-hour cool-down, the voltage/cable checks, the extension-lead cause of
+"motor hums", the specific trigger-then-switch start order, and the
+"have it checked by customer service" line for a repeat fault. No
+`parts:` added: every fix in the manual is a free check or a wait, not a
+part, and the one case that costs money (a damaged cable, or a fault that
+survives cool-down) routes to a service centre rather than a DIY part —
+same logic as `makita-uc4041a`/`karcher-k2` having none.
+
+Chose this topic over a same-symptom K7 "no pressure" entry deliberately
+— K5 already owns that exact fault pattern (restricted flow/air), and a
+second near-identical page would be padding, not library growth. The
+overload-trip/won't-start fault is genuinely distinct from K4 (pulsing,
+an internal leak) and K5 (no pressure, a flow restriction).
+
+Illustration: first `openai-image` attempt reproduced the black-
+background-with-glow failure mode already flagged in memory from 21 Sep
+(Record Power CL4) despite including the anti-glow clause — the clause
+needs to be even more explicit/repeated, not just present once. Second
+attempt, with the background instruction repeated three ways ("solid
+plain white RGB 255,255,255", "no background at all", "no black anywhere
+outside the ink linework"), came out clean: white background, correct
+tool, switch/cable/plug/trigger-gun all in frame as needed for this
+fault. Minor imperfection: a small accurate "K7" mark appears on the base
+panel — not the garbled-text failure mode (it's legible and correct), but
+technically against the "blank panel only" rule. Judged not worth a third
+generation attempt over a two-character correct label; noting it here
+rather than silently accepting it.
+
+Build passed, pushed as `0039dfe`, verified live at
+`https://toolfaultfinder.com/tools/karcher/k7/` (200, "overload" copy
+confirmed present).
+
+**Candidates researched and dropped before/after this entry:**
+- **Stihl MS 180 chainsaw won't start** — official manual found at
+  `cdnassets.stihlusa.com`, but the CDN 403s on fetch (US Stihl domain
+  blocking non-browser/automated requests, or geo/bot-blocking — not
+  investigated further). Dropped rather than fudged from search-snippet
+  troubleshooting content; worth retrying via `stihl.co.uk` directly
+  (not yet tried) rather than the US CDN next time.
+- **Bosch circular saw/planer troubleshooting** — search kept returning
+  the same short-form safety/spec manuals already ruled out on 16/22 Sep,
+  no troubleshooting table found in a new Bosch tool category this run
+  either. Bosch remains the standing library gap; a fourth attempt found
+  nothing new to report.
+
+Continuing to a second candidate this run if sourcing allows.
