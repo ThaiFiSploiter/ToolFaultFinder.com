@@ -1573,3 +1573,130 @@ number for today.
 **Content-run stamps updated:** `.last-content-day` → `2026-09-22`,
 `.content-week` → `2026-39 2` (second and final content run allowed this
 ISO week under the 2-runs/week ceiling).
+
+## 2026-09-28 — Weekly run (eighth run)
+
+**Clicks up WoW, second week running.** Comparing trailing 7-day windows
+(GSC lags ~2-3 days, so 26-27 Sep is excluded as unreliable): 12-18 Sep = 6
+clicks/520 impr (1.15% CTR) → 19-25 Sep = **13 clicks/797 impr (1.63%
+CTR)**. More than doubled. Spread across Kärcher K5 (6 clicks/118 impr,
+pos 6.6 — the single biggest contributor and a page not previously flagged
+as a converter), Bambu A1 Mini (4/149, pos 7.9), Bambu P1S (2/118, pos
+7.8), Kärcher K4 (2/73, pos 8.3), DeWalt DWS780 (1/23, pos 5.6 — its first
+recorded click since the 14 Sep fabrication correction, a good sign the
+fix didn't cost it), Makita DUC302 (1/11) and the Record Power brand hub
+(1/2). Bambu A1 (not Mini) again drew the largest single block of
+impressions (204) for zero clicks, consistent with the standing
+authority-cap finding — excluded from the "what worked" read for the same
+reason flagged in prior runs.
+
+**What worked, per the diagnosis order: nothing changed on our end.** No
+title/meta edit, no new internal link, shipped between the two windows —
+the lift is either continued growth of the two content runs' worth of
+recently-indexed pages or ranking movement outside our control. Recorded
+as a genuine open question rather than claimed as a win from an action
+this agent took.
+
+**Kärcher K5 is a new finding worth a closer look, not just a good
+number.** Live search for "karcher k5 no pressure" shows the same
+forum/JustAnswer/content-farm-crowded SERP already documented for K2/K4/
+Stihl/Einhell/BS250/HVR200 (PistonHeads, elektroda, DetailingWorld,
+JustAnswer, Fixya, clfloorcare.co.uk) — yet K5 converts at ~5% CTR at a
+similar position where those other six pages convert at ~0%. **This
+weakens the blanket version of the authority-cap theory**: a forum-heavy
+SERP alone doesn't cap CTR to zero, since K5 sits in an equally crowded
+SERP and still converts well. The K5 page's title ("Kärcher K5 Not
+Building Pressure — Causes and Fix") and meta are tightly matched to the
+literal query. Worth revisiting what's actually different about K5 next
+time there's volume to look at it properly, rather than either extending
+or discarding the authority-cap finding on this one data point.
+
+**CTR quick wins: none shipped, checked one new candidate.** Kärcher K2
+(63 impr/0 clicks over 12 days, pos 7.3, a real gap given the volume) was
+live-checked: title/meta already front-load brand+model+symptom
+("Kärcher K2 Leaking From the Base — Cause & Verdict"), and live search
+for its top query ("karcher k2 leaking water from the bottom", 14 impr,
+pos 11.4) shows the SERP owned by BuildHub, elektroda, DetailingWorld,
+JustAnswer, Fixya and content-farm sites (uklivin.com,
+easycleanwash.com) — the same pattern now confirmed on **7 pages**
+(A1, K4, Stihl MS-250, Einhell TE-CD, Record Power BS250, Numatic HVR200,
+now K2). No title rewrite shipped — nothing to fix on-page, and rail 8
+weighs an unnecessary change the same as a risky one. The two page-2
+positions in this week's data (Makita DC18RC pos 17.2, Record Power PT260
+pos 15.4) are ranking problems, not CTR problems, and a title tweak can't
+fix either — left alone.
+
+**Indexing: coverage snapshot saved to `seo-agent-logs/coverage/2026-09-28.csv`.**
+58 of 60 sitemap URLs "Submitted and indexed" (up from 53/54 on 21 Sep —
+the growth is this week's 5 new content-run URLs plus the Axminster brand
+hub auto-minted at 2 entries). `makita/hr2470` is unchanged at "Discovered
+- currently not indexed" (one week in this state now, per rail 6 — left
+alone, not yet "stuck" long enough to warrant investigating further).
+
+**Real finding: `bosch/pst-700-e` regressed from indexed to "Crawled -
+currently not indexed" this week** — confirmed by diffing this week's
+coverage CSV against 21 Sep's (was "Submitted and indexed" then). Its
+`lastCrawl` timestamp is stale (2026-07-06) — Google dropped it from the
+index without a fresh crawl, which points at a index-quality
+re-evaluation rather than a technical fault on the page (200, no
+robots issue). Read the entry itself: it's from 18 Jun 2026, predates the
+14 Sep authority-rule sourcing standard, and its `sources:` field is
+exactly the vague-document-category pattern already flagged for K4/TPT125
+— "Bosch PST 700 E operating manual (blade selection and roller guide)",
+"Jigsaw blade manufacturer guidance on blade choice for thick stock",
+"General references on jigsaw blade deflection in deep cuts" — none of
+these are checkable documents under rail 3, though this predates the rule
+that would have required it. **Not unpublished or rewritten this run**:
+it falls outside this week's audit scope (published in June, not by a
+content run since the last weekly run), rail 7's spirit and the existing
+K4/TPT125 precedent is to flag weak-sourced legacy entries for Nick rather
+than have the agent rewrite them, and the playbook reserves pruning
+crawled-and-rejected pages for the monthly run as a last resort. **Flagging
+for the next monthly run and for Nick directly: this is now a concrete
+case of the K4/TPT125 weak-sourcing pattern actually costing indexing,
+not just a documentation gap** — worth either re-sourcing it properly
+against a real Bosch document (if one with troubleshooting content can be
+found — Bosch has been a repeated gap per 16/22 Sep findings) or pruning
+it in the monthly pruning pass.
+
+**Weekly entry audit: 3 of 3 clean.** Picked three of this week's five
+content-run entries, spanning both 21 Sep and 22 Sep content runs — Record
+Power DML250, Axminster AP340PD, and DeWalt DCD776 — and re-verified every
+claim against freshly re-fetched primary sources (not the drafting-time
+quotes in the journal):
+- **DML250** (`dml250-manual.pdf`, mirror at utensilimanzanese.it, refetched
+  fresh): Section 15 vibration row matches verbatim, all 5 causes in the
+  same order, same fixes.
+- **AP340PD** (`cdn.axminstertools.com/media/downloads/107704_107707_manual.pdf`,
+  refetched fresh): troubleshooting table's 4 run-out/wobble causes match
+  verbatim; spec table confirms Code 107704 = AP340PD = 210-2,580rpm,
+  260x260mm table, matching the entry's model-identification claim exactly.
+- **DCD776** (found the correct manual URL this run —
+  `service.dewalt.co.uk/i/DEWALT/GLOBALBOM/GB/DCD776/10/Instruction_Manual/EN/DCD731-DCD734-DCD771-DCD776-TYP1-10-20_GB_XE.pdf`,
+  the entry's cited URL pattern from the journal didn't resolve directly
+  so this was re-found via search, then fetched and checked): Electronic
+  Protection System quote matches verbatim ("designed with an Electronic
+  Protection System that will protect the battery pack against
+  overloading, overheating or deep discharge" / "place the lithium-ion
+  battery pack on the charger until it is fully charged"), and the
+  Technical Data table confirms DCD776's own row (0-7650/0-25500 impact
+  rate, 13mm masonry, 1.5-13mm chuck) distinct from non-hammer DCD771 and
+  14.4V DCD731/734, exactly as claimed.
+
+All three clean, nothing corrected or unpublished. No changes pushed this
+run — no CTR fix met the bar, no audited entry needed correction, so
+there is nothing to build/deploy/verify this time. (Coverage CSV snapshot
+committed; see below.)
+
+**NEEDS HUMAN:** `bosch/pst-700-e`'s de-indexing plus its rail-3-inadequate
+`sources:` field is a real, live case of the long-flagged weak-legacy-
+sourcing problem actually costing the site an indexed page. Gmail tools
+were unauthenticated in this session so it isn't emailed — flagging here
+per the playbook's fallback. Recommend Nick either points the agent at a
+proper Bosch PST 700 E source to re-write it proper next content run, or
+approves pruning it in the next monthly pass.
+
+**Housekeeping:** the 7 untracked images in `src/images/` (Einhell,
+Numatic HVR200 Gemini file, an unlabelled Gemini file, Milwaukee M18,
+Prusa MK3S, Stihl MS 250) are still Nick's inbox, untouched — every entry
+they'd match already has an image, per the standing note.
