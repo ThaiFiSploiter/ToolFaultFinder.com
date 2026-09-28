@@ -1778,3 +1778,56 @@ confirmed present).
   nothing new to report.
 
 Continuing to a second candidate this run if sourcing allows.
+
+**Entry 2 of this run: DeWalt DW733 thicknesser overload trip / reset
+button.** Route checked free first (no `dw733` entry existed — a genuine
+library gap, no thicknesser entry at all before this one). Sourced from
+DeWalt's own UK/GB manual, fetched fresh: found via the product page
+(`dewalt.co.uk/en-gb/product/dw733-gb/317mm-portable-thicknesser`)'s
+downloads section rather than guessing a `service.dewalt.co.uk` URL
+pattern, then fetched from
+`https://assets.dewalt.co.uk/GLOBALBOM/GB/DW733/11/Instruction_Manual/EN/DW733_T11_GB_XE.pdf`
+— the `_GB_XE` filename and the manual's own Technical Data table (230V,
+Type 11) both confirm UK/EU spec, per the naming-convention finding from
+16/21 Sep. `pdftotext -layout`, verbatim:
+
+> "The On/Off switch of your DW733 is equipped with a circuit breaker. In
+> case of motor overload, the power supply to the motor will be cut off.
+> If this happens, turn the machine off and press the reset button 36
+> (Fig. F1)."
+> "The workpiece should not be in contact with the cutterhead when
+> switching on. To turn on, press the green start button of the switch 1
+> (Fig. F2)... Allow the motor to reach full speed before feeding the
+> workpiece."
+> "WARNING: The blades can be re-sharpened max. 3 mm down from their
+> original size. If the blade size has decreased by more than 3 mm, the
+> blades have to be replaced."
+
+One claim was cut at the gate before publishing: my first draft's
+diagnostic steps asserted the reset button "won't hold if the motor
+hasn't had a moment to cool" — the manual states the off-then-reset order
+but never mentions a cooling period (unlike the Kärcher K7 entry above,
+where Kärcher's manual gives an explicit 1-hour figure). Rewrote that step
+to state only the off-then-reset sequence the manual actually gives,
+and removed the invented cooling detail. The consumable parts item
+(replacement blades) and the blunt-blades-increase-load reasoning in the
+verdict are flagged in the text as troubleshooting logic, not attributed
+to the manual, since the manual doesn't itself connect blade wear to
+breaker trips — it only gives the resharpening limit, which is what's
+cited.
+
+Illustration: same black-background-with-glow failure on the first
+attempt as the K7 image above, despite a differently-worded anti-
+background clause — confirms this is a real recurring failure mode, not
+a one-off, and the fix that's worked twice now is leading the prompt with
+"White background line drawing" and describing it as "empty white paper"
+rather than listing background rules as a separate clause at the end.
+Second attempt clean. Worth updating the playbook's standard prompt
+template to lead with the white-background framing rather than appending
+it, if this keeps recurring.
+
+Build passed, pushed as `8c15d7c`, verified live at
+`https://toolfaultfinder.com/tools/dewalt/dw733/` (200, "overload" copy
+confirmed present).
+
+Continuing to a third candidate if sourcing allows.
