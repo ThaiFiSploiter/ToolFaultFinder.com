@@ -244,26 +244,41 @@ server registered — it is blocked on Google Cloud billing, so don't reach for 
 
 The site's existing images were made in the Gemini app by hand and set the house style:
 **black pen outlines on white, sparse hatching, no tone, no shadow, one isolated tool,
-three-quarter view.** Match it. This prompt template produces it — two things in it are
-load-bearing and were arrived at by failing without them:
+three-quarter view.** Match it. This prompt template produces it — every part of it is
+load-bearing and was arrived at by failing without it:
 
 ```
-A black-and-white line-art illustration of <specific tool, named parts>, drawn as fine
-black pen outlines on a plain white background, in the style of a patent drawing or a
-coloring-book page. Design: <the parts the fault turns on, described concretely>.
-Three-quarter view from slightly above, object isolated and centred with generous white
-margin. IMPORTANT STYLE RULES: line work only — every surface is white, shaded only with
-sparse thin hatching lines, never with grey fill or smudged tone. The object floats on
-white with absolutely no cast shadow, no ground shadow, no floor line, no background of
-any kind. No colour. No readable lettering, numbers or logos anywhere — draw any
-nameplate as an empty blank panel.
+White background line drawing. A simple black ink outline sketch on an empty white page,
+like a technical patent illustration, showing <specific tool, named parts>. Design:
+<the parts the fault turns on, described concretely>. Three-quarter view from slightly
+above, object isolated and centred on the page, generous white margin.
+
+The page behind the object is empty white paper — nothing else is drawn there. No shading
+gradient, no dark corners, no vignette, no glow effect, no halo, no shadow beneath or
+around the object. Pure line art: thin continuous black outlines plus a few short straight
+hatching strokes for texture only, no dot shading, no cross-hatching, no solid black fill
+anywhere except the thin outlines themselves. No text, numbers or logos anywhere — draw
+any nameplate or button markings as empty blank shapes.
 ```
 
-- **The "no cast shadow / line work only" block.** Without it the model returns a grey
-  drop shadow and tonal shading that reads as obviously different from the rest of the site.
-- **The "no readable lettering" block.** The model garbles small text into nonsense glyphs.
-  The older Gemini images do carry legible brand names; yours should carry blank panels
-  instead. At the 640px the cards render, the difference doesn't show — garbled text does.
+- **Lead with "White background line drawing" as the first sentence, and describe the
+  page as "empty white paper" rather than only listing "no background" as a rule at the
+  end.** Earlier phrasing (background rules appended after the subject description) let
+  gpt-image-1 return a black background with a white glow/halo around the object on three
+  separate entries across three different runs (21 Sep, twice more on 28 Sep) despite an
+  anti-glow clause being present each time — appending the rule wasn't reliable. Putting
+  the white-background instruction first, and repeating it as a description of the page
+  rather than a prohibition, fixed it on the next attempt both times on 28 Sep, and
+  produced a clean result on the *first* attempt for a third image the same run. Treat
+  this ordering as load-bearing, not stylistic.
+- **The stippling/dot-shading and cross-hatching ban.** Without it, pistol-grip and
+  handle-heavy tools in particular (first seen on a nailer, 16 Sep) come back with dense
+  dot-pattern shading that reads nothing like the site's sparse-line house style.
+- **The "no text, numbers or logos" line.** The model garbles small text into nonsense
+  glyphs, or occasionally renders a short, correct label anyway (e.g. a model number on a
+  panel) — neither is what the house style wants. The older Gemini images do carry
+  legible brand names; yours should carry blank panels instead. At the 640px the cards
+  render, the difference doesn't show — garbled or unwanted text does.
 
 Mechanics:
 
