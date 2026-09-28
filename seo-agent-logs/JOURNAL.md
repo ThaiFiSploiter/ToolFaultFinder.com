@@ -1831,3 +1831,66 @@ Build passed, pushed as `8c15d7c`, verified live at
 confirmed present).
 
 Continuing to a third candidate if sourcing allows.
+
+**Entry 3 of this run: Record Power Envoy lathe — turning tool digs in /
+grabs.** Route checked free first (no `record-power-envoy` entry
+existed). This directly resolves the open question flagged 22 Sep ("sibling
+model, same content" suspected for Record Power's Envoy/Regent/Pathfinder/
+Herald lathes, not fetched and checked) — fetched the actual manual this
+time rather than continuing to assume:
+`https://www.recordpower.co.uk/assets/products/product_downloads/prod_001098_download_file_317_1721745966.pdf`,
+Record Power's own "Coronet Envoy / Coronet Regent... Original
+Instructions" (Version 3.9, July 2024 — a manual explicitly covering both
+model names, same precedent as the CL2/CL3/CL4 shared-KB-article sourcing
+from 21 Sep). Its Section 15 Troubleshooting table is genuinely different
+from what's already published for DML250 (vibration), DML305
+(spiralling), CL2/CL4 (locked bearing) or CL3 (spindle play) — picked the
+"Turning tool digs into the timber or grabs it" row specifically because
+it doesn't overlap with any of those. `pdftotext -layout`, verbatim:
+
+> "Turning tool digs into the timber or grabs it.
+> 1. The turning tool is blunt. — Sharpen the turning tool.
+> 2. The tool rest is set to low. — Set the tool rest to the correct
+>    height.
+> 3. The tool rest is too far from the timber. — Move the tool rest
+>    closer to the timber.
+> 4. The wrong turning tool is being used. — Use the correct turning
+>    tool."
+
+All four diagnostic steps and the verdict trace directly to this row.
+**This settles the 22 Sep open question**: the Envoy/Regent manual's
+troubleshooting table is NOT identical boilerplate to DML250's — it's a
+larger, differently-organised table with rows (tailstock movement, tool
+rest locking, digital readout, motor noise) that don't appear in DML250's
+section at all. The "sibling models share generic content" caution from
+15 Sep was right to apply as a check, but wrong as an assumption here —
+worth remembering both halves of that lesson, not just the caution.
+Deliberately did NOT also write a Regent entry from the same table (that
+would be exactly the duplicate-content case the caution warns against,
+since it's the same document, same table, same fault) — only Envoy this
+run, since the manual's cover image and product title lead with Envoy.
+
+Illustration: clean on the first attempt using the "White background line
+drawing" / "empty white paper" framing that fixed both of this run's
+earlier images on their second attempt — worth treating that phrasing as
+the new default opening for the prompt, not just a fallback.
+
+Build passed, pushed as `1499394`, verified live at
+`https://toolfaultfinder.com/tools/record-power/envoy/` (200, "digs"
+copy confirmed present).
+
+**Stopping at 3 for this run, deliberately.** Sourcing is what stopped
+it, not the 7-entry ceiling. Checked and dropped: Stihl MS 180 (official
+manual blocked, 403, on the US CDN — worth retrying via stihl.co.uk
+directly next time rather than the US domain, not yet tried); Bosch
+circular saw/planer (fourth attempt across three runs, still no
+troubleshooting-table content found in any Bosch manual checked); Makita
+5704R sibling circular saws and Numatic George GVE370 (search returned
+only third-party manual-farm mirrors, no genuine manufacturer-hosted PDF
+found this run — didn't fetch and verify from an unconfirmed source
+rather than risk it). Three well-sourced entries published, several
+genuine candidates researched and dropped rather than padded.
+
+**Content-run stamps updated:** `.last-content-day` → `2026-09-28`,
+`.content-week` → `2026-40 1` (first of up to 2 content runs allowed this
+ISO week).
