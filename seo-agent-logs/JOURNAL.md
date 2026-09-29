@@ -1946,3 +1946,41 @@ frame. Build passed, pushed as `e50072e`, verified live at
 confirmed present).
 
 Continuing to a second candidate if sourcing allows.
+
+**Entry 2: Axminster AP2920B bandsaw — blade keeps breaking.** Route
+checked free first (no `ap2920b` entry existed; the only other Axminster
+entries are a pillar drill and a planer). Sourced from Axminster's own
+**AP2920B Bandsaw Original Instructions** (code 108517, book version 04,
+04/01/2024), found on `cdn.axminstertools.com` via web search — same
+retrieval pattern as the 22 Sep AP340PD entry (search for the PDF by
+model rather than crawl the product page). The manual's own
+Troubleshooting section names three causes under "Getting blade
+breakage?" (slack tension, misaligned guides, feed rate too fast); the
+diagnostic steps also draw concrete figures from the manual's separate
+Blade Tension and Setting Upper and Lower Blade Guides sections rather
+than inventing detail to flesh out three one-line causes. `pdftotext
+-layout`, verbatim:
+
+> "Keep in mind that too little blade tension can cause blade breakage."
+> "The best place to check blade tension is on the left hand side of the
+> bandsaw. Around 1cm of blade movement is recommended."
+> Guide bearings: "approximately 2mm behind the gullet" with "Maximum
+> Clearance 0.5 mm"; thrust bearing "approximately 1mm behind the blade."
+> Troubleshooting row "Getting blade breakage?": "Blade tension too
+> slack. Blade guides misaligned. Feeding timber too quickly."
+
+Deliberately picked blade breakage over "won't cut straight" (the other
+plausible AP2920B topic) because the latter would have read as close to a
+restatement of the existing `record-power-bs250-blade-drift` entry
+(dull blade / tension / tracking / guides, same reasoning shape on a
+different brand) — the "sibling model, same content" caution from 22 Sep
+generalises to same-content-different-brand too, not just same-brand
+siblings, so picked the topic that's actually distinct instead.
+
+Illustration: clean on the first attempt, floor-standing bandsaw with the
+blade guide assembly and tensioning knob correctly in frame. Build
+passed, pushed as `f4a5110`, verified live at
+`https://toolfaultfinder.com/tools/axminster/ap2920b/` (200, "breakage"
+copy confirmed present).
+
+Continuing to a third candidate if sourcing allows.
