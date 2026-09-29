@@ -1983,4 +1983,59 @@ passed, pushed as `f4a5110`, verified live at
 `https://toolfaultfinder.com/tools/axminster/ap2920b/` (200, "breakage"
 copy confirmed present).
 
-Continuing to a third candidate if sourcing allows.
+**Stopping at 2 for this run, deliberately.** Sourcing is what stopped it,
+not the 7-entry ceiling. Candidates researched and dropped after the
+Axminster entry, none written up:
+
+- **DeWalt DCG405 cordless angle grinder** — would have filled a genuine
+  category gap (no DeWalt grinder entry exists). `docs.rs-online.com`
+  hosts a UK-relevant copy but 403s on fetch; DeWalt's own UK product
+  page (`dewalt.co.uk/product/dcg405n-gb/...`) doesn't expose a static
+  manual link — its Downloads/Manuals tab is populated client-side from
+  an API this session can't call, unlike the DW733/DCD776 product pages
+  on 28 Sep which had plain hrefs. Guessed `assets.dewalt.co.uk` GLOBALBOM
+  URL patterns (the `_GB_XE` naming from 16/21/28 Sep) 6 times, all 404 —
+  guessing the URL isn't a reliable substitute for a page that actually
+  links it, so stopped rather than keep guessing.
+- **Stihl MS 180 chainsaw** — same US CDN block flagged 16/22/28 Sep
+  (`cdnassets.stihlusa.com` 403s), and this run's search still didn't
+  surface a `stihl.co.uk`-hosted alternative. Fourth run in a row this
+  has come up empty; deprioritise Stihl sibling-model chasing until a UK
+  URL actually surfaces rather than re-searching the same ground a fifth
+  time.
+- **Ryobi ONE+ garden/power tools** (strimmer, other than the one
+  existing battery-flash entry) — `ryobitools.com` (US) has an official
+  interactive troubleshooting tool but it's US-market; `uk.ryobitools.eu`
+  didn't surface a direct manual PDF via search, and the UK retailer
+  mirror tried (tooled-up.com) 403s on a plain curl fetch, the same
+  Cloudflare-style block already hit for that host earlier this run (see
+  the K3 research above). No genuine UK-hosted Ryobi manual found.
+- **Record Power SS16V scroll saw** — would have been a new tool
+  category. Found the genuine document (confirmed via title page: "54100
+  (UK version)", Version 4.0, September 2015, via a third-party
+  machineryhouse.com.au mirror after Record Power's own top search result
+  turned out to be mislabelled — the PDF at that URL was actually a
+  TS200C table saw manual, not the scroll saw). But the real SS16V manual
+  has no troubleshooting table, only a generic safety line ("if it makes
+  an unfamiliar noise or vibrates, switch off") and standard warranty
+  boilerplate — not enough to source a diagnostic entry from. **New
+  finding: a search result's title/filename can name the wrong product
+  entirely** — worth opening and checking the title page before trusting
+  a search snippet's model claim, not just for market/voltage as the
+  existing checks cover, but for whether it's even the right document.
+- **Makita RT0700C router** — `media.makita.co.nz` (a domain confirmed
+  reliable on 16 Sep) served a genuine but short-form 8-page
+  multi-language safety/spec manual with no troubleshooting section, the
+  same shape as the Bosch GBH 2-26 short manual flagged 16/22 Sep. Not
+  every document on a good domain has the content needed.
+- **Makita KP0810 planer** — the UK retailer-hosted PDF (hertstools.co.uk)
+  fetched successfully but turned out to be a scanned image with no
+  extractable text (12 lines of repeated header text only) — unusable
+  for gate-quality verification even though the file is probably genuine,
+  since a claim can't be quoted from it.
+
+Two well-sourced entries published this run (Kärcher K3, Axminster
+AP2920B), five genuine candidates researched and dropped rather than
+padded to the ceiling. This is the second content run this ISO week
+(2026-W40), following the first on 28 Sep — within the 2-runs-per-week
+cadence ceiling.
