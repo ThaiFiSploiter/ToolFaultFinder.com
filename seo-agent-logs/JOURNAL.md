@@ -1894,3 +1894,55 @@ genuine candidates researched and dropped rather than padded.
 **Content-run stamps updated:** `.last-content-day` → `2026-09-28`,
 `.content-week` → `2026-40 1` (first of up to 2 content runs allowed this
 ISO week).
+
+---
+
+## 2026-09-29 — content run, second of ISO week 2026-W40
+
+GSC top queries (30 days) checked first per cadence order #1 and found
+mostly saturated: "karcher k4 not turning on" / "karcher k4 on off switch
+problems" collide with the existing K4 pulsing route (can't add a second
+K4 entry — one route per brand+model), and "henry hoover cut out" /
+"cutting out" are already the `numatic-hvr200-thermal-cutout` entry's own
+topic. No genuine new-topic gap surfaced from GSC this run, so sourcing
+came from cadence order #2 (sibling faults on tools already ranking).
+
+**Entry 1: Kärcher K3 — detergent doesn't draw from the bottle.** Route
+checked free first (no `k3` entry existed; K2/K4/K5/K7 are all different
+faults on different models). Sourced from Kärcher's own **K 3 Full Control
+Operating Instructions** (59675750, 05/17), found via web search rather
+than crawling kaercher.com/uk (same JS-gated-downloads-page pattern
+already known for Record Power). Two other s1.kaercher-media.com hits for
+"K3" were fetched first and **rejected as a market trap**: both were the
+North American edition (120V, GFCI plug, PSI-first spec table, USA/
+Canada/Mexico customer service) — same shape as the DCS359 US-DeWalt trap
+from 15 Sep, just for Kärcher. The document actually used is the
+Rest-of-World English edition (220-240V, IP X5, EN 60335-2-79) that
+Kärcher bundles for UK/IE/AU/NZ/ZA; confirmed UK-relevant two ways: the
+voltage/spec table, and a live search showing the K3 currently sold at
+Currys, Argos and Screwfix at 230V. `pdftotext -layout`, verbatim:
+
+> "Note: Detergent can only be added when the device is operated in low
+> pressure mode."
+> "No detergent infeed — Use Vario Power spray lance. Turn the spray
+> lance to 'Mix' position."
+> "Remove filter from suction hose for detergent and clean under running
+> water. Check the detergent suction hose for kinks."
+
+All three sourced claims map directly to a diagnostic step. One step (the
+bottle running low enough that the pickup tube lifts clear of the liquid)
+is general troubleshooting reasoning, not a manual quote — written in the
+body without attributing it to Kärcher, the same treatment the DW733
+entry gave its own unsourced reasoning on 28 Sep. Picked "no detergent"
+specifically because it doesn't overlap with K2 (leaking), K4 (pulsing/
+auto-stop cycling), K5 (no pressure) or K7 (won't start) — a genuinely
+distinct fault, not a rehash.
+
+Illustration: clean on the first attempt using the "White background line
+drawing" / "empty white paper" opening from the playbook's current
+template — detergent bottle, suction tube and lance all correctly in
+frame. Build passed, pushed as `e50072e`, verified live at
+`https://toolfaultfinder.com/tools/karcher/k3/` (200, "detergent" copy
+confirmed present).
+
+Continuing to a second candidate if sourcing allows.
