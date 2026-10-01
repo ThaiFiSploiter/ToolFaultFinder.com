@@ -13,7 +13,8 @@ diagnostic_steps:
   - "Note what preceded the state: a failed print, a network dropout mid-job, a firmware update, or a print cancelled from the app"
   - "Try clearing or finishing the job from the printer's own display rather than the app"
   - "Power-cycle the printer fully from the physical switch (off, wait ten seconds, on) and confirm the state clears"
-  - "If it recurs, compare the installed firmware version against Bambu Lab's release notes for fixes mentioning job state or cloud sync"
+  - "In the slicer, open the Device tab and click the video/camera option — several owners report this alone clears the stuck state without a power cycle"
+  - "If it recurs often, update the firmware: Bambu has shipped fixes before for the printer/app device-status mismatch this fault is a symptom of"
 fix_or_verdict: "A power cycle clears it, and keeping firmware current is the lasting fix. This is a software state issue, not a hardware fault — don't start replacing parts for this symptom."
 parts:
   - name: "PLA filament, 1.75mm"
@@ -21,9 +22,9 @@ parts:
     search: "PLA filament 1.75mm 1kg"
 source_type: "researched"
 sources:
-  - "Bambu Lab Wiki (A1 troubleshooting section)"
-  - "Bambu Lab firmware release notes"
-  - "User reports of stuck 'printing' state on the Bambu Lab community forum"
+  - "Bambu Lab Community Forum, \"The printer is busy with another print job\" (topic 17022) — X1 Carbon owner reports of the identical message, cause and fix"
+  - "Bambu Lab Community Forum, P1S owner report of the same \"printer is busy\" message (topic 80394)"
+  - "Bambu Lab P1 series firmware release history (wiki.bambulab.com), version 01.04.01.00 changelog — Bambu's own record of fixing device/job-status-matching bugs on a sibling printer range"
 date_published: 2026-07-01
 ---
 
@@ -46,25 +47,32 @@ cloud service keeps reflecting the stale state back to every connected client.
 That's why the phantom job can appear simultaneously on the printer's display,
 in Bambu Handy, and in the slicer's device view.
 
-Recurrence appears to depend on firmware version and on whether the printer is
-in cloud or LAN-only mode, which is why the firmware release notes are worth
-checking if it keeps happening.
+It isn't an A1-specific bug: owners of Bambu's other cloud-connected printers
+(an X1 Carbon and a P1S, in reports that describe the exact same message and
+frozen percentage) hit the identical state through the same shared Bambu
+Studio/Handy/cloud stack the A1 also runs on. Recurrence appears to depend on
+firmware version and on whether the printer is in cloud or LAN-only mode.
 
 ## Clearing it
 
-In order of preference, per user reports and Bambu Lab's own troubleshooting
-guidance:
+In order of preference, per Bambu Studio/Handy owner reports describing what
+actually cleared it for them:
 
 1. Clear or finish the job from the printer's front display, if it offers the
    option.
-2. Do a full power cycle from the physical switch — off, wait ten seconds, on.
-   This is the reliably reported fix.
-3. If the app still shows the phantom job after the printer restarts, force-quit
+2. In Bambu Studio, open the Device tab and click into the camera/video view.
+   Several owners report this alone forces a state refresh and clears the
+   message without needing to touch the printer.
+3. Do a full power cycle from the physical switch — off, wait ten seconds, on.
+   This is the most consistently reported fix when the above doesn't work.
+4. If the app still shows the phantom job after the printer restarts, force-quit
    and reopen the app so it re-syncs against the printer's now-clean state.
 
 ## Verdict
 
 A nuisance-level fault with a zero-cost fix. Keep the firmware current —
-release notes have periodically mentioned job-state and sync fixes — and
-consider LAN-only mode if it recurs frequently on your network. No repair, no
-parts, no teardown.
+Bambu's own P1 series changelog shows them fixing this exact class of
+device/job-status-matching bug by firmware update before, so there's real
+precedent for it being patched rather than permanent — and consider LAN-only
+mode if it recurs frequently on your network. No repair, no parts, no
+teardown.
