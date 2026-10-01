@@ -31,9 +31,7 @@ parts:
     search: "Karcher pressure washer detergent"
 source_type: "researched"
 sources:
-  - "Kärcher K-series operating manual (auto-stop system description)"
-  - "Kärcher support documentation on pulsing/cycling behaviour"
-  - "User repair reports of K4 pulsing traced to seals and non-return valves"
+  - "Kärcher K 4 Full Control Operating Instructions (59676200, 12/16) — overflow valve/pressure-switch mechanism description and Troubleshooting section"
 date_published: 2026-06-08
 ---
 
