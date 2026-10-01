@@ -2039,3 +2039,137 @@ AP2920B), five genuine candidates researched and dropped rather than
 padded to the ceiling. This is the second content run this ISO week
 (2026-W40), following the first on 28 Sep — within the 2-runs-per-week
 cadence ceiling.
+
+---
+
+## 2026-10-01 — monthly run (deep-dive)
+
+**Month-over-month: clicks up sharply.** Aug (1–31) vs Sep (1–29), computed
+from `gsc-report.mjs --days 60`'s by-day data (two 60-day pulls, not a direct
+tool flag): clicks 13 → 30 (+131%), impressions 808 → 2097 (+160%), CTR 1.61%
+→ 1.43% (essentially flat — the impression growth outpaced click growth
+slightly, not a CTR problem). This is a real continuation of the WoW growth
+the last two weekly runs reported (6→13 on 28 Sep), now confirmed at the
+monthly grain too.
+
+**Coverage: 58/65 "Submitted and indexed" (89%)**, up from 22/29 (76%) a month
+ago. Snapshot saved to `seo-agent-logs/coverage/2026-10-01.csv` for next
+month's diff. Of the 7 not fully indexed: 5 are the newest content-run entries
+(28–29 Sep, `ap2920b`/`dw733`/`k3`/`k7`/`envoy`) showing "URL is unknown to
+Google" — expected at under a week old, not a concern. `makita/hr2470`
+remains "Discovered – currently not indexed" (unchanged since 21 Sep) — left
+per rail 6, it has inbound links already and just needs a crawl. The one
+genuinely actionable item: **`bosch/pst-700-e` had regressed to "Crawled –
+currently not indexed"** on both the 28 Sep and this sweep — confirmed
+crawled-and-rejected, not merely uncrawled, and old enough (published 18 Jun)
+to judge. Addressed below rather than left for a third sweep.
+
+**Per-cluster promote/leave + library-wide sourcing audit.** Rather than only
+reading GSC/coverage numbers, this run opened every entry's `sources:` field
+and flagged anything using vague document-category phrasing instead of a
+named, checkable document (the pattern already flagged for K4/TPT125 since
+August). Found **14 entries** with this problem, not just the two
+long-flagged ones. Given the scale, triaged by actual traffic stake and fixed
+the three that mattered most, verified live each time, rather than attempt
+all 14 in one run:
+
+1. **`bosch/pst-700-e`** (the coverage-regression trigger above). Fetched
+   Bosch's own PST 700 E Original Instructions (document 2 609 003 949,
+   28.9.09 edition, confirmed same model via article number and UK-relevance
+   via the 230/240V spec + Great Britain service address). No troubleshooting
+   table, but it directly backs the entry's central guide-roller/blade-
+   deflection claim verbatim: "the saw blade 8 may not be bent by the guide
+   roller." Replaced three vague source lines with this one real document.
+   Pushed `054defa`, verified live.
+
+2. **`bambu-lab/a1`** — the single highest-traffic page on the site (55% of
+   impressions per standing memory note). This was the most consequential
+   finding of the run: its cited "Bambu Lab Wiki (A1 troubleshooting
+   section)" does not exist (confirmed — `wiki.bambulab.com` site search for
+   this error returns nothing, for any model), and the only forum thread
+   matching the exact phrase "the printer is busy with another print job"
+   (`forum.bambulab.com` topic 17022) is explicitly an **X1 Carbon** owner's
+   report, not an A1 — a model mismatch at the source, the same failure
+   shape as the 14 Sep DWS780 fabrication, just caught this time before
+   anyone acted on it rather than after. A second thread (topic 80394)
+   confirmed a P1S owner hitting the identical message. Checked A1's own
+   firmware release history (`wiki.bambulab.com/en/a1/manual/a1-firmware-
+   release-history`) for a job-status fix and found none, but P1 series'
+   history does, verbatim, version 01.04.01.00: "Fixed the issue where the
+   device status displayed on the Bambu Handy app may not match the actual
+   device status at the end of printing." Rewrote `sources:` to the three
+   real documents and reframed the body honestly — this is a shared Bambu
+   Studio/Handy/cloud-stack bug reproduced identically on two other models,
+   not A1-specific official documentation — while keeping the diagnosis and
+   fix, which are still correct (the bug lives in software the A1 shares).
+   Added one new sourced diagnostic step found while re-researching (Device
+   tab → camera/video view clears it per owner reports), deepening a
+   previously thin page. Pushed `ecf816c`, verified live.
+
+3. **`karcher/k4`** — flagged as weakly-sourced in memory since at least
+   23 Aug alongside TPT125. Found and verified the real Kärcher K 4 Full
+   Control Operating Instructions (59676200, 12/16), confirmed genuine and
+   UK/EU-market via its own technical-data table (230V/50Hz, IP X5,
+   EN 60335-2-79, Type 1.324-xxx). It confirms the entry's core mechanism
+   claim (trigger-release → pressure-switch-controlled pump shutoff)
+   verbatim but has no dedicated "pulsing" troubleshooting entry. Tried to
+   firm up the O-ring/non-return-valve failure-mode claim against named
+   threads on ukworkshop.co.uk and elektroda.com (both found by search,
+   both plausible) but both are blocked to this session (403/timeout) —
+   left that specific reasoning unattributed rather than cite a document
+   never actually opened. Replaced the two vague sources with the one real
+   manual. Pushed `36dac79`, verified live.
+
+**Remaining sourcing debt, named for whoever picks this up next:**
+`triton-tpt125-burnt-commutator` (the site's best historical CTR — highest
+remaining priority), `dewalt-dws774-out-of-square` (actively converting this
+month, 3 clicks/30d), `numatic-hvr200-thermal-cutout`,
+`record-power-bs250-blade-drift`, `einhell-te-cd-18-li-wont-turn-on`,
+`stihl-ms250-wont-start`, `bosch-gws7-115-brush-failure`,
+`dewalt-dcf887-bit-retention`, `creality-ender-3-layer-shifts`,
+`axminster-planer-winding-failure`, `ryobi-one-plus-battery-defective-flash`
+all still carry at least one "general references"/"owner reports on forums"
+style source with no named document. All predate the 14 Sep authority rule.
+Given 14 entries is too many to fix properly in one sitting without rushing
+the gate, triage by GSC traffic first (as this run did), not by list order.
+
+**Structural improvement: category hub pages.** `/faults/<category>/` was
+explicitly rejected on 1 Sep ("three of eight categories hold one entry,
+index allowance is the measured scarcity") — both conditions have now
+flipped: all 8 categories hold ≥2 entries (none do as of 1 Sep) and coverage
+has eased to 89%. Added `src/lib/categories.ts` (mirrors `lib/brands.ts`'s
+`groupByCategory`/`hasHub`/`categoryUrl`, same `HUB_MIN_ENTRIES` threshold)
+and `src/pages/faults/[category]/index.astro` (CollectionPage + ItemList +
+BreadcrumbList JSON-LD, same shape as the brand hub page). The entry page's
+Quick Facts "Category" tag is now a link to its hub, computed at build time
+from the same `hasHub` check used to generate the hubs — it can never point
+at a 404. Gives all 8 new hubs 2–8 inbound links from entries on day one,
+the same internal-linking shape that got six stalled pages crawled in
+September. All 8 hub URLs appeared in the sitemap automatically. Also
+corrected a stale playbook line claiming the homepage and `/faults/` still
+had no JSON-LD — they got it on 31 Aug (commit `7b434b0`), a week after the
+23 Aug baseline note was written claiming otherwise, and nobody had updated
+the note since. Pushed `ef4f489`, verified all 8 hub URLs + the entry-page
+link live.
+
+**Entries published this month: 20** (of 46 total in the library), across
+five content runs. **15 of the 20 are already "Submitted and indexed"**; the
+other 5 are this week's newest entries, too recent to judge. **Cadence
+verdict: producing both URLs and clicks this month, not just URLs** — clicks
+more than doubled MoM alongside the 20 new entries, coverage held at 89%
+rather than degrading as the library roughly doubled in size (46 vs the
+low-20s a month ago), and the two biggest sourcing problems found this run
+(A1, K4) were both *pre-existing* entries from before the 14 Sep authority
+change, not symptoms of the current cadence or gate — the gate itself (every
+entry published since 15 Sep under full authority) has not had a single
+fabrication found in any weekly audit since the 14 Sep DWS780 catch. The
+concern flagged for next run is sourcing-debt cleanup capacity, not cadence
+or gate integrity.
+
+**NEEDS HUMAN: none this run.** Everything found was actionable within the
+existing authority and sourcing rails; nothing required a judgement call
+outside them.
+
+**Content-run stamps:** not touched this run (monthly run, not a content
+run) — `.content-week` already shows an uncommitted `2026-40 2` from the
+29 Sep content run; left as-is, not this run's concern.
