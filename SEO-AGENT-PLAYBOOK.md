@@ -324,8 +324,12 @@ commit `2b43111`); left here as the record of what was done and what to measure:
 - ~~`/tools/bambu-lab/a1/` has no phrase match~~ → the exact string "Printer Is Busy With
   Another Job" is now in its title and description. **Measure the CTR effect from
   24 Aug 2026**; it was 0.3% over the 30 days to 21 Aug on 333 impressions.
-- ~~No JSON-LD anywhere~~ → entry pages now emit TechArticle + BreadcrumbList.
-  Hub pages (`/`, `/faults/`) still have none — a candidate monthly structural job.
+- ~~No JSON-LD anywhere~~ → entry pages emit TechArticle + BreadcrumbList; the
+  homepage and `/faults/` got WebSite/CollectionPage + ItemList on 31 Aug 2026
+  (commit `7b434b0`) — this bullet sat uncorrected for a month after that
+  shipped. **1 Oct 2026: category hub pages (`/faults/<category>/`) added**,
+  with the same CollectionPage/ItemList/BreadcrumbList pattern as brand hubs —
+  see memory for why this is now viable when it wasn't on 1 Sep.
 - Homepage pos 53, `/faults/` pos 58 — hub pages rank for nothing. Normal for the age;
   don't chase head terms like "power tool malfunction" (pos 63).
 - **Internal linking is fixed but unproven.** A Related Faults block now gives every entry

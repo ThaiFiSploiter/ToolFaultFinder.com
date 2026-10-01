@@ -333,6 +333,7 @@ h3 { font-size: 1.15rem; }
   border: 1px solid currentColor;
   border-radius: var(--radius);
   white-space: nowrap;
+  text-decoration: none;
 }
 .tag-category { color: var(--clr-amber-bright); }
 .card-body .tag-category, .plate .tag-category, .filter-note .tag-category { color: var(--clr-amber-dim); }

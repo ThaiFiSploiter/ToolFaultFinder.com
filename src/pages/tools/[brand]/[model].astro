@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import Base from '../../../layouts/Base.astro';
 import { slugify, faultUrl } from '../../../lib/slug';
 import { groupByBrand, hasHub, brandUrl } from '../../../lib/brands';
+import { groupByCategory, hasHub as hasCategoryHub, categoryUrl } from '../../../lib/categories';
 import PartsNeeded from '../../../components/PartsNeeded.astro';
 
 export async function getStaticPaths() {
@@ -39,6 +40,9 @@ export async function getStaticPaths() {
   // A brand only has a hub once it has enough entries to be worth one, so the
   // breadcrumb has to know whether /tools/<brand>/ actually exists before linking it.
   const brandHubs = new Set(groupByBrand(entries).filter(hasHub).map((g) => g.slug));
+  // Same idea, for category hubs — only link the Quick Facts category tag where
+  // /faults/<category>/ actually exists.
+  const categoryHubs = new Set(groupByCategory(entries).filter(hasCategoryHub).map((g) => g.slug));
 
   return entries.map((entry) => ({
     params: {
@@ -51,11 +55,14 @@ export async function getStaticPaths() {
       brandHub: brandHubs.has(slugify(entry.data.brand))
         ? brandUrl(slugify(entry.data.brand))
         : null,
+      categoryHub: categoryHubs.has(slugify(entry.data.category))
+        ? categoryUrl(slugify(entry.data.category))
+        : null,
     },
   }));
 }
 
-const { entry, related, brandHub } = Astro.props;
+const { entry, related, brandHub, categoryHub } = Astro.props;
 const { Content } = await render(entry);
 const {
   seo_title,
@@ -195,7 +202,13 @@ const jsonLd = {
         <dt>Model</dt>
         <dd><code>{model}</code></dd>
         <dt>Category</dt>
-        <dd><span class="tag tag-category" data-pagefind-filter="category">{category}</span></dd>
+        <dd>
+          {categoryHub ? (
+            <a class="tag tag-category" data-pagefind-filter="category" href={categoryHub}>{category}</a>
+          ) : (
+            <span class="tag tag-category" data-pagefind-filter="category">{category}</span>
+          )}
+        </dd>
         <dt>Symptom</dt>
         <dd>{symptom}</dd>
         <dt>Likely cause</dt>

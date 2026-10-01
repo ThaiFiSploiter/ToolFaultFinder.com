@@ -1,0 +1,109 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import FaultCard from '../../../components/FaultCard.astro';
+import { groupByCategory, hasHub, categoryUrl, type CategoryGroup } from '../../../lib/categories';
+import { faultUrl } from '../../../lib/slug';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('faults');
+  const categories = groupByCategory(entries);
+
+  // Only categories past HUB_MIN_ENTRIES get a hub — same reasoning as brand hubs:
+  // a thin category page would just restate a single entry under a second URL.
+  return categories.filter(hasHub).map((group) => ({
+    params: { category: group.slug },
+    props: { group, siblings: categories.filter((c) => c.slug !== group.slug && hasHub(c)) },
+  }));
+}
+
+interface Props {
+  group: CategoryGroup;
+  siblings: CategoryGroup[];
+}
+
+const { group, siblings } = Astro.props as Props;
+const { category, entries } = group;
+
+const seoTitle = `${category} — Fault Diagnosis by Category`;
+const description = `${entries.length} documented faults under ${category}: symptom, likely cause, the checks that confirm it, and whether the tool is worth repairing.`;
+
+const absolute = (path: string) => new URL(path, Astro.site).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: seoTitle,
+      description,
+      url: absolute(categoryUrl(group.slug)),
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: entries.length,
+        itemListElement: entries.map((entry, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: `${entry.data.brand} ${entry.data.model} — ${entry.data.symptom}`,
+          url: absolute(faultUrl(entry)),
+        })),
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: absolute('/') },
+        { '@type': 'ListItem', position: 2, name: 'Fault Index', item: absolute('/faults/') },
+        { '@type': 'ListItem', position: 3, name: category, item: absolute(categoryUrl(group.slug)) },
+      ],
+    },
+  ],
+};
+---
+
+<Base title={seoTitle} description={description} suffix={false}>
+  <script
+    slot="head"
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(jsonLd)}
+  />
+
+  <section class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/faults/">Fault Index</a><span class="sep">/</span>
+      <span>{category}</span>
+    </nav>
+
+    <header class="article-head">
+      <p class="kicker">Category index</p>
+      <h1>{category}</h1>
+      <p style="max-width: var(--measure);">
+        {entries.length} documented faults under {category}. Each entry sets out the
+        symptom as owners report it, the most likely cause, the checks that confirm or
+        rule it out, and whether the repair is worth doing — compiled and cross-checked
+        from manufacturer documentation and owner reports, with sources listed on every page.
+      </p>
+    </header>
+
+    <div class="section-head">
+      <h2>Documented faults</h2>
+    </div>
+    <ul class="card-grid">
+      {entries.map((entry) => <FaultCard entry={entry} />)}
+    </ul>
+
+    {siblings.length > 0 && (
+      <>
+        <div class="section-head" style="margin-top: 2.5rem;">
+          <h2>Other categories</h2>
+        </div>
+        <p class="brand-siblings">
+          {siblings.map((s) => <a href={categoryUrl(s.slug)}>{s.category}</a>)}
+          <a href="/faults/">All categories →</a>
+        </p>
+      </>
+    )}
+  </section>
+</Base>
