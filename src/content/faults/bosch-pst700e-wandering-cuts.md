@@ -28,9 +28,7 @@ parts:
     search: "jigsaw blade set T-shank wood metal"
 source_type: "researched"
 sources:
-  - "Bosch PST 700 E operating manual (blade selection and roller guide)"
-  - "Jigsaw blade manufacturer guidance on blade choice for thick stock"
-  - "General references on jigsaw blade deflection in deep cuts"
+  - "Bosch PST 700 E Original Instructions, document 2 609 003 949 (28.9.09 edition) — Assembly: Selecting/Inserting the Saw Blade and guide roller adjustment"
 date_published: 2026-06-18
 ---
 
