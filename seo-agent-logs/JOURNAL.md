@@ -2173,3 +2173,131 @@ outside them.
 **Content-run stamps:** not touched this run (monthly run, not a content
 run) — `.content-week` already shows an uncommitted `2026-40 2` from the
 29 Sep content run; left as-is, not this run's concern.
+
+---
+
+## 2026-10-05 — weekly run
+
+**Headline: clicks down WoW, but this is reversion from a spike, not a
+regression — checked live before concluding that.** Trailing 7-day
+windows: Sep 19-25 = 13 clicks/797 impr (1.63% CTR) → Sep 26-Oct 2 = 8
+clicks/474 impr (1.69% CTR). CTR itself is flat-to-up; the drop is entirely
+impressions. Pulled the full 5-week daily trend to put it in context before
+reacting: Sep 5-11 = 426 impr, Sep 12-18 = 520, **Sep 19-25 = 797 (the
+outlier)**, Sep 26-Oct 2 = 474. This week's 474 sits above both weeks
+preceding the spike — the underlying trend is still up, Sep 19-25 was a
+4-day-concentrated spike (76% of that week's impressions landed on just
+Sep 19-22) that partly reverted, not a new baseline that collapsed.
+
+**Verified this wasn't a technical fault before calling it noise.** Built a
+one-off page-level diff between the two windows (scratch script, GSC
+`dimensions:['page']` over each 7-day range — not saved, same pattern as
+`gsc-report.mjs`). The four biggest impression losses were Bambu A1 Mini
+(110→35), Kärcher K5 (105→41), Kärcher K2 (54→7) and Stihl MS-250 (43→4).
+Position barely moved on three of them (K5 6.1→7.7, A1-Mini 7.9→8.8,
+K2 7.3→8.6) and **Stihl MS-250's position actually improved** (9.1→8.3)
+while its impressions collapsed 91% — a page getting a better ranking
+while losing nearly all its impressions is the clearest signal available
+that this is query-volume/demand fluctuation, not a ranking or on-page
+problem. Live-`curl`-checked all four pages anyway (title, meta,
+canonical, robots) — all 200, all well-formed, no noindex, nothing
+regressed. **Conclusion: no fix needed, watch next week to see if Sep
+19-25's level returns or 450-500/week is the new real baseline.**
+
+**CTR quick wins: none shipped, deliberately.** Checked every page with
+position 5-15 and 0 clicks over 30 days that hasn't already been
+confirmed as authority-cap-SERP (Kärcher K2 confirmed previously; this
+run added DeWalt DCN660, Record Power PT260, Prusa MK3S, Ryobi ONE+ 18V
+to the check list). All four already have well-formed, front-loaded
+titles following the site's own winning formula (brand + model + exact
+phrase, under 60 chars) — `curl`-verified live. Live-searched DCN660's
+query ("dewalt dcn660 nailer won't fire nails") to check for an
+authority-cap SERP; the result was fragmented (iFixit, a tractor forum,
+eBay listings, parts sites) rather than one entrenched source, so this
+one reads as genuinely low-volume (27 impr/30d) rather than a confirmed
+8th authority-cap page — not claiming it as confirmed, just noting it's
+inconclusive either way. No title/meta on any checked page was worth
+rewriting without evidence it would move anything; shipping a tweak here
+would have been motion without evidence (rail 8), so none shipped.
+
+**Indexing: 64/73 (88%) Submitted and indexed**, essentially flat vs
+58/65 (89%) on 1 Oct once the 8 new August hub-page URLs are accounted
+for. Genuinely good news buried in the raw number: **6 of the 8 new
+category hub pages (`/faults/<category>/`) already indexed within 3-4
+days** of shipping on 1 Oct — only `blades-alignment` and
+`electronics-firmware` remain "URL is unknown to Google", and six
+siblings clearing that fast says this is just the two youngest hubs
+still waiting their turn, not a problem. `makita/hr2470` is unchanged
+("Discovered — currently not indexed", per rail 6 left to time). The one
+new item: **`record-power/envoy` moved from "URL is unknown" (1 Oct) to
+"Crawled — currently not indexed"** (confirmed today) — Google has now
+looked and declined, at 6 days old. Checked it isn't a thin-content
+problem before treating it as a watch item: 967 words (well above the
+site's 550-715 typical range), and the automatic Related-Faults
+mechanism (`src/pages/tools/[brand]/[model].astro`, brand-then-category-
+then-rotation) already gives it inbound links from the other Record
+Power and Blades & Alignment entries with no manual action needed — so
+there's no internal-linking gap to fix here, unlike the "Discovered"
+cases the playbook's lever is aimed at. **Not pruning or rewriting**: one
+sweep at 6 days old is nowhere near the bar rail 6 and the 28 Sep/1 Oct
+Bosch PST-700-E precedent set (that one sat crawled-not-indexed across
+multiple sweeps over weeks before being judged). Flagging to watch next
+week, same treatment as Bosch got before it was judged old enough to act
+on. Snapshot saved to `seo-agent-logs/coverage/2026-10-05.csv` for next
+week's diff.
+
+**Weekly entry audit: 3 of 3 clean** — DeWalt DW733 (overload-trip/reset),
+Kärcher K3 (no detergent infeed), Axminster AP2920B (blade breakage), the
+three entries from the 28-29 Sep content runs not already re-verified by
+the 1 Oct monthly sourcing audit. All three re-fetched cold from their
+cited primary documents (not drafting-time quotes):
+
+- **DW733**: fetched `assets.dewalt.co.uk/GLOBALBOM/GB/DW733/11/
+  Instruction_Manual/EN/DW733_T11_GB_XE.pdf` directly (the exact filename
+  cited in `sources:`, located via the live product page's download
+  links). Verbatim matches: "The On/Off switch of your DW733 is equipped
+  with a circuit breaker. In case of motor overload, the power supply to
+  the motor will be cut off... turn the machine off and press the reset
+  button 36"; "The workpiece should not be in contact with the cutterhead
+  when switching on"; "Allow the motor to reach full speed before feeding
+  the workpiece"; and the 3mm blade re-sharpening limit ("The blades can
+  be re-sharpened max. 3 mm down from their original size. If the blade
+  size has decreased by more than 3 mm, the blades have to be replaced").
+  Every diagnostic step and the parts note trace directly.
+- **Kärcher K3**: tracked down the actual document behind the cited
+  "59675750 (05/17)" reference number — not on the first few search
+  hits (which surfaced other K3 document numbers, 59686500 and others,
+  a reminder to check the number on the title page rather than assume
+  the first hit is right) but confirmed at
+  `s1.kaercher-media.com/documents/manuals/raw/000/BTA-5521453-000-00.pdf`,
+  whose own title page reads "K 3 Full Control... 59675750 (05/17)" —
+  exact match. Verbatim matches: "Detergent can only be added when the
+  device is operated in low pressure mode"; "Remove filter from suction
+  hose for detergent and clean under running water"; "Check the
+  detergent suction hose for kinks"; and the Troubleshooting section's
+  own "No detergent infeed" entry: "Use Vario Power spray lance. Turn
+  the spray lance to 'Mix' position." UK/EU relevance confirmed via the
+  spec table (220-240V, IP X5, EN 60335-2-79).
+- **Axminster AP2920B**: re-fetched `cdn.axminstertools.com/media/
+  downloads/108517_manual.pdf` fresh. Verbatim matches: "The best place
+  to check blade tension is on the left hand side of the bandsaw. Around
+  1cm of blade movement is recommended"; "too little blade tension can
+  cause blade breakage"; guide bearings "approximately 2mm behind the
+  gullet" with "Maximum Clearance 0.5mm"; thrust bearing "approximately
+  1mm behind the blade"; and the Troubleshooting section's "Getting
+  blade breakage?" entry names the same three causes in the same order
+  the entry gives them: "Blade tension too slack. Blade guides
+  misaligned. Feeding timber too quickly."
+
+Nothing cut, nothing corrected — a genuinely clean result, third
+straight clean weekly audit (21 Sep, 28 Sep, now this run) for entries
+published under the full-authority era. Did not re-audit Record Power
+Envoy this run (already covered 3, satisfying the playbook's 2-3; its
+indexing status is the open item above, not a sourcing one).
+
+**No content run this run** — this is a measurement/technical-SEO run
+per this week's instructions, not a content run; no new entries written
+or published.
+
+**NEEDS HUMAN: none.** Nothing found this run required a judgement call
+outside the existing authority and sourcing rails.
