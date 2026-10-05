@@ -2301,3 +2301,83 @@ or published.
 
 **NEEDS HUMAN: none.** Nothing found this run required a judgement call
 outside the existing authority and sourcing rails.
+
+---
+
+## 2026-10-05 — content run (first of ISO week 2026-W41)
+
+**Topic selection: no GSC-query gap this time.** Checked every top query in
+`gsc-report.mjs --days 30` against the current 46-entry library first (cadence
+order #1) — every query with impressions already maps to an existing route
+(Bambu "busy with another job" variants → A1/A1-Mini/P1S, Henry/HVR200 cutout
+variants, Kärcher K2/K4/K5 variants, HMS error code → A1 Mini). Fell back to
+sibling-model sourcing on brands already converting (order #2/#4) instead.
+
+### Published: Triton TWX7CS002 contractor saw module — cuts off-square
+
+New Triton model (brand's best-converting, TPT125 ~10% CTR), not a duplicate
+of the existing TRA001 (router table winder) or TPT125 (planer) routes.
+Found via web search for a Triton manual PDF directly on `tritontools.com/cdn/
+shop/files/` rather than crawling the product page (same pattern as the 22
+Sep Axminster finding — search for the PDF, don't crawl). **One real model
+mismatch caught before use**: the first search hit's filename implied
+TWX7CS001, but the fetched PDF's own title page and every cross-reference in
+it read TWX7CS002 throughout — checked and used the correct model's data
+only, not the URL's apparent model number. This is the DCS359/Kärcher-NA
+trap's generalisation one more time: even a file fetched by its own slug can
+carry the wrong model inside it; the title page is the only trustworthy
+check.
+
+Verification gate — primary document: Triton TWX7 1800W Contractor Saw
+Module (TWX7CS002) Operating & Safety Instructions, version date 29.04.24
+(`tritontools.com/cdn/shop/files/386907_Z1MANPRO1.pdf`). UK/EU relevance
+confirmed via "Plug fuse rating (UK Only): 13A" and "Voltage: 220-240V~
+50/60Hz" on the spec page. Quotes matched verbatim against every diagnostic
+claim:
+- "Cutting profiles are inconsistent with measurements | Supporting
+  Protractor Gauge (48) or Rip Fence (59) insufficiently fastened | Refasten
+  supporting fences and ensure there is no movement when pressure is
+  applied"
+- "Saw Blade (8) not calibrated | Calibrate the Saw Blade using the method
+  described under 'Blade calibration'"
+- "Sacrificial wood on Protractor Gauge (48) no longer provides sufficient
+  support | Replace the sacrificial wood piece"
+- "Bevel angle setting is loose | Bevel Angle Locking Lever (4) not engaged
+  | Lock the Bevel Angle Locking Lever"
+- The full numbered Blade calibration procedure (raise blade, lock height,
+  true to a set square via the Bevel Angle Adjuster, then reset the 0°/45°
+  Trimming Screws so the gauge pointer matches the corrected blade) is
+  quoted near-verbatim into the diagnostic steps, item numbers cross-checked
+  against the manual's own Product Familiarisation parts key.
+
+Illustrated (`triton-twx7cs002.png`, 1536x1024 — wide table-saw-module
+subject): clean on the first attempt, rip fence, protractor gauge, blade
+through the kerf slot and the circuit breaker reset button all visible.
+Built, pushed (`11901bc`), verified live (200, correct title/JSON-LD/
+citation rendering) before starting the next entry.
+
+### Researched and dropped this run (sourcing or content-overlap reasons)
+
+- **Record Power Coronet Regent/Herald lathes** — the 22 Sep "sibling,
+  unconfirmed" item is still unresolved. No manual PDF surfaced on
+  `recordpower.co.uk` or via search for either model (model code REC18001
+  for Regent); only vintage-lathe archive sites (lathes.co.uk) carry
+  anything, and those are pre-Record-Power-ownership scanned data packs, not
+  a current official document. Deprioritise until a direct manual URL turns
+  up — searching harder on the same terms isn't working.
+- **DeWalt DWE560/DWE550 circular saw** — found and fetched the genuine UK
+  manual (`assets.dewalt.co.uk/GLOBALBOM/GB/DWE560/1/Instruction_Manual/EN/
+  NA523743_DWE560_DWE550_T1_GB_XE.pdf`, `_GB_XE` filename per the established
+  UK-confirmation pattern) but it has no troubleshooting table — only
+  kickback-avoidance safety instruction, the same shape as the Bosch/Makita
+  short-manual gap already documented repeatedly. Writing a "fault" entry
+  from safety-warning prose would mean reconstructing a procedure the
+  manual doesn't give, which the gate exists to prevent. Dropped, not
+  padded.
+- **Makita DCL182 cordless vacuum** — found a genuine official manual
+  (`icmsmakita.eu` EU CMS, 96 pages) with a real Troubleshooting table, but
+  its content is the same thin two-line "empty the bag / charge the
+  battery" boilerplate already flagged on 22 Sep as not worth a dedicated
+  entry for cordless accessories. Would have read as filler against the
+  site's 550-715 word norm. Dropped on content depth, not sourcing.
+
