@@ -2381,3 +2381,63 @@ citation rendering) before starting the next entry.
   entry for cordless accessories. Would have read as filler against the
   site's 550-715 word norm. Dropped on content depth, not sourcing.
 
+### Published: Numatic George GVE370 — won't pick up water (float valve)
+
+New Numatic model — George is a distinct wet/dry vacuum from the existing
+Henry (HVR200) entry, with genuinely different fault content (water
+tank/float valve/spray wand vs Henry's dry-only thermal cutout), not a
+sibling-boilerplate repeat.
+
+Verification gate — primary document: Numatic GVE370/CT370/CT380/CT470
+Original Instructions (`cdn.numatic.com/wp-content/uploads/
+915147-GVE-CT-European-Instruction-Manual.pdf`). UK relevance confirmed via
+the Numatic International Ltd, Chard, Somerset, TA20 2GB manufacturer
+address and the "Only for UK & EU Countries" WEEE note. Quotes matched
+verbatim:
+- Fault Finding table: "Vacuum will not pick up liquid | Inspect Floor Tool,
+  wand and hose for blockages... Float Valve has operated (Pitch of motor
+  has changed) | Follow instructions on how to empty dirty water (page 7)"
+- Spray/Extraction warning section: "If foam/liquid comes out of machine
+  exhaust, switch off immediately. Allow the accumulated liquid to drain
+  out through the machine exhaust, check the float assembly to ensure
+  correct operation, empty the container if full of liquid, reassemble the
+  machine."
+- Daily maintenance list: "Clean and check float safety valve for signs of
+  damage."
+No `parts:` added — none of the manual's named consumables (dust bags,
+filter) are implicated in this specific wet-mode fault, and the fix is a
+check/empty with no genuine purchase tied to it; bolting on dry-mode
+consumables would have been exactly the "generic shop" mismatch the parts
+rules warn against.
+
+Illustrated (`numatic-george-gve370.png`, 1024x1024): clean on the first
+attempt — barrel body, hose, wand, float-valve grille and drain cap all
+visible. Built, pushed (`375e5b5`), verified live (200, correct title
+rendering) before stopping for the run.
+
+### Stopped at 2 — one further candidate tried and dropped
+
+- **Bosch DIY range** (as distinct from the Professional range already
+  ruled out four times across 16/22/28/29 Sep) — searched specifically for
+  `bosch-diy.com`/`bosch-do-it-yourself.com` hosted sander manuals; nothing
+  from Bosch's own domain surfaced, only third-party manual-aggregator
+  mirrors (manualslib, notice-facile), which this site doesn't use as a
+  primary source. This is the fifth failed Bosch attempt across five
+  different runs and two different product ranges — deprioritising Bosch
+  entirely until a genuinely new lead appears, rather than retrying the
+  same search pattern a sixth time.
+
+**Run total: 2 of the 7-entry ceiling published** — Triton TWX7CS002 and
+Numatic George GVE370, both entry-at-a-time to live via the full research →
+draft → gate → illustrate → build → push → verify → journal cycle. Stopped
+deliberately: five candidates were researched this run (Record Power
+Regent/Herald, DeWalt DWE560, Makita DCL182, Bosch DIY) and all five were
+genuinely dropped on sourcing or content-depth grounds, not on the 7-entry
+ceiling — sourcing was the binding constraint, exactly as the playbook
+expects most runs to look. This is the first content run of ISO week
+2026-W41 (within the 2-runs-per-week cadence; `.content-week` will be
+updated by the dispatcher on exit, not by this run, per the 5 Oct 2026
+weekly-run finding on how those stamp files work).
+
+**NEEDS HUMAN: none.** Everything this run required was within the existing
+authority and sourcing rails.
