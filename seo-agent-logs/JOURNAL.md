@@ -2441,3 +2441,135 @@ weekly-run finding on how those stamp files work).
 
 **NEEDS HUMAN: none.** Everything this run required was within the existing
 authority and sourcing rails.
+
+## 2026-10-06 — content run (second of ISO week 2026-W41)
+
+**Topic selection: no GSC-query gap again.** Checked every top query in
+`gsc-report.mjs --days 30` against the current 47-entry library first — all
+impression-bearing queries map to existing routes (Bambu "busy with another
+job" variants, Henry/HVR200 cutout, Kärcher K2/K4/K5 variants, DWS774, HMS
+error code). Fell back to sibling-model sourcing on already-converting
+brands and single-entry brand hubs (cadence order #2/#4).
+
+### Published: Einhell GE-CM 36 Li cordless lawn mower — won't start
+
+Second Einhell entry (the brand had only one, the TE-CD 18 Li drill),
+strengthening that hub. Found via the official `einhell-service.com`
+UK product page (`.../en_GB/3413068-ge-cm-36-li-ex-uk.html`), which links a
+genuine manufacturer-hosted manual PDF via a CloudFront asset URL — a new
+usable source pattern, not yet in the reachable-sources list.
+
+Verification gate — primary document: Einhell GE-CM 36 Li Original
+Operating Instructions, Art.-Nr. 34.130.68, I.-Nr. 11013 (fetched directly
+via curl from the CloudFront URL the service page links, then
+`pdftotext -layout`). UK relevance confirmed via the page's own
+`-ex-uk` suffix and the manual's charger spec ("Check that your mains
+voltage is the same as that marked on the rating plate... Insert voltage:
+230 V ~"). Quotes matched verbatim against every diagnostic claim, Section
+12 Troubleshooting table, "Motor does not start":
+- "a) Capacitor defective ... a) By customer service center"
+- "b) Motor terminals or capacitor disconnected ... b) By customer service
+  center"
+- "c) Mower standing in high grass ... c) Start motor on shorter grass or
+  already mowed area; change cutting height if necessary"
+- "d) The mower housing is clogged ... d) Clean housing so that the blade
+  can run freely"
+- "e) Safety switch is not inserted ... e) Insert safety switch (see 7.)"
+- "f) Battery is not correctly inserted ... f) Remove the battery and
+  reinsert (see 6.)"
+Cross-referenced into Section 7: "the lawn mower is equipped with a safety
+switch ... which must be pressed before the switching bar ... can be
+activated" and Section 6: battery cover must "latch in place correctly",
+"Always charge the two batteries simultaneously", run time set by "the
+battery with the lower charge level". No claim in the entry goes beyond
+what these two sections state — the capacitor/motor-terminal causes are
+left as "by customer service center" exactly as the manual gives them, no
+user procedure invented for either.
+
+Checked against content overlap with the existing Makita DLM380 won't-start
+entry (also a cordless mower) before drafting: DLM380's own table is
+entirely about the two-battery/lock-key/switch-button start sequence and
+says nothing about grass length, housing clogging, or a capacitor fault —
+genuinely different cause set, not a sibling-boilerplate repeat.
+
+Illustrated (`einhell-ge-cm-36-li.png`, 1536x1024): clean on the first
+attempt — twin battery bay under its open cover, handlebar safety switch
+and switching bar, grass basket and height-adjust lever all visible, white
+background with no glow/shadow.
+
+Built, pushed (`41fb822`), verified live (200, correct title, "Motor does
+not start" content rendering) before journaling.
+
+### Researched and dropped this run (sourcing or content-depth reasons)
+
+- **Record Power SS16V scroll saw** — found what claims to be the genuine
+  manual (a 2017-dated "SS16V Manual 4.0" naming the UK/EP/AUS versions,
+  mirrored by an Australian retailer CDN), but the retailer's exact PDF URL
+  500-errored on every fetch attempt (tried curl directly and via the
+  product's own print page, which separately 403'd). Its own table of
+  contents (visible in search snippets) lists only assembly, operation,
+  electrical connection, dust extraction and blade choice — no
+  Troubleshooting/Fault Finding section — so even had the fetch succeeded
+  this looked like the same "no dedicated fault content" shape already hit
+  on other short-form manuals. Dropped on both grounds.
+- **Kärcher K2 Power Control / Full Control Home** — real manuals exist on
+  `s1.kaercher-media.com`, but K2 is already covered on this site
+  (`karcher-k2-leaking-base`); a second K2-family entry risked being the
+  same sibling-variant content under a different sub-name rather than a
+  genuinely distinct fault. Not pursued further without a clearly different
+  fault to justify it.
+- **Kärcher WD 3 wet & dry vacuum** — genuine official HTML manual
+  confirmed on `s1.kaercher-media.com` (document 59510210, 12/21), with a
+  real but very thin troubleshooting section: one symptom ("Declining
+  suction performance") with four causes, all clog/filter/bag related —
+  close to the same generic shop-vac boilerplate already flagged thin for
+  Makita's DCL182 cordless vacuum on 5 Oct. Dropped on content depth.
+- **Numatic Hetty/Henry HVR 160-11** — genuine manual found (mirrored on a
+  university accommodation-manuals page, `media.www.kent.ac.uk`), confirmed
+  via its own title page, but its fault content is the same thermal-
+  protection-device/blockage boilerplate already published in the existing
+  `numatic-hvr200-thermal-cutout` entry — a sibling-boilerplate repeat, not
+  new library depth. Dropped.
+- **DeWalt DCD796 combi drill** — no official `assets.dewalt.co.uk` or
+  product-page manual link surfaced in search; only third-party manual
+  repositories (manualslib, manuals.plus), which this site doesn't use as a
+  primary source. Dropped on sourcing.
+- **Axminster SIEG mini lathe, Record Power Regent/Herald** — no official
+  current-production manual surfaced for either (only archive.org scans of
+  vintage pre-ownership editions for the SIEG lathes, and the 22/29
+  Sep "unconfirmed" status for Regent/Herald unchanged on a further
+  search). Dropped on sourcing, consistent with prior runs.
+- **Triton TWX7CS001** — turned out on closer inspection to be the North
+  American market name for the same contractor saw module this site
+  already covers as TWX7CS002 (UK/EU), not a distinct UK product — the
+  same market-variant trap already documented for DeWalt (DCS359) and
+  Kärcher (K3 NA edition). Not pursued as a second Triton entry.
+- **Ryobi ONE+ string trimmer (line-feed fault) and a second Milwaukee M18
+  tool** — both would have filled a single-entry brand hub, same as
+  Einhell, but neither `ryobitools.eu` nor `milwaukeetool.eu` surfaced a
+  directly fetchable official manual PDF or product-page download link in
+  search or a direct product-page fetch (the one guessed `milwaukeetool.eu`
+  product URL tried this run 404'd); every hit was a third-party manual
+  repository (manualslib, notice-facile), not usable under rail 3. Worth
+  retrying with better-targeted product URLs another run rather than
+  writing either brand off.
+
+**Run total: 1 of the 7-entry ceiling published** — Einhell GE-CM 36 Li.
+Stopped deliberately after ten further candidates were researched and
+dropped this run (Record Power SS16V, Kärcher K2 variant, Kärcher WD3,
+Numatic Hetty, DeWalt DCD796, Axminster SIEG lathe, Record Power
+Regent/Herald, Triton TWX7CS001, Ryobi trimmer, Milwaukee M18) on sourcing,
+content-depth, or content-overlap grounds — sourcing was the binding
+constraint, exactly as the playbook expects most runs to look. New durable
+finding worth keeping in memory: `einhell-service.com`'s
+`en_GB/...-ex-uk.html` product pages link genuine manufacturer-hosted
+manual PDFs via CloudFront asset URLs — add Einhell to the
+reachable-sources list alongside Bambu wiki, help.prusa3d.com, Record
+Power's KB/manuals, media.makita.co.nz/makita.in,
+service.dewalt.co.uk/assets.dewalt.co.uk, cdn.numatic.com,
+cdn.axminstertools.com, s1.kaercher-media.com and tritontools.com's
+cdn/shop/files path. Ryobi (ryobitools.eu) and Milwaukee (milwaukeetool.eu)
+are not yet on that list — not ruled out, just unresolved this run.
+
+**NEEDS HUMAN: none.** Everything this run required was within the existing
+authority and sourcing rails.
