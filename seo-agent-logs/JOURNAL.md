@@ -2573,3 +2573,124 @@ are not yet on that list — not ruled out, just unresolved this run.
 
 **NEEDS HUMAN: none.** Everything this run required was within the existing
 authority and sourcing rails.
+
+---
+
+## 2026-10-12 — weekly run (eleventh run)
+
+**Headline: clicks roughly flat WoW, impressions up — CTR diluted by
+indexing growth, not a regression.** Trailing 7-day windows: Sep 26-Oct 2
+(last week's figure) = 8 clicks/474 impr (1.69% CTR) → Oct 3-9 = 7
+clicks/649 impr (1.08% CTR). Impressions up 37% while clicks held flat —
+read as new pages picking up impressions before they've started
+converting, not a ranking problem; nothing below suggested a technical
+cause. 14-day total (Sep 27-Oct 9): 13 clicks/1067 impr/1.22% CTR.
+
+**Page-level: Bambu P1S is now the single best-performing page this
+period** (4 clicks/138 impr, pos 7.7), overtaking Bambu A1 — which had
+**0 clicks on 159 impressions** this window despite being the
+historically dominant page. Live-`curl`-checked A1 before treating this
+as noise: title, meta description and canonical are all intact and
+unchanged (confirmed against the 1 Oct sourcing-fix version), 200 OK.
+Given A1's CTR has swung between 0% and several % week-to-week in every
+prior log entry, one zero week isn't a new finding — watching, not
+acting.
+
+**CTR quick wins: one candidate checked and correctly rejected.** Top
+queries flagged "why does pressure washer keep crashing" — 35
+impressions over 14 days at position **4.0**, 0 clicks, a result good
+enough to normally warrant a title look. Traced it to a specific page
+with a one-off `dimensions:['query','page']` GSC pull (not saved): all
+35 impressions are `karcher/k4/`. Live-searched the exact query before
+touching anything — the real SERP (Husqvarna's own support article, a
+few low-quality mirrors) is about a washer that **stops suddenly
+mid-use** from thermal cutout, a tripped breaker, or stale fuel. K4's
+entry is about pulsing/cycling on and off at idle with the trigger
+released — a different fault with a different cause. The page correctly
+isn't catching clicks here because it isn't the right answer to this
+query; rewriting the title to chase it would be clickbait over a
+mismatch, not a fix. No change made.
+
+**Indexing: 73/78 (93.6%) Submitted and indexed, up from 66/75 (88%) on
+5 Oct.** Two concrete resolutions since last week's watch-list:
+
+- **`record-power/envoy`** — flagged "Crawled – currently not indexed" on
+  5 Oct at 6 days old — is now **"Submitted and indexed."** Confirms last
+  week's call not to act on one sweep was right; it just needed another
+  week.
+- **All three of this week's content-run URLs** (Triton `twx7cs002`,
+  Numatic `gve370`, Einhell `ge-cm-36-li`) are already **"Submitted and
+  indexed"**, 5-6 days after publish — same fast same-week turnaround
+  the library has shown since late September.
+- `axminster/ap2920b`, `dewalt/dw733` and `karcher/k3` all moved from "URL
+  is unknown to Google" to "Discovered – currently not indexed" — moving
+  in the right direction, left to time per rail 6.
+
+**`bosch/pst-700-e` remains "Crawled – currently not indexed" on a fourth
+consecutive sweep** (28 Sep, 1 Oct, 5 Oct, now 12 Oct), despite the 1 Oct
+fix that replaced its vague sourcing with a real manual citation
+(document 2 609 003 949). The re-sourcing didn't move its indexing
+status — three weeks and four sweeps is now well past the bar the
+playbook sets for judging a page genuinely stuck. **Flagging for the next
+monthly run (1 Nov) as a prune-or-promote decision** — re-sourcing already
+happened and didn't help, so promoting with more unique depth or pruning
+per rail 6 are the remaining options; not a weekly-run action. Coverage
+snapshot saved to `seo-agent-logs/coverage/2026-10-12.csv`.
+
+**Weekly entry audit: 3 of 3 clean** — Triton TWX7CS002 (fence
+calibration), Numatic George GVE370 (float valve), Einhell GE-CM 36 Li
+(won't start) — all three entries published since the last weekly run,
+all re-fetched cold from primary sources (not drafting-time quotes):
+
+- **Triton TWX7CS002**: the product page 404s via `curl` from this
+  session (Shopify geo-routes the request and serves a themed 404 for
+  this product ID outside its detected region) — worked around by
+  web-searching for the manual's own filename/version string
+  ("Version date: 29.04.24") rather than crawling the product page, which
+  surfaced a distributor mirror (hardeman-distribution.com) serving the
+  identical file. Confirmed genuine via the title page (model
+  `TWX7CS002`, filename `386907_OwnerManual.indd`, "Version date:
+  29.04.24" — all three match the cited source exactly). Verbatim matches
+  in the Troubleshooting table: "Cutting profiles are inconsistent with
+  measurements" → "Supporting Protractor Gauge (48) or Rip Fence (59)
+  insufficiently fastened" / "Saw Blade (8) not calibrated" / "Sacrificial
+  wood on Protractor Gauge (48) no longer provides sufficient support" /
+  "Bevel Angle Locking Lever (4) not engaged" — all four causes, same
+  order as the entry's diagnostic steps. The Blade calibration section
+  matches the trimming-screw procedure step for step (loosen 0° Trimming
+  Screw (76), adjust, tighten, align pointer; repeat for the 45° Trimming
+  Screw (75)).
+- **Numatic George GVE370**: re-fetched `cdn.numatic.com/wp-content/
+  uploads/915147-GVE-CT-European-Instruction-Manual.pdf`, confirmed the
+  model is named on the cover. Verbatim matches in the Fault Finding
+  table: "Vacuum will not pick up liquid" lists "Inspect Floor Tool, wand
+  and hose for blockages" before "Float Valve has operated (Pitch of
+  motor has changed) → Follow instructions on how to empty dirty water" —
+  same order the entry gives. The exhaust warning ("If foam/liquid comes
+  out of machine exhaust, switch off immediately. Allow the accumulated
+  liquid to drain out through the machine exhaust, check the float
+  assembly to ensure correct operation...") and the daily-maintenance line
+  ("Clean and check float safety valve for signs of damage") both match
+  verbatim.
+- **Einhell GE-CM 36 Li**: re-fetched the manual from `einhell-
+  service.com`'s CloudFront asset link, confirmed the title page's own
+  article/index numbers (34.130.68 / 11013) match the cited source
+  exactly. Section 12's "Motor does not start" table lists all six causes
+  in the entry's order verbatim (capacitor defective / motor terminals or
+  capacitor disconnected / high grass / clogged housing / safety switch
+  not inserted / battery not correctly inserted), and Section 6/7's
+  battery and safety-switch wording matches word for word: "a safety
+  switch...which must be pressed before the switching bar...can be
+  activated," "Use only batteries which are charged to the same level...
+  Always charge the two batteries simultaneously," "operating time
+  depends on the battery with the lower charge level," and "make sure
+  that it latches in place correctly."
+
+Nothing cut, nothing corrected — fourth straight clean weekly audit (21
+Sep, 28 Sep, 5 Oct, now this run) for full-authority-era entries.
+
+**No content run this run** — measurement/technical-SEO run per this
+week's instructions, not a content run; no new entries written.
+
+**NEEDS HUMAN: none.** Nothing found this run required a judgement call
+outside the existing authority and sourcing rails.
