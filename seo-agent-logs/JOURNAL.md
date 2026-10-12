@@ -2750,3 +2750,96 @@ shading artefacts. Built, pushed (`d72c795`), and verified live at
 
 **Run total so far: 1 of the 7-entry ceiling published.** Continuing to the
 next candidate.
+
+### Published: Triton TWX7RT001 router table module — no power
+
+Third Triton entry (TRA001 table winder jams, TWX7CS002 inconsistent cuts).
+Retried the TWX7RT001 router table module flagged unreachable on 15/16 Sep
+(`tritontools.com` 404s) using the pattern that worked for TWX7CS002 on
+5 Oct: search for the manual's own filename rather than crawling the
+product page. Found a genuine mirror (jettools.ru, a Russian tool retailer)
+of Triton's own "Operating and Safety Instructions" — confirmed genuine by
+the printed model number on the guarantee page ("Model: TWX7RT001"), British
+English throughout, and a GB-marked language section, the same mirror-
+acceptance standard already used for the 12 Oct TWX7CS002 audit
+(hardeman-distribution.com).
+
+Verification gate — primary document: Triton TWX7RT001 Router Table Module
+Operating and Safety Instructions, doc ref 265709_Z1MANPRO1, dated
+23/11/2016 (fetched directly via curl, `pdftotext -layout`). Quotes matched
+verbatim against every diagnostic claim, Troubleshooting table, "No
+function when power turned on":
+- "No power" → "Check power supply"
+- "Router unit's power switch is off" → "Reset router power switch"
+
+And from the body text (not just the table):
+- "The switchbox requires a live mains connection to switch ON. It will
+  reset to OFF as soon as power is disconnected and require resetting to ON
+  when power is restored to continue operation."
+- Switch-on sequence steps 1-5 (Workcentre switch location, connect mains,
+  flap to 'O', router's own switch to 'I', Workcentre switch to 'I') —
+  matched exactly, after correcting a first-draft paraphrase that had two
+  steps in the wrong order (caught at the gate by re-reading the numbered
+  list against the draft, not just pattern-matching the gist of it).
+- Bit-changing procedure: "...return the router on/off switch to the
+  on/position" (once the Workcentre switch is confirmed off) — matched.
+- Maintenance section: "Repairs should be carried out by an authorised
+  Triton service centre" (specifically about the supply cord) — matched;
+  narrowed a first-draft claim that had generalised this to "wiring faults"
+  broadly, which the manual doesn't say.
+
+Illustrated with `openai-image` (gpt-image-1), 1536x1024. First attempt had
+faint cast shadows under all four feet despite the standard anti-shadow
+clause — regenerated once with explicit "no shadow under the feet, legs end
+in mid-air on blank white paper" wording, which came back clean (pure white
+background, no shadows, switchbox/flap, router-under-table, insert plate
+and winder handle all correctly rendered). Built, pushed (`00f1987`), and
+verified live at `/tools/triton/twx7rt001/` (200 OK, correct title/content).
+
+**Run total: 2 of the 7-entry ceiling published.** Stopping here deliberately
+— sourcing, not effort, is the binding constraint this run. Candidates
+researched and dropped, in order tried:
+- **Axminster** (table saw, router table, mortiser) — no official
+  `cdn.axminstertools.com` troubleshooting PDF surfaced for any of three
+  searches; only forum threads and third-party manual indexes (ManualsLib)
+  with no confirmable fault content.
+- **DeWalt DCS355/356 UK oscillating multi-tool** — spec table found
+  (ManualsLib) but no UK-market troubleshooting section anywhere; the only
+  troubleshooting content in search results was for unrelated DeWalt models.
+- **Milwaukee M18 (milwaukeetool.eu)** — found a genuine EU product page
+  with a "Product Downloads" tab, but fetching it directly confirmed the
+  tab is JS-gated (no PDF link in the raw HTML) — same unresolved-source
+  pattern flagged 6 Oct, still unresolved.
+- **Ryobi ONE+ (ryobitools.eu)** — no official-domain manual surfaced; every
+  hit was ManualsLib or notice-facile, both already ruled out as unusable
+  under rail 3.
+- **Kärcher K2 Compact/Classic, window vac, steam cleaner** — no
+  `s1.kaercher-media.com` document surfaced for any of these; results were
+  all ManualsLib/manuals.plus or (for steam cleaners) Kärcher Australia's
+  web troubleshooting pages, not a checkable UK document, and K2
+  Compact/Classic risked restating the existing `karcher-k2` entry even if
+  a source had been found.
+- **Numatic Hetty** — no `cdn.numatic.com` document surfaced; only
+  device.report/ManualsLib mirrors, with no fault-finding section visible
+  in any extracted snippet (second straight run this lead has failed, after
+  6 Oct).
+- **Record Power SS16V scroll saw** — found and fetched a genuine UK-market
+  manual (machineryhouse.com.au mirror, confirmed via "54100 (UK version)"
+  on the title page) but it has no troubleshooting section anywhere in the
+  body — a real document that simply doesn't carry the content needed,
+  distinct from the 6 Oct finding where a captioned "SS16V" search result
+  resolved to the wrong product entirely.
+- **DeWalt DW713 mitre saw, DCH273 SDS hammer** — DW713's only located
+  manual (service.dewalt.ch) 403'd; DCH273's guessed dewalt.co.uk product
+  URL resolved to a generic page (200 OK but no product content, confirmed
+  by checking the page title), not the actual product.
+
+New durable finding worth keeping in memory: a third-party mirror of an
+official manual is acceptable under rail 3 when the document itself proves
+genuine (exact model number on its own guarantee/title page, correct
+language and spelling conventions) — now used twice for Triton
+(hardeman-distribution.com for TWX7CS002, jettools.ru for TWX7RT001) after
+`tritontools.com` itself proved unreachable from this session both times.
+
+**NEEDS HUMAN: none.** Everything this run required was within the existing
+authority and sourcing rails.
