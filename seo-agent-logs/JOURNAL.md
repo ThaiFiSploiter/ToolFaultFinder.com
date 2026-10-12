@@ -2694,3 +2694,59 @@ week's instructions, not a content run; no new entries written.
 
 **NEEDS HUMAN: none.** Nothing found this run required a judgement call
 outside the existing authority and sourcing rails.
+
+## 2026-10-12 — content run (first of ISO week 2026-W42)
+
+**Topic selection: no GSC-query gap again.** Checked every top query in
+`gsc-report.mjs --days 30` against the current 48-entry library — all
+impression-bearing queries (Bambu "busy with another job" variants, K2/K4
+leaking/pulsing variants, HMS error code, DWS774, DML305, DGA408) map to
+existing routes. Fell back to sibling-model sourcing on a brand with a
+confirmed-reliable source and only two entries so far (cadence order #2/#4).
+
+### Published: Einhell GP-LC 36/40 Li BL cordless chainsaw — won't run / cuts out
+
+Third Einhell entry (brand had TE-CD 18 Li drill and GE-CM 36 Li mower).
+Found via `einhell-service.com`'s en_GB storefront: the cordless-chainsaw
+category listing page (no search index needed — fetched the category page
+directly, listed products by article number) linked a CloudFront-hosted
+manual PDF for article 4600050. No `-ex-uk`/`-ex-na` sibling SKU existed for
+this specific sub-model in the category listing (unlike the GP-LC 36/35 Li
+model, which does have a separate `-ex-na` edition) — read as this exact
+model being EU/UK-only, lower market-mismatch risk than the mower/drill
+entries which needed the `-ex-uk` suffix check.
+
+Verification gate — primary document: Einhell GP-LC 36/40 Li BL Original
+Operating Instructions, Art.-Nr. 46.000.50, I.-Nr. 21013 (fetched directly
+via curl from the CloudFront asset URL the product page links, then
+`pdftotext -layout`). Title page confirms the model name and both document
+numbers. Quotes matched verbatim against every diagnostic claim, Section 11
+Troubleshooting table:
+- "Chainsaw does not work at all" → "Quick stop brake (chain brake) tripped"
+  → "Pull the hand protection back to the normal position."
+- "Chainsaw does not work at all" → "No power supply" → "Check the power
+  supply."
+- "Chainsaw operates intermittently" → "Loose connection (external)" / "Loose
+  connection (internal)" / "ON/OFF switch defective" → "Consult a specialist
+  workshop" (all three rows, identical remedy).
+- Section 6.2: "the chain brake trips and stops the saw chain in less than
+  0.1 seconds" and "fold the hand guard...forward and briefly switch the
+  chainsaw on. The saw chain must not start up."
+- Section 5.5: "1 LED flashes: The battery is empty, recharge the battery."
+
+**One claim cut at the gate, not after**: a first-draft diagnostic step said
+"if all its LEDs are off" the battery is flat, alongside the sourced "1 LED
+flashes" case — the manual never describes an all-LEDs-off state, so that
+half of the claim was an invented inference and was removed before commit,
+leaving only the exact sourced LED behaviour.
+
+Illustrated with `openai-image` (gpt-image-1), 1536x1024 (wide tool).
+Clean on the first attempt — front hand guard/chain brake, rear
+handle/trigger/lock-off, twin battery slot, bar and chain all rendered
+correctly and plausibly on a pure white background with no glow or
+shading artefacts. Built, pushed (`d72c795`), and verified live at
+`/tools/einhell/gp-lc-36-40-li-bl/` (200 OK, correct title/content) within
+~30 seconds of push.
+
+**Run total so far: 1 of the 7-entry ceiling published.** Continuing to the
+next candidate.
