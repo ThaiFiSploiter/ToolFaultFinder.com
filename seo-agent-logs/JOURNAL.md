@@ -2843,3 +2843,184 @@ language and spelling conventions) — now used twice for Triton
 
 **NEEDS HUMAN: none.** Everything this run required was within the existing
 authority and sourcing rails.
+
+## 2026-10-13 — content run (second of ISO week 2026-W42)
+
+GSC top queries (`gsc-report.mjs --days 30`) checked against the current
+51-entry library again — all impression-bearing queries map to existing
+routes, no new-topic gap found (now the third straight run with this
+result). Fell back to sibling-model sourcing: Einhell had TE-CD drill,
+GE-CM mower, GP-LC chainsaw but no hedge trimmer, and `einhell-service.com`
+is a confirmed-reliable source domain.
+
+### Published: Einhell GC-CH 18/40 Li cordless hedge trimmer — won't run
+
+Fourth Einhell entry. Found via the UK product page
+`einhell-service.com/en_GB/3413308-gc-ch-18-40-li-kit-uk.html`, which links
+a CloudFront-hosted manual PDF directly (same successful pattern as the
+GE-CM/GP-LC entries).
+
+Verification gate — primary document: Einhell GC-CH 18/40 Li Kit UK Original
+Operating Instructions, Art.-Nr. 34.133.08, I.-Nr. 21015 (fetched via curl
+from the CloudFront asset URL, `pdftotext -layout`, then **re-fetched a
+second time fresh for the gate itself** — identical md5sum both times).
+Title page confirms model and both document numbers. Every claim quoted
+verbatim against the source:
+
+- Section 6 (Operation): "The hedge trimmer is equipped with a two-handed
+  safety switch. It works only when the switch on the steady grip is
+  pressed with one hand and the switch on the handle is pressed with the
+  other hand. If either switch is released, the cutters will stop moving."
+- Section 6: "What to do if the blade gets blocked: 1. Stop the equipment.
+  2. Remove the battery. 3. Remove the jammed material from the blade
+  (wear work gloves to prevent injury when you do so)."
+- Section 5: "Press the pushlock button... Make sure that the pushlock
+  button engages properly!"
+- Battery capacity indicator table (Fig. 4a): "All 3 LEDs are lit: The
+  battery is fully charged" / "2 or 1 LED(s) are lit: The battery has an
+  adequate remaining charge" / "1 LED flashes: The battery is empty,
+  recharge the battery" / "All LEDs blink: The battery temperature is too
+  low... If the fault reoccurs, this means that the rechargeable battery
+  has undergone exhaustive discharge and is defective" — all four matched.
+- Section 9 (Faults): "Check that the battery is charged and the charging
+  unit is working. If the equipment will not work despite the voltage
+  supply being present, please send it to the customer service address
+  below."
+- Section 7.2 (Maintenance): "The cutters should be cleaned and lubricated
+  at regular intervals... apply a thin film of oil" — supports the
+  lubricating-oil consumable.
+
+Checked this fault doesn't duplicate the existing GE-CM mower entry's
+"safety switch" diagnostic step before drafting: GE-CM's is a one-time
+press-then-squeeze start sequence (press a separate safety switch, then
+squeeze the switching bar), while GC-CH's is a genuine two-handed dead-man
+switch that stops the tool mid-cut if either hand releases — mechanically
+different, not a restatement.
+
+Illustrated with `openai-image` (gpt-image-1), 1536x1024 (wide tool). Clean
+on the first attempt — front steady-grip handle with switch, rear handle
+with trigger, twin cutter blades, and battery pack all rendered correctly
+on a pure white background with no shadow, glow or stippling artefacts.
+Built, pushed (`a15dc68`), and verified live at
+`/tools/einhell/gc-ch-18-40-li/` (200 OK, correct title) within ~4 minutes
+of push.
+
+**Run total so far: 1 of the 7-entry ceiling published.** Continuing to the
+next candidate.
+
+### Published: Einhell TC-HP 1538 PC pressure washer — no pressure build-up
+
+Fifth Einhell entry, and the first Einhell pressure washer on the site
+(previously drill, mower, chainsaw, hedge trimmer). Found via the UK
+product page `einhell-service.com/en_GB/4140720-tc-hp-1538-pc.html`,
+same CloudFront-link pattern as the hedge trimmer entry above.
+
+Verification gate — primary document: Einhell TC-HP 1538 PC Original
+Operating Instructions, Art.-Nr. 41.407.20, I.-Nr. 11014 (fetched via
+curl, `pdftotext -layout`, re-fetched a second time fresh for the gate —
+identical md5sum both times). Title page confirms model and document
+numbers; technical data confirms 220-240V/50Hz (UK/EU spec). Every
+remaining claim quoted verbatim:
+
+- Section 12 fault table, "The motor starts but there is no pressure
+  build-up": "The water intake filter is clogged" / "Air intake in the
+  water inlet" / "The discharge nozzle is too large" / "Water cock
+  closed" — all four causes, with remedies "Clean the water intake
+  filter (see 8.2.1)", "Check the supply hose and hose connectors and
+  replace if necessary", "Check and replace if necessary", "Turn open
+  the water cock."
+- Section 12, "The operating pressure is irregular": "Air intake in the
+  water inlet" → same hose/connector remedy.
+- Section 8.2.1: "Periodically check the intake filter... unscrew the
+  coupling for the water inlet hose from the device and clean the
+  exposed inlet sieve under running water."
+
+**One claim cut at the gate**: a first-draft diagnostic step linked this
+fault to the manual's separate Section 8.2.2 long-term-storage procedure
+(running the pump dry before putting it away), reasoning that a washer
+left part-full after storage could show the same no-pressure symptom.
+Einhell's manual never actually makes that connection — it's a procedure
+for storage, not a listed cause of no pressure build-up — so the step and
+its supporting body paragraph were cut rather than publish an inference
+dressed as a sourced claim.
+
+Illustrated with `openai-image` (gpt-image-1), 1024x1024. Clean on the
+first attempt — carry handle, on/off switch, water inlet connector,
+coiled high-pressure hose, trigger gun and detergent container all
+rendered correctly on a pure white background, no cast shadow or glow.
+Built, pushed (`296b553`), and verified live at
+`/tools/einhell/tc-hp-1538-pc/` (200 OK, correct title) within a few
+minutes of push.
+
+**Run total: 2 of the 7-entry ceiling published.** Continuing to the next
+candidate.
+
+### Published: Record Power Regent lathe — tailstock moves / won't lock
+
+Ninth Record Power entry. Found by re-opening the manual already cited for
+the Envoy entry (28 Sep) — "Record Power Coronet Envoy / Coronet Regent
+Original Instruction Manual" genuinely covers both models in one document,
+confirmed again this run via a fresh fetch (`cdn.shopify.com/s/files/1/1284/
+5707/files/Envoy.pdf`, Version 3.4, January 2021 — a slightly older version
+than the 3.9 cited for Envoy, but the same document family and UK-relevant,
+confirmed via its own BS1363 plug section). Picked a fault row genuinely
+unused by the Envoy entry (which used "turning tool digs in/grabs") rather
+than restating it: "Tailstock moves when applying pressure" and "Tailstock
+or tool rest holder will not lock in place securely."
+
+Verification gate — every claim quoted verbatim against the freshly
+re-fetched PDF (md5sum matched the drafting-time copy):
+- "Warning: For your own safety, always turn off and unplug the machine
+  before carrying out any troubleshooting."
+- Tailstock-moves row: "Excessive pressure is being applied by the
+  tailstock to the workpiece" → "Apply only sufficient force with the
+  tailstock to hold the timber securely between centres"; "Tailstock is
+  not secured in place" → "Tighten tailstock locking lever"; "Lathe bed
+  and tailstock mating surfaces are dirty" → "Remove and clean the
+  tailstock and lathe bed."
+- Won't-lock row: "The clamp is set incorrectly" → "Adjust the clamp as
+  shown in the Maintenance chapter of the manual."
+- Section 12 Maintenance: "On the underside of the item is a bolt with a
+  nylon locking nut which holds the clamp in place... If the clamping
+  action is too low, turn the nut clockwise with 16 mm wrench and re-fit...
+  If the clamping action is too high, turn the nut anti-clockwise" — and
+  "Stiffness may also be caused by timber residue or other debris on the
+  lathe bed."
+
+No parts listed — every cause is a free adjustment, nothing to buy.
+
+Illustrated with `openai-image` (gpt-image-1), 1536x1024. Clean on the
+first attempt — headstock, bed, tool rest holder with its clamp lever, and
+tailstock with handwheel and locking lever all clearly rendered on a pure
+white background. Built, pushed (`01449c8`), and verified live at
+`/tools/record-power/regent/` (200 OK, correct title).
+
+**Run total: 3 of the 7-entry ceiling published.** Stopping here
+deliberately — sourcing, not effort. Candidates researched and dropped
+after the three published entries:
+- **Triton TWX7PS001 Project Saw module** — manual genuinely fetched and
+  confirmed (tritontools.com itself resolved this time, unlike the
+  geo-blocking seen on 12 Oct), but it has no motor/won't-start
+  troubleshooting content, and its one calibration procedure (Cut Line
+  Indicator alignment) sits too close to the already-published TWX7CS002
+  Contractor Saw entry's blade-calibration content to count as distinct —
+  dropped on content-overlap grounds per the 29 Sep cross-brand caution,
+  applied here within the same brand.
+- **DeWalt DCS391M2 circular saw** — product page has no manual/downloads
+  link at all (only legal/CSR PDFs), the same JS-gated-downloads pattern
+  already flagged for the DCG405 grinder on 29 Sep.
+- **Makita random orbit/belt sander** — no official troubleshooting
+  manual surfaced; only forum threads and retailer feature-copy.
+- **Axminster lathe/bandsaw/dust extractor** — no `cdn.axminstertools.com`
+  document surfaced for any of the three; results were forum threads and
+  a community-posted manual for an older model (BV20M) outside what a
+  curl-based search could verify as current/genuine.
+
+Durable finding worth keeping in memory: **the Coronet Envoy/Regent manual
+being a shared two-model document is a reusable pattern** — any Record
+Power manual covering twinned models (check the title page before assuming
+a new model needs fresh sourcing) can source a second entry for free,
+provided the picked fault row is genuinely one the first entry didn't use.
+
+**NEEDS HUMAN: none.** Everything this run required was within the existing
+authority and sourcing rails.
