@@ -3128,3 +3128,157 @@ No corrections needed on any of the three. Nothing unpublished.
 
 **NEEDS HUMAN: none.** Everything this run required was within the
 existing authority and sourcing rails.
+
+## 2026-10-19 — content run (first of ISO week 2026-W43)
+
+GSC top queries (`gsc-report.mjs --days 30`) all mapped to existing
+entries again — no new-topic gap found there (now a recurring pattern
+across most recent content runs). Fell back to sibling-model/new-category
+sourcing per cadence order #2/#4.
+
+### Published: Triton TBJ001 biscuit jointer — stalls or loses power mid-cut
+
+First biscuit-jointer entry on the site (new tool category, fills a gap
+in Triton's brand hub alongside TPT125/TRA001/TWX7CS002/TWX7RT001).
+Sourced from Triton's own TBJ001 manual (`tritontools.com`, version date
+27.03.24, document `329697_OwnerManual`) — fetched directly via curl,
+confirmed genuine via its own UK address (Toolstream Ltd., Yeovil) and
+220-240V/50-60Hz spec table.
+
+**Verification gate — quotes checked against the fetched PDF, including
+a visual check of the actual table (pdftotext's `-layout` output
+misleadingly separated the row-label from several of its own cause rows
+due to a vertically-spanning table cell; re-read via the Read tool
+directly on PDF pages 14-16 to confirm which causes genuinely belong to
+the "Tool stalls or lacks power" row before drafting, not after):**
+
+- "Tool stalls or lacks power" row (Troubleshooting table, p.16 of PDF):
+  "Dust Port (15) clogged" → "Clear Dust Port"; "Blade dull or damaged"
+  → "Replace blade"; "Motor brushes worn out" → "Replace brushes";
+  "Extension cord gauge too small or cord too long" → "Use shorter
+  extension cord or the correct gauge"; "Motor overheated" → "Switch OFF
+  the tool and let it cool down to room temperature. Inspect and clean
+  the ventilation slots"; "Faulty motor or motor bearings" → "Have the
+  tool serviced by an authorised Triton service centre."
+- Maintenance section, "Brushes" (p.14): "Over time the carbon brushes
+  inside the motor may become worn. Excessively worn brushes may cause
+  loss of power, intermittent failure, or visible sparking" — followed by
+  a genuine numbered DIY replacement procedure (remove Handle Screws
+  (20), remove the two housing sides, press in the brush-base notch,
+  replace both brushes as a pair). Used as the sourced basis for listing
+  carbon brushes as a `repair` part.
+- Specification table (p.5): Model no. TBJ001, Voltage 220-240V~
+  50/60Hz, Input power 760W, Blade diameter Ø100mm.
+
+**One row deliberately NOT used**: the same "Tool stalls or lacks power"
+row also lists "Workpiece material not suitable for tool" → "Only drill
+into wood and ensure wood is not damp" — nonsensical for a biscuit
+jointer (it doesn't drill), clearly boilerplate reused from a drill
+manual's troubleshooting table and left in by Triton rather than
+corrected. Dropped from the entry rather than repeated as if it were
+sound advice specific to this tool — the gate catching a bad row in the
+*source itself*, not just a bad inference from a good source.
+
+Category: "Motor & Drive" (same category as the Bosch GWS7-115 and
+Triton TPT125 brush-failure entries — consistent fit for a
+brush/motor-driven stalling fault). Parts: 100mm biscuit jointer blade
+and a carbon brush set, both `kind: repair`, both named because the
+verdict itself concludes they're the DIY fixes for two of the six listed
+causes; no part number invented (none published). No consumables or
+replacement — the verdict doesn't conclude the tool is uneconomic.
+
+Illustrated with `openai-image` (gpt-image-1), 1024x1024. Clean on the
+first attempt — blade guard housing, fence, dust port and the main
+handle's split-housing seam (relevant to the brush-access diagnostic
+step) all clearly rendered on a pure white background, no text/logos.
+
+Built, pushed (`74fe6e5`), and verified live at
+`/tools/triton/tbj001/` (200 OK, correct title/meta/JSON-LD citing both
+sources, correct breadcrumb through the existing Triton brand hub).
+
+**Run total so far: 1 of the 7-entry ceiling.** Continuing to research
+further candidates this run. Candidates checked and dropped before this
+one was found: Einhell TC-JS jigsaw (no troubleshooting content on
+einhell-service.com, only service-registration boilerplate), DeWalt
+DW713 mitre saw (no troubleshooting table in the only manual found),
+Record Power Herald lathe (manual still unreachable, third failed
+attempt after 22 Sep/5 Oct — deprioritising for good now), Stihl (manual
+still unreachable, fifth failed attempt — deprioritising for good now,
+past the Bosch five-strikes threshold), Record Power BS350/CamVac (no
+official manual surfaced, only forum threads), Axminster
+scroll saw/bandsaw sibling (no `cdn.axminstertools.com` document
+surfaced), Ryobi (`ryobitools.eu`, still no confirmed source after a
+third failed attempt — deprioritising), Makita 4350FCT/4351FCT jigsaw
+(manuals found but no troubleshooting content shown, and one host
+returned an HTML error page instead of a PDF), Numatic Hetty (no
+official fault-finding document surfaced; `device.report` 403s as
+previously documented), DeWalt DCF880/DCD791 (no troubleshooting content
+surfaced).
+
+### Run total: 1 of the 7-entry ceiling published
+
+Stopping here deliberately — sourcing, not effort. After the TBJ001 entry,
+roughly fifteen further candidates were researched and dropped across two
+further rounds of searching:
+
+- **DeWalt DCS355 oscillating multi-tool** — a genuine official UK/EU
+  manual was found and fetched (`baoanjsc.com.vn` mirror, confirmed
+  genuine via its own 13-language table including English/Danish/German/
+  Turkish/Greek, EC Directive 2006/42/EC + EN 60745 citations, and an
+  explicit "U.K. & Ireland 230V tools 13 Amperes" line) — but its
+  Troubleshooting section has only one row ("Unit will not start") with
+  four purely generic causes (battery not installed, not charged,
+  overheated; switch damaged). This is the same shape already published
+  five times over (DCD776, DGA408, DUC302, Record Power PT260, Einhell
+  GE-CM 36 Li) with no oscillating-tool-specific content (no blade-fit,
+  no speed-dial, no accessory-specific cause) to make it a genuinely
+  distinct entry rather than a restatement. Dropped on content-overlap
+  grounds, the same standard applied to Triton TWX7PS001 on 13 Oct and
+  Axminster AP2920B on 29 Sep.
+- **Record Power Herald lathe** — manual still unreachable, a third
+  failed attempt (after 22 Sep, 5 Oct). **Deprioritising permanently**,
+  on the same five-strikes standard already applied to Bosch.
+- **Stihl (any model)** — still fully blocked, a fifth failed attempt
+  (after 16, 22, 28, 29 Sep) including a direct retry via
+  `service.blackanddecker.co.uk`-style sibling domains. **Deprioritising
+  permanently**, past the Bosch five-strikes threshold.
+- **Ryobi (`ryobitools.eu`, any model)** — still no confirmed
+  official-domain source, a third failed attempt (after 6, 12 Oct).
+  **Deprioritising permanently** on the same standard.
+- **Milwaukee (`milwaukeetool.eu`, any model)** — still no confirmed
+  official-domain source, a second failed attempt (after 12 Oct). Not yet
+  at the five-strikes threshold; worth one more genuinely different
+  approach before deprioritising.
+- **DeWalt DW713 mitre saw, DW621/D26200 routers, DCF880/DCD791** — manuals
+  found on various hosts but none with a troubleshooting table, or the
+  official host returned an HTML error page instead of the PDF
+  (`service.blackanddecker.co.uk` behaves the same as the already-known
+  JS-gated/unreachable DeWalt pattern — add it to the list of DeWalt-group
+  hosts that don't reliably serve a PDF to a plain fetch).
+- **Einhell TC-JS jigsaw, TE-CS/TC-CS circular saws** — official
+  `einhell-service.com` product pages and CloudFront-hosted manuals
+  fetched successfully (confirming the domain pattern still works), but
+  neither product category's manual has a troubleshooting section — only
+  a service-registration question ("What malfunction does the equipment
+  have in your opinion?"). **New finding: Einhell's troubleshooting-table
+  content is category-dependent, not brand-wide** — cordless drills,
+  mowers, chainsaws, hedge trimmers and pressure washers all had real
+  Section-numbered tables (used for the site's five existing Einhell
+  entries); jigsaws and circular saws do not. Worth checking category,
+  not just brand, before assuming an Einhell source will work.
+- **Record Power BS350 bandsaw, CamVac dust extractor, Axminster scroll
+  saw/bandsaw siblings** — no official manual surfaced for any; only
+  forum threads and retailer listings.
+- **Makita 9558HN angle grinder, 4350FCT/4351FCT jigsaw** — manuals found
+  on third-party hosts (Hornbach, manuall.de) but none showed
+  troubleshooting content in what could be fetched; one Hornbach URL
+  returned an HTML page instead of a PDF.
+
+**Durable finding worth keeping in memory**: `tritontools.com` resolved
+directly twice in a row now (this run's TBJ001, and the 13 Oct Project
+Saw) after being geo-blocked on 12 Oct — worth treating as intermittent
+rather than structurally blocked, and trying the direct product/CDN URL
+before falling back to a distributor mirror.
+
+**NEEDS HUMAN: none.** Everything this run required was within the
+existing authority and sourcing rails.
