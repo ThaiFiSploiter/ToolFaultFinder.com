@@ -3024,3 +3024,107 @@ provided the picked fault row is genuinely one the first entry didn't use.
 
 **NEEDS HUMAN: none.** Everything this run required was within the existing
 authority and sourcing rails.
+
+## 2026-10-19 — weekly run (twelfth run)
+
+**Clicks up WoW, trailing 7-day windows**: Oct3-9 = 7 clicks/649 impr (1.08%
+CTR) → Oct10-16 = 8 clicks/625 impr (1.28% CTR). Impressions dipped slightly
+while clicks and CTR both rose — a small positive move, not a dramatic one.
+Spread across Bambu A1 Mini (4 clk/179 impr, pos 9.1 — still the single
+biggest contributor), Kärcher K4 (2 clk/137 impr, pos 6.1), and one click
+each on Bambu P1S, DeWalt DWS774, DeWalt DWS780, Makita DLM380, Numatic
+HVR200 and Triton TPT125. No on-page change explains it; read as organic.
+
+### CTR quick wins — two candidates checked, neither actioned
+
+- **Kärcher K7** (116 impr/30d, 0 clicks, pos 5.6) — first-time check, not
+  previously live-searched. Title/meta/JSON-LD already correct
+  (`Kärcher K7 Won't Start or Keeps Cutting Out — Causes & Fix`, front-loaded,
+  under 60 chars visible). Live search for the exact query returned a
+  **fragmented SERP** (productreview.com.au, German iFixit, a lawnmower
+  forum discussing a different/gas model, thetoolstrunk.com, JustAnswer) —
+  not the single entrenched authority that explains the confirmed-zero-CTR
+  pages (K4's old pattern, K2, Stihl MS-250, Einhell TE-CD, Record Power
+  BS250). Fragmented-but-still-zero doesn't point at a concrete title
+  defect either, since the title already matches the formula. No change
+  shipped — nothing cleared the bar for "evidence this would move
+  something" (rail 8), same standard applied to DCN660 on 12 Oct.
+- **Einhell GE-CM 36 Li** (26 impr/30d, 0 clicks, pos 7.1, published 6 Oct)
+  — same outcome: title/meta already well-formed, live SERP for its query
+  is AI-content-mill pages (hjalp.ai) and manual mirrors, not one
+  entrenched source. Volume (26 impr) is too low to call either pattern
+  confidently. No change shipped.
+
+### Indexing movement
+
+`gsc-coverage.mjs`: **78/83 (94%) indexed**, up from 73/78 (93.6%) on
+12 Oct.
+
+- **`bosch/pst-700-e` resolved itself** — moved to "Submitted and indexed"
+  (last crawl 2026-10-12) after being stuck on "Crawled – currently not
+  indexed" across four consecutive sweeps (28 Sep, 1 Oct, 5 Oct, 12 Oct),
+  despite the 1 Oct re-sourcing fix not visibly moving it for six weeks.
+  **The 1 Nov monthly "prune-or-promote" decision flagged for this page on
+  12 Oct is now moot** — it indexed on its own, nothing to decide.
+- **`ryobi/one-18v` regressed**: was "Submitted and indexed" (crawled
+  18 Aug) on the 12 Oct sweep, now "Crawled – currently not indexed" this
+  sweep — a real regression, not a never-crawled page, so rail 6's
+  "leave new/uncrawled pages alone" doesn't apply at face value. Checked
+  the live page before deciding what to do: 200 OK, canonical and
+  `<title>`/JSON-LD all correct, no noindex, 1141 words (well above the
+  site's 550-715 norm, not a thin-content issue). Nothing technically
+  wrong found. **Watching, not acting, on one sweep** — this is exactly
+  the `record-power/envoy` situation from 5 Oct, which was flagged stuck
+  and then resolved to indexed by the next sweep with no action taken.
+  This page's `sources:` field already carries the known vague
+  "Lithium-ion battery management references"/"forum reports" pattern —
+  it's already on the monthly weak-sourcing debt list (see memory), so no
+  new flag needed there, just noting the coverage wobble.
+- Unchanged and still within normal wait-time: `axminster/ap2920b`,
+  `dewalt/dw733`, `karcher/k3` (all "Discovered – not indexed", 3 weeks old,
+  not yet "Crawled – rejected"); `faults/electronics-firmware/` still
+  "URL is unknown to Google" since the 1 Oct hub launch (its sibling 7 hubs
+  all indexed within days — this one reads as just-not-its-turn).
+
+### Weekly entry audit: 3 of 3 clean, fifth straight clean result
+
+Audited three of the five entries published since the 12 Oct weekly run
+(Triton TWX7RT001, Einhell TC-HP 1538 PC, Record Power Regent — the other
+two, Einhell GP-LC 36/40 Li chainsaw and Einhell GC-CH 18/40 Li hedge
+trimmer, weren't picked this time). Every document re-fetched fresh, not
+from drafting-time quotes.
+
+- **Triton TWX7RT001** — re-fetched the manual via a different mirror than
+  the one cited in frontmatter (jettools.ru's `twx7rt001_manual-2017.pdf`,
+  labelled `265709_Z1PKGSAF1_V1.3`, dated 17.08.2016) since the originally-
+  cited jettools.ru URL from the 12 Oct run wasn't re-attempted by the same
+  path; this is a *different* document ID from the frontmatter's cited
+  `265709_Z1MANPRO1` (23/11/2016) but same model, same publisher, same
+  troubleshooting table — read as two packaging labels for the same-era
+  manual, not a mismatch, since every quoted claim matched verbatim: the
+  "No function when power turned on" → "No power"/"Router unit's power
+  switch is off" causes, the switchbox's exact reset-to-OFF wording, the
+  five-step switch-on sequence in the same order, the bit-changing
+  procedure's "return the router on/off switch to the on/position" line,
+  and the supply-cord-to-"authorised Triton service centre" sentence. All
+  matched.
+- **Einhell TC-HP 1538 PC** — re-fetched via the `einhell-service.com` UK
+  product page → CloudFront PDF, confirmed Art.-Nr. 41.407.20 / I.-Nr.
+  11014 on the title page. Section 12's four-cause "no pressure build-up"
+  table (clogged filter, air intake, oversized nozzle, closed water cock)
+  and the irregular-pressure row (air intake) matched exactly, as did
+  Section 8.2.1's intake-filter cleaning procedure verbatim ("unscrew the
+  coupling for the water inlet hose from the device and clean the exposed
+  inlet sieve under running water").
+- **Record Power Regent** — re-fetched the Envoy/Regent shared manual
+  (`cdn.shopify.com/s/files/1/1284/5707/files/Envoy.pdf`, confirmed
+  "Version 3.4" on its own cover page, matching the citation). Section 15's
+  tailstock-moves (3 causes) and won't-lock (clamp) rows, the troubleshooting
+  section's safety warning, and Section 12's nylon-locking-nut clamp
+  adjustment procedure (16mm wrench, clockwise/anti-clockwise, timber-
+  residue note) all matched verbatim.
+
+No corrections needed on any of the three. Nothing unpublished.
+
+**NEEDS HUMAN: none.** Everything this run required was within the
+existing authority and sourcing rails.
