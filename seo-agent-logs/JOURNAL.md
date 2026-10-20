@@ -3489,3 +3489,89 @@ tools over 3D printers (manufacturer/forum SERP ownership hurts printer-
 page CTR) is a precedent worth re-weighing against this run's actual
 sourcing results; flagging rather than acting on it mid-run. Continuing
 to research further candidates.
+
+### Published: Triton TSPST450 — motor losing power / sounding wrong
+
+Fourth entry this run, and the run's one power-tool entry after three
+printer entries. New Triton model (450W oscillating spindle & belt
+sander). Sourced from Triton's own owner manual, found via a
+media.adeo.com retailer-CDN mirror and confirmed genuine via its own
+printed spec table and UK address (same Toolstream Ltd, Yeovil address
+already confirmed for the TBJ001 entry on 19 Oct).
+
+**Verification gate — quotes checked against the fetched/pdftotext'd
+PDF:**
+
+- Market confirmation: "Model no: TSPST450 Voltage: 230V~ 50Hz" (p.6 of
+  the extracted text) and "UK Address: Toolstream Ltd. Boundary Way,
+  Lufton Trading Estate, Yeovil, Somerset, BA22 8HZ, United Kingdom."
+- Troubleshooting table (verbatim row for the fault used): "Sanding
+  drum not operating at full speed or motor sounds different to normal"
+  → causes "Motor over-heating" / "Switch OFF and allow to cool for a
+  ½ hour"; "Brushes need replacing" / "See 'Brush replacement'"; "Motor
+  belt worn or stretched" / "Contact an authorised Triton service
+  centre"; "Motor faulty" / "Contact an authorised Triton service
+  centre."
+- Brush Replacement section, quoted verbatim: "Over time the carbon
+  brushes inside the motor may become worn" / "Excessively worn brushes
+  may cause loss of power, intermittent failure, or visible sparking" —
+  followed by the genuine 10-step numbered DIY procedure (base cover off,
+  brush cover screws, remove/replace brush assembly, "It is important to
+  always replace brushes in pairs").
+
+Category "Motor & Drive", matching the TBJ001 entry's category for the
+same brush-wear fault shape. Parts: carbon brush set (`repair`, matches
+the verdict's DIY fix) and assorted sanding sleeves (`consumable`, what
+this specific machine gets through in normal use) — no part number
+invented, none published.
+
+Illustrated with `openai-image` (gpt-image-1), 1024x1024 — tilting table
+with angle gauge, spindle/throat-plate assembly, and the side-mounted
+belt unit with its tracking knob. Clean on the first attempt.
+
+Built, pushed (`829b3c5`), and verified live at
+`/tools/triton/tspst450/` (200 OK, title and carbon-brush content both
+confirmed present).
+
+**Run total: 4 of the 7-entry ceiling published.** Stopping here
+deliberately — sourcing, not effort. After this entry, further
+candidates were researched and dropped: Axminster lathe/bandsaw/dust
+extractor (no cdn.axminstertools.com document surfaced this run either —
+third failed attempt, consistent with 13 Oct's finding), Numatic James
+JVP180 (no fault-finding content found on cdn.numatic.com or confirmed
+elsewhere), a second Triton sander sibling (TSPS450, the non-belt
+version — very likely shares TSPST450's exact troubleshooting table and
+brush procedure, which would be padding rather than a distinct fault,
+so not pursued without fetching and confirming a difference first), and
+a `media.adeo.com` search for other brands' manuals (Makita, Bosch,
+Einhell) turned up nothing beyond third-party aggregators already
+known to be unreliable — treat `media.adeo.com` as a lead worth
+re-trying for *other Triton models specifically* next time, not as a
+general cross-brand source.
+
+**Durable finding worth keeping in memory: `media.adeo.com` (the CDN for
+ADEO/Leroy Merlin, which retails Triton in the EU) hosts genuine Triton
+owner manuals with real troubleshooting tables**, found by web search
+rather than crawling tritontools.com — a second working route for
+Triton sourcing alongside the already-known tritontools.com direct CDN
+and third-party mirrors (hardeman-distribution.com, jettools.ru). Worth
+trying this host specifically when tritontools.com is geo-blocked or a
+specific model isn't found there. Also worth keeping: **tritontools.com
+itself resolved directly again this run (the TSPSP650 brochure fetch),
+but that particular PDF was a 1-page marketing brochure, not a manual**
+— a successful fetch from a trusted domain doesn't guarantee the right
+document type; always check the page count and contents, not just
+whether the URL resolves.
+
+**Topic-mix note for the next content run:** 4 of 4 entries this run
+came from print/power-tool-adjacent sourcing that worked (3 Bambu/Prusa
+printer entries, 1 Triton sander), despite deliberately trying ten-plus
+power-tool brand leads first (see the full dropped list above the first
+entry). This run's actual yield leaned toward 3D printers despite the
+1 Sep memory finding that power tools generally convert better — not
+a contradiction of that finding, just what sourcing allowed this run.
+Keep trying power-tool leads first per the cadence order, but don't
+force a bad source to avoid a printer-heavy batch.
+
+**NEEDS HUMAN: none.** Everything this run required was within the
+existing authority and sourcing rails.
