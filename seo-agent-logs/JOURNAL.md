@@ -3432,3 +3432,60 @@ Built, pushed (`e66e5ed`), and verified live at `/tools/bambu-lab/p1p/`
 
 **Run total so far: 2 of the 7-entry ceiling.** Continuing to the next
 candidate.
+
+### Published: Bambu Lab X1 Carbon — "the cutter is stuck"
+
+Third entry this run. New Bambu model (X1 Carbon). Sourced from Bambu
+Lab's own wiki, fetched directly (`wiki.bambulab.com/en/x1/troubleshooting/cutter-stuck`),
+explicitly labelled "Solutions: X1 & P1 Series" in the article itself.
+
+**Verification gate — quotes checked against the fetched article's raw
+HTML (section ids `a-phenomena`, `why-does-this-prompt-appear`,
+`solutions` confirm genuine article body):**
+
+- Trigger mechanism, quoted verbatim: "When it is detected that the
+  cutter lever does not spring back to its original position for two
+  minutes, the prompt will pop up on the screen."
+- False-alarm branch, quoted verbatim: "The lever sprang back after
+  being stuck for a while... It will occasionally happen when printing
+  Support or Slik [sic] filaments. Just tap 'Retry'." and "Try to
+  re-plug the 10-pin connector(sometimes it needs to be re-plugged
+  several times). You need to remove the silicone with tweezers before
+  replugging it."
+- Genuine-jam branch, quoted verbatim: "The hot end is clogged. When the
+  hot end is clogged, the pressure on the filament between the extruder
+  and the hot end is too high, which will cause the blade to be caught
+  and cannot spring back smoothly." and "the friction between the two
+  sides of the cutter and the inner wall of the extruder is too high...
+  This could be caused by a deviation in production. You can try to
+  remove the cutter, use a knife or other tool to sharpen a small part
+  of the cutter on both sides."
+- Cable-routing cause, quoted verbatim: "the cable to the cooling fan of
+  the tool head can get stuck on the cutter lever, causing it to be
+  unable to spring back."
+
+Category "Blades & Alignment" (first fit for the literal cutter/blade
+mechanism, versus "Electronics & Firmware" used for the other two Bambu
+entries this run). No repair parts — the two documented fixes (dressing
+the blade, routing a cable) need no purchase; kept the standard PLA
+consumable.
+
+Illustrated with `openai-image` (gpt-image-1), 1024x1024 — enclosed body
+with the AMS four-spool unit on the lid and a feed tube into the
+chamber. Clean on the first attempt.
+
+Built, pushed (`bda61af`), and verified live at
+`/tools/bambu-lab/x1-carbon/` (200 OK, title and Hall-sensor content
+both confirmed present).
+
+**Run total so far: 3 of the 7-entry ceiling.** Noting for the next
+run's topic selection: this run leaned entirely on Bambu/Prusa 3D-printer
+sourcing (3 of 3) after the power-tool leads researched (Milwaukee,
+Draper, HiKOKI, Worx, Black+Decker, Flymo, Kärcher sub-models, DeWalt
+SDS drills, Record Power Pathfinder, Numatic Charles) all failed to
+yield a usable source this run — see the dropped-candidates list above
+the first entry. Memory's 1 Sep finding to weight batches toward power
+tools over 3D printers (manufacturer/forum SERP ownership hurts printer-
+page CTR) is a precedent worth re-weighing against this run's actual
+sourcing results; flagging rather than acting on it mid-run. Continuing
+to research further candidates.
