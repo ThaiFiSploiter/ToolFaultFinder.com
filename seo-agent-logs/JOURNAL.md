@@ -3381,3 +3381,54 @@ which are themselves blocked to this session). Continuing to the next
 candidate — the Bambu P1P communication-failure lead (found this run,
 genuinely P1P-specific, not yet drafted) looks promising and is being
 verified next.
+
+### Published: Bambu Lab P1P — toolhead dead / no temperature readout (MC-AP communication failure)
+
+Second entry this run. New Bambu model for the site (P1P, alongside the
+already-covered A1/A1 Mini/P1S — distinct fault from the existing P1S
+heatbed entry). Sourced from Bambu Lab's own wiki, fetched directly this
+run (`wiki.bambulab.com/en/p1/troubleshooting/p1p-communication-failure-between-mc-and-ap`).
+
+**Verification gate — quotes checked against the fetched article's raw
+HTML (section ids `phenomenon`, `causes-solutions`, `operation-guide`
+confirm it's the genuine article body, not a stub):**
+
+- Phenomenon, quoted verbatim: "1. The printer is ON and idle, but the
+  tool head fails to move along X and Y axes when pressing the
+  directional buttons (Rx exception); 2. There is no temperature
+  information on the screen, both the hot end and the heat bed
+  temperature are displayed as '0' (Tx exception); 3. Both the tool head
+  movement and the temperature are abnormal (Rx & Tx exception)."
+- Causes, quoted verbatim: "1. Components on the AP board may be
+  damaged... 2. The MC board may be faulty... 3. There may be poor
+  connection on the MC-AP cable."
+- Step 2 (LED check), quoted verbatim: "you can keep the power on and
+  observe the status indicator LED of the MC board through the excess
+  chute... If the indicator LED of the MC board flashes normally, you
+  can proceed to the next step; If the MC board indicator does not work,
+  it is recommended to replace the MC board."
+- Step 3 (cable flex test), quoted verbatim: "remove the fixed tape of
+  the AP-MC cable under the power-on state, and then shake the entire
+  cable to observe whether the temperature on the screen changes."
+- Step 6 (continuity test), quoted verbatim: "measure whether the second
+  and third contact of the AP plugs... are conductive... If there is a
+  break in conductivity across either set of points (red or yellow),
+  replace the cable."
+- Step 7 (dead end), quoted verbatim: "please provide the LOG file to
+  the service team for analysis and confirmation."
+
+Category "Electronics & Firmware". No repair parts listed — board/cable
+replacements here are Bambu-specific spares, not generic Amazon-
+searchable items; kept the standard PLA-filament consumable only, same
+as every other Bambu entry on the site.
+
+Illustrated with `openai-image` (gpt-image-1), 1024x1024 — open-frame
+CoreXY gantry, exposed bed, and the rear-panel filament chute cutout the
+article's Step 2 tells readers to look through. Clean on the first
+attempt.
+
+Built, pushed (`e66e5ed`), and verified live at `/tools/bambu-lab/p1p/`
+(200 OK, title and MC-AP cable content both confirmed present).
+
+**Run total so far: 2 of the 7-entry ceiling.** Continuing to the next
+candidate.
