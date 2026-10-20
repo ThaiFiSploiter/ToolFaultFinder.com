@@ -3282,3 +3282,102 @@ before falling back to a distributor mirror.
 
 **NEEDS HUMAN: none.** Everything this run required was within the
 existing authority and sourcing rails.
+
+## 2026-10-20 — content run (second of ISO week 2026-W43)
+
+GSC top queries (`gsc-report.mjs --days 30`) again all mapped to existing
+entries (K2/K3/K4/K5/K7, Bambu A1/A1 Mini/P1S, DWS774, DLM380, TPT125,
+DCN660, UC4041A, HVR200, record-power/cl3) — now a fifth-plus straight
+content run with no new-topic gap from GSC alone. Fell back to sibling-
+model/new-category sourcing per cadence order #2/#4.
+
+### Published: Prusa CORE One — Homing error Y #31305
+
+New Prusa model, fills the brand hub alongside MINI/MK3S/MK4. Sourced
+from Prusa's own Knowledge Base, fetched directly this run
+(`help.prusa3d.com/article/homing-error-y-31305-core-one-35305-core-one-l-36305-core-one-indx-17305-xl_403782`).
+
+**Verification gate — quotes checked against the fetched article:**
+
+- Error text: "The printer displays the message 'Failed to home the
+  Y-axis. Make sure there is no obstacle on the Y-axis.' Error name:
+  Homing error Y Error code: #31305 (CORE One) #35305 (CORE One L)
+  #36305 (CORE One INDX) #17305 (XL)."
+- Diagnostic order: "Make sure there are no obstructions in the path of
+  the Y-axis. For example, there might be a piece of filament stuck
+  around the belt, or on a linear rail, from a previous print." then
+  "Check the belt tension... A loose or overtightened belt can cause
+  inconsistent movement that can trigger the error." then "If one of the
+  motor pulleys loosens over time, it will misalign and contribute to
+  inconsistent movement... one of which has to be aligned with the flat
+  part of the motor shaft."
+- CORE One-specific pulley orientation, quoted verbatim: "CORE One, CORE
+  One L... Looking from the front of the printer: Left The teeth for the
+  belt are above the set screws. Right The teeth for the belt are below
+  the set screws."
+- CORE One teardown steps, quoted verbatim: "Remove the side panel on
+  the needed side. Left side: remove 11 rivets... Right side: release
+  the filament sensor by removing two screws from the handle, then
+  remove 11 rivets... Slightly loosen the belt tension... Remove the
+  four M3x35 screws securing the motor. ...Slightly raise the motor to
+  make the pulley visible."
+
+No parts listed — the fix is a re-seat/realignment, nothing to buy.
+Category "Electronics & Firmware", matching the existing MK4 Z-homing
+entry (same shape: firmware-detected homing error with a mostly
+mechanical root cause).
+
+Illustrated with `openai-image` (gpt-image-1), 1024x1024 — an enclosed
+cube-bodied printer with hinged front door/window and a side panel
+showing its screw pattern over the belt/motor area. Clean on the first
+attempt.
+
+Built, pushed (`4fa2cda`), and verified live at `/tools/prusa/core-one/`
+(200 OK, title and meta description both confirmed present and correct).
+
+**Run total so far: 1 of the 7-entry ceiling.** Continuing to research
+further candidates. Durable finding worth keeping in memory: **Creality's
+wiki (wiki.creality.com) is JS-only for body content, unlike Bambu's
+wiki** — the error-code table page and individual error pages return 200
+via curl but the actual troubleshooting text (cause/fix per code) is
+fetched client-side and never appears in the raw HTML, only section
+scaffolding and nav. A third-party mirror (dremc.com.au, an apparent
+electricity-retailer helpdesk reusing a Freshdesk KB for an unrelated
+purpose) claimed to reproduce the table but most rows read "no fix
+listed" and the source's own legitimacy was questionable — dropped
+rather than used. Creality K1 is not usable from this session; don't
+retry the same wiki URL pattern. **Bambu's wiki (wiki.bambulab.com), by
+contrast, server-renders the full article body in the raw HTML fetched
+by curl** (confirmed again this run on the P1P MC-AP communication
+failure article) — the difference between the two platforms isn't
+"3D-printer wikis are JS-blocked," it's platform-specific; check each
+wiki's raw HTML for the actual prose before concluding either way.
+
+Also researched and dropped this run on sourcing grounds: Milwaukee (any
+model — still no confirmed official-domain manual, a third failed
+attempt after 12 Oct/19 Oct, now at the five-strikes threshold alongside
+Bosch/Stihl/Ryobi/Record Power Herald — deprioritising), Kärcher K2
+Premium/Compact (would read as a restatement of the existing K2 entry —
+same underlying tool, not a distinct fault, dropped on content-overlap
+grounds before fetching a manual), Makita 5903R circular saw (official
+icmsmakita.eu URL guessed from the search snippet 404'd; no working
+official link found), DeWalt DCH253/DCH273 SDS drill (ManualsLib shows a
+real troubleshooting table exists, but no official assets.dewalt.co.uk
+or dewalt.co.uk PDF link resolved this run — product page is JS-gated
+like the DCG405/DCS391M2 pattern already documented), Record Power
+Pathfinder lathe (no manual found, consistent with Herald — Record
+Power's older/smaller lathes beyond CL2-4/DML250/DML305/Envoy/Regent
+remain unconfirmed), Numatic Charles RSV200 (no manual found on
+cdn.numatic.com or elsewhere; the model's own branding is ambiguous —
+FA120 stock code vs RSV200 name — not pursued further), Draper Expert /
+Draper 02016 bench drill (drapertools.com confirmed as Draper's real
+download host via its own manuals' citations, but its /manuals search
+page is JS-rendered with no API found; every third-party mirror tried —
+notice-facile.com, manualsfile.com, manualslib.com — 403'd this session),
+HiKOKI, Worx, Black+Decker, Flymo (all new-brand attempts; no official
+UK-hosted manual with troubleshooting content resolved for any — generic
+web search kept surfacing only third-party manual archives, several of
+which are themselves blocked to this session). Continuing to the next
+candidate — the Bambu P1P communication-failure lead (found this run,
+genuinely P1P-specific, not yet drafted) looks promising and is being
+verified next.
