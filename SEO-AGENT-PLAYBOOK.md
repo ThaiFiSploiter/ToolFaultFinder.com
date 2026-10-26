@@ -238,7 +238,7 @@ these rules are what stop it bending the content, so apply them harder, not less
 ## ILLUSTRATION (you generate these — added 14 Sep 2026)
 
 Every entry carries one line-art illustration of the tool. You make it yourself with the
-`generate_image` tool from the **`openai-image`** MCP server (gpt-image-1). It is registered
+`generate_image` tool from the **`openai-image`** MCP server (gpt-image-2 since 26 Oct 2026 — OpenAI retired gpt-image-1 for generation; the notes below were learned on gpt-image-1 and still hold). It is registered
 at user scope with its own API key, so it works under cron. There is also a `gemini-image`
 server registered — it is blocked on Google Cloud billing, so don't reach for it.
 
