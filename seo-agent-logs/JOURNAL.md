@@ -3575,3 +3575,107 @@ force a bad source to avoid a printer-heavy batch.
 
 **NEEDS HUMAN: none.** Everything this run required was within the
 existing authority and sourcing rails.
+
+---
+
+## 2026-10-26 — Weekly run (thirteenth)
+
+**Clicks up WoW, third straight week of small gains.** Trailing 7-day
+windows: Oct10-16 = 8 clicks/625 impr (1.28% CTR) → Oct17-23 = 10
+clicks/734 impr (1.36% CTR). No on-page change explains it — read as
+continued organic growth, consistent with the two prior weeks' pattern
+(7→8, 8→10). `bambu-lab/a1-mini` was the single biggest page this
+period (4 clicks/179 impr, pos 9.0), `karcher/k4` second (4/126).
+
+**Coverage: 83/88 (94.3%) indexed**, up from 78/83 (94%) on 19 Oct —
+the library grew by 5 URLs since last sweep (the 20 Oct content run's 4
+entries plus one hub page) and none of that growth cost indexed share.
+Snapshotted to `seo-agent-logs/coverage/2026-10-26.csv`.
+
+- `ryobi/one-18v` is now on its **second** consecutive sweep as
+  "Crawled – currently not indexed" (first seen 19 Oct). Live-checked
+  previously, nothing technically wrong. Per the `bosch/pst-700-e`
+  precedent (4 sweeps before that one was escalated to a monthly
+  prune-or-promote decision), this is not yet at the action threshold —
+  watching, not acting.
+- `axminster/ap2920b`, `dewalt/dw733`, `karcher/k3` (all published
+  28–29 Sep) are now on their **third** consecutive sweep as
+  "Discovered – currently not indexed" — unchanged state from 19 Oct,
+  not a regression. Per rail 6 this means uncrawled, not declined;
+  they already get the automatic Related-Faults inbound links (settled
+  1 Sep that internal linking isn't a lever worth re-pulling), so no
+  action — just time. Worth a look in the 1 Dec monthly if still stuck.
+- `/faults/electronics-firmware/` moved "URL is unknown to Google" →
+  "Discovered – currently not indexed" — progress, no action needed.
+
+**CTR check: two zero-click candidates live-checked, no title change
+shipped — both fragmented-SERP, not evidence of a fixable title.**
+`makita/dc18rc` (46 impr/30d, pos 9.6, 0 clicks) and `einhell/ge-cm-36-li`
+(52 impr/30d, pos 9.3, 0 clicks, re-checked after 19 Oct's lower-volume
+look at the same page) both already have front-loaded, under-60-char,
+exact-phrase titles (confirmed live via curl) and both resolve to a
+fragmented SERP on live search (manual mirrors, AI-content aggregators
+like hjalp.ai, forum posts — no single entrenched authority) rather
+than the clean one-source-owns-it pattern already confirmed for
+K4/K2/Stihl/TE-CD/BS250/A1. This is the fourth and fifth page found in
+this fragmented-but-zero-CTR category (after DCN660, Kärcher K7, Einhell
+GE-CM 36 Li's own earlier lower-volume check) — rail 8 treats a title
+rewrite with no evidence behind it as the same risk class as an
+unnecessary change, so none was made.
+
+**Weekly entry audit: 3 of 3 clean, sixth straight clean result.**
+Audited the three entries published since 19 Oct that hadn't been
+covered yet: Triton TBJ001 (19 Oct), Prusa CORE One (20 Oct), Bambu Lab
+P1P (20 Oct) — leaving Bambu X1 Carbon and Triton TSPST450 (also 20 Oct)
+for next week. All re-verified against freshly re-fetched primary
+sources, not drafting-time quotes:
+
+- **Prusa CORE One** — re-fetched `help.prusa3d.com`'s own KB article
+  (search was needed; the exact URL wasn't guessable, same gotcha as
+  always). Every claim matched verbatim, including the mirrored-motor
+  detail that's easy to get backwards: "CORE One, CORE One L ... Looking
+  from the front of the printer: Left The teeth for the belt are above
+  the set screws. Right The teeth for the belt are below the set
+  screws" — matches the entry word for word. The teardown steps (11
+  rivets, filament sensor removal on the right side only, four M3x35
+  motor screws) all matched too.
+- **Bambu Lab P1P** — the wiki URL cited in the entry's `sources:`
+  field doesn't exist as a direct guess either; found the real article
+  via the P1 troubleshooting index
+  (`wiki.bambulab.com/en/p1/troubleshooting`) at
+  `.../p1p-communication-failure-between-mc-and-ap`, confirmed as the
+  genuine article by its own `filename="en/p1/troubleshooting/p1p-communication-failure-between-mc-and-ap.md"`
+  attribute in the raw HTML. Every one of the 7 operation-guide steps
+  matched verbatim, down to "measure whether the second and third
+  contact of the AP plugs (red points and yellow points below,
+  respectively) are conductive" — matches the entry's continuity-test
+  step exactly.
+- **Triton TBJ001** — re-fetched the manual (a different CDN filename,
+  `329697_Z1MANPRO1.pdf`, resolved it this time, versus whatever route
+  found it on 19 Oct) but the PDF's own embedded page-footer filename
+  reads `329697_OwnerManual.indd` — matching the entry's cited document
+  name exactly, the same multiple-document-ID-same-content pattern
+  already seen on Triton TWX7RT001 (12 Oct). All 6 of the "Tool stalls
+  or lacks power" causes the entry lists matched the table verbatim,
+  and the nonsensical "Workpiece material not suitable for tool" /
+  "Only drill into wood" row (flagged in the 19 Oct memory as boilerplate
+  copy-pasted from a drill manual) is correctly still excluded.
+  **One wording wrinkle, not a factual error:** both `likely_cause` and
+  the body say the table "lists seven possible causes" for this symptom,
+  which is literally true of the table (6 used + the excluded
+  nonsensical row = 7), but the entry only walks through 6 without
+  telling the reader one row was dropped and why — a reader counting
+  along gets 6, not 7. Not a safety or sourcing problem, so not treated
+  as a gate failure requiring a revert; worth a one-line tidy-up
+  (changing "seven" to "six" or adding a line noting the dropped row)
+  next time this file is touched, not urgent enough to justify a
+  standalone edit this run under rail 8 (not the focus of this run,
+  and the fix is cosmetic).
+
+**No Bucket A technical change shipped this run** — deliberately, same
+as 19 Oct. CTR candidates checked and correctly left alone (above);
+indexing movements are all either too-fresh-to-judge or already-settled
+non-levers. Not acting is the honest outcome when nothing clears the
+evidence bar.
+
+**NEEDS HUMAN: none.**
