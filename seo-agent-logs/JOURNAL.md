@@ -3790,3 +3790,62 @@ platform dashboard for the account tied to the key in
 Continuing this run with the two leads already identified above (Axminster
 bench grinder's PDF URL, Triton TJS001's manual) rather than stopping here —
 see further entries below for how the rest of this run went.
+
+**Published 2nd of the run: Triton TJS001 jigsaw (worn carbon brushes —
+power loss / intermittent cutting / visible sparking).** Sourced from the
+official manual found by direct search
+(`tritontools.com/cdn/shop/files/865886_Z1MANPRO1.pdf`, document
+865886_OwnerManual, 31.05.22). No formal troubleshooting table in this
+manual, but a genuine, detailed, numbered Maintenance/Brushes procedure —
+same pattern as TBJ001's brush section, but this is the site's first
+jigsaw entry, so no route or content collision. **Verification gate
+quotes:**
+
+- "Over time the carbon brushes inside the motor may become worn.
+  Excessively worn brushes may cause loss of power, intermittent failure,
+  or visible sparking" — the three symptoms named in the entry's
+  `symptom`/`likely_cause` fields, verbatim.
+- The 11-step numbered brush-replacement procedure (Brush Access Screw,
+  lifting the frame ~12mm, disconnecting/reconnecting the electrical
+  connector, refitting the Base Cover and Variable Speed Dial, running at
+  slow speed with no blade fitted first) — all steps in the entry trace
+  directly to this section, no invented steps.
+- "IMPORTANT: Always replace carbon brushes in pairs" — matches the
+  entry's parts note.
+- Market/genuineness: Voltage "220-240V~, 50 Hz" plus the UK address
+  (Toolstream Ltd., Yeovil) and `tritontools.com/en-GB/Support` URL in the
+  same document — confirms UK relevance and that this is Triton's real
+  manual, not a mismatched market variant.
+- **Dropped candidate, same batch: Axminster AC150BG/AC200BG bench
+  grinder.** The exact PDF URL identified on 19 Oct's search
+  (`axminstertools.com/media/downloads/105242_105243_manual.pdf`) resolved
+  cleanly and is genuinely Axminster/UK (230V spec, correct model codes
+  throughout) — but `pdftotext` and a full-text search for
+  "problem"/"fault"/"repair"/"not working" turned up nothing: this manual
+  has no troubleshooting content at all, only safety/assembly/spec
+  sections. A fourth confirmed instance of "genuine document, trusted
+  domain, no fault content" (after the Bosch GBH family, Makita RT0700C,
+  and the DWE7492 table saw earlier this run) — dropped.
+
+No claims cut from either entry published this run so far.
+
+**Stopping at 2 of 7 for this run** — sourcing, not the ceiling: of the
+seven candidates tried this run (Draper, HiKOKI, Record Power Pathfinder,
+Record Power BS350/BS400, Axminster bench grinder, DeWalt DWE7492, plus
+the two that worked), five produced nothing usable. The two that did work
+both came from the same already-reliable pattern (search for the Triton
+manual PDF directly, then check it for genuine content) rather than a new
+source. Leads worth picking up cold next time rather than re-searching:
+HiKOKI (one attempt, no official page tried directly yet — worth guessing
+a `hikoki-powertools.co.uk` product-page URL the way the DeWalt pattern
+worked, rather than relying on search), and Record Power Pathfinder (now
+two failed attempts, one more before treating it like the resolved
+Herald/Regent cases).
+
+**NEEDS HUMAN (repeated from above): the illustration pipeline is fully
+down.** Both entries this run published without an image. See the
+TPL180 entry above for the diagnosis (`gpt-image-1` "does not exist" on
+the OpenAI side, `gemini-image` still free-tier-exhausted). This is now
+affecting every entry, not a one-off — worth Nick's attention before the
+next content run rather than after several more unillustrated entries
+pile up.
