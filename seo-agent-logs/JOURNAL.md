@@ -3679,3 +3679,114 @@ non-levers. Not acting is the honest outcome when nothing clears the
 evidence bar.
 
 **NEEDS HUMAN: none.**
+
+---
+
+## 26 Oct 2026 — content run (first of ISO week 2026-W44)
+
+**Published 1 of the 7-entry ceiling — Triton TPL180 power planer (blade
+barrel not rotating / broken drive belt)** — full entry-at-a-time cycle to
+live. GSC top queries (`gsc-report.mjs --days 30`) again all mapped to
+existing routes (now many straight content runs with no new-topic gap from
+GSC alone). Fell back to new-brand/new-model prospecting per cadence order
+#3/#4.
+
+**Candidates researched and dropped before TPL180 sourced:**
+- **Draper** — second attempt (first was 19 Oct's "worth a structurally
+  different approach" note). Tried a direct product-page guess
+  (`drapertools.com/product/55588`, the D20 mitre saw's stock number) —
+  404. The `/manuals/` page itself is Klevu-powered, JS-rendered search
+  with no API found, confirming the 19 Oct finding rather than overturning
+  it. No official PDF found by search either. Still not at a five-strikes
+  close (two attempts), but no new lead surfaced this run.
+- **HiKOKI** — one search attempt, no `hikoki-powertools.co.uk` product
+  page or manual link surfaced; every hit was ManualsLib/manualslib.mx
+  third-party mirrors. Not independently fetched or verified, so dropped
+  on "no reachable source found" rather than content grounds.
+- **Record Power Pathfinder lathe** — still no manual PDF anywhere
+  (recordpower.co.uk or third-party); only retailer product-description
+  pages. Second failed attempt (after 22 Sep's suspicion-only pass) —
+  approaching the point of treating it the same as Herald/Regent's
+  now-resolved status, but not closed yet since this was a real fetch
+  attempt, not pattern-matching.
+- **Record Power BS350/BS400 bandsaw** — no manual PDF found; UKWorkshop
+  forum threads only (owner anecdotes about tracking, switches, and a
+  "no manual in the box" complaint from one buyer). Dropped — forum
+  anecdotes aren't a rail-3 source.
+- **Axminster bench grinder** — a specific PDF URL
+  (`axminstertools.com/media/downloads/105242_105243_manual.pdf`) was
+  identified by search for the AC150BG model but not fetched this run
+  before time went to TPL180; worth trying first next time rather than
+  re-searching from scratch.
+- **DeWalt DWE7492 table saw** — the UK product page
+  (`dewalt.co.uk/product/dwe7492-gb/250mm-table-saw`) resolved cleanly and
+  listed seven manual PDFs directly (confirming the 28 Sep "fetch the
+  product page, not the service portal" pattern still works). Fetched the
+  GB-filenamed one (`NA377613_DWE7492_T1_GB_LX.pdf`, 20 pages) and
+  `pdftotext`'d it — no troubleshooting table, only generic safety text
+  that routes "unfamiliar noise or vibration" straight to a DeWalt service
+  centre. A fourth DeWalt product (after DCG405, DCS391M2, DW621/DW713)
+  confirmed to lack fault-table content; worth treating "no troubleshooting
+  table" as the DeWalt-manual norm outside the cordless "protection system"
+  family and the handful of models (DW733, DCD776 family) already
+  confirmed to have one.
+- **Triton TJS001 jigsaw** — official manual found
+  (`tritontools.com/cdn/shop/files/865886_Z1MANPRO1.pdf`) but not opened
+  before TPL180 sourced cleanly first; worth a look next time rather than
+  re-searching.
+
+**Sourced and published: Triton TPL180 triple-blade power planer.**
+Found via search for the manual directly (same successful pattern as
+TBJ001/TWX7CS002/TWX7RT001) — the official PDF resolves both from
+`tritontools.com` and a Lowe's-hosted mirror
+(`pdf.lowes.com/productdocuments/.../10382487.pdf`), and the two are
+identical in content (62 pages, document 366649_Z1MANPRO2, 16/03/2015).
+**Verification gate, quotes from the fetched PDF:**
+
+- Troubleshooting table: `"Barrel not rotating" | "Broken drive belt" |
+  "Replace belt"` — the sole cause listed for this symptom.
+- Full numbered belt-replacement procedure under "Drive belt replacement":
+  "To replace the drive belt first take out the three cross-head screws
+  that secure the Drive Belt Cover (8)... Note: The front screw is longer
+  than the other two... Remove the damaged belt by pulling it sideways off
+  the top pulley and turning the bottom pulley by hand... With the six
+  continuous 'v' profiles on the inside, place the new belt over the
+  bottom pulley... Check that the belt runs evenly by manually turning the
+  belt... Plug the machine back into the power outlet and switch the tool
+  on and run for a minute to make sure that the motor and belt are
+  operating correctly."
+- Market/genuineness check: Specification table lists "EU - 230V - 240V~
+  50Hz, 1500W" alongside the US/AU/JP variants (multi-market document, EU
+  row confirms UK relevance), and the CE Declaration of Conformity names
+  the manufacturer as "Powerbox International Limited... Central House,
+  Church Street, Yeovil, Somerset BA20 1HH, United Kingdom" — Triton's
+  real UK corporate entity, confirming the document is genuine and not a
+  mismatched sibling or market variant.
+- Checked for content overlap against the existing Axminster
+  AW106PT2 planer/jointer entry (15 Jun 2026) before drafting: that entry
+  is a different machine class (benchtop thicknesser) and a different
+  fault (motor hums/won't start on a capacitor or winding fault) — no
+  overlap with TPL180's handheld-planer broken-belt fault.
+
+No claims cut this run — everything in the entry traces to the quotes
+above.
+
+**NEEDS HUMAN — illustration is currently broken on both paths.**
+`openai-image` (the server that's been doing every illustration since
+14 Sep) now returns `400 The model 'gpt-image-1' does not exist` on two
+attempts this run — a real API-side change (model renamed, deprecated, or
+an account/access change), not a transient fault. `gemini-image` is still
+blocked on the pre-existing free-tier quota issue (`RESOURCE_EXHAUSTED`,
+0 free-tier quota for `gemini-2.5-flash-preview-image`, confirmed again
+this run). **Both illustration routes are dead right now.** Published the
+TPL180 entry without an image per the playbook's fallback (the field is
+optional) rather than block the entry on it. This needs Nick's attention
+soon: either fix the OpenAI account/API key so `gpt-image-1` (or whatever
+it's been renamed to) resolves again, or every future content-run entry
+will ship unillustrated until it's fixed. Worth checking the OpenAI
+platform dashboard for the account tied to the key in
+`~/.claude.json`'s `mcpServers.openai-image.env`.
+
+Continuing this run with the two leads already identified above (Axminster
+bench grinder's PDF URL, Triton TJS001's manual) rather than stopping here —
+see further entries below for how the rest of this run went.
