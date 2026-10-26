@@ -1,6 +1,8 @@
 ---
 brand: "Triton"
 model: "TJS001"
+image: "./img/triton-tjs001.png"
+image_alt: "Line-art illustration of the Triton TJS001 jigsaw showing the motor vents, the screw-held brush access cover at the rear and the variable speed dial"
 seo_title: "Triton TJS001 Jigsaw Losing Power or Sparking — Brushes"
 meta_description: "Triton TJS001 jigsaw loses power, cuts intermittently or sparks visibly. Triton's own manual points to worn carbon brushes and gives the swap procedure."
 category: "Motor & Drive"

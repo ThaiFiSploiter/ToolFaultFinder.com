@@ -1,6 +1,8 @@
 ---
 brand: "Triton"
 model: "TPL180"
+image: "./img/triton-tpl180.png"
+image_alt: "Line-art illustration of the Triton TPL180 power planer showing the drive belt cover on the side of the body, the blade barrel in the sole plate and the rear handle with trigger"
 seo_title: "Triton TPL180 Planer Barrel Not Rotating — Belt Fix"
 meta_description: "Triton TPL180 power planer runs but the blade barrel won't turn. Triton's own manual traces this to a broken drive belt and gives the replacement steps."
 category: "Motor & Drive"
