@@ -3849,3 +3849,106 @@ the OpenAI side, `gemini-image` still free-tier-exhausted). This is now
 affecting every entry, not a one-off — worth Nick's attention before the
 next content run rather than after several more unillustrated entries
 pile up.
+
+## 27 Oct 2026 — content run (ISO week 2026-W44)
+
+**Published 1 of the 7-entry ceiling — Einhell GE-BC 43 AS petrol
+brushcutter (engine won't start despite repeated pulls).** Full
+entry-at-a-time cycle to live: researched, drafted, verification gate,
+illustrated (gpt-image-2, first use of the fixed pipeline on a fresh
+entry rather than a backfill), built, committed, pushed, verified live.
+
+GSC top queries (`gsc-report.mjs --days 30`) again all mapped to existing
+routes — no new-topic gap from GSC alone. Fell back to new-category
+prospecting per cadence order #3/#4.
+
+**Candidates researched and dropped before GE-BC 43 AS sourced:**
+- **Record Power Pathfinder lathe** — now a third failed sourcing attempt
+  (22 Sep suspicion-only, 26 Oct real search attempt, this run a direct
+  product-page fetch). The manual download on `recordpower.co.uk` is now
+  gated behind a login wall (`class="loggin-to-download" href="#"`), a
+  new finding — not just absent, actively blocked. Deprioritising
+  permanently alongside the Herald/Regent precedent.
+- **Makita 5903R circular saw** — only third-party mirrors found
+  (manuall.co.uk, manualsbase.com); the manual appears to be a shared
+  5603R–5903R family document but no official `media.makita.co.nz` or
+  `makita.co.uk` copy surfaced, and `makita.co.uk` doesn't resolve a
+  product page by guessing the model-number slug. Not pursued further —
+  one real attempt, not yet worth a second without a different approach.
+- **Flymo** and **HiKOKI** — both searched again (Flymo's own domain
+  still doesn't yield a troubleshooting PDF; HiKOKI's UK site still has
+  no manual link in search results). No new attempt against the official
+  domains directly this run; still at the "needs a structurally different
+  approach, not another search" stage flagged previously.
+- **Kärcher K1** — searched for an official `s1.kaercher-media.com`
+  document; nothing surfaced distinct from third-party mirrors. Not
+  pursued past one search.
+
+**Sourced and published: Einhell GE-BC 43 AS petrol brushcutter.** Found
+via the established einhell-service.com pattern: searched for the UK
+product page (`einhell-service.com/en_GB/3404610-ge-bc-43-as.html`,
+confirmed as the UK service page, not the German or ARG/EX sibling
+variants also listed in the same search — the page explicitly warns not
+to mix GE-BC 43 AS up with the GH-BC or GC-BC variants, which have
+different spool speeds and tank sizes), then its CloudFront asset links
+for the document set. The data-sheet PDF (document `_11013_001_DE_GE-BC`)
+was a 1-page spec sheet with no fault content; the real manual was one of
+five `_SPK1`–`_SPK5` documents bundled on the same page (multi-language
+compilations) — SPK1 was the one containing the "GB Original operating
+instructions" section. **New domain-structure finding worth keeping:**
+einhell-service.com's product pages can bundle a thin data-sheet PDF
+alongside the real multi-language manual under separate, differently-named
+asset links on the same page — don't stop at the first PDF that resolves;
+check whether a sibling asset on the same page is the fuller document.
+
+**Verification gate — every claim re-opened and quoted from the fetched
+PDF before drafting, not recalled:**
+- Fault table, Section 12: `"The equipment does not start" | "Correct
+  starting procedure not followed" → "Follow the instructions for
+  starting"`; `"Sooted or damp spark plug" → "Clean the spark plug or
+  replace it with a new one"`; `"Incorrect carburetor setting" → "Contact
+  an authorized customer service outlet or send the equipment to ISC
+  GmbH"`.
+- Cold-start procedure, Section 7.1: primer pressed "10 times", On/Off
+  switch to "I", choke lever to "II", decompression lever actuated, then
+  short sharp tugs on the starter cord — matches the entry's diagnostic
+  step verbatim in sequence and count.
+- Warm-start procedure, Section 7.2 ("The equipment has been idle for
+  less than 15-20 min."): On/Off switch to "I" directly, no choke step —
+  confirms the entry's "choke left off" characterisation.
+- Spark plug maintenance, Section 9.4: "Spark plug sparking gap = 0.6mm.
+  Tighten the spark plug with a torque of 12 to 15 Nm" and "Pull out the
+  spark boot plug" as the first step before removal — matches verbatim.
+- Carburettor, Section 9.5: "Settings on the carburetor may only be made
+  by authorized customer service personnel" — quoted directly in the
+  entry.
+- Spark plug type "RCJ7Y" in the English technical-data table, cross-
+  confirmed as "Champion RCJ7Y" in the same document's Italian, Danish,
+  Czech and Slovak sections (the English table lists the model code
+  alone) — used in the parts list as "Champion RCJ7Y or equivalent".
+- Model/market check: title page confirms "GE-BC 43 AS", "Art.-Nr.:
+  34.046.10", "I.-Nr.: 11013" — matches the UK einhell-service.com
+  article number (3404610) found before drafting.
+
+No claims cut — everything in the entry traces to a quote above. This is
+the site's first petrol/2-stroke-engine entry and first brushcutter/
+strimmer entry, a genuinely new tool category with no content-overlap risk
+against the existing (all-electric/cordless/corded/3D-printer) library.
+
+**Stopping at 1 of 7 for this run** — sourcing, not the ceiling. Of five
+candidates tried, four produced nothing usable; the one that worked came
+from the already-reliable einhell-service.com pattern rather than a new
+source. Leads worth a different approach next time rather than re-
+searching: Makita 5903R (try guessing a direct `media.makita.co.nz`
+manual URL the way the DeWalt/Einhell pattern eventually worked, rather
+than relying on search), HiKOKI and Flymo (both still need a structurally
+different approach, per the standing note from 19/26 Oct).
+
+**Illustration pipeline confirmed working end-to-end on a fresh entry**
+(not just the 26 Oct backfill): gpt-image-2 produced a correct, house-
+style-matching brushcutter image on the first attempt — twin bike handle,
+primer bulb, choke lever, starter housing and three-tooth blade under its
+guard all present and plausible, pure white background, no glow/shadow/
+stippling. No regeneration needed.
+
+**NEEDS HUMAN: none.**
