@@ -3952,3 +3952,67 @@ guard all present and plausible, pure white background, no glow/shadow/
 stippling. No regeneration needed.
 
 **NEEDS HUMAN: none.**
+
+**Published 2nd of the run: Einhell GC-PC 1335/1 I petrol chainsaw
+(insufficient chain lubrication — bar and chain run dry and overheat).**
+Sourced from the same einhell-service.com UK product page as the first
+entry (`einhell-service.com/en_GB/4501870-gc-pc-1335-1-i.html`), but a
+genuinely different document from that entry's bundle: the data-sheet and
+four `_11018`/`_21023` SPK files on the page didn't contain the English
+manual body — only `SPK9` (232 pages) did, confirmed by its "GB Original
+operating instructions" marker. **New finding to carry forward: on
+einhell-service.com, which numbered SPK file is the English-language one
+is not consistent across products** — it was SPK1 for GE-BC 43 AS (this
+run's first entry) and SPK9 for this chainsaw. Check each one for the "GB
+Original operating instructions" marker rather than assuming the same SPK
+number repeats.
+
+Deliberately picked "insufficient chain lubrication" rather than "unit
+won't start" from the same table — the won't-start row shares the same
+starting-procedure/spark-plug/carburettor shape already published for
+GE-BC 43 AS this run, and the lubrication fault is chainsaw-specific
+(bar, chain, oil tank, automatic oiler) with no overlap risk.
+
+**Verification gate — every claim re-opened and quoted from the fetched
+PDF:**
+- Fault table, Section 9: `"Insufficient chain lubrication (the cutter
+  rail and chain get hot)" | "Empty oil tank for the chain" → "Top up the
+  oil tank for the chain"; "Oil lubrication openings moved" → "Clean the
+  oil entry hole/groove on the guide rail."`
+- Section 5.3: "Whenever you refill the fuel tank with petrol you must
+  also top up the level of chain oil in the chain oil tank" and "Keep the
+  oil tank filled with Chain, Bar and Sprocket Oil... Never starve the bar
+  and chain of lubricating oil" — both quoted directly.
+- Section 7.2.5: the underside flow-adjustment screw description ("the
+  setting screw (A) for the chain lubrication system... Turning the screw
+  counter-clockwise increases the chain lubrication") and "The chain
+  lubrication system has been set to its perfect adjustment at the
+  factory. If it requires adjusting, take the saw to your nearest
+  authorized after-sales service outlet" — matches verbatim, same
+  treatment as the carburettor section elsewhere in the same manual.
+- Paper test: "hold the chain saw, with the chain, over a piece of paper
+  and run it at full speed for a few seconds. You will be able to judge
+  the set amount of oil from the paper" — quoted directly.
+- Model/market check: title page confirms "GC-PC 1335/1 I", "Art.-Nr.:
+  45.018.70", "I.-Nr.: 21023" — Art.-Nr. matches the en_GB page's article
+  number (4501870) found before drafting.
+
+No claims cut. Checked for overlap against the existing library before
+drafting: no other chainsaw entry exists, and the fault (an oiler/
+lubrication-delivery system) has no equivalent on any cordless or electric
+tool already published.
+
+**Stopping at 2 of 7 for this run — sourcing, not the ceiling.** Six
+candidates were tried across the run (Record Power Pathfinder, Makita
+5903R, Flymo, HiKOKI, Kärcher K1, plus the two that worked); four produced
+nothing usable. Both published entries came from the einhell-service.com
+pattern, which is now confirmed reliable across three tool categories this
+month (drill, mower, chainsaw, hedge trimmer, pressure washer, and now
+brushcutter) — worth treating as a go-to source alongside Triton/Record
+Power/Axminster/DeWalt when GSC gives no gap.
+
+**Illustration pipeline held up across both entries this run** — two
+fresh gpt-image-2 generations, both correct and house-style-matching on
+the first attempt, no regeneration needed either time.
+
+**NEEDS HUMAN: none.**
