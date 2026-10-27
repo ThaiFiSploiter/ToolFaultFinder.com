@@ -4086,3 +4086,71 @@ three fresh gpt-image-2 generations, all correct and house-style-matching
 on the first attempt.
 
 **NEEDS HUMAN: none.**
+
+**Published 4th of the run: Einhell GC-MT 2236 petrol cultivator (drive
+power falls — clutch cable play or a loose V-belt).** Sourced from a
+fourth einhell-service.com UK page, this time found by guessing the
+article number from a search result mentioning several GC-MT sibling
+models and their article numbers directly (3431501 for the 2236 variant),
+same direct-guess approach that worked for the mower. The manual bundle
+had two revisions (`_11018` and `_21023`); used the newer `_21023` one,
+with `SPK9` again the English-language document — a third different SPK
+number across four entries this run, reinforcing the "check each one for
+the GB marker, don't assume the number repeats" finding from entry 2.
+
+**Verification gate — every claim re-opened and quoted from the fetched
+PDF:**
+- Fault table, Section 9: `"Drive power falls" | "Clutch play too large"
+  → "Adjust clutch cable"; "V-belt loose" → "Contact authorized customer
+  service"`.
+- Section 7.2.4 (Adjusting the Bowden wires): "In the working setting it
+  should be possible to push the clutch lever up to the push bar without
+  this requiring much effort. If the Bowden wire is too taut for this, it
+  must be extended... If the star-type hoes no longer rotate then the
+  screw connector will have to be shortened again" — quoted directly,
+  this is the one entry this run with a genuine owner-level adjustment
+  procedure rather than a service-centre referral as the primary fix.
+- Section 7.2.5: "The gear unit is driven by a V-belt. The gear unit can
+  be repaired if this should become necessary. If repairs are necessary,
+  please contact our customer service center" — quoted directly for the
+  second cause.
+- Model/market check: title page confirms "GC-MT 2236", "Art.-Nr.:
+  34.315.01", "I.-Nr.: 21023" — matches the en_GB page's article number
+  (3431501) found before drafting.
+
+No claims cut. `parts:` omitted entirely (not an empty array — checked
+the schema convention against other no-parts entries before writing):
+the fix is a cable adjustment, not a part replacement, and the other
+cause is a service-centre referral per the established "service-centre
+verdict gets no parts" rule.
+
+**Stopping at 4 of 7 for this run — sourcing, not the ceiling.** Eight
+candidates tried in total across the run (Record Power Pathfinder, Makita
+5903R, Flymo, HiKOKI, Kärcher K1, plus the four that worked); four
+produced nothing usable. All four published entries this run came from
+einhell-service.com, now confirmed across seven tool categories (drill,
+mower ×2, chainsaw, hedge trimmer, pressure washer, brushcutter,
+cultivator) and both cordless and petrol engines — by far the most
+productive source this month. Stopping here rather than continuing to
+search for a fifth: four well-verified, non-overlapping entries from one
+run is a strong result, and the remaining untried Einhell petrol
+categories (hedge trimmer, leaf blower) are more likely to share the
+brushcutter's generic won't-start table than yield more genuinely new
+content without a longer search — better spent as a lead for the next
+content run than chased to padding tonight.
+
+**Illustration pipeline held up across all four entries this run** —
+four fresh gpt-image-2 generations, all correct and house-style-matching
+on the first attempt, no regenerations needed.
+
+**Run total: 4 of the 7-entry ceiling published** — Einhell GE-BC 43 AS
+(petrol brushcutter, won't start), Einhell GC-PC 1335/1 I (petrol
+chainsaw, chain not oiling), Einhell GC-PM 52/2 S HW (petrol mower,
+vibrates), Einhell GC-MT 2236 (petrol cultivator, drive power falls).
+First petrol/2-stroke-and-4-stroke-engine entries on the site; four new
+tool categories (brushcutter, chainsaw, mower, cultivator) added in one
+run with no content overlap between them. All four passed the pre-publish
+verification gate with every quoted claim re-opened from a freshly
+fetched primary source — none cut.
+
+**NEEDS HUMAN: none.**
