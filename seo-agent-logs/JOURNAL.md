@@ -4016,3 +4016,73 @@ fresh gpt-image-2 generations, both correct and house-style-matching on
 the first attempt, no regeneration needed either time.
 
 **NEEDS HUMAN: none.**
+
+**Published 3rd of the run: Einhell GC-PM 52/2 S HW petrol lawn mower
+(vibrates intensively — loose bolts, loose blade attachment, or an
+imbalanced blade).** Sourced from a third einhell-service.com UK page
+(`en_GB/3404850-gc-pm-52-2-s-hw.html`), found this time by guessing the
+article number directly from a search result (3404850, surfaced via a
+spare-blade compatibility listing) rather than finding the UK page in the
+search results themselves — the direct-guess approach worked first try.
+The manual (`SPK7`, 140 pages) is a shared document covering the GC-PM
+47/2, 52/2 and 56/2 S HW siblings, with per-model Art.-Nr. lines on its
+own title page (34.048.45 / .50 / .60) confirming which belongs to the
+52/2 specifically.
+
+**Verification gate — every claim re-opened and quoted from the fetched
+PDF:**
+- Fault table, Section 9: `"The equipment does not operate smoothly and
+  vibrates intensively" | "Bolts loose" → "Check bolts"; "Blade attachment
+  is loose" → "Check blade attachment"; "Blade imbalanced" → "Replace
+  blade"`, plus the section's opening safety warning: "Switch off the
+  engine and pull out the spark plug boot before making any checks or
+  adjustments."
+- Section 7.2.2: "For safety reasons, have all blade sharpening,
+  balancing and mounting work carried out by an authorized service
+  center" and "Tilt the lawn mower to the rear and check the blade for
+  damage. Damaged or bent blades must be replaced. Never straighten a
+  bent blade. Never work with bent or heavily worn blades as this will
+  result in vibrations, causing further damage to the mower" — both
+  quoted directly.
+- Model/market check: title page confirms "GC-PM 52/2 S HW", "Art.-Nr.:
+  34.048.50 (GC-PM 52/2 S HW)", "I.-Nr.: 11019" — Art.-Nr. matches the
+  en_GB page's article number (3404850) found before drafting.
+
+**One nuance worth flagging, handled rather than smoothed over**: the
+fault table's one-line remedy for an imbalanced blade is simply "Replace
+blade," but Section 7.2.2's own safety guidance says blade sharpening,
+balancing and *mounting* work should go through an authorized service
+centre — not the same thing as a free DIY swap the fault table's wording
+alone would suggest. Folded both into the verdict rather than picking the
+simpler of the two: loose bolts/attachment are DIY, a damaged blade is
+a straightforward replacement, but balancing/mounting work is routed to
+a service centre per the manufacturer's own stated reasoning (injury risk
+from a spinning blade). **Worth carrying forward as a general check**:
+where a fault table's one-line remedy conflicts with more detailed
+guidance elsewhere in the same manual, use the more specific section, not
+just the table — this is the same shape as the DW733/TC-HP-1538
+"gate catches an invented detail" cautions, but here the risk was
+under-stating caution rather than inventing a step.
+
+No claims cut from any of the three entries published this run. Checked
+for content overlap before drafting: no vibration/blade-balance entry
+exists for any petrol tool, and the existing `record-power-dml250-
+vibration` entry (lathe spindle vibration, a completely different
+mechanism) doesn't overlap.
+
+**Stopping at 3 of 7 for this run — sourcing, not the ceiling.** Seven
+candidates were tried in total (Record Power Pathfinder, Makita 5903R,
+Flymo, HiKOKI, Kärcher K1, plus the three that worked); four produced
+nothing usable. All three published entries came from einhell-service.com,
+now confirmed reliable across six tool categories (drill, mower ×2,
+chainsaw, hedge trimmer, pressure washer, brushcutter) spanning both
+cordless and petrol engines — the most productive single source this
+month. **Worth trying more Einhell petrol/engine siblings next content
+run** (hedge trimmers, leaf blowers, cultivators) before falling back to
+brand-blind prospecting, given the hit rate today.
+
+**Illustration pipeline held up across all three entries this run** —
+three fresh gpt-image-2 generations, all correct and house-style-matching
+on the first attempt.
+
+**NEEDS HUMAN: none.**
