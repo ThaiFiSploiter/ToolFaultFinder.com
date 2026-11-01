@@ -1,33 +1,30 @@
 ---
 brand: "Ryobi"
 model: "ONE+ 18V"
-seo_title: "Ryobi ONE+ 18V Charger Flashing Defective — Fix"
-meta_description: "Ryobi ONE+ 18V charger flags a stored pack as defective the moment it goes in. Why deep discharge causes it, how to revive the pack, and when to recycle it."
+seo_title: "Ryobi ONE+ 18V Charger Flashing Defective — What It Means"
+meta_description: "Ryobi ONE+ 18V charger flags a stored pack as defective the moment it goes in. What the flashing LEDs mean, how to isolate battery vs charger, and what Ryobi's own guidance says to do next."
 image: "./img/ryobi-one-plus-18v.png"
 image_alt: "Line-art illustration of a Ryobi ONE+ 18V lithium battery pack with its charge indicator and release latch"
 category: "Batteries & Charging"
-symptom: "Battery refuses to charge after storage — charger flashes its 'defective' pattern the moment the pack is inserted"
-likely_cause: "The battery, not the charger: deep discharge during storage has dropped the cells below the cutoff voltage the charger accepts, so it flags a healthy-but-empty pack as faulty"
+symptom: "Battery refuses to charge after storage — charger shows its 'defective' LED pattern the moment the pack is inserted"
+likely_cause: "Usually the battery, not the charger — a pack that sat flat in storage can trip the charger's defective-pack logic. Ryobi's own support guidance treats this as a swap-test case, not a diagnosis you can make from the LED pattern alone"
 diagnostic_steps:
-  - "Rule out the charger: try a known-good battery in it, and the suspect battery in a second charger if one is available"
-  - "Clean the battery and charger terminals — oxidised or dusty contacts produce the same rejection"
-  - "Measure voltage across the pack's main terminals: a healthy resting 18V pack reads around 18–20V; a deeply discharged one reads well below that"
-  - "Check the pack for swelling, dents, leakage, or any smell — physical damage means stop, the pack is scrap regardless of voltage"
-  - "Try short charge bursts: insert the pack for a few seconds, remove, reinsert, and repeat — many chargers will accept the pack once the voltage creeps above the cutoff"
-fix_or_verdict: "Often recoverable at no cost via short charge-burst cycling if the pack was simply stored flat. A pack that is swollen, damaged, or reads near zero volts is done — recycle it, don't push it."
+  - "Remove and reinsert the suspect battery once — Ryobi's own guidance has this as the first step before concluding anything is actually faulty"
+  - "Swap-test: try the suspect battery in a different charger if one is available, and a known-good battery in the suspect charger. Whichever one still shows the fault is the actual problem"
+  - "Clean the battery and charger terminals — oxidised or dusty contacts can produce the same rejection as a genuine fault"
+  - "Check the pack for swelling, dents, leakage, or any smell — physical damage means stop regardless of what the charger shows"
+fix_or_verdict: "There is no Ryobi-published recovery procedure for a pack that fails the swap test — their own support guidance stops at isolating battery from charger, then routes a confirmed-faulty unit to warranty assessment or an authorised service centre. If the pack is still within warranty, that is the route to use rather than anything attempted at home. Out of warranty, a battery that fails the swap test and shows no physical damage is reasonably replaced; a charger that fails it is the cheaper half to replace. Treat charge-cycling tricks circulating on forums as unverified — Ryobi doesn't publish or endorse one, and repeatedly cycling a pack that may have been damaged by deep discharge is not a risk worth taking to save the cost of a battery."
 parts:
   - name: "Replacement 18V ONE+ battery pack"
-    note: "Only once the pack is genuinely done — swollen, damaged, or reading near zero volts. Try the charge-burst cycling first; a pack simply stored flat often comes back for free."
+    note: "Check warranty first — Ryobi's own guidance routes a confirmed-faulty pack to warranty assessment or a service centre, not a home fix. Only buy once that's ruled out."
     search: "Ryobi ONE+ 18V battery pack"
   - name: "ONE+ battery charger"
-    kind: "consumable"
-    note: "If the charger is the half that's failed, this is the cheaper end of the problem."
+    note: "Only if the swap test points to the charger rather than the battery, and warranty doesn't cover it."
     search: "Ryobi ONE+ 18V battery charger"
 source_type: "researched"
 sources:
-  - "Ryobi ONE+ charger manual (LED status indicator table)"
-  - "Lithium-ion battery management references on over-discharge cutoff behaviour"
-  - "Widespread user reports of deep-discharge recovery on tool forums and r/ryobi"
+  - "Ryobi Support Australia — \"How to Troubleshoot a Ryobi Charger That's Not Lighting Up or Charging\" (support.ryobi.com.au)"
+  - "Ryobi Support New Zealand — \"What Do LED Lights Mean? Ryobi 18V Multi-Port Chargers\" (support.ryobi.co.nz)"
 date_published: 2026-05-22
 ---
 
@@ -39,47 +36,50 @@ charge. The pack shows no damage and was never abused. This pattern — fine
 before storage, "defective" after — is reported constantly across every
 cordless platform, and Ryobi's ONE+ range is no exception.
 
-## What's actually happening
+## What Ryobi's own guidance actually says
 
-First, the question everyone asks: **is it the battery or the charger?** It's
-the battery — and usually the battery isn't broken either. The charger is
-doing exactly what it's designed to do; the "defective" light describes the
-battery's state, not the charger's opinion of itself. (Step one of the
-diagnosis still swaps packs and chargers around, because a genuinely dead
-charger or dirty contacts produce the same picture — but they're the rare
-case.)
+Ryobi's support documentation for its 18V chargers is explicit that a
+"defective" LED pattern (on most ONE+ chargers, the red and green LEDs
+flashing together) does not by itself tell you whether the fault is the
+battery or the charger — it describes a swap test instead: try a different
+battery in the same charger, and the suspect battery in a different charger
+if one is available. If a different battery charges normally, the original
+battery is the likely fault; if a different battery also shows the same
+pattern, suspect the charger instead.
 
-Here's the mechanism. Lithium-ion packs self-discharge slowly in storage, and
-the pack's electronics draw a small current on top. Store a partly flat pack
-for long enough and the cells sink below the minimum voltage the charger is
-designed to accept. The charger can't tell the difference between "healthy
-but over-discharged" and "genuinely failed", so it errs on the side of
-caution and rejects the pack.
-
-That caution exists for a reason. Cells held below their minimum voltage for
-long periods can develop internal damage that makes recharging them genuinely
-hazardous. The recovery approach below is for packs that spent a manageable
-time slightly under the cutoff — not for packs that read near zero volts or
-have sat flat for years.
+What the official guidance does **not** do is offer a home recovery
+procedure. Once the swap test confirms a fault, Ryobi's own instruction is to
+return the faulty unit for warranty assessment or take it to an authorised
+service centre — not to attempt anything further at home. That's worth
+taking at face value: a pack that's been deeply discharged in storage can
+develop internal cell damage, and a manufacturer that routes this to a
+service check rather than publishing a DIY fix is making a deliberate choice,
+not an oversight.
 
 ## Working through it
 
-First eliminate the cheap explanations: test the charger with a known-good
-pack, and clean both sets of terminals — a film of workshop dust produces the
-same rejection as a flat cell. Then measure the pack voltage across its main
-terminals. Just under the cutoff is the recoverable case; a reading near zero,
-or any swelling or smell, means the pack is scrap.
+Start with the simple checks the official guidance itself leads with: remove
+and reinsert the battery once, then run the swap test — the suspect battery
+in a different charger, a known-good battery in the suspect charger. While
+you're at it, clean both sets of terminals; a film of workshop dust can
+produce the same rejection as a genuine fault. Check the pack for swelling,
+dents, leakage, or any smell at every stage — any of those means stop
+regardless of what the LEDs show.
 
-For the recoverable case, the widely reported technique is charge-burst
-cycling: insert the pack, leave it a few seconds, pull it out, reinsert, and
-repeat. Each burst nudges the voltage up before the charger's rejection logic
-trips, and after a number of cycles the pack crosses the threshold and charges
-normally. Supervise the first full charge and check the pack doesn't get more
-than mildly warm.
+You will likely come across "charge-burst cycling" advice on forums —
+repeatedly inserting and removing a flat pack to coax a charger's rejection
+logic into accepting it. Ryobi doesn't publish or endorse this, and there's
+no way to verify from here whether it's safe on a given pack. Given that the
+manufacturer's own position is to route a confirmed-faulty pack to a service
+check rather than a home procedure, that's the more honest answer, even
+though it means no guaranteed free fix.
 
 ## Verdict
 
-Zero-cost fix in the common case. Prevent the recurrence by storing packs
-around half charge rather than empty, and topping them up every few months.
-Never attempt to recover a swollen, damaged, or near-zero pack, and never
-charge any recovered pack unattended for the first cycle.
+Run the swap test before buying anything — plenty of "defective" readings
+turn out to be the charger, a dirty contact, or resolve on a simple
+reinsert. If the battery fails the test and is still under warranty, that's
+the route to use. Out of warranty, with no physical damage and a confirmed
+fault, replacing the failed half (pack or charger, whichever the swap test
+points to) is reasonable — there's no manufacturer-backed way to revive a
+pack that's actually failed.
