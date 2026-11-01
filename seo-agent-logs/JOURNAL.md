@@ -4356,3 +4356,102 @@ the existing authority and sourcing rails.
 **Content-run stamps:** not touched this run (monthly run, not a content
 run) — `.content-week` shows an uncommitted `2026-44 2` from the 27 Oct
 content run; left as-is, not this run's concern.
+
+## 2026-11-02 — weekly run
+
+**Clicks up WoW a fourth straight week, and the biggest jump of the
+streak.** Trailing 7-day windows from `gsc-report.mjs --days 21`'s by-day
+data: Oct17-23 10 clicks/734 impr (1.36% CTR) → Oct24-30 24 clicks/1215
+impr (1.98% CTR) — clicks +140%, impressions +65%. Checked for the
+Sep19-25-style concentration artefact (76% of that week's impressions
+fell on 4 days) before trusting this as organic: Oct24-30's daily clicks
+(5,1,3,4,6,3,2) are broadly spread, not concentrated — reads as a genuine
+broad-based lift, not a repeat of that outlier shape. No on-page change
+sits behind it (nothing shipped between the two windows), consistent
+with the pattern since 26 Oct of growth with no corresponding diagnosis
+— flagging rather than claiming credit.
+
+**CTR check: two candidates, neither cleared the bar for a title
+rewrite.** `bambu-lab/x1-carbon` (97 impr/14d, pos 8.6, 0 clicks — a
+genuine volume candidate now that it's had two weeks to accumulate
+data) live-searched for its core query ("the cutter is stuck" fix) and
+confirmed the same Bambu wiki/forum authority-cap pattern already
+established for A1/K4/six other pages — `wiki.bambulab.com` and
+`forum.bambulab.com` fill the entire first page. Title/meta/canonical
+already well-formed (checked live). `einhell/gp-lc-36-40-li-bl` (35
+impr/14d, pos 5.8, 0 clicks) live-searched and found a fragmented SERP
+(retailer listings, no single authority) — joins the existing
+fragmented-but-zero-CTR category rather than the authority-cap one, and
+at 35 impressions is too low-volume to act on regardless. No title
+rewritten — rail 8 territory, no evidence cleared.
+
+**Coverage: 89/94 "Submitted and indexed" (94.7%), same total as the 1
+Nov monthly sweep but the composition shifted underneath it.**
+`/faults/electronics-firmware/` — stuck on "URL is unknown to Google"
+for a full month as of 1 Nov — moved to "Discovered – currently not
+indexed", real forward progress. Against that, `axminster/ap2920b` and
+`karcher/k3` both regressed from "Discovered – currently not indexed"
+(1 Nov) back to "URL is unknown to Google" this sweep. Per the
+established Discovered↔unknown toggle pattern (first logged 1 Sep:
+"dcf887 went unknown → Discovered, hr2470 went Discovered → unknown. Net
+zero.") this reads as normal noise for low-priority uncrawled pages, not
+a regression to act on — noted, not treated as a problem. `dewalt/dw733`
+held at "Discovered – not indexed" (4th straight sweep now).
+`ryobi/one-18v` is still "Crawled – currently not indexed", the first
+sweep since the 1 Nov re-sourcing fix (`176a64d`) — one sweep is nowhere
+near enough to judge whether the fix moved it; the `bosch/pst-700-e`
+precedent took several weeks. Watching, not re-acting.
+
+**Weekly entry audit: 3 of 3 clean.** Picked up the backlog the 26 Oct
+run explicitly flagged ("Bambu X1 Carbon and Triton TSPST450 ... still
+unaudited — pick those first next week") plus one entry from the 27 Oct
+batch (Einhell GC-PM 52/2 S HW), rather than reaching for the newest
+entries again. All three re-verified against freshly re-fetched primary
+sources, not drafting-time quotes:
+
+- **`bambu-lab-x1-carbon-cutter-stuck.md`** — re-fetched
+  `wiki.bambulab.com/en/x1/troubleshooting/cutter-stuck` via curl with a
+  browser UA (WebFetch itself 402s on this domain, consistent with prior
+  findings). Every diagnostic branch matches verbatim: the two-minute
+  Hall-sensor timeout, Retry on Support/Silk filament, cleaning the Hall
+  sensor and magnet, re-plugging the 10-pin connector after removing
+  silicone with tweezers ("sometimes it needs to be re-plugged several
+  times"), swapping a spare extruder to isolate a faulty sensor, the
+  clogged-hot-end-raises-pressure mechanism, dressing both sides of the
+  cutter with a knife for production-tolerance friction, and the
+  cooling-fan cable snagging the lever. The entry correctly draws from
+  the wiki page's "X1 & P1 Series" solutions branch, not its separate
+  "A1 series" branch — the exact distinction the 1 Oct Bambu A1
+  re-sourcing finding turned on. No claims cut.
+- **`triton-tspst450-motor-not-full-speed.md`** — re-fetched via
+  `tritontools.com/products/977604` → `media.adeo.com/media/3040622/media.pdf`
+  (the cited `977604_OwnerManual.indd`, confirmed by the filename stamped
+  into the PDF's own footer on every page, 230V~50Hz, Toolstream Ltd
+  Yeovil). The Troubleshooting table's exact row — "Sanding drum not
+  operating at full speed or motor sounds different to normal" — lists
+  all four causes the entry uses in the same order (motor over-heating →
+  cool ½ hour; brushes need replacing → see Brush replacement; motor
+  belt worn or stretched → service centre; motor faulty → service
+  centre), and the Brush Replacement procedure matches step-for-step
+  including "always replace brushes in pairs." A first search surfaced a
+  US-market Lowe's/Powerbox spec sheet for the same model (120V, no
+  troubleshooting content) — correctly not what's cited, confirms rather
+  than undermines the entry's actual source. No claims cut.
+- **`einhell-gc-pm-52-2-s-hw-vibrates.md`** — re-fetched via
+  `einhell-service.com/en_GB/3404850-gc-pm-52-2-s-hw.html`'s CloudFront
+  asset list → the 140-page `..._SPK7.pdf`, confirmed as the cited
+  document via its own title page ("Art.-Nr.: 34.048.50 (GC-PM 52/2 S
+  HW), I.-Nr.: 11019" — exact match). Section 9's table and Section
+  7.2.2 both matched verbatim, including the specific wording the 27 Oct
+  content run flagged as understating caution if taken from the table
+  alone ("for safety reasons, have all blade sharpening, balancing and
+  mounting work carried out by an authorized service center", "tilt the
+  lawn mower to the rear", "Never straighten a bent blade"). One
+  procedural note for next time: a flat single-line `grep` for that
+  exact phrase initially returned nothing, because `pdftotext -layout`
+  wrapped it across two lines ("sharpening, / balancing") — reading the
+  surrounding block of text rather than trusting a single-line grep
+  match (or miss) is what caught that this was a tool artefact, not a
+  real discrepancy. No claims cut.
+
+**NEEDS HUMAN: none this run.**
