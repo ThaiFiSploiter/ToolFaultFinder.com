@@ -1,6 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import Base from '../../../layouts/Base.astro';
 import { slugify, faultUrl } from '../../../lib/slug';
 import { groupByBrand, hasHub, brandUrl } from '../../../lib/brands';
@@ -107,6 +107,14 @@ const searchDescription =
 
 const absolute = (path: string) => new URL(path, Astro.site).href;
 
+// Resolved once per page so the same optimised asset backs both the on-page
+// <Image> and the og:image/twitter:image meta tags in Base.astro — before this,
+// no fault page had a social-preview image at all, despite nearly every entry
+// carrying a custom illustration.
+const socialImage = image
+  ? absolute((await getImage({ src: image, width: 1200 })).src)
+  : undefined;
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -122,6 +130,7 @@ const jsonLd = {
       datePublished: date_published.toISOString().slice(0, 10),
       inLanguage: 'en-GB',
       mainEntityOfPage: absolute(pageUrl),
+      ...(socialImage ? { image: socialImage } : {}),
       publisher: {
         '@type': 'Organization',
         name: 'ToolFaultFinder',
@@ -151,7 +160,7 @@ const jsonLd = {
 };
 ---
 
-<Base title={searchTitle} description={searchDescription} suffix={false}>
+<Base title={searchTitle} description={searchDescription} suffix={false} image={socialImage}>
   <script
     slot="head"
     type="application/ld+json"

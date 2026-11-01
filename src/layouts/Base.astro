@@ -10,12 +10,15 @@ interface Props {
    * the suffix costs 18 of the ~60 characters Google actually renders.
    */
   suffix?: boolean;
+  /** Absolute URL of a social preview image — pass the entry illustration where one exists. */
+  image?: string;
 }
 
 const {
   title,
   description = 'ToolFaultFinder — a practical fault-finding reference for power tools and workshop machines.',
   suffix = true,
+  image,
 } = Astro.props;
 
 const pageTitle = suffix ? `${title} · ToolFaultFinder` : title;
@@ -46,7 +49,15 @@ const isCurrent = (href: string) =>
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
-    <meta name="twitter:card" content="summary" />
+    {image ? (
+      <>
+        <meta property="og:image" content={image} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={image} />
+      </>
+    ) : (
+      <meta name="twitter:card" content="summary" />
+    )}
     <title>{pageTitle}</title>
     <slot name="head" />
   </head>
