@@ -7,7 +7,7 @@ image: "./img/triton-tbj001.png"
 image_alt: "Line-art illustration of the Triton TBJ001 biscuit jointer showing the fence, blade guard, dust port and main handle housing"
 category: "Motor & Drive"
 symptom: "The biscuit jointer bogs down or loses power partway through a cut, rather than cutting cleanly through to the end"
-likely_cause: "Triton's own troubleshooting table lists seven possible causes for this exact symptom, ranging from a blocked dust port to worn motor brushes — it isn't usually one single thing, so the manual's order is worth following rather than guessing"
+likely_cause: "Triton's own troubleshooting table lists six genuine possible causes for this exact symptom (a seventh row, 'workpiece material not suitable for tool', is boilerplate copied from a drill manual and doesn't apply to a biscuit jointer, so it's left out here), ranging from a blocked dust port to worn motor brushes — it isn't usually one single thing, so the manual's order is worth following rather than guessing"
 diagnostic_steps:
   - "Check the Dust Port (part 15) isn't clogged — Triton's manual lists 'Dust Port (15) clogged' as a cause of the tool stalling, with the fix simply 'Clear Dust Port'; a blocked port backs chippings up into the cutting area and loads the motor"
   - "Check the blade for dullness or damage — the manual lists 'Blade dull or damaged' as a cause, fix 'Replace blade'; the same cause is also listed separately for a blade burning the workpiece, so scorch marks on the cut are a second sign to check this first"
@@ -35,10 +35,11 @@ date_published: 2026-10-19
 
 The jointer starts a cut normally, then the motor bogs down or loses power
 partway through, instead of running cleanly to the end of the slot. It
-doesn't always point to the same thing — Triton's own manual lists seven
-separate possible causes under exactly this symptom, which is a sign the
-fault genuinely can come from several different places rather than one
-obvious culprit.
+doesn't always point to the same thing — Triton's own manual lists six
+genuine separate possible causes under exactly this symptom (a seventh row
+in the table is boilerplate copied from a drill manual and doesn't apply
+here, so it's excluded), which is a sign the fault genuinely can come from
+several different places rather than one obvious culprit.
 
 ## Working through it in order
 
