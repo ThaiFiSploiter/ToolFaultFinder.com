@@ -4154,3 +4154,205 @@ verification gate with every quoted claim re-opened from a freshly
 fetched primary source — none cut.
 
 **NEEDS HUMAN: none.**
+
+## 2026-11-01 — monthly run (deep-dive)
+
+**Note on timing:** the dispatcher's own 07:45 auto-fire for this run
+produced an empty log (`run-monthly-20261101-074501.log` has only its
+start-marker line) and never stamped `.last-monthly` past `2026-10` — it
+failed or was cut off immediately. This run is the real November monthly;
+treat the 07:45 log as a no-op, not a second run to reconcile against.
+
+**Month-over-month: clicks up, impressions up, CTR up slightly.** Sep
+(1–30, 29 days of data in the 60-day window) vs Oct (1–29, 29 days),
+computed from two slices of `gsc-report.mjs --days 60`'s by-day data:
+clicks 30 → 48 (+60%), impressions 2201 → 3202 (+45%), CTR 1.36% → 1.50%.
+The Sep figure (30 clicks) matches the 1 Oct run's independently-computed
+Sep total exactly — a good cross-check that the by-day summing method is
+reliable. This is the third straight month of MoM click growth.
+
+**Coverage: 89/94 "Submitted and indexed" (94.7%)**, up from 83/88 (94.3%)
+on 26 Oct and from 58/65 (89%) a month ago. Snapshot saved to
+`seo-agent-logs/coverage/2026-11-01.csv`, diffed programmatically against
+`2026-10-01.csv` (29 new URLs since then, 8 state changes on pre-existing
+URLs). Of the 5 not fully indexed:
+
+- `axminster/ap2920b`, `dewalt/dw733`, `karcher/k3` — all "Discovered –
+  currently not indexed", 3rd straight sweep in that state (28-29 Sep
+  entries). Per rail 6 this means uncrawled, not rejected — left alone,
+  watching.
+- `/faults/electronics-firmware/` — still "URL is unknown to Google" a
+  full month after publish (shipped 1 Oct), despite being the longer-
+  stuck of the two hubs flagged on 19 Oct (the other, `blades-alignment`,
+  indexed within the month and shows "Submitted and indexed" today).
+  Checked directly rather than just re-flagging: 200 OK, correct
+  canonical, correct `<title>`, no noindex, in the sitemap, and already
+  internally linked (confirmed by grepping a live entry page's HTML for
+  the hub's href, not assumed). Nothing technically wrong — this is
+  exactly the "needs time, not pruning" case rail 6 describes. Flagging
+  for the next monthly run: if this is still unindexed on 1 Dec while
+  freshly-published, 5-day-old entries keep indexing same-week (see
+  below), that combination would be worth a second look at *why*, since
+  the usual explanations (uncrawled, unlinked, rejected) are all ruled
+  out.
+- `ryobi/one-18v` — 3rd straight "Crawled – currently not indexed" sweep
+  (regressed from indexed on 19 Oct). Acted on this one rather than
+  watching a 4th time — see below.
+
+**`bosch/pst-700-e`, `karcher/k7`, `record-power/envoy` and
+`makita/hr2470`** all moved to "Submitted and indexed" this sweep — the
+first three resolved within weeks of their last coverage check, the
+`hr2470` fix finally landing after being stuck on "URL is unknown to
+Google" since at least 1 Sep. No action was needed on any of them; all
+four are carried-forward "watch, don't act" items from past runs that
+resolved on their own, consistent with the `bosch/pst-700-e` precedent
+that re-sourcing (or just time) can take weeks to show up in coverage.
+
+**Per-cluster promote/leave decision, acted: `ryobi/one-18v`.** This
+entry (`ryobi-one-plus-battery-defective-flash.md`, published 22 May,
+predates the 14 Sep authority rule) was already on the 1 Oct weak-
+sourcing-debt list (vague sources: "Lithium-ion battery management
+references", "Widespread user reports... on forums and r/ryobi") and is
+now also the only page in "Crawled – currently not indexed" for 3
+straight sweeps — the same shape that triggered action on
+`bosch/pst-700-e` a month ago. Rather than just re-flag it a 4th time,
+fetched real sourcing:
+
+- **Ryobi's own regional support articles** (`support.ryobi.com.au`,
+  `support.ryobi.co.nz` — genuine TTI/Ryobi domains, fetched via
+  WebFetch since the raw HTML is JS-rendered and curl gets nothing)
+  describe the ONE+ 18V charger's "Defective" LED pattern (red+green
+  flashing together) and give an explicit procedure: swap-test a
+  different battery/charger to isolate which half is at fault, then —
+  critically — **route a confirmed-faulty unit to warranty assessment
+  or an authorised service centre.** No UK/EU-specific
+  (`ryobitools.co.uk`/`uk.ryobitools.eu`) version of this article
+  surfaced despite a direct search; the AU/NZ content is used because it
+  describes universal charger LED logic, not a market/voltage-specific
+  spec (unlike the DeWalt/Kärcher North-America-vs-EU traps already in
+  this playbook, which were genuinely spec-dependent).
+- **The live entry's "charge-burst cycling" fix — repeatedly
+  inserting/removing a flat pack to trick the charger's rejection logic
+  — is not mentioned anywhere in Ryobi's own guidance.** It was always
+  "widely reported on forums," never sourced to Ryobi. Given the
+  manufacturer's own documented position is to route a confirmed fault
+  to warranty/service rather than publish a home procedure, presenting
+  an unverified forum technique as a working fix is exactly what rail 5
+  of the verification gate forbids ("do not reconstruct a user procedure
+  the manual deliberately does not give").
+- Rewrote `likely_cause`, all five `diagnostic_steps`, `fix_or_verdict`
+  and the body to match only what's actually sourced: the swap test, the
+  routing to warranty/service, and an explicit, named caution against the
+  forum charge-cycling trick rather than silently dropping it (a reader
+  who's already seen that advice elsewhere deserves to know why this
+  entry doesn't repeat it). Also dropped the specific "18-20V healthy /
+  well below that deeply discharged" voltage figures, which were never
+  sourced to anything. Updated `sources:` to the two real support
+  articles, fixed the charger part's `kind` from the incorrect
+  `consumable` to `repair` (a charger isn't a consumable under the
+  playbook's own definition). Built clean, pushed `176a64d`, verified
+  live.
+
+**Per-cluster decision, left alone with cause checked:
+`/faults/electronics-firmware/`** — covered above under coverage.
+
+**Structural improvement: og:image / twitter:image / JSON-LD `image`.**
+Every fault entry has carried a custom line-art illustration since 14
+Sep (the pipeline now covers the whole library bar none — confirmed by
+`grep -L "image:" src/content/faults/*.md` returning zero files), but no
+page ever emitted a social-preview image: `og:image`/`twitter:image`
+were simply absent site-wide, and `twitter:card` stayed `summary` (no
+image slot) everywhere rather than `summary_large_image`. Any share of a
+fault page — the forums and communities this site is trying to out-rank
+on CTR, Reddit, Slack — rendered with no picture at all. `Base.astro`
+now takes an optional `image` prop and emits the three tags (falling
+back to the existing plain `summary` card when none is supplied, so
+static pages are unaffected). The entry template (`[brand]/[model].astro`)
+resolves the illustration once per page via `astro:assets`' `getImage()`
+and passes the same built asset URL to the social tags and to
+`TechArticle`'s JSON-LD `image` field — a documented recommended Article
+property that was also missing. Verified in the built HTML before
+pushing (`og:image` resolves to a real absolute `/_astro/....webp` URL,
+JSON-LD `image` matches, static pages keep `summary`). Pushed `26f7fa1`,
+verified live on `karcher/k4`.
+
+**Library review for thin spots: `numatic/hvr200` re-sourced and
+deepened.** Checked body word counts across all 65 entries;
+`numatic-hvr200-thermal-cutout.md` (308 words) is the thinnest on the
+site, carries real traffic (3 clicks/290 impr over the last 60 days), and
+was already on the 1 Oct sourcing-debt list — the same triage signal used
+for `ryobi/one-18v` above, applied a second time this run. Found and
+fetched a genuine mirror of Numatic's own HVR 200-11/HET 200-11 Owner
+Instructions (confirmed genuine via Numatic branding and part numbers
+that cross-match Numatic's official `cdn.numatic.com` HVR200-11(EU)
+technical sheet, fetched separately) plus that technical sheet itself.
+
+- **The manual does not name a "thermal cutout" component anywhere, and
+  gives no specific cool-down time** — both were the entry's central
+  claims, sourced only to "Numatic official vacuum fault-finding
+  guidance" (never a real document) and forum reports. What the manual
+  actually says, quoted verbatim in the rewrite: *"If the vacuum cleaner
+  stops working, remove the plug from the wall before investigating
+  where the fault lies. If the vacuum cleaner has a blockage, switch
+  off, remove the plug from the socket outlet, and inspect the floor
+  tool, wands and hose for debris. If the floor tool, wands and hose are
+  clear, replace the dust bag and clean the filter."*
+- Rewrote `likely_cause`, all five `diagnostic_steps`, `fix_or_verdict`
+  and the body to that exact sequence, dropped the unverified "thermal
+  cutout"/"30 minutes" specifics, and added **real Numatic part numbers
+  to all four `parts:` entries** — HepaFlo bags 907075 (pack of 10),
+  TriTex filter 604165, FloMax hose 914411, ProFlo floor tool 912358 —
+  cross-confirmed across both documents. This is the first entry on the
+  site to carry a verified `part_number` since the field was added
+  14 Sep; the playbook has flagged "no entry sets one, because no
+  verified codes were on hand" every time parts have come up since. Grew
+  from 308 to ~470 words on genuine added detail, not padding. Built
+  clean, pushed `5d375b9`, verified live.
+
+**Also fixed in passing: `triton/tbj001` "six vs seven" wording.** The
+26 Oct weekly audit flagged (but deferred) that `likely_cause` and the
+body said Triton's manual "lists seven" causes while
+`meta_description`/`fix_or_verdict` already correctly said six — the
+seventh row is the drill-manual boilerplate the 19 Oct verification gate
+correctly excluded, just never explained in the copy. Cheap, no new
+sourcing needed, fixed while touching other thin/weak entries this run.
+Pushed `bc1948f`, verified live.
+
+**Remaining sourcing debt, 9 of the original 11 still open — the
+highest-priority one still not done:** `triton-tpt125-burnt-commutator`
+(flagged "the site's best historical CTR — highest remaining priority"
+on 1 Oct, and still true a month later — this run fixed two *other* items
+off the list, picked by a coverage-regression/thinness signal rather than
+by the stated priority order, which is worth being honest about rather
+than quietly re-ordering the list after the fact). Also still open:
+`dewalt-dws774-out-of-square`, `record-power-bs250-blade-drift`,
+`einhell-te-cd-18-li-wont-turn-on`, `stihl-ms250-wont-start`,
+`bosch-gws7-115-brush-failure`, `dewalt-dcf887-bit-retention`,
+`creality-ender-3-layer-shifts`, `axminster-planer-winding-failure`.
+Resolved this run: `ryobi-one-plus-battery-defective-flash`,
+`numatic-hvr200-thermal-cutout`. **Next monthly run should pick
+`triton-tpt125-burnt-commutator` specifically** unless a stronger signal
+(another coverage regression, another audit catch) displaces it again.
+
+**Entries published this month: 19** (of 65 total in the library, up
+from 46 a month ago), across five content runs (5/6, 6/10, 12-13/10,
+19-20/10, 26-27/10). **All 19 are already "Submitted and indexed"**,
+including the 27 Oct batch at only 5 days old — checked programmatically
+against today's coverage CSV, not eyeballed. Index allowance, the
+measured constraint through Aug–Sep, shows no sign of being a constraint
+at all now: a month that nearly as many new URLs is indexing same-week to
+two-week across the board. **Cadence verdict: producing both URLs and
+clicks, not just URLs** — clicks grew faster than impressions MoM (+60%
+vs +45%), coverage improved alongside a 41% library size increase, and
+the two legacy entries corrected this run (Ryobi, Numatic) were both
+*pre-existing* weak-sourcing debt from before the 14 Sep authority
+change, not symptoms of the current cadence — consistent with the 1 Oct
+finding that the gate itself has had zero fabrications caught in any
+weekly audit since 14 Sep.
+
+**NEEDS HUMAN: none this run.** Everything found was actionable within
+the existing authority and sourcing rails.
+
+**Content-run stamps:** not touched this run (monthly run, not a content
+run) — `.content-week` shows an uncommitted `2026-44 2` from the 27 Oct
+content run; left as-is, not this run's concern.
