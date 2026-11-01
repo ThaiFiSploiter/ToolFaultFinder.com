@@ -4455,3 +4455,76 @@ sources, not drafting-time quotes:
   real discrepancy. No claims cut.
 
 **NEEDS HUMAN: none this run.**
+
+## 2026-11-02 — content run, first of ISO week 2026-W45
+
+**Entry 1/7 (ceiling): Einhell GE-PH 2555 A petrol hedge trimmer — cutting
+blades keep moving after the throttle is released (don't stop at idle).**
+Route checked free in `src/content/faults/` before drafting (no existing
+Einhell GE-PH entry). GSC top queries (30-day) again all mapped to existing
+routes — no new-topic gap found, so sourced via cadence order #2
+(sibling model on an already-covered, productive brand) rather than a
+query gap.
+
+Sourced from Einhell's own GE-PH 2555 A Original Operating Instructions
+(Art.-Nr. 34.038.35, I.-Nr. 11012), fetched fresh this run from
+`einhell-service.com`'s CloudFront asset host (the `..._SPK7.pdf` filename
+pattern already established as reliable for Einhell). UK/EN relevance
+confirmed via the manual's own "GB" language-section headers (genuine
+English operating instructions, not a translated snippet) and the existing
+`einhell.co.uk` product listing for this model.
+
+**Verification gate — supporting quotes, re-opened from the freshly fetched
+PDF this run:**
+- Core fix: *"If the idling speed is so fast that the cutting blades do not
+  reach a standstill, the idling speed must be reduced by turning the
+  idling speed screw (Fig. 16/Item 5) counterclockwise until the cutting
+  blades stop."* (Section 7.2.4, Carburetor settings)
+- User-adjustment boundary: *"Important. Settings on the carburetor may
+  only be made by authorized customer service personnel."* (same section,
+  directly above the idle-speed instruction — read together, this
+  singles out the idle screw as the one adjustment handed to the owner)
+- Warm-engine caveat: *"Important. Set the idling speed when the machine
+  is warm."* (same section)
+- Blade lubrication (sourced for the consumable note only): *"Ensure that
+  the blade's cutting edge is always well oiled (see Fig. 8)."* (Section
+  7.2, Maintenance)
+- Part names/numbers (item 13 "Throttle lever 'release'", item 14
+  "Throttle lever") cross-checked against Section 2, Layout and items
+  supplied.
+
+**One claim cut before publish, not after.** The first draft explained the
+symptom's mechanism as "driven through a centrifugal clutch" — plausible
+for a 2-stroke tool with this fault shape, but a `grep -i clutch` against
+the full extracted manual text returned zero matches; the manual never
+uses the word or describes the drive mechanism. Cut the claim from both
+`likely_cause` and the body before the build, per rail 3 — the entry now
+states only that the manual ties the symptom to idle speed, without
+asserting what inside the drive train responds to it. This is the same
+failure shape flagged 28 Sep (DW733): a plausible mechanistic detail
+invented by pattern-matching a tool-type's typical design, not copied from
+a bad source, caught by re-reading the draft against the source rather
+than trusting that it felt sourced while writing.
+
+Category: Guards & Safety (blades-not-stopping is a genuine safety fault,
+not just a performance one). No repair `parts:` — the fix is a free
+carburettor adjustment, nothing needs replacing. One `consumable` (blade
+lubricating oil), matching the existing GC-CH 18/40 Li hedge-trimmer
+entry's pattern.
+
+Illustrated with gpt-image-2, `1536x1024` landscape (matching the existing
+chainsaw/brushcutter sizing for elongated petrol tools), first attempt —
+clean white background, correct tool class, throttle lever and
+carburettor area both visible as the fault requires. No regeneration
+needed.
+
+Build clean (`npm run build`). Staged by name only
+(`einhell-ge-ph-2555-a-blades-idle.md` + its image) — confirmed via
+`git status --short` that nothing else was swept in; Nick's seven
+untouched image-inbox files remain untracked. Pushed `b1bd9a4`. Verified
+live: `https://toolfaultfinder.com/tools/einhell/ge-ph-2555-a/` returns
+200 and the built HTML contains "GE-PH 2555", "idling speed screw" and
+"carburettor".
+
+**Continuing to the next candidate — entry-at-a-time per the playbook, not
+batching.**
