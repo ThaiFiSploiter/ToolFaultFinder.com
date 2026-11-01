@@ -2,41 +2,44 @@
 brand: "Numatic"
 model: "HVR200"
 seo_title: "Henry Hoover HVR200 Cuts Out and Won't Restart — Fix"
-meta_description: "Numatic HVR200 Henry cuts out mid-clean and won't switch back on. It is usually the thermal cutout tripping on restricted airflow — how to clear it and reset."
+meta_description: "Numatic HVR200 Henry cuts out mid-clean and won't switch back on. Numatic's own manual treats it as a blockage fault, not a failed motor — the exact steps it gives."
 image: "./img/numatic-hvr200.png"
 image_alt: "Line-art illustration of a Numatic Henry HVR200 vacuum cleaner"
 category: "Motor & Drive"
 symptom: "Henry vacuum suddenly cuts out mid-clean and won't switch back on, even though it was working normally moments before"
-likely_cause: "The motor's thermal overload cutout has tripped because of restricted airflow — a safety feature, not a failed motor — and it won't reset until the blockage is cleared and the motor cools down"
+likely_cause: "Numatic's own HVR 200-11/HET 200-11 Owner Instructions don't name a 'thermal cutout' as such, but they describe exactly this behaviour: the machine stopping outright is treated as a blockage fault, and the manual's own remedy is to clear the floor tool, wands and hose, then check the bag and filter — not to assume the motor has failed"
 diagnostic_steps:
-  - "Check the bag: Numatic bags lose suction well before they look full, so replace or empty it at around two-thirds full, not when it appears completely packed"
-  - "Check the filter — Numatic's bucket-style filters need replacing roughly every six months, and a clogged one restricts airflow just as much as a full bag"
-  - "Push a cane, broom handle, or similar rod down the full length of the hose to clear any hidden blockage"
-  - "Once the airway is clear, leave the machine switched off for at least 30 minutes — the thermal cutout won't reset while the motor is still hot, no matter how clear the airflow now is"
-  - "Only after a full airflow check and a proper cool-down period, if it still won't restart, treat it as a genuine motor or PCB fault rather than the safety cutout"
-fix_or_verdict: "In most cases this is the thermal cutout doing its job, not a failed motor — clear the blockage, let it cool, and it resets on its own at no cost. Persistent failure after a full airflow check and cool-down points to genuine PCB or motor failure needing repair."
+  - "Unplug the machine first — Numatic's manual states this plainly: remove the plug from the wall before investigating where the fault lies, not just as a safety aside"
+  - "Inspect the floor tool, wands and hose for debris, in that order — this is the manual's own stated sequence for a machine that has stopped"
+  - "If those are clear, replace the dust bag and clean or replace the filter — the manual's explicit next step once the airway itself is confirmed clear"
+  - "Give it a short rest before trying again — Numatic's manual doesn't publish a specific wait time, but a machine that won't restart the instant a blockage is cleared isn't necessarily faulty; try again after it's had a few minutes"
+  - "Only once the floor tool, wands, hose, bag and filter are all confirmed clear and it still won't restart should this be treated as a genuine motor or PCB fault rather than a blockage"
+fix_or_verdict: "Numatic's own guidance frames a sudden stop as a blockage fault first, not a failed motor, and the fix — clear the airway, replace the bag and filter — costs nothing beyond a bag/filter swap in the common case. Persistent failure after the full airflow path is confirmed clear points to a genuine motor or PCB fault needing repair."
 parts:
-  - name: "HepaFlo dust bags"
+  - name: "HepaFlo dust bags (NVM-1CH)"
     kind: "consumable"
-    note: "Restricted airflow is exactly what trips this cutout — a full or generic-fit bag is a common cause, not just a consumable."
-    search: "Numatic Henry HepaFlo dust bags NVM-1CH"
-  - name: "Replacement filter"
+    part_number: "907075 (pack of 10); also sold as 907076 (pack of 5) and 909291 (pack of 3)"
+    note: "Restricted airflow is exactly what the manual's own fault guidance points at — a full or generic-fit bag is a genuine cause, not just routine upkeep."
+    search: "Numatic Henry HepaFlo dust bags NVM-1CH 907075"
+  - name: "TriTex filter"
     kind: "consumable"
-    note: "The other half of the airflow path, and usually the one nobody has looked at."
-    search: "Numatic Henry HVR200 filter"
-  - name: "Replacement hose"
+    part_number: "604165"
+    note: "Named in Numatic's own parts list as the Henry and Hetty TriTex filter — the other half of the airflow path, and usually the one nobody's checked."
+    search: "Numatic Henry Hetty TriTex filter 604165"
+  - name: "FloMax conical hose (2m)"
     kind: "consumable"
+    part_number: "914411"
     note: "A split or blocked hose chokes airflow the same way a full bag does."
-    search: "Numatic Henry hose 32mm"
-  - name: "Floor tool / brush head"
+    search: "Numatic FloMax conical hose 914411"
+  - name: "ProFlo combination floor tool (280mm)"
     kind: "consumable"
-    note: "Worn brush strips are the quiet reason a Henry stops picking up."
-    search: "Numatic Henry floor tool 32mm"
+    part_number: "912358"
+    note: "Worn brush strips or a cracked tool restrict suction quietly, well before anything looks obviously broken."
+    search: "Numatic ProFlo combination floor tool 912358"
 source_type: "researched"
 sources:
-  - "Numatic official vacuum fault-finding guidance"
-  - "Espares Henry/Numatic care and maintenance advice"
-  - "User reports of Henry thermal cutout and PCB failures on DIY and appliance repair forums"
+  - "Numatic HVR 200-11 / HET 200-11 Owner Instructions (document 244454, 07/18 ed. A11) — fault/blockage guidance, Do/Don't maintenance list, and replacement-parts numbers"
+  - "Numatic HVR200-11(EU) Technical Sheet (document 916818, 05/23 ed. A01, cdn.numatic.com) — cross-confirms the bag and filter part numbers and the 230V/EU market spec"
 date_published: 2026-07-11
 ---
 
@@ -47,31 +50,36 @@ beforehand, just silence mid-clean. Switching it off and straight back on
 does nothing. To most owners this looks like the motor has died outright,
 especially on an older machine that's been reliable for years.
 
-## What's actually happening
+## What Numatic's own instructions actually say
 
-Henry's motor has a thermal overload cutout that trips automatically when
-airflow through the machine is restricted enough to let the motor run hot.
-It's a deliberate safety feature, not a fault, and it's triggered far more
-often by a full bag, a clogged filter, or a blocked hose than by anything
-wrong with the motor itself. The trap is that Numatic bags and filters
-restrict airflow well before they look obviously full or dirty, so the
-cutout can trip on a bag or filter that still looks like it has capacity
-left.
+Numatic's Owner Instructions for this machine don't describe a named
+"thermal cutout" component, and they don't give a specific cool-down time —
+worth being upfront about, since those specifics circulate widely in owner
+discussion of this fault without actually coming from Numatic. What the
+manual does say, in its own Notes section, is this: *"If the vacuum cleaner
+stops working, remove the plug from the wall before investigating where the
+fault lies. If the vacuum cleaner has a blockage, switch off, remove the
+plug from the socket outlet, and inspect the floor tool, wands and hose for
+debris. If the floor tool, wands and hose are clear, replace the dust bag
+and clean the filter."* That's the manufacturer's own diagnostic order, and
+it treats a sudden stop as a blockage fault by default, not a failed motor.
 
 ## Working through it
 
-Work through the airflow path in order: check the bag first (replace or
-empty at around two-thirds full, not when it looks packed), then the filter
-(due roughly every six months regardless of appearance), then run a rod down
-the full length of the hose to clear anything lodged out of sight. Once the
-airway is genuinely clear, the cutout still won't reset immediately — leave
-the machine off for a full 30 minutes to let the motor cool, then try again.
-Restarting too soon looks identical to a failed reset and leads a lot of
-owners to condemn a perfectly good motor.
+Follow the manual's own sequence: unplug first, then inspect the floor
+tool, wands and hose for debris — in that order. If all three are clear,
+replace the dust bag and clean or replace the filter; Numatic's bags and
+filters restrict airflow well before they look obviously full or dirty, so
+a bag or filter that still looks like it has capacity left can still be the
+cause. If the machine won't restart the instant the airway is clear, give
+it a short rest before trying again — Numatic doesn't publish a specific
+figure for this, so treat "a few minutes" as a reasonable guide rather than
+a precise number.
 
 ## Verdict
 
-Airflow restriction tripping the thermal cutout accounts for the large
-majority of these "dead" Henry reports, and it costs nothing to rule out.
-Only treat it as a genuine motor or PCB fault once the bag, filter, and hose
-are all confirmed clear and a proper cool-down period hasn't fixed it.
+Numatic's own guidance treats a sudden stop as a blockage problem first,
+and working through the airway in the order above costs nothing beyond a
+bag or filter if one's genuinely due. Only treat it as a motor or PCB fault
+once the floor tool, wands, hose, bag and filter are all confirmed clear and
+it still won't restart.
