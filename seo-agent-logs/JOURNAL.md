@@ -4528,3 +4528,66 @@ live: `https://toolfaultfinder.com/tools/einhell/ge-ph-2555-a/` returns
 
 **Continuing to the next candidate — entry-at-a-time per the playbook, not
 batching.**
+
+**Entry 2/7: Einhell TC-AG 115/750 corded angle grinder — won't restart
+after a power cut, even though the switch is pressed and locked on.**
+Route checked free before drafting. Sourced via cadence order #2 again
+(sibling brand already productive this run) rather than a GSC gap.
+
+Sourced from Einhell's own TC-AG 115/750 Original Operating Instructions
+(Art.-Nr. 44.309.60, I.-Nr. 21053, 18 Feb 2025 edition — the newest of
+five Ident-Nr. editions found on the product's `einhell-service.com`
+page; picked the highest Ident-Nr. deliberately rather than the first
+result, since older editions could describe a revised switch design).
+UK relevance confirmed directly from the manual's own GB technical-data
+section: 220-240V~50Hz mains voltage.
+
+**Verification gate — supporting quotes, re-opened from the freshly
+fetched PDF this run.** Note: a straight single-line `grep` for several
+of these missed on first try because `pdftotext -layout`'s two-column
+output wraps mid-phrase (the same artefact flagged in the 2 Nov weekly
+audit) — confirmed each quote by reading the surrounding text block
+directly instead, not by trusting the grep miss:
+- Core mechanism: *"If the mains power supply is interrupted when the
+  switch is locked in the On position, the electric tool will not run
+  after the power supply is restored. For the equipment to run, the
+  switch must be turned off and then on again."* (Section 6.1, Switch —
+  Restart safeguard)
+- Switch action: *"To switch on, press down the On/Off switch (2) at the
+  back, push it forwards and then press it down at the front. To switch
+  off the angle grinder, depress the On/Off switch (2) at the back. The
+  On/Off switch (2) will jump back into its starting position."* (same
+  section)
+- Damaged cable, not DIY: *"If the power cable for this equipment is
+  damaged, it must be replaced by the manufacturer or its after-sales
+  service or similarly trained personnel to avoid danger."* (Section 7)
+- Sparking/brushes, not DIY: *"In case of excessive sparking, have the
+  carbon brushes checked only by a qualified electrician... The carbon
+  brushes should not be replaced by anyone but a qualified electrician."*
+  (Section 8.2) — deliberately not framed the same way as the existing
+  `bosch-gws7-115-brush-failure` entry (which treats a brush swap as a
+  DIY job); this model's own manual says the opposite, so the two
+  entries' verdicts differ because the sources differ, not inconsistently
+  copy-pasted.
+- Technical data (220-240V~50Hz, M14 spindle, 115mm wheel) cross-checked
+  for the consumable discs listed in `parts:`.
+
+No claims cut this entry — all five sourced lines matched verbatim once
+read in context (grep misses were a tooling artefact, not a sourcing
+gap). Category: Guards & Safety (a documented safety-interlock behaviour,
+same framing as the existing GC-CH two-handed-switch entry). Two
+`consumable` parts (115/mm cutting and grinding discs, sized to this
+model's own spec), no `repair` parts — nothing needs replacing for the
+actual (restart-safeguard) fault.
+
+Illustrated with gpt-image-2, `1024x1024`, first attempt — clean white
+background, two-stage switch and guard both legible. No regeneration
+needed.
+
+Build clean. Staged by name only
+(`einhell-tc-ag-115-750-wont-restart.md` + its image); confirmed via
+`git status --short`. Pushed `26faabc`. Verified live:
+`https://toolfaultfinder.com/tools/einhell/tc-ag-115-750/` returns 200
+and the built HTML contains "TC-AG 115/750" and "Restart safeguard".
+
+**Continuing to the next candidate.**
