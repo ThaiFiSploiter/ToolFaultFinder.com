@@ -4591,3 +4591,63 @@ Build clean. Staged by name only
 and the built HTML contains "TC-AG 115/750" and "Restart safeguard".
 
 **Continuing to the next candidate.**
+
+**Entry 3/7: DeWalt DCS355 cordless oscillating multi-tool — overheats and
+loses performance during extended low trigger-speed use.** Route checked
+free before drafting. Sourced via cadence order #3/#4 (adjacent brand/
+category, researched from manufacturer docs) after the GSC query sweep
+again showed no new-topic gap.
+
+**Sourcing note worth flagging openly.** The official DeWalt PDF could not
+be reached on any DeWalt-owned domain this run — `dewalt.co.uk` has no
+findable product page for DCS355 (discontinued; a `service.dewalt.de`
+listing confirms "Status: Discontinued, last production date 7/15/2020"),
+and `assets.dewalt.co.uk`/`service.dewalt.co.uk` guesses and searches
+returned nothing. Used a third-party-hosted copy
+(`baoanjsc.com.vn/TaiLieu/...DCS355M2-MANUAL-9770.pdf`) instead, the same
+fallback pattern already accepted for Record Power manuals (22 Sep) when
+a manufacturer's own domain doesn't yield a direct URL. Confirmed genuine
+before relying on it, not taken on trust: the PDF carries DeWalt's own EC
+Declaration of Conformity naming DeWalt's real German HQ address
+("DEWALT, Richard-Klinger-Strasse 11, D-65510, Idstein, Germany"), a
+UK & Ireland-specific fuse-rating table (13A, distinct from the 10A
+Europe-wide row), and a 230V charger spec — the same title-page/spec-table
+genuineness check used throughout this playbook, not a new or lower bar.
+
+**Verification gate — supporting quotes, re-opened from the freshly
+fetched PDF this run (all matched verbatim on re-check, nothing cut):**
+- Trigger mechanism: *"The further the trigger switch is depressed the
+  faster the tool will operate."* (Operation section)
+- Core fix: *"If the tool overheats, especially when used at low speed,
+  set the speed to maximum and run it with no load for 2–3 minutes to
+  cool the motor. Avoid prolonged usage at very low speeds."* (Maintenance
+  section)
+- Contributing factor: *"Excessive force will reduce the working
+  efficiency and cause motor overload. Replacing the accessory regularly
+  will maintain optimum working efficiency."* (same section, immediately
+  above the overheating line)
+- Market confirmation: U.K. & Ireland fuse table (13A) and 230V charger
+  spec (Technical Data / Fuses sections).
+
+Category: Motor & Drive. One `consumable` part (oscillating accessories/
+blades), tied directly to the manual's own accessory-wear-causes-overload
+line rather than a generic "buy accessories" add. No `repair` parts — the
+fix is a documented free behaviour change, nothing to replace. Deliberately
+distinct from the existing thin "cordless protection system" entries
+(DGA408, DCD776 family) flagged in prior runs as near-duplicate boilerplate
+— this is a different, tool-specific mechanism (trigger-speed thermal
+limit on an oscillating tool) with its own named recovery procedure, not
+a generic overload cutout.
+
+Illustrated with gpt-image-2, `1024x1024`, first attempt — clean, correct
+tool class (compact cordless oscillating multi-tool with angled head and
+triangular blade), trigger and accessory clamp lever both legible. No
+regeneration needed.
+
+Build clean. Staged by name only (`dewalt-dcs355-overheats-low-speed.md` +
+its image); confirmed via `git status --short`. Pushed `82356b8`.
+ Verified live:
+`https://toolfaultfinder.com/tools/dewalt/dcs355/` returns 200 and the
+built HTML contains "DCS355", "overheats" and "run it with no load".
+
+**Continuing to the next candidate.**
