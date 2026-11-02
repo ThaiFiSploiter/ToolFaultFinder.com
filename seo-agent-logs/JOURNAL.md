@@ -4651,3 +4651,62 @@ its image); confirmed via `git status --short`. Pushed `82356b8`.
 built HTML contains "DCS355", "overheats" and "run it with no load".
 
 **Continuing to the next candidate.**
+
+**Entry 4/7: Record Power SS16V scroll saw — blade becomes trapped
+mid-cut, or snaps outright.** Route checked free before drafting. Sourced
+via cadence order #4 (adjacent model in a brand with a strong sourcing
+track record on this site), after an SS16V search that initially looked
+like it would repeat the 29 Sep "wrong product entirely" trap (a prior
+run's SS16V search resolved to a TS200C table saw manual) — this run's
+search instead found a genuine, UK-confirmed SS16V manual on a different
+host.
+
+Sourced from Record Power's own SS16V 16" Variable Speed Scrollsaw
+Original Instruction Manual, Version 4.0, September 2015 — fetched from a
+retailer mirror (`images.machineryhouse.com.au`), not Record Power's own
+domain (consistent with the 22 Sep/28 Sep finding that Record Power's own
+"Download Manual" buttons are JS-gated). Confirmed genuine and UK-relevant
+directly from the title page before relying on it: "54100 (UK version),
+54101 (EP version), 54102 (AUS version)" with 230V/50Hz in the
+Specifications section — the exact product code this entry needed, not a
+sibling or export variant.
+
+**Verification gate — supporting quotes, re-opened from the freshly
+fetched PDF this run, all matched verbatim, nothing cut:**
+- Blockage procedure, step order confirmed exact: *"switch the scroll saw
+  OFF immediately by pressing the red button marked 'O' and wait for the
+  machine to come to a complete stop. Disconnect the machine from the
+  power supply before attempting to free the blade from the work
+  piece."* ... *"first release the tension from the blade by rotating
+  the tension knob anti-clockwise... gently prize apart the work piece to
+  allow the blade to be pulled free. Once the blade is removed, check it
+  for signs of damage and replace if necessary and adjust to the correct
+  tension before attempting to re-start the machine."* (Section 8, In the
+  event of a Blockage)
+- Tensioning/breakage cause: *"turn the blade tension knob clockwise
+  until slight resistance is felt on the knob... a further half turn to
+  full turn of the knob is sufficient... Over-tightening of the scrollsaw
+  blade will shorten the blade's life and may cause it to break."*
+  (Section 8, blade fitting)
+
+Category: Blades & Alignment. One `consumable` part (replacement blades,
+tied to the manual's own instruction to replace a damaged blade after a
+blockage). No `repair` parts — both causes resolve for free.
+
+**Illustration needed one regeneration this entry** — the first attempt
+rendered the base's push-button filled solid red, which breaks the site's
+pure-black-line-art house style (every other image on the site is
+unfilled outline only, no colour). Caught before wiring it in, per the
+playbook's "look at the image before you wire it in" step. Regenerated
+with the colour/fill explicitly ruled out in the prompt; second attempt
+came back correct — clean white, pure outline, blade and tension knob
+legible. `1536x1024` landscape (benchtop machine with a wide table,
+matching the sizing used for other wide tools).
+
+Build clean. Staged by name only (`record-power-ss16v-blade-jams.md` +
+its image); confirmed via `git status --short`. Pushed `4844bd4`.
+ Verified live:
+`https://toolfaultfinder.com/tools/record-power/ss16v/` returns 200 and
+the built HTML contains "SS16V" and "Blockage".
+
+**Continuing to the next candidate.**
