@@ -4710,3 +4710,87 @@ its image); confirmed via `git status --short`. Pushed `4844bd4`.
 the built HTML contains "SS16V" and "Blockage".
 
 **Continuing to the next candidate.**
+
+**Run summary: 4 of the 7-entry ceiling published.** Einhell GE-PH 2555 A
+(blades don't stop at idle), Einhell TC-AG 115/750 (won't restart after a
+power cut), DeWalt DCS355 (overheats at low trigger speed), Record Power
+SS16V (blade jams/snaps) — each entry-at-a-time to live via the full
+research → draft → gate → illustrate → build → push → verify → journal
+cycle. Stopped at 4 deliberately: sourcing ran out, not the ceiling.
+
+**Candidates researched and dropped this run, with why:**
+- **Einhell BL 750 petrol leaf vacuum** — manual is German-only (no GB
+  language section in any of its two Ident-Nr. editions); not a UK
+  product with English documentation.
+- **Einhell TC-JS 60 corded jigsaw** — same German-only problem, checked
+  across all 5 SPK editions on the product page.
+- **Einhell TE-CS 190/1 corded circular saw** — same German-only problem,
+  checked across all 5 SPK editions. Together with the jigsaw, this
+  suggests Einhell's older corded saw lines may lack English manuals as a
+  pattern, distinct from the garden/petrol lines and the recently-revised
+  TC-AG grinder, which do have them — worth checking model-by-model
+  rather than assuming corded Einhell tools generally have GB content.
+- **Stihl HLA 135 K hedge trimmer** — the only lead found
+  (manualowl.com) 403'd on fetch; a fifth failed Stihl attempt (16, 22,
+  28, 29 Sep, now this run), all without a working UK-reachable source.
+  Deprioritising further Stihl attempts until a genuinely new URL
+  surfaces rather than re-searching the same ground.
+- **HiKOKI** — a second real attempt (direct product-page searches for a
+  circular saw/impact driver) again found no curl/WebFetch-resolvable
+  manual link on `hikoki-powertools.co.uk` or `.eu`; now two failed
+  attempts (27 Oct, this run). Deprioritising alongside Milwaukee and
+  Ryobi's UK/EU domain as JS-gated brands.
+- **Ryobi ONE+ 18V line trimmer** — found a genuine, UK-confirmed-style
+  official source (`support.ryobi.co.nz`'s "line will not advance when
+  using auto feed head" article, the same AU/NZ-support pattern already
+  validated for the 1 Nov battery-charger re-sourcing), but its
+  applicable-model list (RLT5030, OLT1832, R18LTR24, etc.) doesn't include
+  the actual UK-market model numbers (RY18LT23A, RY18LT33A — a different
+  naming convention), and `uk.ryobitools.eu`'s product page confirmed
+  JS-gated again (no manual link in the raw page). Dropped rather than
+  assume the AU/NZ model list's mechanism transfers to a UK model not
+  named in it — that's exactly the sibling-model substitution rail 3
+  exists to catch, distinct from the charger-LED case where the content
+  was judged universal rather than model-specific.
+- **Kärcher K1** — "K1" turned out to be an ambiguous, heavily
+  region-varied product line (16000250 vs 16000270 vs older 1.xxx-xxx.0
+  numbering across different Kärcher regional sites, each with different
+  bundled equipment), the same North-America-vs-rest-of-world shape
+  already documented for Kärcher K3 (29 Sep) and DeWalt DCS359 (15 Sep).
+  No single UK-confirmed manual surfaced in two searches; dropped rather
+  than guess which regional variant a UK reader actually owns.
+
+**New source-reliability finding: a DeWalt model's own UK retail
+availability doesn't guarantee a `dewalt.co.uk`-hosted manual.** DCS355
+is sold and priced in £ by multiple UK retailers (Toolstation, ITS, RS
+Online) but has no findable `dewalt.co.uk` product page (the model is
+discontinued per `service.dewalt.de`, though UK retailers still list
+stock) and no PDF on `assets.dewalt.co.uk`/`service.dewalt.co.uk`. Used a
+third-party-hosted copy instead, genuineness confirmed via its own EC
+Declaration (DeWalt's real German HQ address) and a UK & Ireland-specific
+fuse-rating table distinct from the general-Europe row — the same
+mirror-confirmation pattern already established for Record Power
+manuals, now extended to DeWalt. Worth trying this fallback sooner for
+older/discontinued-but-still-UK-stocked models rather than treating a
+missing official-domain page as a dead end.
+
+**Illustration pipeline (gpt-image-2) needed one regeneration this run**,
+out of four entries — the Record Power SS16V first attempt filled the
+base's push-button solid red, the first colour-fill deviation from the
+site's pure-black-line-art style seen since the pipeline switched to
+gpt-image-2 on 26 Oct. Caught by the mandatory look-before-wiring-in step;
+fixed on the second attempt by explicitly ruling out colour and fill in
+the prompt. The other three entries (Einhell x2, DeWalt) came back
+correct on the first attempt.
+
+**NEEDS HUMAN: none this run.**
+
+**Content-run stamp**: `.content-week` was still holding an uncommitted
+`2026-40 1` in git (stale — the real state in the working tree was
+`2026-44 2`, left over from the 27 Oct second content run of ISO week
+2026-W44, which evidently never got this file committed). Corrected and
+committed as `2026-45 1` to reflect this run (first content run of ISO
+week 2026-W45) — worth noting as a small process gap: a future run should
+check this file actually gets committed, not just written, since an
+uncommitted stamp sitting in the working tree defeats its purpose if a
+different session or checkout starts fresh from `git HEAD`.
