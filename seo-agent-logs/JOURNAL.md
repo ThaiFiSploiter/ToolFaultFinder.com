@@ -4794,3 +4794,106 @@ week 2026-W45) — worth noting as a small process gap: a future run should
 check this file actually gets committed, not just written, since an
 uncommitted stamp sitting in the working tree defeats its purpose if a
 different session or checkout starts fresh from `git HEAD`.
+
+---
+
+## 3 Nov 2026 — content run (second of ISO week 2026-W45)
+
+GSC check first: `gsc-report.mjs --days 30` top queries and by-page
+table were checked against the existing 69-entry library — every query
+with impressions already maps to a published route, consistent with the
+now-standard "GSC saturated" finding from recent runs. Picked this run's
+topic from cadence order #2/#4 (adjacent models on brands with a strong
+sourcing track record) instead.
+
+**Entry 1: Einhell GC-EL 3024 E electric leaf blower vac — blower/vacuum
+selector switch stiff, or motor doesn't start at all.** Route checked
+free before drafting. First garden leaf-blower-vac entry on the site —
+no existing entry covers this tool category.
+
+**A market trap caught before drafting, not after:** the first lead
+found was Einhell's own en_GB product page for "GE-EL 1800 E; EX; ARG"
+(einhell-service.com/en_GB/3433223-...), linking a PDF with a genuine
+"12. Troubleshooting guide" containing a distinctive, specific fault (a
+microswitch on the cleaning cover cutting power if the cover isn't
+seated — a much richer finding than what GC-EL 3024 E's table turned out
+to have). The PDF's own title page read "South America / GE-EL 1800 E"
+and its warranty section was explicitly "EINHELL Argentina S.A." /
+"Solo vigente en la República Argentina" — an Argentina/export-market
+document, not a UK one, despite being served from an `en_GB` URL path.
+Confirmed no UK retail presence anywhere (Amazon UK, Toolstation,
+Screwfix, eBay UK, price-comparison sites all blank for this model/EAN)
+before dropping it. **New, sharper version of the DeWalt DCS359/Kärcher
+K3-NA trap already in this playbook: an `en_GB`-localised manufacturer
+page does not by itself confirm the product was ever sold in GB** —
+Einhell's service site appears to serve English translations of export
+SKUs under the same `en_GB` path as genuine UK products. Check actual UK
+retail listings, not just the URL locale, before trusting a document.
+
+Pivoted to **GC-EL 3024 E**, the current UK-sold equivalent (confirmed
+in stock at Homebase, Robert Dyas, Tooled Up), sourced via a
+Hornbach-hosted mirror of Einhell's genuine EU multi-language manual
+(`Anl_GC_EL_3024_E_SPK13`, D/GB/F/I/DK/N/S/NL/E/P/HR/BIH/RS/PL language
+set, 230-240V~/50Hz technical data table, no Argentina content anywhere)
+after `einhell-service.com` itself didn't surface a direct GC-EL 3024 E
+page in search. Its troubleshooting table is thinner than the dropped
+GE-EL 1800 E document (no microswitch/cover cause) — but Section 8.1's
+cleaning note gave a genuinely distinct, specific fault not covered
+elsewhere on the site: dirt swirled up off the ground stiffens the
+blower/vacuum mode selector switch, fixed by flipping it back and forth,
+no disassembly.
+
+**Verification gate — supporting quotes, re-opened from the freshly
+fetched PDF this run, all matched verbatim, nothing cut:**
+- Switch fix: *"Dirt and grime can make the switch (blower/vacuum) more
+  difficult to operate as a result of the material that swirls up off
+  the ground. When this occurs, simply flip the switch back and forth a
+  few times, which should bring it back to the normal feel."* (Section
+  8.1, Cleaning)
+- Troubleshooting table, "Motor does not start": *"No voltage present. –
+  Check the cord and fuses / Power cord defective – Have the unit
+  checked by a customer service workshop / Motor terminals disconnected
+  – Have the unit checked by a customer service workshop"* (Section 11)
+- Service-centre routing: *"Should the tool experience problems beyond
+  those mentioned above, let only an authorized professional or a
+  customer service shop perform an inspection."* (Section 8.2)
+- UK/EU market confirmation: *"AC motor................................
+  230-240 V~ / 50 Hz"* (Section 4, Technical data) and the damaged-cable
+  routing: *"If the power cable for this equipment is damaged, it must
+  be replaced by the manufacturer or its after-sales service or
+  similarly trained personnel to avoid danger."* (Section 7)
+
+Category: Mechanical & Motion. No `parts:` — no specific failed part is
+named by either fault (the switch fix needs nothing bought, and the
+motor-fault path routes to a workshop with no owner-replaceable part
+identified), consistent with the playbook's rule against listing parts
+a verdict hasn't actually called for.
+
+Illustration generated clean on the first attempt (gpt-image-2,
+1536x1024 landscape for the long wand-shaped tool) — selector dial and
+zippered debris bag both legible, pure white-background line art,
+nothing to regenerate.
+
+Build clean. Staged by name only
+(`einhell-gc-el-3024-e-switch-stiff.md` + its image); confirmed via
+`git status --short` that nothing under `src/images/` was touched.
+Pushed `f38f7f7`. Verified live:
+`https://toolfaultfinder.com/tools/einhell/gc-el-3024-e/` returns 200
+and the built HTML contains "GC-EL 3024 E", "selector switch" and "flip
+the switch".
+
+**Stopping at 1 of the 7-entry ceiling, deliberately — sourcing ran
+out.** Only one candidate was fully researched this run; the GE-EL 1800
+E market-trap investigation and the GC-EL 3024 E re-sourcing consumed
+the bulk of the research budget before a second candidate could be
+started from scratch. One well-sourced, genuinely new-category entry
+beats padding with a second one rushed past the gate — stopping here
+rather than forcing a second topic this run.
+
+**NEEDS HUMAN: none this run.**
+
+**Content-run stamp**: updated `seo-agent-logs/.content-week` to
+`2026-45 2` (second content run of ISO week 2026-W45, same ISO week as
+2 Nov's run) and `seo-agent-logs/.last-content-day` to `2026-11-03`,
+and confirmed both are staged and committed this time (see the 2 Nov
+entry's process-gap note about an uncommitted stamp).
