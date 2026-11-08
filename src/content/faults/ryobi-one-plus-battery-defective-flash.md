@@ -26,6 +26,7 @@ sources:
   - "Ryobi Support Australia — \"How to Troubleshoot a Ryobi Charger That's Not Lighting Up or Charging\" (support.ryobi.com.au)"
   - "Ryobi Support New Zealand — \"What Do LED Lights Mean? Ryobi 18V Multi-Port Chargers\" (support.ryobi.co.nz)"
 date_published: 2026-05-22
+date_modified: 2026-11-01
 ---
 
 ## The symptom pattern

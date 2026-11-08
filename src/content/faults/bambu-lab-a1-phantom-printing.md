@@ -26,6 +26,7 @@ sources:
   - "Bambu Lab Community Forum, P1S owner report of the same \"printer is busy\" message (topic 80394)"
   - "Bambu Lab P1 series firmware release history (wiki.bambulab.com), version 01.04.01.00 changelog — Bambu's own record of fixing device/job-status-matching bugs on a sibling printer range"
 date_published: 2026-07-01
+date_modified: 2026-10-01
 ---
 
 ## The symptom pattern

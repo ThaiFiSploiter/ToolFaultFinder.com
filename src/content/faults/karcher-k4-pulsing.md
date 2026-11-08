@@ -33,6 +33,7 @@ source_type: "researched"
 sources:
   - "Kärcher K 4 Full Control Operating Instructions (59676200, 12/16) — overflow valve/pressure-switch mechanism description and Troubleshooting section"
 date_published: 2026-06-08
+date_modified: 2026-10-01
 ---
 
 ## The symptom pattern

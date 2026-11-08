@@ -56,6 +56,7 @@ const faults = defineCollection({
     source_type: z.enum(['firsthand', 'researched']),
     sources: z.array(z.string()).optional(),
     date_published: z.coerce.date(),
+    date_modified: z.coerce.date().optional(),
   }),
 });
 

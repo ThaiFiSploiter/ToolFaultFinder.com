@@ -30,6 +30,7 @@ source_type: "researched"
 sources:
   - "Bosch PST 700 E Original Instructions, document 2 609 003 949 (28.9.09 edition) — Assembly: Selecting/Inserting the Saw Blade and guide roller adjustment"
 date_published: 2026-06-18
+date_modified: 2026-10-01
 ---
 
 ## The symptom pattern

@@ -41,6 +41,7 @@ sources:
   - "Numatic HVR 200-11 / HET 200-11 Owner Instructions (document 244454, 07/18 ed. A11) — fault/blockage guidance, Do/Don't maintenance list, and replacement-parts numbers"
   - "Numatic HVR200-11(EU) Technical Sheet (document 916818, 05/23 ed. A01, cdn.numatic.com) — cross-confirms the bag and filter part numbers and the 230V/EU market spec"
 date_published: 2026-07-11
+date_modified: 2026-11-01
 ---
 
 ## The symptom pattern

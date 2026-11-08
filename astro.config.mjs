@@ -10,9 +10,13 @@ import { slugify } from './src/lib/slug.ts';
 // not ranking: 7 of 29 URLs have been "Discovered - currently not indexed" or
 // unknown for over a month while the rest get recrawled regularly.
 //
-// Every date below is real. Entry URLs take that entry's own `date_published`,
-// read straight from its markdown. Pages that list entries (the homepage, the
-// fault index, /tools/ and the brand hubs) take the newest entry date, because
+// Every date below is real. Entry URLs take that entry's own `date_modified`
+// if it has one, else `date_published`, read straight from its markdown —
+// `date_modified` exists for entries that were substantively rewritten after
+// first publishing (a sourcing fix, a corrected claim), so the recrawl hint
+// reflects the actual last change rather than the original publish date.
+// Pages that list entries (the homepage, the fault index, /tools/ and the
+// brand hubs) take the newest of those dates across all entries, because
 // that is genuinely when their content last changed. Static pages get no
 // lastmod at all rather than an invented one — the element is optional per-URL.
 
@@ -30,7 +34,7 @@ function readEntryDates() {
 
     const brand = field('brand');
     const model = field('model');
-    const date = field('date_published');
+    const date = field('date_modified') ?? field('date_published');
     if (!brand || !model || !date) continue;
 
     dates.set(`/tools/${slugify(brand)}/${slugify(model)}/`, date);
