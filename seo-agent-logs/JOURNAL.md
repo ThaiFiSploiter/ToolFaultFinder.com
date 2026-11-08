@@ -4897,3 +4897,140 @@ rather than forcing a second topic this run.
 2 Nov's run) and `seo-agent-logs/.last-content-day` to `2026-11-03`,
 and confirmed both are staged and committed this time (see the 2 Nov
 entry's process-gap note about an uncommitted stamp).
+
+## 2026-11-09 — weekly run
+
+**Clicks flat WoW, impressions up, CTR down.** Trailing 7-day windows
+from `gsc-report.mjs --days 16`'s by-day data: Oct24-30 24 clicks/1215
+impr (1.98% CTR) → Oct31-Nov6 24 clicks/1521 impr (1.58% CTR) — clicks
++0%, impressions +25%. The Oct24-30 figure cross-checks exactly against
+last week's independently-computed total, a good sanity check on the
+method. Checked the daily spread for a concentration artefact before
+reading this as flat-not-falling: Oct31-Nov6's daily clicks (1,5,1,6,1,3,7)
+are spread across the week, not piled up — this reads as a genuine CTR
+dilution from rising impressions, not noise.
+
+**CTR check: Kärcher K5 resolved as a real finding, not just flagged
+again.** K5 was logged on 28 Sep as differentiating from the site's other
+authority-capped Kärcher pages (~5% CTR, 6/118) — the one open question
+left unresolved since. 30-day `gsc-report.mjs` data this run: K5 is now
+1 click/317 impr (0.3% CTR) at pos 7.4, converging with K2/K4(no—K4 still
+converts)/K7/Stihl MS-250/TE-CD/BS250/HVR200/X1 Carbon's near-zero
+pattern rather than standing apart from it. Live-searched K5's exact
+query ("karcher k5 not building pressure") and K7's ("karcher k7 won't
+start keeps cutting out"): both SERPs are dominated by manual-aggregator
+mirrors (mcgrp.ru) and generic multi-brand troubleshooting content, not
+one single authority but enough low-quality competing volume that
+on-page tuning has no obvious lever — title/meta on both pages already
+well-formed (checked live). **Correction to the 28 Sep record: K4 is now
+the only Kärcher page that reliably converts (11/511, 2.15%, 30-day);
+K5 no longer differentiates from the zero-CTR cohort.** No title rewrite
+shipped on either — rail 8, no evidence it would move a fragmented SERP.
+Also checked `dewalt/dws780` (0/13, pos 5.3), `einhell/gc-ch-18-40-li`
+(0/17, pos 5.8) and `numatic/gve370` (0/16, pos 5.1) as possible
+candidates: all three already have well-formed, front-loaded titles
+(checked live) and sit at 14-day volumes too low (13-17 impressions) to
+distinguish a real zero from noise — below the threshold this playbook
+has used elsewhere (24-57 impr/30d) before calling a page authority-capped
+or acting on it. Left alone rather than rewrite on no evidence.
+
+**Coverage: 97/99 "Submitted and indexed" (98%), up from 89/94 (94.7%) on
+2 Nov.** Only two URLs not indexed: `ryobi/one-18v` (still "Crawled –
+currently not indexed", third sweep since the 1 Nov re-sourcing fix, 
+lastCrawled frozen at 2026-08-18Z on every sweep since 19 Oct) and
+`dewalt/dcs355` ("URL is unknown to Google" — 7 days old, per rail 6
+this is just new-and-uncrawled, not a problem).
+
+**Indexing fix shipped: `date_modified` field, sitemap lastmod and
+JSON-LD `dateModified` now reflect rewrites, not just first publish.**
+Investigating why `ryobi/one-18v` has sat "Crawled – not indexed" with a
+lastCrawled date frozen at 18 Aug despite a genuine content rewrite on
+1 Nov, found that `date_published` — the only date field in the schema,
+feeding both the sitemap `<lastmod>` and JSON-LD `datePublished` — is
+never bumped when an entry gets substantively re-sourced later. Checked
+all four entries with a known post-publish rewrite via `git log --follow`:
+`bosch-pst700e-wandering-cuts.md` (rewritten 1 Oct, `054defa`),
+`bambu-lab-a1-phantom-printing.md` (1 Oct, `ecf816c`),
+`karcher-k4-pulsing.md` (1 Oct, `36dac79`), and
+`ryobi-one-plus-battery-defective-flash.md` (1 Nov, `176a64d`) plus
+`numatic-hvr200-thermal-cutout.md` (1 Nov, `5d375b9`) — all five still
+carried their original 2026-05/06/07 `date_published` in the live
+sitemap, months after the rewrite. **Important caveat, checked before
+shipping anything: this does NOT appear to be what's blocking
+`ryobi/one-18v` specifically** — `bosch/pst-700-e` went through the exact
+same stale-lastmod situation after its own 1 Oct fix and still recovered
+to "Submitted and indexed" by the 19 Oct sweep (lastCrawled 2026-10-12,
+confirmed by diffing `seo-agent-logs/coverage/*.csv`), without ever
+getting a lastmod bump. So Google recrawled it on its own cycle,
+lastmod or not — ryobi's stall most likely just needs more time
+(8 days since the fix vs. bosch's ~11), per the precedent the 2 Nov
+journal entry already flagged. **Shipped anyway, as correct sitemap/
+schema hygiene rather than a claimed fix for the stall**: added an
+optional `date_modified` field (`src/content.config.ts`), sitemap
+`lastmod` and JSON-LD `dateModified` now resolve `date_modified ??
+date_published` (`astro.config.mjs`, `src/pages/tools/[brand]/
+[model].astro`), and backfilled the five known rewritten entries with
+their actual rewrite commit dates. `date_published` itself is untouched
+on all five, so the reader-facing "Published" date and the homepage/
+`/faults/` newest-first sort order don't change — this only affects the
+machine-facing recrawl signal. Build clean. Staged by name
+(`astro.config.mjs`, `src/content.config.ts`, `src/pages/tools/[brand]/
+[model].astro`, the five entry `.md` files); confirmed via `git status
+--short` that nothing under `src/images/` was touched. Pushed `6554335`.
+Verified live: sitemap shows `ryobi/one-18v` at lastmod
+`2026-11-01T00:00:00.000Z` (was `2026-05-22`), and the page's JSON-LD
+shows `"datePublished":"2026-05-22","dateModified":"2026-11-01"`.
+**Going forward: any run that substantively re-sources/rewrites a live
+entry should set `date_modified` to that day, not just fix the content.**
+
+**Weekly entry audit: 3 of 3 clean.** Picked the three entries from the
+2 Nov and 3 Nov content runs with the highest sourcing-risk profile
+rather than a random sample: `dewalt-dcs355-overheats-low-speed.md`
+(sourced from a third-party-hosted mirror for a discontinued model —
+the highest-risk sourcing pattern of the batch), `einhell-gc-el-3024-e-
+switch-stiff.md` (the entry that survived an Einhell export-market
+sourcing trap mid-draft), and `einhell-ge-ph-2555-a-blades-idle.md`.
+All three re-verified against freshly re-fetched primary sources:
+
+- **DCS355**: re-fetched the actual drafting-time source
+  (`baoanjsc.com.vn/TaiLieu/...DCS355M2-MANUAL-9770.pdf`) rather than
+  substituting a different, easier-to-reach copy — a first attempt at a
+  genuine UK-retailer-hosted PDF (Toolstation's own CDN) turned out to
+  be a thinner edition missing the U.K. & Ireland fuse table and 230V
+  charger spec the entry's `sources:` field describes, which would have
+  been exactly the kind of mismatch the gate exists to catch if accepted
+  as a substitute. The original document does carry the UK fuse table
+  (13A, distinct from the 10A Europe row), the "Richard-Klinger-Strasse"
+  EC Declaration address, and every quoted claim verbatim: "The further
+  the trigger switch is depressed the faster the tool will operate",
+  "If the tool overheats, especially when used at low speed, set the
+  speed to maximum and run it with no load for 2–3 minutes to cool the
+  motor. Avoid prolonged usage at very low speeds", and the accessory-
+  wear/overload line. No claims cut.
+- **GC-EL 3024 E**: re-fetched the cited Hornbach mirror
+  (`media.hornbach.de/hb/ownersmanual/as.44757329.pdf`), confirmed
+  Art.-Nr. 34.333.70 on the title page. Every claim matched verbatim,
+  including the Section 8.1 switch-stiffness fix, the Section 11
+  "Motor does not start" table, the Section 8.2 service-centre routing
+  line, and the 230-240V~/50Hz technical data. No claims cut.
+- **GE-PH 2555 A**: re-fetching nearly repeated a sourcing-trap of its
+  own — the first PDF found by search (`baustoffshop.de`, 403'd on
+  fetch) and a direct-but-wrong cloudfront hit both carried Ident-Nr.
+  11029, not the 11012 the entry actually cites. Found
+  `einhell-service.com/en_GB/3403835-ge-ph-2555-a.html`'s own asset
+  list, which links both editions separately, and fetched the specific
+  `3403835_11012_001_SPK7.pdf` — confirmed on its own title page
+  ("Art.-Nr.: 34.038.35, I.-Nr.: 11012"). The core claim matches
+  verbatim: "If the idling speed is so fast that the cutting blades do
+  not reach a standstill, the idling speed must be reduced by turning
+  the idling speed screw (Fig. 16/Item 5) counterclockwise until the
+  cutting blades stop", as does the "Settings on the carburetor may
+  only be made by authorized customer service personnel" restriction.
+  No claims cut. **Worth flagging as a pattern**: Einhell products can
+  have two parallel Ident-Nr. editions live on the service site at once
+  (11029 and 11012 here), not just a GB-vs-export split as found 3 Nov —
+  when re-verifying a cited Einhell source, confirm the exact Ident-Nr.
+  on the fetched document's title page matches the one in `sources:`,
+  don't assume any manual carrying the right Art.-Nr. is close enough.
+
+**NEEDS HUMAN: none this run.**
