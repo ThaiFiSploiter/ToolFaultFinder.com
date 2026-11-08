@@ -5034,3 +5034,117 @@ All three re-verified against freshly re-fetched primary sources:
   don't assume any manual carrying the right Art.-Nr. is close enough.
 
 **NEEDS HUMAN: none this run.**
+
+## 2026-11-09 — content run, first of ISO week 2026-W46 (entry 1)
+
+Note on today's dispatcher log: `run-content-20261109-064501.log` is empty
+— that invocation started and exited without publishing anything (no
+commits landed under that timestamp). This session picks up as the real
+first content run of W46 from a clean slate, not a continuation of a
+partial batch.
+
+**GSC top queries (`gsc-report.mjs --days 30`) again all mapped to
+existing entries or near-duplicates of codes already covered** (the
+`hms 0300-0200-0001-0007` family is the existing A1 Mini entry's own
+code) — now well over ten straight content runs with no new-topic gap
+from GSC alone. Fell back to sibling/adjacent-model sourcing per cadence
+order #2–4.
+
+**Published: Record Power DX4000 (weak suction — blocked hose, full
+drum, or clogged filter).** `src/content/faults/record-power-dx4000-
+weak-suction.md` + `img/record-power-dx4000.png`. **The site's first
+dust-extractor entry — a new tool category.** Sourced from Record
+Power's own official PDF, found directly on `recordpower.co.uk` (not a
+third-party mirror): `recordpower.co.uk/assets/products/product_manuals/
+prod_000315_manual_1429010924.pdf` — "Original Instruction Manual
+RSDE1, RSDE2, RSDE2/A DX4000 & DX5000 High Filtration Dust Extractors,
+Version 3.1, September 2014." UK market confirmed via the spec table
+(230V~50Hz, both models). Verification quotes, re-checked against the
+fetched PDF text immediately before commit:
+
+- Blockage/restart procedure (Section 5): "If a blockage in the
+  collection hose of the machine occurs, switch it off immediately by
+  pressing the power switch to the off position and wait for the
+  machine to come to a complete stop before proceeding further. Unplug
+  the machine from the power source and remove the blockage from the
+  collection hose. To re-start the machine press the power switch to
+  the on position."
+- Filter maintenance + part numbers (Section 9): "The filters should be
+  inspected every time the unit is emptied and particularly if any
+  reduction in performance is noted. The cloth filter can be cleaned
+  using a vacuum cleaner, and occasionally washed in warm water. The
+  paper filters trap fine dust, and to prevent becoming clogged should
+  be renewed regularly (part no. DX1500E). The cartridge filters should
+  be cleaned at the same time, and should be renewed annually (part no.
+  DX1500F)."
+- Drum-emptying sequence and "head unit" terminology matched verbatim
+  against the manual's own wording.
+
+**Deliberately left out of the entry**: the manual's duty-cycle
+guidance for single-motor models (RSDE1/RSDE2/DX1000 must rest 20
+minutes every hour; DX4000/DX5000 can alternate motors to run
+continuously). It's genuine content in the same document, but it
+answers a different question (how long you can run the machine) from
+this entry's symptom (airflow loss while running) — folding it in would
+have risked implying a causal link between "ran too long" and "weak
+suction" that the manual itself never makes. Worth a separate entry on
+a different RSDE/DX model later if a distinct symptom (e.g. "won't run
+continuously") is wanted, rather than bolting it onto this one.
+
+**Dropped before drafting: DeWalt DW713/DWS713 mitre saw.** Found and
+confirmed as genuinely UK-market (220-240V, "U.K. & Ireland only" mains
+plug section, 13A BS1363A fuse table) despite being served from a URL
+path mixing `service.blackanddecker.co.uk/.../GB/...` with a filename
+literally called `DW713_Asia.pdf` — the market content itself settled
+it, filename noise and all. But the manual has no troubleshooting table,
+only calibration procedures (checking/adjusting the mitre scale, bevel
+pointer, fence) — and that content is a near-restatement of the
+already-published `dewalt-dws774-out-of-square.md` entry's fence/bevel-
+calibration fault. Dropped on content-overlap grounds, not sourcing.
+
+**Dropped on sourcing grounds, several leads tried and rejected this
+run:**
+- **Hyundai Power Products, Clarke/Machine Mart, Titan, Mac Allister**
+  (first attempt at any of these four brands) — every usable
+  troubleshooting table found was on a third-party manual aggregator
+  (manualmachine.com, manuals.plus, manualslib), none with the
+  document's own genuineness markers checked yet, and where content was
+  visible it was either generic small-engine "won't start: check
+  fuse/breaker" boilerplate (Clarke FG3005 generator) or the already-
+  oversubscribed generic cordless-battery pattern (Mac Allister
+  MSCD18-Li-2 impact drill). None pursued to a fetch-and-verify step —
+  didn't clear the bar even before trying to source an official domain.
+  Worth a real attempt at any of these four again if a cleaner lead
+  turns up (e.g. an official-domain troubleshooting table, not just a
+  third-party mirror of a generic table).
+- **Numatic Hetty** — no official `cdn.numatic.com`-hosted manual
+  surfaced in two searches; only third-party aggregators. Numatic's own
+  domain has worked reliably for Henry/George models via specific known
+  URLs, but nothing Hetty-specific was found this run.
+- **`cdn.axminstertools.com` is currently broken, not just slow** — the
+  AP25BM bench morticer (code 107638) looked like a strong, genuinely
+  new-category lead (contents page confirms "Troubleshooting 22"
+  alongside maintenance, found via search and cross-confirmed against
+  the product's own `axminstertools.com` listing at 230V), but every
+  fetch attempt (`curl` with multiple UAs/headers, `WebFetch`) returned
+  **Cloudflare Error 1000 "DNS points to prohibited IP"** — a
+  server-side DNS misconfiguration on Axminster's end, not a
+  sandbox-specific block. This is a different failure mode from the
+  domain's past reliability (confirmed working on 22 Sep, 29 Sep, 19
+  Oct) — worth retrying in a future run rather than writing the domain
+  off, since this reads as temporary breakage, not a structural block.
+- **Bambu error code `0300-0200-0001-0002`** (3 impressions in GSC,
+  genuine demand signal) — no official `wiki.bambulab.com` page found
+  for this exact code in two searches; third-party "error hub" sites
+  disagreed with each other on what it even means (one called it a
+  nozzle thermal-runaway code, another an AMS filament-cutter code).
+  Dropped outright — rail 3 territory, not even close to sourceable.
+- **Triton TMNRTR trimmer router** — found two genuinely official
+  `tritontools.com/cdn/shop/files/` manual PDFs (two hardware
+  revisions, 880W and 7.3A), but ran out of research budget this run
+  before fetching and checking either for troubleshooting-table
+  specificity and UK-relevance. Carried forward as next run's first
+  candidate rather than rushed.
+
+**Stopped at 1 deliberately this entry-cycle; continuing to the next
+candidate (TMNRTR) now rather than closing the run.**
