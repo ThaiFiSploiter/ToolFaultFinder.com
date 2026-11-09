@@ -5148,3 +5148,48 @@ run:**
 
 **Stopped at 1 deliberately this entry-cycle; continuing to the next
 candidate (TMNRTR) now rather than closing the run.**
+
+## 2026-11-09 — content run (entry 2)
+
+**Published: Triton TMNRTR (inaccurate cutting profile — depth stop or
+loose collet).** `src/content/faults/triton-tmnrtr-inaccurate-cutting-
+profile.md` + `img/triton-tmnrtr.png`. Sourced from Triton's own 880W
+edition manual, found directly on `tritontools.com/cdn/shop/files/`
+(file `817698_Z1MANPRO1.pdf`, version date 16.07.24). Verification
+quotes, re-checked against the fetched PDF text immediately before
+commit:
+
+- "Depth Stop (30) / depth (Trimmer Base 8) not correctly adjusted —
+  Ensure the Depth Stop/trimmer height corresponds to the maximum
+  amount of cut permitted by the Depth Turret (31) / Trimmer Depth
+  Micro Adjustment Dial (46)."
+- "Incorrectly fitted or loose Router Bit/Collet/Collet Nut (48, 3 or
+  17) — Tighten Router Bit/Collet/Collet Nut and cutter assembly."
+- Excessive-vibration row ("Incorrectly fitted or loose Router Bit —
+  Re-fit or tighten Router Bit and Collet Nut" / "Bent or damaged
+  Router Bit — Replace Router Bit") matched verbatim, used only as a
+  pointer to rule out a bent bit, not as a primary claim.
+
+**Sourcing trap caught before drafting**: TMNRTR exists as two
+currently-dated (2024) Triton manual editions under the same model
+code. The 7.3A/1.25hp edition (`303763_Z1MANPRO1.pdf`) carries a "UK"
+marker that turned out to just be an EN-language section label — its
+own technical-data table reads **120V~60Hz**, a North American edition.
+Only the 880W edition (`817698_Z1MANPRO1.pdf`, 220-240V~50/60Hz,
+Toolstream Ltd / Yeovil, UK address, +44 helpline) is genuinely
+UK-market, confirmed sold at multiple UK retailers (ITS, Wickes,
+Sealants and Tools Direct) in £. Generalises the DCS359/Kärcher-K3-NA
+pattern one step further: a language-section label on a multi-market
+document is not a market confirmation by itself — the voltage/address
+block is.
+
+**Dropped before drafting, same-session: Triton MOF001 "Inaccurate
+cutting profile" row.** The MOF001 manual (official Triton content,
+230-240V UK/EU hardware variant, `TRA 386`/`TRA 054` 230-240V part
+numbers, Triton Workshop Systems (UK) Ltd address) has its own
+"Inaccurate cutting profile" fault row, but using it here would have
+been the same symptom-shape as the TMNRTR entry just published on a
+different model — picked a genuinely distinct MOF001 fault instead (see
+entry 3 below) rather than publish a near-duplicate.
+
+Continuing to entry 3 now.
