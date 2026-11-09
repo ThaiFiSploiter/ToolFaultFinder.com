@@ -5192,4 +5192,84 @@ been the same symptom-shape as the TMNRTR entry just published on a
 different model — picked a genuinely distinct MOF001 fault instead (see
 entry 3 below) rather than publish a near-duplicate.
 
-Continuing to entry 3 now.
+## 2026-11-09 — content run (entry 3)
+
+**Published: Triton MOF001 (won't switch on / won't plunge to bit-change
+position — a built-in interlock, not a fault).** `src/content/faults/
+triton-mof001-wont-switch-on.md` + `img/triton-mof001.png`. Sourced
+from the MOF001 Operating & Safety Instructions (code 330085), fetched
+via a UK-retailer mirror (`dm-tools.co.uk`) after the manufacturer's own
+`sealantsandtoolsdirect.co.uk` copy 403'd — confirmed genuine via the
+230-240V part-number suffixes on the speed controller/switch/field/
+armature in the parts list and the "Triton Workshop Systems (UK) Ltd"
+address on the back page. UK retail currency confirmed separately
+(Wickes "Currently in Stock" £235, among others). Verification quotes,
+re-checked against the fetched PDF text immediately before commit:
+
+- "The retracting switch shutter (11) prevents accidental starting of
+  the router. It must be retracted before the router can be switched
+  on."
+- "(The retracting shutter will lock closed when the collet lock is
+  engaged.)"
+- Troubleshooting table: "Shutter on power switch not releasing —
+  Router is plunged to full depth - in collet lock position — Reduce
+  plunge depth" and "Can't plunge to collet lock position — Power
+  switch 'On' — Switch power 'Off'."
+- "Return the router to a normal operating depth. This will disengage
+  the collet lock and release the retracting switch shutter, enabling
+  access to the power switch."
+
+**This is the first entry on the site framed entirely as "this is a
+safety interlock, not a fault"** rather than a diagnosis-and-repair —
+worth noting as a pattern other confusing-but-intentional mechanisms
+(interlocks, lockouts, safety delays) could follow, where the honest
+answer is explaining the design rather than fixing anything.
+
+Continuing to entry 4 now.
+
+## 2026-11-09 — content run (entry 4)
+
+**Published: Record Power PT107 (thicknessing height hand wheel stiff
+from dust — the site's first planer-thicknesser entry).**
+`src/content/faults/record-power-pt107-height-handle-stiff.md` +
+`img/record-power-pt107.png`. Sourced from Record Power's own PT107
+Original Instruction Manual, Version 3.0, January 2013 — the
+manufacturer's own `recordpower.co.uk` support/product pages are
+JS-gated for the manual download (consistent with the standing finding
+on this domain), so fetched via a Norwegian distributor mirror
+(`torsvangmaskin.no`) after a Dutch mirror (`baptist.nl`) 404'd and
+another (`willyvanhoutte.marcando.be`) 403'd — confirmed genuine via the
+Guarantee section's explicit "United Kingdom of Great Britain" wording
+and the 230V/50Hz motor spec. Verification quotes, re-checked against
+the fetched PDF text immediately before commit:
+
+- Troubleshooting table: "Height handles are hard to turn: 1. Dust has
+  collected on the mechanisms inside the base — 1. Clean and lubricate
+  the mechanisms inside the base."
+- Maintenance section: "Clean the thicknessing bed spindles on a
+  regular basis to prevent the build-up of wood chips and dust,
+  lubricate with silicone spray."
+- "Do not use ordinary oil as this will attract dust."
+- Named lubricant product, used in the parts list as a consumable:
+  "lubricate with a good quality silicone spray such as CWA195" / "a
+  light film of silicone spray such as Record Power CWA195."
+
+**PT107's manual is an older edition (2013) than the current
+`recordpower.eu`-referenced "Manual 3.2"** — not re-fetched, since the
+troubleshooting/maintenance content used here is basic mechanical
+guidance unlikely to have changed between editions, but worth flagging
+that a future re-verification of this entry should try to source the
+current edition if reachable, rather than assume the 2013 content is
+still current without checking.
+
+**Stopped at 4 deliberately.** Sourcing budget largely spent on this
+run's careful multi-candidate research (several brands tried and
+dropped — Hyundai, Clarke, Titan, Mac Allister, Numatic Hetty,
+Axminster blocked by a Cloudflare DNS fault, a Bambu error code with no
+official source) plus the care needed on two separate Triton
+market/overlap traps this run. Four well-verified, genuinely new-ground
+entries (new category: dust extractors; new category: planer-
+thicknessers; a new interlock-framing pattern; a specific collet/depth
+calibration fault) is a stronger result than padding to a higher count.
+
+**NEEDS HUMAN: none this run.**
