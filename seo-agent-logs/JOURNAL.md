@@ -5273,3 +5273,98 @@ thicknessers; a new interlock-framing pattern; a specific collet/depth
 calibration fault) is a stronger result than padding to a higher count.
 
 **NEEDS HUMAN: none this run.**
+
+## 2026-11-10 — content run, second of ISO week 2026-W46 (entry 1)
+
+Second content run of the ISO week (first was 9 Nov, 4 entries). Content-week
+stamp bumped `2026-46 1` → `2026-46 2`; `.last-content-day` set to 2026-11-10
+(gitignored, local-only, not committed).
+
+**GSC top queries (`gsc-report.mjs --days 30`) checked against the existing
+library again** — no new-topic gap. The one query that looked promising at a
+glance, "p1s heatbed temperature malfunction" (4 impr, 1 click), is already
+the exact fault the existing `bambu-lab-p1s-heatbed-not-heating.md` entry
+targets (checked the entry's own symptom/body before treating it as a gap).
+Over ten straight runs now with no GSC-sourced new topic — fell back to
+cadence order #2–4 (sibling/adjacent models, new brand coverage backed by
+strong sourcing).
+
+**Published: Hyundai HY40CGB26 (trimmer line not feeding / cutting
+raggedly).** `src/content/faults/hyundai-hy40cgb26-line-not-feeding.md` +
+`img/hyundai-hy40cgb26.png`. **The site's first Hyundai Power Products
+entry — a new brand**, picked after the usual sibling/adjacent-model search
+across already-covered brands (Triton, Record Power, Axminster, DeWalt,
+Makita) didn't turn up a fresh, distinctly-sourced fault this run, and
+Hyundai's own manual gave genuinely strong, specific, UK-confirmed
+troubleshooting content — not a speculative-brand reach. Sourced from the
+HY40CGB26 2x20V Cordless Trimmer/Brushcutter Instruction Manual (Iss:
+Jan/26), fetched directly from `hyundaipowerequipment.co.uk/cdn/shop/files/`
+(official domain, direct PDF, no third-party mirror needed). UK market
+confirmed via the UKCA marking and "Genpower Ltd, Isaac Way, Pembroke Dock,
+Pembrokeshire, SA72 4RW, UK" address, plus "the United Kingdom & Ireland"
+wording in the recycling section. Verification quotes, re-checked against
+the fetched PDF text immediately before commit:
+
+- Troubleshooting table (p.25): "Trimmer line not feeding. — Trimmer line
+  not installed correctly. — Check user manual for fitting instructions."
+  and "Trimmer not cutting cleanly. — Incorrect trimmer line installed. —
+  Check trimmer line thickness – replace if incorrect. / Trimmer head
+  clogged with grass trimmings. — Cut power to motor and clear any built up
+  grass trimmings around the trimmer head."
+- Replacing Trimmer Line section (p.24): "We recommend using 1.3mm, 1.4mm or
+  1.5mm nylon grass trimmer line", "WARNING: Make sure the battery is
+  disconnected", "There is a spring inside the cutting head which could
+  easily be lost. Ensure to keep in place safely", and "To test if the line
+  is advancing properly, push the button with your thumbs while pulling the
+  wire with your fingers. The line should advance freely."
+- The two other troubleshooting rows ("Machine will not start" — faulty
+  battery/internal wiring; "Machine functions intermittently" — internal
+  wiring fault) were deliberately left outside this entry's scope and
+  described only in general terms (battery/wiring, wiring case routes to a
+  service dealer) rather than claimed as covered — the entry is scoped to
+  the cutting-head/line-feed fault only, which is the user-serviceable half
+  of the table.
+
+**The gate caught an ordering error in the draft before commit, not a
+fabrication**: a first-draft rewind paragraph described hooking both line
+ends into the spool-set notches before winding the line into the spool
+grooves. The manual's actual sequence is fold the line, hook the *middle*
+onto the line spool's notch, wind into the grooves, *then* hook both ends
+into the spool-set notches, then fit the spring/thread the eyelets. Rewrote
+the paragraph to match the manual's sequence exactly before pushing. Also
+softened "Hyundai calls for 1.3mm, 1.4mm or 1.5mm" to "recommends" — the
+manual's own word is "recommend", not a hard spec, and the first draft
+overstated it. Both caught at the gate, not after.
+
+**New usable source: `hyundaipowerequipment.co.uk/cdn/shop/files/` hosts
+genuine official Hyundai Power Products UK manuals as direct PDFs** —
+confirmed via UKCA marking, a UK company address, and a troubleshooting
+section with real fault/cause/remedy content on this model. The other
+Hyundai PDF checked from the same path this run (`HYSP400CD_Manual.pdf`,
+looked like a generator cover sheet from its PDF outline metadata) wasn't
+pursued further once the trimmer manual gave a cleaner, more specific fault
+— worth another look at Hyundai's generator/pump range in a future run. Add
+this domain to the reachable-sources list alongside the Bambu wiki,
+help.prusa3d.com, Record Power's KB, media.makita.co.nz/makita.in,
+service.dewalt.co.uk/assets.dewalt.co.uk, cdn.numatic.com,
+cdn.axminstertools.com (when reachable) and s1.kaercher-media.com.
+
+**`cdn.axminstertools.com` is still down** — retried the AP25BM bench
+morticer lead flagged 9 Nov as "temporary breakage, worth retrying" and it
+now times out (HTTP 524, Cloudflare gateway timeout) rather than returning
+the DNS-prohibited-IP error seen 9 Nov. Two different failure modes across
+two runs on the same domain — deprioritise again, but it still reads as the
+domain's own infrastructure rather than a sandbox-specific block, so worth
+another attempt rather than writing it off permanently.
+
+**Stihl UK (`stihl.co.uk`) has an official instruction-manuals page but it's
+search-driven, not browsable/curl-able** — `stihl.co.uk/en/support-and-
+contacts/instruction-manuals` confirms manuals exist per-model behind a
+"search by product name or serial number" box with no visible model list or
+direct links in the page source, so a PDF URL can't be found by crawling the
+page alone. Numatic Hetty and Titan were also checked this run (both still
+third-party-aggregator-only, no official-domain hit) — no change from prior
+runs' findings on either.
+
+**Stopped at 1 for this run so far; continuing to the next candidate now
+rather than closing out.**
