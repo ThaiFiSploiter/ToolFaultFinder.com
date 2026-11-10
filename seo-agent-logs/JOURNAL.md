@@ -5368,3 +5368,133 @@ runs' findings on either.
 
 **Stopped at 1 for this run so far; continuing to the next candidate now
 rather than closing out.**
+
+## 2026-11-10 — content run, second of ISO week 2026-W46 (entry 2)
+
+**Published: Triton TA1200BS (sanding belt drifts off-centre / won't
+track).** `src/content/faults/triton-ta1200bs-belt-drifts-off-centre.md` +
+`img/triton-ta1200bs.png`. **The site's first Triton belt sander entry.**
+Sourced from the TA1200BS 1200W Belt Sander 75mm Operating & Safety
+Instructions (`tritontools.com/cdn/shop/files/330125_Z1MANPRO1.pdf`,
+version dated 05.04.2024) — the official domain, found directly by search
+after a third-party "manuals.plus" copy of the same model turned out to be
+an AI-paraphrased summary rather than the verbatim manual (see dropped-
+candidates note below) and a Russian retailer mirror timed out. UK market
+confirmed via 220-240V~50Hz on the spec page and "Toolstream Ltd, Yeovil,
+Somerset, BA22 8HZ, United Kingdom" in the guarantee section. Verification
+quotes, re-checked against the fetched PDF text immediately before commit:
+
+- Troubleshooting table: "Sander pulls to the side during operation —
+  Off-centre sanding belt — Adjust the Tracking Adjustment Knob (6) to
+  align the belt. If problem persists, refit the belt as instructed in
+  'Attaching a sanding belt' / Loose sanding belt — Ensure the Belt Tension
+  Lever (12) is securely closed. If problem persists, refit the belt..."
+- "Whilst the belt is running, adjust the Tracking Adjustment Knob (6) to
+  align the belt to the centre of the Drive Roller (13)... only slight
+  rotation of the knob is required to track the belt... squeeze the trigger
+  for a few seconds to allow the belt to adjust... Run the sander for a
+  minute or so to ensure correct alignment is achieved before using the
+  sander on a workpiece."
+- Refit procedure: "Turn the Belt Tension Lever (12) to release the tension
+  on the belt and slide off the old belt... Check the replacement belt is
+  well jointed and is not frayed at the edges... making sure the rotation
+  arrow on the inside of the belt is pointing in the same direction as the
+  arrow on the side of the sander."
+- The table's separate row, "'Squealing' sound or intermittent loss of
+  power whilst sanding — Drive belt is worn — Replace the drive belt as
+  instructed in 'Changing the drive belt'", is mentioned only as an
+  out-of-scope aside (different part, different fault) and not drafted as
+  covered by this entry.
+
+**The gate caught an overclaim before commit, not a fabrication**: a
+first-draft paragraph stated that a belt fitted backwards or damaged "will
+drift no matter how carefully the tracking knob is set" — a causal claim
+Triton's own table doesn't actually make. The table attributes drifting to
+exactly two causes (off-centre tracking, loose tension) and separately
+escalates both to "refit the belt as instructed" if adjustment doesn't
+hold; the frayed-edge and arrow-direction checks are things the refit
+*procedure* has you verify, not causes the manual attributes to this
+specific symptom. Rewrote the paragraph to describe the refit as Triton's
+own escalation step rather than asserting an uncited cause-and-effect.
+Worth flagging as a new, subtler shape of thing the gate has to catch:
+not a wrong fact, but a plausible-sounding mechanism invented by
+connecting two genuinely-sourced passages (the troubleshooting table and
+the separate fitting procedure) in a way the source document itself
+doesn't connect.
+
+**New failure mode worth flagging: a third-party "manual" site that
+paraphrases rather than reproduces.** The `manuals.plus` copy of this same
+model's manual returned a Troubleshooting section that reads as plausible
+but is confirmed NOT verbatim — phrasing like "This section addresses
+common issues you might encounter" and a live "Ask about setup,
+troubleshooting..." chat prompt on the same page mark it as an
+AI-generated/reformatted summary, not a scan of the original PDF. Its
+version of this fault ("Sanding Belt Drifting or Coming Off — Adjust the
+belt tracking knob to center the belt / Ensure the belt tension lever is
+fully engaged") happens to roughly match the real manual's content in this
+case, which makes it a dangerous near-miss rather than an obvious fake —
+caught only because the genuine tritontools.com PDF was fetched and
+compared, not because anything about the manuals.plus page looked wrong on
+its own. **Treat any third-party "manual" site that offers to answer
+follow-up questions about the document as a paraphrase engine, not a
+source** — find the manufacturer's own PDF before citing content from one,
+even when the content looks right.
+
+**Dropped before drafting, same run — the Numatic Charles CVC370/WV370
+wet-mode fault.** Found and fetched a genuine official Numatic manual
+(`averncleaningsupplies.com` retailer mirror, confirmed via "Numatic
+International Limited, Chard, Somerset, TA20 2GB" and the UK technical
+helpline) covering CVC370/WV370/WVT370/WV380/WV470 jointly. Its wet-mode
+fault-finding section — "has the float valve operated, this will shut off
+the suction and the pitch of the vacuum motor will change" — is
+mechanically identical to the fault the site's existing
+`numatic-george-gve370-wont-pick-up-water.md` entry already covers (same
+float-valve-shutoff cause, same motor-pitch-change symptom language), just
+a different Numatic model sharing the same safety mechanism. Dropped as a
+near-duplicate rather than drafted and caught later — the dry-mode section
+of the same manual was also checked and found too generic (blockage/full
+bag/blocked filter) to clear the bar on its own.
+
+**Other candidates researched and dropped this run:**
+- **DeWalt DCS391 cordless circular saw** — official UK manual found
+  (`service.blackanddecker.co.uk`, GB/XE variant, 230V confirmed) but has
+  no troubleshooting table at all, only safety/charging content; its
+  charger-fault content ("charger will indicate faulty battery by refusing
+  to light... take to an authorised service centre") is thinner than the
+  site's existing Makita DC18RC charger entry (no distinct light pattern to
+  diagnose by) and wasn't judged strong enough to carry its own entry.
+- **Makita UH4261/UH4861/UH5261 hedge trimmer** — genuine official manual
+  (`makita.in`) but confirmed to have no troubleshooting section at all;
+  every fault routes to "Makita Authorized Service Centers" by design, the
+  same safety/spec-only pattern already documented for Bosch.
+- **Record Power Coronet Herald / Pathfinder lathes** — no dedicated manual
+  found anywhere; every search result for "Herald" troubleshooting
+  resolves back to the Coronet Envoy/Regent user guide already cited for
+  the existing `record-power-envoy-tool-catching.md` entry. Not pursued
+  further to avoid the same near-duplicate risk just confirmed on Numatic.
+- **Kärcher K2 Compact/Premium** — shares the same combined operating
+  instructions and fault table as the base K2 (already the source for
+  `karcher-k2-leaking-base.md`), and its other listed faults (pressure not
+  building, no detergent infeed) are the same content already used for the
+  K5 and K3 entries respectively. Dropped on content-overlap grounds before
+  fetching in full.
+- **`cdn.axminstertools.com`** — retried the AP25BM bench morticer lead
+  flagged 9 Nov; now times out (HTTP 524) rather than the DNS-prohibited-IP
+  error seen then. Two different failure modes across two runs — still
+  reads as the domain's own infrastructure, not a sandbox block, but
+  deprioritise again.
+- **Stihl UK (`stihl.co.uk`)** — confirmed an official instruction-manuals
+  page exists, but it's a search-box interface with no visible model list
+  or direct PDF links in the page source, so a specific model's manual
+  can't be reached by fetching the page alone. No change from prior runs.
+
+**Stopped at 2 deliberately.** Both entries took substantially more
+candidate research than usual this run — six other leads were fetched,
+checked and dropped (two of them, Numatic and the manuals.plus paraphrase,
+for reasons worth carrying forward rather than just noting as misses) — so
+the research budget was spent thoroughly rather than widely. Two
+well-verified, genuinely new-ground entries (new brand: Hyundai; new
+sub-category: Triton belt sander) is a stronger result than pushing for a
+third on thinner sourcing.
+
+**NEEDS HUMAN: none this run.**
