@@ -5676,3 +5676,68 @@ slots and outlet hose spigot all distinct and legible, matching the brief
 and the house style with no grey fill, stippling or background glow.
 
 **Continuing to the next candidate now.**
+
+## 2026-11-16 — content run, first of ISO week 2026-W47 (entry 2)
+
+**Published: Hyundai HYBC5600X (petrol brush cutter starts but won't run
+at full power).** `src/content/faults/hyundai-hybc5600x-low-power.md` +
+`img/hyundai-hybc5600x.png`. Second Hyundai Power Products entry, found
+on the same official domain as entries 1 and the 10 Nov trimmer
+(`hyundaipowerequipment.co.uk/cdn/shop/files/`) via a plain site: search —
+no third-party mirror needed. UK/Ireland market confirmed via "Genpower
+Ltd, Isaac Way, Pembroke Dock, Pembrokeshire, SA72 4RW, UK" and the UKCA
+symbol, same manufacturer as the existing Hyundai entries. Verification
+quotes, re-checked against the fetched PDF text immediately before commit:
+
+- Engine Unit Troubleshooting (p.43): "The engine starts but does not run
+  at full power. — 1. Incorrect adjustment of the choke lever. 2.
+  Contaminated air filter. — 1. Move the choke lever to the upper
+  position. 2. Clean air filter."
+- Maintenance: Air Filter (p.40-41): "CAUTION - A dirty air filter will
+  restrict the air flow to the carburettor, which will reduce engine
+  performance and efficiency... This machine uses an Oil Soaked foam air
+  filter... If cleaned always remember to re-soak the air filter in oil...
+  Never operate the machine without the air filter being fitted. Improper
+  use can cause damage to the engine which is not covered by warranty...
+  The air filter must be inspected after every 25 hours of operation, and
+  cleaned if necessary. 1. Unclip and remove the cover of the air filter
+  housing. 2. Remove the air filter. 3. Clean the air filter by tapping or
+  blowing it out. 4. Assembly is done in the reverse order."
+- Starting/Stopping Procedure: Cold Start (p.33-34), cited only as
+  background for what the lever's two named positions are, not as an
+  explanation of this fault's mechanism: "For a cold start, move the
+  choke lever to the upper position... Once the engine starts, gently
+  squeeze the throttle to disengage the choke. The choke will
+  automatically disengage and return to the right (off) position once the
+  throttle has been squeezed."
+- Separate "does not run smoothly" row (spark plug / carburettor
+  adjustment, the latter routed to "Contact your service dealer") checked
+  and deliberately excluded from this entry's scope as a different named
+  symptom, not folded in.
+
+**New gate-relevant finding worth flagging explicitly: the manual's own
+fix for this fault doesn't explain itself, and a first-draft paragraph
+tried to supply the missing mechanism rather than just report the literal
+cause/fix pair.** The table's stated fix for "incorrect adjustment of the
+choke lever" is "move the choke lever to the upper position" — which is
+the *cold-start* (choke-on) position, not intuitively the fix you'd expect
+for an engine that's underpowered once already running. A first draft
+explained this by asserting the engine "ends up running on a mixture the
+carburettor isn't set up for," connecting the troubleshooting row to the
+separate cold-start section's description of the lever disengaging to
+off — a plausible-sounding mechanism the manual itself never states, and
+the same shape of thing already flagged on 10 Nov (TA1200BS) and 28 Sep
+(DW733): inventing a connective explanation between two genuinely-sourced
+passages. Caught before commit and rewritten to report the cause/fix pair
+as the table states it, with an explicit line in the body that "it
+doesn't explain further, so there's nothing more specific to check beyond
+trying it" — the honest version of this entry admits the ambiguity rather
+than resolving it with invented reasoning.
+
+Illustration (gpt-image-2) came out as a correctly-shaped petrol brush
+cutter/strimmer on the first attempt — pull-start handle, air filter
+housing cover and choke lever all visible and distinct near the engine
+unit, loop handlebar, long shaft, cutting-head guard at the far end — no
+regeneration needed.
+
+**Continuing to the next candidate now.**
