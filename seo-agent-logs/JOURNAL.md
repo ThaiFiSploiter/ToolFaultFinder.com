@@ -5498,3 +5498,113 @@ sub-category: Triton belt sander) is a stronger result than pushing for a
 third on thinner sourcing.
 
 **NEEDS HUMAN: none this run.**
+
+## 2026-11-16 — weekly run
+
+**Clicks vs prior period: up, in line with impression growth.** Trailing
+7-day windows: Oct31-Nov6 (reported 9 Nov) 24 clicks/1521 impr (1.58% CTR)
+→ Nov7-13 26 clicks/1639 impr (1.59% CTR). +8% clicks, +8% impressions,
+CTR flat — read as proportional growth, not a shift either way. By-page
+leaders this period: Bambu P1S (8/335), Kärcher K5 (7/258), Bambu A1 Mini
+(6/386), Kärcher K4 (5/290), Triton TPT125 (3/9, still the site's best
+CTR). `node gsc-report.mjs --days 14` is the source; by-day spread was
+checked and the growth isn't concentrated on one or two days.
+
+**Coverage: 104/105 (99%) Submitted and indexed**, up from 97/99 a week
+prior (`node gsc-coverage.mjs`). Only `tools/ryobi/one-18v/` remains
+"Crawled - currently not indexed" — now 15 days past its 1 Nov
+`date_modified` re-sourcing fix, which is longer than the ~11 days
+`bosch-pst-700-e` took to recover under the same circumstances (28 Sep
+monthly run). Per rail 6 this is legitimately "crawled and declined," not
+"uncrawled," so not pruned this run — pruning a crawled-and-rejected page
+is a monthly-run last resort. **Flagging for the next monthly run to
+actually decide**: it's now overdue against the one precedent this site
+has for how long a fix takes to show, so "leave it, it just needs time" is
+getting harder to justify without a decision point.
+
+**CTR quick-win check: no change shipped, one candidate investigated and
+set aside.** `einhell/gc-pc-1335-1-i` (chain not oiling, published 27 Oct)
+sits at pos 4.6 with 26 impr/12 days and 0 clicks — a good position with
+real volume and zero conversion, the shape worth checking. Live-curled the
+page: title, meta description and canonical all match the frontmatter
+exactly, no technical fault. Tried to pull page-level query data
+(`dimensionFilterGroups` on `page`) to see the actual driving query, both
+at 28 and 90 days — zero rows returned, i.e. fully anonymised even at this
+narrower scope, consistent with the 1 Sep finding that query data vanishes
+below a volume threshold. A live web search for the obvious phrasing found
+no ToolFaultFinder result and surfaced AI-content-farm pages
+("hjalp.ai") among the top results for adjacent Einhell-chainsaw queries —
+suggestive of the same SERP-crowding pattern already confirmed on ~9 other
+pages, but not something I can confirm without the actual query. At 26
+impressions over less than 3 weeks this is also still thin by the site's
+own standard for calling anything settled. No rewrite shipped — nothing
+to fix on-page, and the evidence doesn't clear the bar for a confident
+diagnosis either way. Watch it with more volume before trying again.
+
+**Weekly entry audit: 2 of 3 clean, 1 reverted — first gate failure since
+the 14 Sep DWS780 fabrication, breaking an 11-straight-clean streak.**
+Picked by sourcing-risk from the 6 entries published since 9 Nov (DX4000,
+TMNRTR, MOF001, PT107, Hyundai HY40CGB26, Triton TA1200BS): **Triton
+TMNRTR** (the dual-edition market-trap entry — worth re-checking the right
+edition stuck), **Record Power PT107** (third-party-mirror sourced), and
+**Triton MOF001** (the novel "this is an interlock, not a fault" framing —
+high-stakes if the characterisation itself is wrong).
+
+- **TMNRTR — clean.** Re-fetched the genuine UK/EU edition direct from
+  `tritontools.com/cdn/shop/files/817698_Z1MANPRO1.pdf` (220-240V~50/60Hz,
+  Toolstream Ltd, Yeovil, confirmed in the PDF's own spec table). Both
+  troubleshooting-table rows the entry quotes — the Depth Stop/Depth
+  Turret row and the Collet/Collet Nut row — match verbatim, including the
+  part-number references in brackets. The separate "Excessive vibration"
+  row (loose/bent bit) the entry describes as a related-but-distinct fault
+  also matches verbatim.
+- **PT107 — clean.** Re-fetched `torsvangmaskin.no/file/andre/bruksanvisning-pt107.pdf`,
+  confirmed Version 3.0, January 2013 and UK market ("Dealer of Record
+  Power within the United Kingdom of Great Britain" in the guarantee
+  section) — the exact edition the entry's `sources:` field names. Both
+  quoted claims match verbatim: the troubleshooting row ("Height handles
+  are hard to turn: 1. Dust has collected on the mechanisms inside the
+  base — 1. Clean and lubricate the mechanisms inside the base") and the
+  maintenance section's oil warning ("Clean the thicknessing bed spindles
+  on a regular basis to prevent the build-up of wood chips and dust,
+  lubricate with silicone spray. Do not use ordinary oil as this will
+  attract dust").
+- **MOF001 — FAILED, reverted.** Re-fetched the genuine official manual
+  direct from `tritontools.com/cdn/shop/files/330085_Z1MANPRO1.pdf`
+  (07/11/2024 edition, model and 220-240V~50/60Hz confirmed on its own
+  spec page). Its actual Troubleshooting table has no "Shutter on power
+  switch not releasing" or "Can't plunge to collet lock position" rows —
+  the entry quoted both as if verbatim manual text, in matching
+  problem/cause/solution format, and neither exists. The table's only
+  switch-related row is "No function when Power Switch (14) is operated:
+  No power / Defective On/Off Power Switch — Check power supply / Replace
+  the Power Switch at an authorised Triton service centre." The entry's
+  second named symptom ("router won't plunge all the way down to the
+  bit-change position" because "the power switch is 'On'") has zero
+  support anywhere in the manual — invented wholesale, not a
+  misattribution of real content. The one fact in the entry that IS real —
+  the Collet & Cutter Installation section's own step 6, "Return the
+  router to a normal operating depth. This will disengage the collet lock
+  and release the retracting switch shutter, enabling access to the Power
+  Switch" — describes one specific moment in the bit-change procedure, not
+  a general interlock the manual documents as a troubleshooting item, and
+  doesn't support a full entry on its own. **Reverted** commit `6fb4324`
+  (revert commit `01c94ba`, full explanation in its commit message),
+  rebuilt clean, pushed to `main`, and confirmed the URL now 404s live.
+  This is the same failure shape as the 14 Sep DWS780 fabrication —
+  confidently quoted troubleshooting-table text, in the right format,
+  that simply isn't in the document — just caught a week later by the
+  audit instead of before publish. No content-run rewrite attempted this
+  run on purpose: drafting a real replacement entry is content-run work,
+  and the playbook's own "cut the entry" option is the right size of
+  action for a measurement-focused weekly run.
+
+**Why this run's pick mattered**: TMNRTR and MOF001 were both drafted in
+the same 9 Nov content run and both involved genuinely tricky sourcing
+(TMNRTR's two-edition trap, MOF001's novel interlock framing) — picking
+both rather than defaulting to the newest-two confirms the sourcing-risk
+selection method (established 9 Nov) catches real problems that a
+random or newest-first pick might have missed for another week.
+
+**NEEDS HUMAN: none** — the correction was a straightforward revert within
+existing authority, not an ambiguous call.
