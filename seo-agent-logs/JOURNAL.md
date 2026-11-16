@@ -5909,3 +5909,91 @@ deploy took a little over a minute from push), confirmed the correct title
 ("Flymo Chevron 32 Not Collecting Grass — Fix") and body content live.
 
 **Continuing to the next candidate now.**
+
+## 2026-11-17 — content run, second of ISO week 2026-W47 (entry 2)
+
+**Published: Qualcast PC40 petrol chainsaw, smoking excessively.**
+`src/content/faults/qualcast-pc40-excessive-smoke.md` +
+`img/qualcast-pc40.png`. **First Qualcast entry** — Qualcast is now
+distributed under Husqvarna Group (same `content.tdr.dss.husqvarnagroup.net`
+document host found for the Flymo entry this run), found by a targeted
+search rather than crawling a Qualcast-branded site, which doesn't appear to
+exist as its own domain any more. UK market confirmed via
+"customer.service@husqvarna.co.uk" and the UK-format "0844 801 3652"
+Customer Helpline number repeated throughout the document (After Sales
+Support section and footer on every page). Verification quotes, re-checked
+against the freshly fetched PDF text immediately before commit:
+
+- Maintenance Instructions, Chain Lubrication (p.19): "Never starve the bar
+  and chain of lubricating oil. Running the saw dry or with too little oil
+  will decrease cutting efficiency, shorten saw chain life, cause rapid
+  dulling of chain, and lead to excessive wear of bar from overheating. Too
+  little oil is evidenced by smoke or bar discoloration." (The entry quotes
+  this with the manual's own US spelling preserved inside quotation marks —
+  "discoloration," not UK "discolouration" — rather than silently
+  correcting a direct quote.)
+- Troubleshooting Table (p.20), "Smokes excessively." row: "Incorrect
+  carburettor mixture adjustment setting. → Have carburettor adjusted by an
+  Authorized Service Center." and "Incorrect fuel mixture. → Use properly
+  mixed fuel (40:1 mixture)."
+
+**New gate-relevant pattern worth naming precisely, distinct from the
+"inventing a connection between two passages" failure already documented
+3 times (DW733, TA1200BS/HYBC5600X, and this run's own Flymo entry): here
+the document genuinely contains two unrelated causes of the same visible
+symptom word ("smoke"), in two different sections, and never implies
+they're the same fault.** The correct move was the opposite of the usual
+caution — not avoiding a connection, but explicitly telling the reader
+these are two different things and showing how to tell them apart (where
+the smoke comes from: the bar/chain vs the engine/muffler), each
+attributed only to its own section. Worth keeping as the contrast case: the
+gate isn't "never discuss two passages together," it's "never claim the
+document connects things it doesn't" — reporting two documented-but-separate
+causes side by side, correctly labelled as separate, is the honest version
+of exactly this kind of multi-cause fault.
+
+**No `parts:` field** — the fuel-mixture and oil-tank-top-up fixes need no
+part (fuel/oil are consumables the reader already has or buys loose, not a
+named replaceable part), and the one real repair cause (carburettor
+adjustment) is routed to a service centre with no part named.
+
+Illustration (gpt-image-2) came out correct on the first attempt — guide
+bar and chain, separate oil and fuel filler caps, pull-start handle and
+muffler vent grille all distinct and legible, clean white background, no
+regeneration needed.
+
+Build passed clean, pushed (`16851a9`), polled the live URL until 200,
+confirmed the correct title ("Qualcast PC40 Chainsaw Smoking — Engine or
+Bar?") and body content live.
+
+**Stopping at 2 for this run.** Both entries came from the same newly-found
+source domain (`content.tdr.dss.husqvarnagroup.net`), and both needed
+real care at the gate — not sourcing failures, but the kind of
+close-reading the gate exists for, which took the research budget that
+would otherwise have gone to a third candidate. Rather than rush a third
+entry from a less-checked lead to hit a higher count, stopping here:
+two genuinely new brands (Flymo, Qualcast), two new fault categories for
+the site (lawnmower grass collection, chainsaw smoke diagnosis), both
+clean through the gate on the first live-checkable attempt. Other brands
+considered only briefly and not pursued this run: Worx, Ryobi ONE+ and
+HiKOKI all returned third-party-mirror-only results on worx.com/
+ryobitools.co.uk/hikoki-powertools.co.uk searches, with no official
+troubleshooting PDF surfacing directly — worth a proper model-specific
+search attempt in a future run rather than the brand-level search tried
+here, but not chased further this run once two Husqvarna-group entries
+were already in hand.
+
+**New brand family worth flagging for future runs: Husqvarna Group owns
+Flymo, Qualcast, Gardena and Husqvarna-branded tools, all apparently
+served from the same `content.tdr.dss.husqvarnagroup.net` document host**
+(confirmed for Flymo and Qualcast this run; Husqvarna-branded chainsaw/
+hedge-trimmer/brushcutter manuals and a Gardena cordless mower manual were
+also found on the same host via search but not opened in full this run).
+Worth treating as a single reliable source family for several more brand
+entries, the same way Hyundai's `hyundaipowerequipment.co.uk` became a
+standing source across four products in the 9/10/16 Nov runs — but check
+each manual's own UK/market confirmation individually (phone number
+format, `.co.uk` email, address) rather than assuming the whole host is
+UK-relevant just because two models were.
+
+**NEEDS HUMAN: none this run.**
