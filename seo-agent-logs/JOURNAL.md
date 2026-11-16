@@ -5838,3 +5838,74 @@ chasing a fourth on thinner ground.
   this run.
 
 **NEEDS HUMAN: none this run.**
+
+## 2026-11-17 — content run, second of ISO week 2026-W47 (entry 1)
+
+GSC top queries (`gsc-report.mjs --days 30`) checked against the existing library
+first — same as every recent run, no new-topic gap. The one near-hit, "p1s
+heatbed temperature malfunction" (2 clicks/12 impr), is already the exact fault
+the existing `bambu-lab-p1s-heatbed-not-heating.md` entry targets. "dewalt dcf887
+trigger problems" (1 impression) and "do henry hoovers have a thermal cut out" (5
+impressions) are both already covered by existing entries. Fell back to cadence
+order #4 (a genuinely new brand), since siblings of brands already in the library
+were largely exhausted or blocked in the two most recent runs (9/10/16 Nov).
+
+**Published: Flymo Chevron 32 (CN32) electric lawnmower, poor grass collection.**
+`src/content/faults/flymo-chevron-32-poor-grass-collection.md` +
+`img/flymo-chevron-32.png`. **First Flymo entry and the site's first lawnmower/
+grass-collection fault** — Flymo is owned by Husqvarna, and the manual is
+genuinely official, found via web search rather than crawled from flymo.com:
+`content.tdr.dss.husqvarnagroup.net/pub000061089/doc000225319`. UK market
+confirmed via "Husqvarna UK Ltd. Approved Service Centre" (appears multiple
+times, naming the entity directly rather than just a language-section label —
+the stronger check this playbook has been using since the Triton TMNRTR
+two-edition trap on 9 Nov) and 230V/50Hz on the technical data table. Verification
+quotes, re-checked against the freshly fetched PDF text immediately before
+commit (Section 6, Troubleshooting, p.10):
+
+- "Poor Grass Collection / 1. Disconnect from the mains electricity supply. / 2.
+  Clean the outside of the air intakes, the discharge chute and the underside of
+  the deck. / 3. Raise to a higher height of cut. See 3. OPERATION To adjust the
+  cutting height. / If poor collection persists? Immediately disconnect from the
+  mains electricity supply and consult your local approved Service Centre."
+- Model/market confirmation, title page: "Chevron 32 Art. 9676237-xx... EN
+  Operator's manual Electric Lawnmower"; Technical Data table: "Mains voltage V
+  230 / Mains frequency Hz 50" (model code CN32).
+
+**No `parts:` field** — both causes are clean-and-adjust, no part is needed, and
+the manual routes anything beyond that straight to a service centre with no
+named part.
+
+**New sourcing-gate catch, same shape as 28 Sep (DW733) and 10 Nov
+(TA1200BS/HYBC5600X): a first draft connected two passages of the same document
+the document itself doesn't connect.** The Chevron 32's troubleshooting section
+files "Poor Grass Collection" and "Lawnmower Becomes Heavy to Push" as two
+separate faults with their own causes; the second fault's causes include the
+wheels and rear roller not turning freely. A first draft folded that
+wheel/roller check into the poor-collection entry as a contributing cause ("can
+show up as poor collection as well as the obvious heaviness") — a connection
+that reads plausibly but is not in the manual, which never ties the two
+symptoms together. Caught and cut before commit: the published entry only
+carries the two causes the manual actually lists under "Poor Grass Collection."
+Worth repeating as a general check: a manual filing two symptoms in the same
+section, back to back, is not evidence they share a cause — check whether the
+document itself draws the connection, not just whether it would read naturally
+if it did.
+
+**New usable source added to the reachable-sources list:
+`content.tdr.dss.husqvarnagroup.net`** — Husqvarna's own document host, serves
+genuine multi-brand (Flymo, Husqvarna, Gardena-adjacent) operator's manuals with
+real troubleshooting sections, found by web search rather than crawling
+flymo.com or husqvarna.com directly. Worth trying for other Husqvarna-owned
+brands/models if Flymo is revisited.
+
+Illustration (gpt-image-2) came out correct on the first attempt — collection
+box with carry handle, side air-intake vent slots, front and rear wheels and a
+visible grille all legible, clean white background, no shading or glow issues.
+No regeneration needed.
+
+Build passed clean, pushed (`f75fbd2`), polled the live URL until 200 (the
+deploy took a little over a minute from push), confirmed the correct title
+("Flymo Chevron 32 Not Collecting Grass — Fix") and body content live.
+
+**Continuing to the next candidate now.**
