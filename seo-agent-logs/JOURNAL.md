@@ -5741,3 +5741,100 @@ unit, loop handlebar, long shaft, cutting-head guard at the far end — no
 regeneration needed.
 
 **Continuing to the next candidate now.**
+
+## 2026-11-16 — content run, first of ISO week 2026-W47 (entry 3)
+
+**Published: Hyundai HY40CSC38 (cordless scarifier tines won't rotate).**
+`src/content/faults/hyundai-hy40csc38-tines-wont-rotate.md` +
+`img/hyundai-hy40csc38.png`. **The site's first scarifier/lawn-raker
+entry** — third Hyundai entry this run, again sourced directly from
+`hyundaipowerequipment.co.uk/cdn/shop/files/` (now confirmed reliable
+across four different Hyundai products: pump, two trimmer/brushcutter
+types, and this scarifier). UK/Ireland market confirmed via Genpower
+Ltd/Pembroke Dock, same as the other three Hyundai entries. Verification
+quotes, re-checked against the fetched PDF text immediately before
+commit:
+
+- Maintenance & Care: Troubleshooting (p.37-38): "PROBLEM: Tines will not
+  rotate. POSSIBLE CAUSE: Tines are clogged by dirt and debris. [/] Vines,
+  grass or other debris wrapped around the tine shaft. SOLUTION: Remove
+  the battery packs and start key, then remove any obstruction from the
+  tines. [/] Remove the battery packs and start key, then clean the tine
+  shaft."
+- Operation: Battery Charging and Installation, Safety Key (p.29):
+  "WARNING! YOU MUST REMOVE THE SAFETY KEY BEFORE INSTALLATION OR REMOVAL
+  OF BATTERIES" — then the procedure itself: "Install Batteries... [then]
+  Reinstall Safety Key: Install the safety key back into it's slot."
+
+**Worth flagging precisely because it's easy to get backwards: the
+troubleshooting table's own phrase, "remove the battery packs and start
+key," lists batteries before the key, but the manual's dedicated safety
+section states the opposite removal order (key out before batteries come
+out) and a different-again order for refitting (batteries in first, key
+last).** A first-draft version of this entry followed the troubleshooting
+table's listed word order for both removal and refit, which would have
+had the refit sequence backwards (key before batteries) against the
+manual's own explicit installation procedure. Caught and corrected before
+commit by checking the dedicated Safety Key section's literal sequence
+rather than trusting the shorthand phrasing in the troubleshooting table
+rows. Worth remembering generally: a troubleshooting table's casual listing
+order for a multi-step safety action is not necessarily the order a
+dedicated procedure section elsewhere in the same manual actually specifies
+— check the fuller section before writing a sequence into an entry, even
+when the troubleshooting row looks self-contained.
+
+Illustration (gpt-image-2) came out correct on the first attempt — tine
+roller with individual curved tines visible underneath, open battery
+hatch showing both battery packs and a distinct separate safety key,
+collection bag and folding handlebar all legible, no regeneration needed.
+
+**Stopping at 3 for this run.** Sourcing ran out after this: Record Power
+BS350/BDS250 (bandsaw/belt-disc-sander) and Axminster's AP25BM bench
+morticer were all researched and dropped (detail below); Milwaukee's EU
+site remains JS-gated with no manual links in raw HTML, consistent with
+every prior attempt. Three well-verified, genuinely new-ground entries
+(new category: submersible pump; new fault type for an existing brand:
+petrol engine low-power; new category: scarifier) across one brand's
+official document library, plus two gate-relevant sourcing-precision
+findings worth keeping (the merged-cell troubleshooting table reading
+order, and the battery/safety-key sequence), is a stronger result than
+chasing a fourth on thinner ground.
+
+**Candidates researched and dropped this run:**
+- **Record Power BS350 bandsaw** — manual exists (ManualsLib lists a
+  genuine "Original Instruction Manual," version 3.0, Jan 2013) but
+  recordpower.co.uk itself doesn't link it in a curl-resolvable way (the
+  standing finding since 22 Sep), and no reachable mirror surfaced this
+  run — a Belgian retailer mirror (willyvanhoutte.marcando.be) 403'd on
+  every attempt, including with full browser headers.
+- **Record Power BDS250 belt & disc sander** — same willyvanhoutte mirror
+  403'd; ManualsLib and ManualsHive copies are both now sitting behind an
+  Anubis bot-verification JS challenge that neither `curl` nor WebFetch
+  can get past (confirmed directly — the fetched page is the challenge
+  page itself, not manual content, with no model/UK-market text visible to
+  even attempt sourcing from). A genuinely new tool category for the site
+  (belt-and-disc combination sander, distinct from Triton's dedicated
+  belt sander) with real troubleshooting content (section 12, per the
+  table of contents) that stayed just out of reach this run.
+- **Axminster AP25BM bench morticer** — `cdn.axminstertools.com` is now
+  down for a third consecutive run (connection failure this time, after
+  DNS-prohibited-IP on 9 Nov and HTTP 524 on 10 Nov — three different
+  failure modes across three runs). The non-CDN `axminstertools.com` path
+  404'd for this specific file, and the product page itself 429'd
+  (rate-limited). Third failed attempt on this specific lead; deprioritise
+  it now rather than retry a fourth time.
+- **Numatic Henry/Hetty 620W EURO manual** — fetched in full and checked
+  for content beyond what the existing `numatic-hvr200-thermal-cutout.md`
+  entry already covers; it's the same thermal-protection/blockage
+  boilerplate ("This vacuum cleaner is fitted with a thermal protection
+  device... If the vacuum cleaner has a blockage... replace the dust bag
+  and clean the filter") with no distinct "reduced suction while still
+  running" content to differentiate it. Dropped before drafting as a
+  near-duplicate, the same discipline applied to the Numatic Charles/
+  George overlap on 10 Nov.
+- **Milwaukee M18 (milwaukeetool.eu)** — homepage fetch returned a 404 on
+  the root URL tried and no manual links were found in any result's raw
+  HTML; consistent with every prior Milwaukee attempt. Not pursued further
+  this run.
+
+**NEEDS HUMAN: none this run.**
