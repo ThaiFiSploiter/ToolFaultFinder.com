@@ -5608,3 +5608,71 @@ random or newest-first pick might have missed for another week.
 
 **NEEDS HUMAN: none** — the correction was a straightforward revert within
 existing authority, not an ambiguous call.
+
+## 2026-11-16 — content run, first of ISO week 2026-W47 (entry 1)
+
+GSC top queries (`gsc-report.mjs --days 30`) checked against the existing
+library first — no new-topic gap, same as every run for several weeks
+running (the one near-hit, "p1s heatbed temperature malfunction", is
+already the exact fault the existing `bambu-lab-p1s-heatbed-not-heating.md`
+entry targets). Fell back to cadence order #2–4.
+
+**Published: Hyundai HYSP400CD (submersible pump runs but won't pump /
+weak flow).** `src/content/faults/hyundai-hysp400cd-starts-but-no-flow.md`
++ `img/hyundai-hysp400cd.png`. **The site's first submersible-pump entry
+and first Hyundai product outside the trimmer category** (10 Nov) — a
+genuinely new tool line for the brand, not a sibling of the existing entry.
+Sourced from the HYSP400CD Electric Submersible Pump instruction manual,
+fetched directly from `hyundaipowerequipment.co.uk/cdn/shop/files/` (same
+official domain as the 10 Nov trimmer manual, no third-party mirror
+needed). UK/Ireland market confirmed via "Genpower Ltd, Isaac Way,
+Pembroke Dock, Pembrokeshire, SA72 4RW" and "Imported/Distributed by
+GENPOWER LTD for The United Kingdom & Ireland", plus 230V-50Hz on the spec
+table. Verification quotes, re-checked against the fetched PDF text
+immediately before commit:
+
+- Specification table (Section 6, p.12): "Head – m 5.8".
+- Troubleshooting table (Section 5, p.11), the "Pump starts but will not
+  pump" row group specifically (confirmed by column-position analysis of
+  the `-layout` extraction, cross-checked against the plain reading-order
+  extraction for cause/solution pairing — see note below): "Blocked inlet
+  — Check the inlet and remove obstruction", "Blocked outlet — Check the
+  outlet and remove obstruction", "Exceeded maximum pump head — Check the
+  specifications for maximum head", "Air trapped inside the pump — Remove
+  and reinsert the pump at an angle to remove trapped air", "Impeller may
+  be damaged — Consult your dealer."
+- General Machine Safety (Section 1.85, p.7): "Keep the base of the pump
+  clear of any debris or sediment by standing it on a platform or bricks
+  or suspending it to the correct depth via a rope."
+
+**Worth flagging as a new verification-gate technique: a `pdftotext
+-layout` table with four "Problem" headers and no cell borders in the text
+extraction doesn't reliably show which causes belong to which problem row
+just from reading order** — the four headers get extracted together up
+front (table had merged cells spanning multiple cause/solution rows per
+problem), then all 16 causes follow in one sequential block. Resolved by
+cross-referencing the `-layout` version, where each "Problem" label's
+extracted *position* falls near the vertical centre of its own row-span
+(confirmed by checking all four groups: a 6-row group's label lands near
+row 4, a 5-row group's near row 3, a 2-row group's near row 1, a 3-row
+group's near row 2 — consistent with center-of-span placement) — this
+would have mis-attributed "blocked inlet/outlet" to the wrong problem
+header if only the plain-reading-order dump had been trusted. Worth
+re-using this cross-check (layout-position-of-label vs plain reading
+order) whenever a manual's troubleshooting table has merged problem cells
+spanning several cause rows, not just reading pdftotext output once and
+assuming row order is correct.
+
+**No `parts:` field** — every free-to-fix cause (blocked inlet/outlet, air
+trapped) needs no part, exceeding the rated head isn't a fault to fix at
+all, and the one real repair cause (damaged impeller) routes to "consult
+your dealer" with no sourced replacement pump identified this run to
+recommend as a `kind: "replacement"` item. Left out rather than add a
+generic unsourced suggestion.
+
+Illustration (gpt-image-2) came out correct on the first attempt —
+cylindrical body, float switch on its own cable, base intake strainer
+slots and outlet hose spigot all distinct and legible, matching the brief
+and the house style with no grey fill, stippling or background glow.
+
+**Continuing to the next candidate now.**
