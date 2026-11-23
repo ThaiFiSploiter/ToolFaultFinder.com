@@ -6275,4 +6275,52 @@ Continuing this run — researching a 4th candidate next (Husqvarna
 brushcutter, per the 17 Nov finding that this host also serves
 Husqvarna-branded brushcutter manuals not yet opened).
 
-**NEEDS HUMAN: none so far this run.**
+**Four candidates researched and dropped after entry 3, all on sourcing
+grounds, not effort:**
+
+- **Husqvarna 525RJX brushcutter** — fetched its own Operator's Manual via
+  the UK support page's download link (same method as entries 2 and 3;
+  doc 1927-002, 13.03.2024). Genuine official content, but its
+  "The engine does not start" / "starts but stops" tables are near-identical
+  in shape to the T525 chainsaw entry published earlier this run — same
+  starter-pawls/incorrect-fuel/spark-plug/electrode-gap causes, same
+  service-agent escalation for stuck pawls. The one new element (a stop
+  switch left in the Stop position) wasn't enough on its own to justify a
+  full entry that would otherwise read as T525 with the numbers swapped.
+  Dropped per the within-run content-overlap discipline (21 Sep, 9 Nov) —
+  this time applied across two entries drafted in the *same* run rather
+  than against the published library.
+- **Ryobi ONE+ (model-specific, not brand-level, per the 17 Nov flag)** —
+  searched for specific lawnmower/hedge-trimmer model PDFs
+  (PBLLM05, RHT1851R25F, P2680). Found only third-party aggregator copies
+  (notice-facile.com, Home Depot's US image CDN) with no troubleshooting
+  section visible in the excerpts, or pages serving a different model's
+  table entirely. No ryobitools.co.uk-hosted manual surfaced. Confirms the
+  17 Nov brand-level finding generalises to model-specific searches too —
+  dropped, not chased through third-party mirrors.
+- **HiKOKI** — same result. `hikoki-powertools.eu/uk/en` (the correct
+  official domain, not `.co.uk`) serves a product catalogue and a service
+  FAQ but no per-model manual index found by search; every specific-model
+  manual result was a third-party aggregator. Dropped.
+- **Record Power BDS250 belt/disc sander** (open gap since 9/10 Nov,
+  blocked by an Anubis/Cloudflare bot challenge on ManualsLib/ManualsHive
+  then) — retried this run. A Belgian retailer mirror
+  (`willyvanhoutte.marcando.be`) 403'd outright; `manuals.online` returned
+  a Cloudflare "Just a moment..." interstitial rather than the document.
+  Still blocked two weeks on — worth retrying again in a few weeks rather
+  than this run.
+- **`cdn.axminstertools.com`** — spot-checked connectivity directly
+  (`curl` to the bare domain): still 403, a fourth consecutive run finding
+  it down after three different failure modes on 9/10/16 Nov. Not pursued
+  further; the main `axminstertools.com` site itself loads fine, so this
+  is specifically the CDN subdomain, not the brand being unreachable
+  generally.
+
+**Stopping at 3 entries this run.** Sourcing, not the 7-entry ceiling, is
+what stopped it — every further candidate tried either duplicated
+already-published content or had no reachable official source this
+session. Three solidly-sourced, verified, illustrated entries is this
+run's result; the next content run should start from a different brand
+family rather than re-trying today's dead ends immediately.
+
+**NEEDS HUMAN: none this run.**
