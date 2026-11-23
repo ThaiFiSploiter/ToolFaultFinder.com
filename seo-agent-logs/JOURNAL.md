@@ -6419,3 +6419,88 @@ also hosts Husqvarna-branded chainsaw/hedge-trimmer/brushcutter manuals
 not yet opened is still the most promising lead not yet followed up.
 
 **NEEDS HUMAN: none this run.**
+
+---
+
+**Continued the same run — published a 2nd entry.** The journal entry
+above said "stopped at 1" on the grounds that no second candidate had
+been researched; re-reading the playbook's explicit warning against
+effort-based stopping, went back and researched further rather than
+treat that as final.
+
+**Published 2 — Flymo EasiLife GO (robotic mower, "Cutting system
+blocked" fault message).** Entry-at-a-time to live: committed (`a8a478f`),
+pushed, confirmed live at
+`https://toolfaultfinder.com/tools/flymo/easilife-go/` (HTTP 200,
+"Cutting system blocked" text present; took ~2 minutes/4 polls for
+Netlify to finish building, longer than the Gardena entry's ~30s).
+
+**Route/duplicate check:** no existing Flymo EasiLife entry (the 17 Nov
+Flymo entry was Chevron 32, a push mower — different model, no
+collision). The source manual's own fault-message table also contains a
+"No loop signal" row that is substantively the same fault already
+published for Gardena smart SILENO free (23 Nov) — both are Husqvarna
+Group robotic-mower platforms and the causes overlap heavily (boundary
+wire, charging station signal, interference from buried metal).
+Deliberately picked "Cutting system blocked" instead, a genuinely
+distinct physical-blockage fault with no overlap, rather than publish
+what would read as the Gardena entry with the brand name changed. Same
+cross-brand content-overlap discipline as the 29 Sep
+Axminster/Record-Power bandsaw check and the 9 Nov/23 Nov within-run
+Triton/Husqvarna checks — this is the first time it's been applied to
+two genuinely different brands that turned out to share the same
+underlying OEM platform rather than just a similar product category.
+
+**New source family confirmed: Husqvarna Group's `content.tdr.dss.
+husqvarnagroup.net` host also serves Flymo's robotic-mower (EasiLife)
+manuals**, not just the push-mower/Qualcast/Gardena content already
+found there (17 Nov, 23 Nov, this run's first entry). Found by a direct
+web search for "Flymo EasiLife manual troubleshooting" rather than
+crawling flymo.com — consistent with the standing finding that Qualcast
+doesn't appear to run its own manual-hosting site at all, and Flymo's
+own site isn't the reliable route either.
+
+**PRE-PUBLISH VERIFICATION GATE — quotes** (Section 6.2 Fault messages,
+"Cutting system blocked" row): "Grass or other object around the blade
+disc. → Remove grass or other object." / "The blade disc is in water. →
+Move the product and prevent the collection of water in the work area."
+/ "The grass is too high. → Cut the grass before you install the
+product. Make sure that the grass is maximum 4 cm / 1.6 in." All three
+matched verbatim against a fresh fetch — clean on the first check this
+time, no correction needed (unlike the first entry this run).
+
+**UK-market check:** the manual's own footer text — "The Husqvarna UK
+policy of continuous improvement..." — plus repeated `www.flymo.com/uk`
+references throughout the document. No voltage/NA-edition trap found;
+this is a battery-powered product with no mains spec table to check.
+
+**No parts listed** — all three causes are clear-it-yourself conditions
+(debris, standing water, grass height), nothing to buy.
+
+**Illustration:** clean on the first attempt (`openai-image`, gpt-image-2,
+1024x1024, tilted three-quarter view showing the underside blade disc
+and drive wheels — the parts this specific fault turns on).
+
+**Husqvarna-branded petrol tools (chainsaw/brushcutter/blower) now
+confirmed to share one boilerplate troubleshooting table across at
+least three product categories, not usable for further entries without
+a genuinely new fault.** Checked Husqvarna 350BT and 570BTS leaf blower
+manuals (both via `husqvarna.com/uk/support/<model>/`, both official,
+both UK-relevant) before finding the Flymo lead above — both contain
+only the identical two-row "engine won't start" / "starts but stops
+again" table already published for the T525 chainsaw (23 Nov) and
+already causing the 525RJX brushcutter to be dropped the same day.
+Confirms the T525/525RJX finding generalises to a third product
+category (blower) rather than being chainsaw-specific. **Deprioritise
+further Husqvarna-branded petrol-tool leads entirely** (not just
+brushcutters) unless a model's manual is confirmed to carry
+model-specific content beyond this boilerplate.
+
+**Stopping at 2 for real this time** — the research budget this run
+went into one real gate-catch (entry 1), one real brand-overlap
+check that correctly redirected the topic (entry 2), and one dead-end
+line fully chased down and closed off (Husqvarna petrol tools,
+above). Two solidly-sourced, verified, illustrated entries, with a
+genuine negative result recorded so the next run doesn't re-tread it.
+
+**NEEDS HUMAN: none this run.**
