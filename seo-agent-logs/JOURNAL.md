@@ -6324,3 +6324,98 @@ run's result; the next content run should start from a different brand
 family rather than re-trying today's dead ends immediately.
 
 **NEEDS HUMAN: none this run.**
+
+---
+
+## 2026-11-24 — Content run, second of ISO week 2026-W48
+
+Started from a new brand family per the 23 Nov run's own note not to
+re-try that run's dead ends immediately (Ryobi/HiKOKI brand-level
+searches, Record Power BDS250, `cdn.axminstertools.com`).
+
+**Published 1 — Gardena PowerMax Duo 46/36V P4A (cordless lawnmower,
+won't start / stops with the error LED lit solid red).** Entry-at-a-time
+to live: researched, drafted, gated, illustrated, built, committed
+(`cae028f`), pushed, confirmed live at
+`https://toolfaultfinder.com/tools/gardena/powermax-duo-46-36v-p4a/`
+(HTTP 200, "Error LED" text present, confirmed after one 404 on the
+first poll ~30s post-push — Netlify still building).
+
+**Source:** GARDENA PowerMax Duo 46/36V P4A (Art. 14646) Operator's
+Manual, doc `GAR_14646-56.960.01_2025-02-12`, fetched fresh this run
+from `content.tdr.dss.husqvarnagroup.net/pub000104487/doc000257258`
+(`pdftotext -layout` and a second plain-order pass to resolve the
+merged-cell table — see below). Found via web search for a Gardena
+cordless (non-robotic) mower manual on the same Husqvarna-group host
+already trusted for the smart SILENO free entry (23 Nov) and the 17 Nov
+Flymo/Qualcast entries.
+
+**UK-market check:** the manual's own GB-specific plug notice — "Products
+sold in GB only: Your product is fitted with an BS 1363/A approved..."
+— plus two UK statutory-instrument references in the disposal section
+(S.I. 2013 No. 3113, S.I. 2001 No. 1701) confirm UK relevance. No
+voltage trap this time (single 220–240V spec table, no sibling NA
+edition surfaced in the search results).
+
+**PRE-PUBLISH VERIFICATION GATE — quote** (Section 6 Troubleshooting,
+"Mower does not start or stops. Error LED !Wp lights up red" row):
+"Battery temperature is outside the permissible temperature range. →
+Wait until the battery temperature has dropped back to between 0 °C and
++ 45°C." / "There are drops of water or moisture between the battery
+contacts. → Remove the water drops or moisture using a dry cloth." /
+"Obstacle is blocking the motor. → Remove the obstruction. → Check the
+90° blade position (see "6.1.1 Aligning the blade position to 90°")." /
+"Cutting height is set too low. → Set a higher cutting height." All four
+matched verbatim against a fresh fetch (not a cached read).
+
+**Gate caught a real error before commit, not after.** The first draft
+wrote the blade-alignment check as connected to the cutting-height cause
+("the blade isn't sitting at its correct 90° position, which the table
+also connects to having the cutting height set too low") — a plausible-
+sounding link the table doesn't actually make. Re-reading the manual's
+plain reading-order text (`pdftotext` without `-layout`) alongside the
+`-layout` version showed the two "Check the 90° blade position" remedy
+bullets sit directly under "Obstacle is blocking the motor" as a
+compound remedy (clearing an obstruction can knock the blade out of
+alignment), while "Cutting height is set too low" is its own, fourth,
+unconnected cause. Rewrote the frontmatter and body before commit to
+state these as independent causes. Same failure shape as the 9 Nov
+Hyundai HYSP400CD merged-cell finding (a `-layout` table's reading order
+doesn't reliably show which remedy belongs to which cause) and the same
+family as the 28 Sep DW733/10 Nov TA1200BS/16 Nov Hyundai HYBC5600X/17
+Nov Flymo "invented mechanism/connection" catches — this is the fifth
+documented instance of that failure shape, and the second time it was
+specifically a merged-cell table (after Hyundai, 9 Nov) rather than a
+cross-section inference.
+
+**Scoped deliberately to one LED state.** The manual's troubleshooting
+table has three rows for "mower does not start": solid red LED (this
+entry), flashing red LED ("the mower is faulty — contact GARDENA
+Service", a one-line row with nothing to diagnose), and no LED at all
+(battery defective / mower faulty). Covering only the richest, most
+actionable row and naming the other two as out of scope rather than
+folding them in — same discipline as the Qualcast PC40 "two unconnected
+smoke causes" entry (17 Nov): report what the document actually
+connects, no more.
+
+**No parts listed.** Every cause in scope (temperature, moisture,
+obstruction, cutting height) is a wait, a wipe, a clear or an adjustment
+— nothing to buy. Consistent with the standing "only list what the
+verdict calls for" rule.
+
+**Illustration:** clean on the first attempt (`openai-image`, gpt-image-2,
+1536x1024, matching the house convention for mowers established by the
+Flymo Chevron 32 and Einhell GC-PM 52/2 S HW entries) — folding handle,
+battery compartment with blank LED, grass collection bag and wheels all
+correctly in frame, no shading/glow/stippling faults.
+
+**Stopped at 1 deliberately.** This run's research time went entirely
+into the Gardena entry (manual search, two source-trap checks that
+turned out clean, and the merged-cell table re-read that caught the
+invented connection above) rather than effort-padding past a genuine
+stopping point — no second candidate was researched this run. Next
+content run: the 17 Nov finding that `content.tdr.dss.husqvarnagroup.net`
+also hosts Husqvarna-branded chainsaw/hedge-trimmer/brushcutter manuals
+not yet opened is still the most promising lead not yet followed up.
+
+**NEEDS HUMAN: none this run.**
