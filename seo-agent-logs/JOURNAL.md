@@ -6163,4 +6163,63 @@ low-voltage cable and status LED both in frame, matching house style.
 Stopping after 1 entry to file this journal entry before researching the
 next candidate, per the entry-at-a-time discipline. Continuing this run.
 
+Entry 2 of up to 7: **Husqvarna T525 — chainsaw won't start**
+(`husqvarna-t525-wont-start.md`). Published entry-at-a-time: committed
+(`fa86e92`), pushed, confirmed live at
+`https://toolfaultfinder.com/tools/husqvarna/t525/` (HTTP 200) before
+writing this entry.
+
+**Candidate selection.** Same reachable source family as entry 1
+(`content.tdr.dss.husqvarnagroup.net` / `husqvarna.com`), moving to a
+Husqvarna-branded tool per the 17 Nov finding that this host also serves
+Husqvarna's own chainsaw/hedge-trimmer/brushcutter manuals, not yet opened.
+Picked the T525 (a top-handle tree-service chainsaw) via its own UK support
+page.
+
+**Market-check finding worth keeping.** The first T525 manual found by
+search (`content.tdr.dss.husqvarnagroup.net/pub000073560/doc000125228`) is
+a 2017-dated edition carrying only an **EC** Declaration of Conformity, no
+UK-specific section at all — unlike entry 1's Gardena manual, which had a
+dedicated "Applicable to UK market" chapter. Rather than publish from an
+ambiguous edition, fetched `husqvarna.com/uk/support/t525/` (the brand's own
+UK support page for this exact model) directly and pulled the manual link
+it actually serves to UK visitors: a newer edition (doc 732-022, 09.12.2025)
+with an EU-only Declaration of Conformity still, but served specifically
+from the UK support page as the current UK-facing manual. Treated the
+UK support page's own current download link as the confirmation, the same
+class of check as previous runs' DeWalt `_GB_XE` filename and Kärcher
+spec-table checks, applied to a case where the document itself carries no
+explicit UK marking either way.
+
+**Content-overlap check:** compared against the existing `stihl-ms250-
+wont-start` entry (also a petrol chainsaw won't-start fault) before
+drafting. Mechanism is genuinely different — MS 250's entry centres on a
+carbon-clogged spark arrester screen after fuel/air/spark all check out;
+T525's manual never mentions a spark arrester for this fault at all, and
+centres on starter pawls, fuel-tank contamination and a documented
+flooded-engine clearing procedure instead. Not a duplicate.
+
+**PRE-PUBLISH VERIFICATION GATE — quotes** (Troubleshooting, "The engine
+does not start"): "The starter pawls are blocked. — Adjust or replace the
+starter pawls. / Clean around the pawls. / Speak to an approved service
+workshop." / "Incorrect fuel type. — Drain the fuel tank and fill with
+correct fuel." / "The fuel tank is filled with chain oil. — If you have
+tried to start the product, speak to your servicing dealer. If you have
+not tried to start the product, drain the fuel tank." / "The spark plug is
+dirty or wet. — Make sure that the spark plug is dry and clean." / "The
+electrode gap is incorrect... Refer to Technical data on page 29 for the
+correct electrode gap" — Technical data gives electrode gap 0.75mm, spark
+plug NGK CMR6A. / "Engine is flooded because of repeated starts with full
+choke after ignition. — Remove and clean the spark plug. Put the product
+on its side with the spark plug hole away from you. Pull the starter rope
+handle 6-8 times. Assemble the spark plug and start the product." All
+matched verbatim; nothing cut this time.
+
+**Illustration:** clean on the first attempt (`openai-image`, gpt-image-2,
+1536x1024) — top-handle chainsaw with starter housing, spark plug cover,
+fuel/oil caps and guide bar all in frame.
+
+Stopping after 2 entries to file this journal entry before researching the
+next candidate. Continuing this run.
+
 **NEEDS HUMAN: none so far this run.**
