@@ -5997,3 +5997,92 @@ format, `.co.uk` email, address) rather than assuming the whole host is
 UK-relevant just because two models were.
 
 **NEEDS HUMAN: none this run.**
+
+## 2026-11-23 — weekly run
+
+**Clicks roughly flat, proportional to impressions — not a signal either way.**
+Trailing 7-day windows, `gsc-report.mjs --days 21` split by hand (the script
+has no built-in WoW flag): Nov7-13 = 26 clicks/1659 impr (1.57% CTR) →
+Nov14-20 = 27 clicks/1805 impr (1.50% CTR). +3.8% clicks on +8.8% impressions,
+CTR down slightly. Same shape as last week's (16 Nov) comparison — growth
+tracking impressions, not CTR — so reading this as continuation of an existing
+pattern rather than a fresh finding.
+
+**Coverage: 109/110 (99%) indexed**, up from 104/105 on 16 Nov. Snapshotted to
+`seo-agent-logs/coverage/2026-11-23.csv`. Only
+`https://toolfaultfinder.com/tools/ryobi/one-18v/` remains "Crawled - currently
+not indexed" — now 22 days past its 1 Nov `date_modified` fix, well beyond both
+the ~11-day `bosch-pst-700-e` recovery precedent and the 15-day mark already
+flagged as exceeding it in last week's journal. **Flagging again, more
+insistently: the next monthly run needs to actually decide** (rewrite with a
+better source, or prune per rail 6) rather than carry this forward a third
+time — "wait longer" has now been tried for over three weeks against an
+11-day precedent.
+
+**CTR quick wins: investigated, nothing shipped.** Checked two 0-click,
+good-position candidates not yet live-checked: `einhell/gc-el-3024-e` (pos
+4.4, 31 impr/14 days) and `dewalt/dcf887` (pos 6.7, 25 impr/14 days). Both
+pages' live title/meta are already well-formed —
+"Einhell GC-EL 3024 E Blower/Vac Switch Won't Move" and "DeWalt DCF887
+Impact Driver Not Holding Bits — Fix", both with matching meta descriptions.
+Live web search for each symptom shape found no single dominant
+authority/forum page the way Bambu A1, Kärcher K4/K5 or the Stihl/Einhell/
+Record Power pages checked in prior runs did — these two SERPs are just
+scattered across JustAnswer, iFixit, appliance-parts blogs and
+model-adjacent forum threads. But at 25-31 impressions over 14 days, that's
+too thin to call either a genuine authority-cap or a title problem with any
+confidence — same shape as `einhell-gc-pc-1335-1-i` last week. Acting here
+would be guessing, not diagnosing, so nothing changed on either page.
+
+**Weekly entry audit: 3 of 3 clean**, picked by sourcing-risk from the five
+entries published since the 16 Nov audit (3 Hyundai entries + Flymo + Qualcast)
+— **Hyundai HYSP400CD** (highest risk: the merged-cell troubleshooting table
+whose row-attribution needed a cross-check at drafting time), **Hyundai
+HY40CSC38** (safety-key removal/refit sequence — wrong order is a genuine
+safety-adjacent error, not just a content error), and **Qualcast PC40** (the
+novel "two separate causes, same symptom word, correctly kept separate"
+framing). All three re-fetched fresh from their cited documents (not
+drafting-time quotes) and checked verbatim:
+
+- `hyundai-hysp400cd-starts-but-no-flow.md` — re-fetched
+  `hyundaipowerequipment.co.uk/cdn/shop/files/HYSP400CD_Manual.pdf` fresh.
+  The "Pump starts but will not pump" row's five causes (blocked
+  inlet/outlet, exceeded max head, air trapped, impeller damaged →
+  "Consult your dealer") match the entry exactly; Head spec "5.8" m and the
+  Section 1.85 platform/bricks safety line both matched verbatim. Clean.
+- `hyundai-hy40csc38-tines-wont-rotate.md` — re-fetched
+  `hyundaipowerequipment.co.uk/cdn/shop/files/HY40CSC38_-_Manual.pdf` fresh.
+  Troubleshooting row ("Tines will not rotate" / clogged debris vs wrapped
+  vines/grass → "Remove the battery packs and start key...") and the
+  Safety Key section ("YOU MUST REMOVE THE SAFETY KEY BEFORE INSTALLATION OR
+  REMOVAL OF BATTERIES", then Install Batteries, then Reinstall Safety Key)
+  both matched verbatim — confirming the entry's corrected safety-key-out-
+  first / batteries-in-first sequence is right, not just plausible.
+- `qualcast-pc40-excessive-smoke.md` — re-fetched the Husqvarna document
+  host PDF fresh. Confirmed the entry cites the correct one of two near-
+  identical "evidenced by smoke" passages in the document: an early
+  assembly-section instance reads "smoke, bar discoloration or pitch
+  build-up," but the entry's quoted text — "Too little oil is evidenced by
+  smoke or bar discoloration" — matches only the later Maintenance
+  Instructions/Chain Lubrication passage verbatim, which is the one the
+  entry's `sources:` field actually names. The Troubleshooting Table's
+  "Smokes excessively" row (carburettor mixture → Authorized Service
+  Center; incorrect fuel mixture → 40:1) also matched exactly. Worth
+  flagging as a new precision point for future re-verification: when a
+  document repeats near-identical phrasing in two places, check that the
+  entry's citation points at the *specific* passage actually quoted, not
+  just that the words appear somewhere in the document.
+
+No corrections needed on any of the three. Also spot-checked that
+`triton/mof001` (reverted at last week's audit) still 404s live — confirmed;
+its lingering GSC impressions this period are stale/lagged data from before
+the revert, not a live page issue.
+
+**Housekeeping: committed a stamp update that the 17 Nov content run forgot
+to push.** `seo-agent-logs/.content-week` had been bumped locally from
+"2026-47 1" to "2026-47 2" (correctly recording that week's second content
+run) but never committed alongside that run's journal entries — caught via
+`git status` at the start of this run. Committed now as the accurate record
+of work that already happened; no content-run work done in this session.
+
+**NEEDS HUMAN: none this run.**
