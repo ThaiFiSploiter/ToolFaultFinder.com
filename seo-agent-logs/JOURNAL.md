@@ -6086,3 +6086,81 @@ run) but never committed alongside that run's journal entries — caught via
 of work that already happened; no content-run work done in this session.
 
 **NEEDS HUMAN: none this run.**
+
+## 2026-11-23 — Content run, first of ISO week 2026-W48
+
+Entry 1 of up to 7: **Gardena smart SILENO free — "No Loop Signal"**
+(`gardena-smart-sileno-free-no-loop-signal.md`), the site's first robotic-
+lawnmower entry. Published entry-at-a-time: researched, drafted, gated,
+illustrated, built, committed (`edc7dcc`), pushed, and confirmed live at
+`https://toolfaultfinder.com/tools/gardena/smart-sileno-free/` (HTTP 200,
+"No Loop Signal" text present) before writing this entry.
+
+**Candidate selection.** Checked `gsc-report.mjs --days 30` top queries
+first per the cadence order — nothing new: every raw-looking query already
+maps to an existing entry (confirmed `0300-0200-0001-0002` is still the
+9 Nov clean drop, not a gap). Fell back to the 17 Nov finding that
+`content.tdr.dss.husqvarnagroup.net` hosts manuals for Husqvarna-group
+brands beyond Flymo/Qualcast, including Gardena and Husqvarna-branded tools
+not yet opened. Searched for a Gardena cordless push-mower manual first
+(to check for brand-hub-filling sibling content to the existing Flymo/
+Einhell/Qualcast mower entries) but the host's results for "Gardena ...
+mower" were almost entirely SILENO-series **robotic** mowers, not push
+mowers — a genuinely new tool category for the site, not a sibling of
+anything already published, so pursued that instead.
+
+**Route check:** no existing Gardena entry of any kind; confirmed via
+`ls src/content/faults/` before drafting.
+
+**Source:** GARDENA smart SILENO free Operator's Manual, doc 2516-001,
+fetched directly from `content.tdr.dss.husqvarnagroup.net/pub000094010/
+doc000252307` (curl with a desktop User-Agent; resolved as a genuine 44-page
+PDF). UK-market confirmed via the manual's own Section 11, "Applicable to
+UK market" / "Original UK Declaration of Conformity" — the strongest form
+of market confirmation this site has used, stronger than inferring from a
+language section or a filename suffix. Current UK retail availability under
+this exact name independently confirmed via Screwfix and Currys listings
+(web search), so the model name matches what a UK searcher would actually
+type.
+
+**PRE-PUBLISH VERIFICATION GATE — quotes:**
+- Symptom/causes (Section 7.1 Messages, "No loop signal" row): "The power
+  supply or low-voltage cable are not connected... If the LED status
+  indicator on the charging station is not lit, it shows that there is no
+  power. Examine the power outlet connection and the residual-current
+  device. Make sure that the low-voltage cable is connected to the
+  charging station." / "The power supply or low-voltage cable are damaged.
+  — Replace the power supply or low-voltage cable." / "Problem with the
+  pairing between the product and the charging station. — Redo the
+  installation of the charging station." / "Interference from metal
+  objects such as fences, reinforcement steel or buried cables near the
+  charging station. — Change the position of the charging station."
+- Signal mechanism (Section 3.1.4): "Do not put the low-voltage cable in a
+  coil or below the charging station plate. The coil causes interference
+  with the signal from the charging station." Used only to confirm the
+  station puts out a signal at all — the draft originally asserted the
+  signal's *purpose* (docking/navigation), which the manual never actually
+  states; cut before commit rather than publish an invented mechanism (same
+  failure shape flagged repeatedly since 28 Sep — DW733, TA1200BS,
+  HYBC5600X — now caught before drafting finished rather than after).
+- RCD requirement (Section 3.1.4): "Use a residual-current device (RCD)
+  with a tripping current of maximum 30 mA when you connect the power
+  supply to the power outlet" — used to justify the diagnostic step's RCD
+  check without quoting the 30 mA figure itself in the body.
+- Also caught and cut two unsupported "most common reason" / "most real
+  cases" frequency claims the draft had invented — the manual lists causes
+  but never ranks them by likelihood.
+
+**Parts:** one `repair` item (Gardena low-voltage cable), sourced directly
+from the verdict's own "replace the power supply or low-voltage cable"
+cause — no `part_number` invented, none was on hand. Note steers the reader
+to confirm damage before buying, matching the site's standing rule.
+
+**Illustration:** generated clean on the first attempt (`openai-image`,
+gpt-image-2, 1536x1024) — mower docked at its charging station with the
+low-voltage cable and status LED both in frame, matching house style.
+
+Stopping after 1 entry to file this journal entry before researching the
+next candidate, per the entry-at-a-time discipline. Continuing this run.
+
+**NEEDS HUMAN: none so far this run.**
