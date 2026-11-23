@@ -6222,4 +6222,57 @@ fuel/oil caps and guide bar all in frame.
 Stopping after 2 entries to file this journal entry before researching the
 next candidate. Continuing this run.
 
+Entry 3 of up to 7: **Husqvarna 525iHF3 — Error LED flashes red**
+(`husqvarna-525ihf3-error-led-flashes-red.md`), the site's first pole
+hedge trimmer entry. Published entry-at-a-time: committed (`aa2fec0`),
+pushed, confirmed live at
+`https://toolfaultfinder.com/tools/husqvarna/525ihf3/` (HTTP 200, "Error
+LED" text present) before writing this entry.
+
+**Source trap avoided before drafting.** Husqvarna's UK support site
+(`husqvarna.com/uk/support/hedge-trimmers/`) surfaces several genuine,
+official-looking KB articles — "Hedge trimmer running but blades not
+moving? Causes and fixes" (KA-70223), "...starts then dies" (KA-70199),
+"...won't start or has no power" (KA-70192), "...overheating" (KA-70194),
+"...smoking" (KA-70222). Fetched KA-70223 and confirmed by its embedded
+FAQPage schema that it's genuinely brand-wide/generic — "petrol models" /
+"electric models" language, no specific model named anywhere. This is the
+same "generic KB article" source trap flagged on 21 Sep for Record Power's
+bandsaw KB pages: usable as background, not as the sole source for a
+specific model's own entry, since the site's schema needs a real model and
+I'd be the one assigning genericity to a model number the source never
+names. Found the 525iHF3's own operator's manual instead (via its UK
+support page's download link, same method as entry 2) and sourced from
+that model-specific Troubleshooting table instead.
+
+**Route/content check:** no existing Husqvarna 525iHF3 entry; this is also
+the site's first pole hedge trimmer (distinct category from the T525
+chainsaw published earlier this run and from the generic hedge-trimmer KB
+content above).
+
+**PRE-PUBLISH VERIFICATION GATE — quotes** (User interface troubleshooting
+table): "Error LED flashes red | Overload. | The cutting attachment is
+jammed. Push and hold the On/Off button to set the product to Off. Remove
+the battery. Clean the cutting attachment from unwanted materials." /
+"Temperature deviation. | Let the product cool down." / "The power trigger
+and the activate button are pressed at the same time. | Release the power
+trigger and the product is active." / "Error LED is lit with red light |
+The product needs servicing. | Contact your servicing agent." All matched
+verbatim.
+
+**No parts listed** — reconsidered mid-draft and removed a battery
+consumable item that would have been included only to say it *doesn't*
+apply to this fault, which serves no reader purpose and isn't what the
+entry's own verdict calls for (nothing in this fault needs buying; the one
+unfixable case is a service referral, not a part). Caught before commit,
+not left in as padding.
+
+**Illustration:** clean on the first attempt (`openai-image`, gpt-image-2,
+1536x1024) — pole trimmer with handle, battery, Error LED and angled
+double-sided blade head all in frame.
+
+Continuing this run — researching a 4th candidate next (Husqvarna
+brushcutter, per the 17 Nov finding that this host also serves
+Husqvarna-branded brushcutter manuals not yet opened).
+
 **NEEDS HUMAN: none so far this run.**
